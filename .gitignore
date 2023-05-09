@@ -1,0 +1,8 @@
+# Ignoriere bin Verzeichnis
+bin/
+
+# Ignoriere obj Verzeichnis
+obj/
+
+# Ignoriere packages Verzeichnis
+packages/
