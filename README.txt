@@ -25,8 +25,8 @@ Django
 
 4.Öffne die Datei settings.py in deinem Django-Projekt. Suche nach der Zeile ALLOWED_HOSTS und füge deine IP-Adresse der Liste der zugelassenen Hosts hinzu, indem du sie als Zeichenkette in der Liste einfügst.
 Bsp.: ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.0.100']
-
--- Ersetze "192.168.0.100" durch deine eigene IP-Adresse.
+```
+Ersetze "192.168.0.100" durch deine eigene IP-Adresse.
 
 5. Starte die lokale Entwicklungsserver, indem du python manage.py runserver in der Kommandozeile ausführst.
 
