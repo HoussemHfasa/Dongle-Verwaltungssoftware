@@ -15,6 +15,7 @@ __pycache__/
 *.sqlite3
 db.sqlite3
 *.vs/
+.vs/Lizenzen
 
 # Django environment settings
 .env
