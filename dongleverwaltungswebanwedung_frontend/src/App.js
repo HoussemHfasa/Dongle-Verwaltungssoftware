@@ -1,8 +1,7 @@
 import logo from "./logo.svg";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Einloggen from "./Pages/Einloggen";
 import Übersichtseite from "./Pages/Übersichtseite";
-import { Home } from "./Pages/Home";
+import Home from "./Pages/Einloggen";
 import "./App.css";
 
 function App() {

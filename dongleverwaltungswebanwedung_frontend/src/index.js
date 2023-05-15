@@ -5,8 +5,8 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Einloggen from "./Pages/Einloggen";
-import { Home } from "./Pages/Home";
+import Home from "./Pages/Einloggen";
+
 import Übersichtseite from "./Pages/Übersichtseite";
 
 const router = createBrowserRouter([
