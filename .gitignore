@@ -6,3 +6,50 @@ obj/
 
 # Ignoriere packages Verzeichnis
 packages/
+
+# Django-specific
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+db.sqlite3
+*.vs/
+
+# Django environment settings
+.env
+
+# Django media files
+media/
+
+# Django static files
+staticfiles/
+
+# Virtual environment
+venv/
+*.egg-info/
+dist/
+*.log
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# React-specific
+node_modules/
+/build/
+/.eslintcache
+/.next/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE-specific
+.vscode/
+.idea/
+*.iml
+*.swp
+*.swo
+*.swn
+*.bak
+*.tmp
