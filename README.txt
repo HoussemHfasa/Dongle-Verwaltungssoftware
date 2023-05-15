@@ -1,5 +1,6 @@
 ## Django-App erstellen
-Dieses Repository enthält eine grundlegende Anleitung zur Erstellung einer Django-App.
+
+Dieses Repository enthält eine Anleitung zur Erstellung eines Django-Projekts, das in einem Browser geöffnet werden kann.
 
 # Anforderungen
 
@@ -22,16 +23,11 @@ Django
 
 3. Erstelle eine neue Django-App, indem du den Befehl python manage.py startapp app_name in der Kommandozeile ausführst. Ersetze "app_name" durch den Namen deiner App.
 
-4. Definiere die Attribute deiner Modelle und ihre Beziehungen zueinander in der models.py-Datei in deinem App-Verzeichnis.
+4.Öffne die Datei settings.py in deinem Django-Projekt. Suche nach der Zeile ALLOWED_HOSTS und füge deine IP-Adresse der Liste der zugelassenen Hosts hinzu, indem du sie als Zeichenkette in der Liste einfügst.
+Bsp.: ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.0.100']
+```
+Ersetze "192.168.0.100" durch deine eigene IP-Adresse.
 
-5. Führe Migrationen aus, indem du python manage.py makemigrations und python manage.py migrate in der Kommandozeile ausführst.
+5. Starte die lokale Entwicklungsserver, indem du python manage.py runserver in der Kommandozeile ausführst.
 
-6. Definiere die Logik, die deine App ausführt, wenn eine bestimmte URL aufgerufen wird, in der views.py-Datei in deinem App-Verzeichnis.
-
-7. Definiere, welche Views aufgerufen werden, wenn eine bestimmte URL aufgerufen wird, in der urls.py-Datei in deinem App-Verzeichnis.
-
-8. Erstelle HTML-Templates, die definieren, wie die Daten, die du aus der Datenbank abrufst, in HTML-Code umgewandelt werden, indem du den templates-Ordner in deinem App-Verzeichnis erstellst und HTML-Dateien darin ablegst.
-
-9. Starte die lokale Entwicklungsserver, indem du python manage.py runserver in der Kommandozeile ausführst.
-
-10. Öffne einen Webbrowser und navigiere zur URL http://localhost:8000/. Dort solltest du deine App sehen und testen können.
+6. Öffne einen Webbrowser und navigiere zur URL http://localhost:8000/. Dort solltest du deine App sehen und testen können.
