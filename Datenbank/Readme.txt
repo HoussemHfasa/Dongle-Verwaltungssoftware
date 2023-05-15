@@ -23,7 +23,7 @@ Schritt 2: MySQL Workbench einrichten
 Schritt 3: Datenbank mit Initialisierungsskript erstellen
 
 1. Öffnen Sie die Verbindung, die Sie in Schritt 2 erstellt haben, indem Sie auf den Verbindungsnamen klicken.
-2. Klicken Sie im Menü auf "File" > "Open SQL Script" und wählen Sie das bereitgestellte Initialisierungsskript (z.B. `initialisierungsscript.sql`).
+2. Klicken Sie im Menü auf "File" > "Open SQL Script" und wählen Sie das bereitgestellte Initialisierungsskript ('Webanwendungdatenbank.sql').
 3. Klicken Sie auf das Blitz-Symbol, um das Skript auszuführen und die Datenbank zu erstellen.
 
 Schritt 4: Django-Projekt mit der Datenbank verbinden
