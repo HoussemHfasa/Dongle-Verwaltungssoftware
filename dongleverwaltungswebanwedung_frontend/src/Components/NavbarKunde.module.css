@@ -1,0 +1,158 @@
+.container {
+    width: 100%;
+    display: flex;
+    overflow: auto;
+    min-height: 100vh;
+    align-items: center;
+    flex-direction: column;
+  }
+  .frame {
+    gap: 10px;
+    width: 100%;
+    height: 1117px;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  }
+  .rectanglebackground {
+    top: 0px;
+    left: 0px;
+    width: 1728px;
+    height: 187px;
+    position: absolute;
+    background-color: #00002E;
+  }
+  .logo {
+    top: 23px;
+    left: 43px;
+    color: rgba(255, 255, 255, 1);
+    height: auto;
+    position: absolute;
+    font-size: 48px;
+    font-style: Bold;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .home:hover::after,
+  .lizenz:hover::after,
+  .anfrage:hover::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px; /* Height of the white line */
+    background-color: white;
+    transition: transform 0.1s ease; /* Add a transition */
+
+  }
+  .home:active::after,
+.lizenz:active::after,
+.anfrage:active::after {
+  transform: scaleX(0.3); /* Scale the line down to 80% of its original width */
+}
+  .home {
+    display: flex; /* Add display flex */
+  align-items: center; /* Center text vertically */
+  justify-content: center; /* Center text horizontally */
+  padding: 10px 20px; /* Add some padding for better appearance */
+    top: 119px;
+    left: 33px;
+    color: rgb(255, 255, 255);
+    width: 253px;
+    height: auto;
+    position: relative;
+    font-size: 32px;
+    font-style: italic;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+    background: transparent; /* Set background to transparent */
+    border: none;
+    cursor: pointer;
+
+  }
+  .lizenz {
+    display: flex; /* Add display flex */
+  align-items: center; /* Center text vertically */
+  justify-content: center; /* Center text horizontally */
+  padding: 10px 20px; /* Add some padding for better appearance */
+    top: 118px;
+    left: 336px;
+    color: rgba(255, 255, 255, 1);
+    width: 253px;
+    height: auto;
+    position: absolute;
+    font-size: 32px;
+    font-style: italic;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+    background: transparent; /* Set background to transparent */
+    border: none;
+    cursor: pointer;
+  }
+  .anfrage {
+    display: flex; /* Add display flex */
+  align-items: center; /* Center text vertically */
+  justify-content: center; /* Center text horizontally */
+  padding: 10px 20px; /* Add some padding for better appearance */
+    top: 118px;
+    left: 647px;
+    color: rgba(255, 255, 255, 1);
+    width: 253px;
+    height: auto;
+    position: absolute;
+    font-size: 32px;
+    font-style: italic;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+    background: transparent; /* Set background to transparent */
+    border: none;
+    cursor: pointer;
+  }
+  .profileimage {
+    top: 35px;
+    left: 1579px;
+    width: 121px;
+    height: 103px;
+    position: absolute;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+  }
+  .notificationimage {
+    top: 56px;
+    left: 1485px;
+    width: 63px;
+    height: 61px;
+    position: absolute;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+  }
+  .profileImageButton:active .profileimage,
+.notificationImageButton:active .notificationimage {
+  transform: scale(0.8); /* Adjust the scale value as desired */
+  transition: transform 0.1s ease;
+}
