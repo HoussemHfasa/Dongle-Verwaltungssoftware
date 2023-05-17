@@ -3,10 +3,11 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Übersichtseite from "./Pages/Übersichtseite";
 import Home from "./Pages/Einloggen";
 import "./App.css";
+import Kunde_Dongle_anfordern from "./Pages/Kunde_Dongle_anfordern/Kunde_Dongle_anfordern";
 
-function App() { 
+function App() {
   let component;
- 
+
   switch (window.location.pathname) {
     case "/":
       component = <Home />;
@@ -14,12 +15,11 @@ function App() {
     case "/Übersichtseite":
       component = <Übersichtseite />;
       break;
-      /*case "/Kunde_Dongle_anfordern":
-        component = <Kunde_Dongle_anfordern />;
-        break;*/
+    case "/Kunde_Dongle_anfordern":
+      component = <Kunde_Dongle_anfordern />;
+      break;
     default:
       break;
-     
   }
 
   return (
