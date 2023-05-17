@@ -4,8 +4,9 @@ import Übersichtseite from "./Pages/Übersichtseite";
 import Home from "./Pages/Einloggen";
 import "./App.css";
 
-function App() {
+function App() { 
   let component;
+ 
   switch (window.location.pathname) {
     case "/":
       component = <Home />;
@@ -13,8 +14,12 @@ function App() {
     case "/Übersichtseite":
       component = <Übersichtseite />;
       break;
+      /*case "/Kunde_Dongle_anfordern":
+        component = <Kunde_Dongle_anfordern />;
+        break;*/
     default:
       break;
+     
   }
 
   return (

@@ -1,0 +1,44 @@
+
+.create-account-container {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+  }
+  
+  .create-account-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .create-account-label {
+    margin-right: 20px;
+    width: 160px;
+  }
+  
+  .create-account-input {
+    padding: 5px;
+  }
+  
+  .create-account-button {
+    padding: 10px;
+    margin-right: 20px;
+  }
+  
+  .create-account-reset {
+    background-color: white;
+    color: blue;
+    border: 2px solid blue;
+  }
+  
+  .create-account-submit {
+    background-color: orange;
+    color: white;
+    border: none;
+  }
+  
+  .create-account-title {
+    margin-bottom: 20px;
+    padding-left: 2px;
+    color: #777;
+    font-weight: bold;
+  }
