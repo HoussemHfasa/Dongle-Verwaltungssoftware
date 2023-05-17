@@ -5,18 +5,23 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./Pages/Einloggen";
+import Einloggen from "./Pages/Einloggen";
+import Kunde_Dongle_anfordern from './Pages/Kunde_Dongle_anfordern/Kunde_Dongle_anfordern'
 
 import Übersichtseite from "./Pages/Übersichtseite";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <Einloggen />,
   },
   {
     path: "/Übersichtseite",
     element: <Übersichtseite />,
+  },
+  {
+    path: "/Kunde_Dongle_anfordern",
+    element: <Kunde_Dongle_anfordern />,
   },
 ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));
