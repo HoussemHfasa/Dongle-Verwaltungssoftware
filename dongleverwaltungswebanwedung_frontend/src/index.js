@@ -6,9 +6,8 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Einloggen from "./Pages/Einloggen";
-import Kunde_Dongle_anfordern from "./Pages/Kunde_Dongle_anfordern/Kunde_Dongle_anfordern";
-
 import Übersichtseite from "./Pages/Übersichtseite";
+import CAccount from "./Pages/CreateAccount/cAccount";
 
 const router = createBrowserRouter([
   {
@@ -20,8 +19,8 @@ const router = createBrowserRouter([
     element: <Übersichtseite />,
   },
   {
-    path: "/Kunde_Dongle_anfordern",
-    element: <Kunde_Dongle_anfordern />,
+    path: "/CreateAccount",
+    element: <CAccount />,
   },
 ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));
