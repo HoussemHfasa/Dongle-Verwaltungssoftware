@@ -1,16 +1,9 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from users.models import admin_verwalter,kunde
-
-#class UserSerializer(serializers.ModelSerializer):
- #   class Meta:
-  #      model = User
-   #     fields = ('id', 'username', 'email', 'first_name', 'last_name')
-
-from django.contrib.auth.models import User
+from users.models import admin_verwalter, kunde
 from django.contrib.auth import get_user_model
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-   
+
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     username_field = get_user_model().EMAIL_FIELD
 
