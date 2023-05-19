@@ -1,46 +1,44 @@
-from django.shortcuts import render
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from multiprocessing import AuthenticationError
+from django.contrib.auth.backends import BaseBackend
+from rest_framework import status
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework_simplejwt.views import TokenObtainPairView
+from .models import AdminVerwalter, Kunde
 from .serializers import CustomTokenObtainPairSerializer
+from django.contrib.auth import authenticate
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
-def login(request):
-    serializer = CustomTokenObtainPairSerializer(data=request.data)
-    if serializer.is_valid():
-        role = serializer.validated_data['role']
-        if role == 'Admin':
-            return Response({'message': 'Willkommen Admin'})
-        elif role == 'Verwalter':
-            return Response({'message': 'Willkommen Verwalter'})
-        else:
-            return Response({'message': 'Willkommen Kunde'})
-    else:
-        return Response(serializer.errors, status=400)
-    
-from django.contrib.auth.backends import BaseBackend
-from .models import admin_verwalter, kunde
+def user_role(request):
+    email = request.data.get('email')
+    password = request.data.get('password')
 
+    user = AuthenticationError(request, email=email, password=password)
+
+    if user:
+        if isinstance(user, AdminVerwalter):
+            role = 'Admin' if user.is_admin else 'Verwalter'
+        elif isinstance(user, Kunde):
+            role = 'Kunde'
+        else:
+            role = 'Unknown'
+
+        return Response({'email': email, 'role': role}, status=status.HTTP_200_OK)
+    else:
+        return Response({'error': 'User not found or password incorrect.'}, status=status.HTTP_404_NOT_FOUND)
 
 class CustomAuthenticationBackend(BaseBackend):
     def authenticate(self, request, email=None, password=None, **kwargs):
         try:
-            user = admin_verwalter.objects.get(email=email)
-        except admin_verwalter.DoesNotExist:
+            user = AdminVerwalter.objects.get(email=email)
+        except AdminVerwalter.DoesNotExist:
             try:
-                user = kunde.objects.get(email=email)
-            except kunde.DoesNotExist:
+                user = Kunde.objects.get(email=email)
+            except Kunde.DoesNotExist:
                 return None
 
         if user.check_password(password):
             return user
 
-    def get_user(self, user_id):
-        try:
-            return admin_verwalter.objects.get(pk=user_id)
-        except admin_verwalter.DoesNotExist:
-            try:
-                return kunde.objects.get(pk=user_id)
-            except kunde.DoesNotExist:
-                return None
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer

@@ -1,8 +1,6 @@
 from django.contrib import admin
+from .models import AdminVerwalter, Kunde
 
 # Register your models here.
-from django.contrib import admin
-from .models import admin_verwalter, kunde
-
-admin.site.register(admin_verwalter)
-admin.site.register(kunde)
+admin.site.register(AdminVerwalter)
+admin.site.register(Kunde)

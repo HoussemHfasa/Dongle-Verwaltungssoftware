@@ -12,11 +12,12 @@ class KundeManager(BaseUserManager):
     # Implementieren Sie die Methoden zum Erstellen von Benutzern und Superbenutzern
     ...
 
-class admin_verwalter(AbstractBaseUser, PermissionsMixin):
+class AdminVerwalter(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     name = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
     role = models.CharField(max_length=10, choices=[('Admin', 'Admin'), ('Verwalter', 'Verwalter')])
+    is_admin = models.BooleanField(default=False)
 
     groups = models.ManyToManyField(
         Group,
@@ -46,7 +47,7 @@ class admin_verwalter(AbstractBaseUser, PermissionsMixin):
     class Meta:
         pass
 
-class kunde(AbstractBaseUser, PermissionsMixin):
+class Kunde(AbstractBaseUser, PermissionsMixin):
     firmcode = models.CharField(max_length=255, primary_key=True)
     name = models.CharField(max_length=255)
     email = models.EmailField(unique=True)

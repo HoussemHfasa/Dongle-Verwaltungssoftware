@@ -11,7 +11,12 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+from django.urls import path
+from . import views, views_api
+from django.urls import path
+from . import views
 
+from users.views import CustomTokenObtainPairView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,12 +35,13 @@ urlpatterns = [
                  'title': 'Log in',
                  'year' : datetime.now().year,
              }
-         ),
+         ),  
          name='login'),
     path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
     #path('admin/', admin.site.urls),
  
     path('api/auth/', include('dj_rest_auth.urls')),#Api auth
-      path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),#auth
+   path('api/token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),  # auth
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),#auth
+    path('api/user_role/', views_api.user_role, name='user_role'),
 ]
