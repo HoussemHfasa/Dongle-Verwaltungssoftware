@@ -13,7 +13,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 import posixpath
 from decouple import config
-
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'users',#Api Auth
      'dj_rest_auth',
      'rest_framework.authtoken',
+      'rest_framework_simplejwt',
 ]
 
 REST_FRAMEWORK = {
@@ -88,16 +90,15 @@ WSGI_APPLICATION = 'Lizenzen.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': config('DATABASE_NAME'),
-        'USER': config('DATABASE_USER'),
-        'PASSWORD': config('DATABASE_PASSWORD'),
-        'HOST': config('DATABASE_HOST'),
-        'PORT': config('DATABASE_PORT'),
-    }
-}
-
+       'default': {
+           'ENGINE': 'django.db.backends.mysql',
+           'NAME': os.environ['DATABASE_NAME'],
+           'USER': os.environ['DATABASE_USER'],
+           'PASSWORD': os.environ['DATABASE_PASSWORD'],
+           'HOST': os.environ['DATABASE_HOST'],
+           'PORT': os.environ['DATABASE_PORT'],
+       }
+   }
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [
