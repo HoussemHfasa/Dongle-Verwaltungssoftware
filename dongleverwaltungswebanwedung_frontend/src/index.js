@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Einloggen from "./Pages/Einloggen";
 import Übersichtseite from "./Pages/Übersichtseite";
-import CAccount from "./Pages/CreateAccount/cAccount";
+import DongleAnfordern from "./Pages/DongleAnfordern/DongleAnfordern";
 
 const router = createBrowserRouter([
   {
@@ -19,8 +19,8 @@ const router = createBrowserRouter([
     element: <Übersichtseite />,
   },
   {
-    path: "/CreateAccount",
-    element: <CAccount />,
+    path: "/DongleAnfordern",
+    element: <DongleAnfordern />,
   },
 ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));

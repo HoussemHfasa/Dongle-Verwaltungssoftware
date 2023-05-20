@@ -17,6 +17,13 @@ from django.urls import path
 from . import views
 
 from users.views import CustomTokenObtainPairView
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api/', include('your_app.urls')),  # Ersetzen Sie 'your_app' durch den Namen Ihrer Django-App
+]
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './createAccount.css';
+import './DongleAnfordern.css';
 
-const CAccount = () => {
+const DongleAnfordern = () => {
   const [dongleId, setDongleId] = useState('');
   const [productName, setProductName] = useState('');
   const [kundenName, setKundenName] = useState('');
@@ -16,12 +16,45 @@ const CAccount = () => {
     setAblaufdatum('');
   };
 
+  const handleSave = async () => {
+    const data = {
+      title: productName,
+      dongleId,
+      handler,
+      kundenName,
+      ablaufdatum,
+    };
+
+    try {
+      const response = await fetch('/api/create_ticket/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log('Ticket erstellt:', responseData);
+        resetForm();
+        alert('Ticket erfolgreich erstellt!');
+      } else {
+        console.error('Fehler beim Erstellen des Tickets:', response);
+        alert('Fehler beim Erstellen des Tickets');
+      }
+    } catch (error) {
+      console.error('Fehler beim Erstellen des Tickets:', error);
+      alert('Fehler beim Erstellen des Tickets');
+    }
+  };
+
   return (
-    <div className="createAcc-container">
-      <div className="createAcc-header">
+    <div className="DongleAnfordern-container">
+      <div className="DongleAnfordern-header">
         <h1>Kunde erstellen</h1>
       </div>
-      <div className="createAcc-form">
+      <div className="DongleAnfordern-form">
         <div className="form-row">
           <span className="form-label">Dongle-ID(Seriennummer)</span>
           <input type="text" placeholder=" " value={dongleId} onChange={(e) => setDongleId(e.target.value)} />
@@ -44,11 +77,11 @@ const CAccount = () => {
         </div>
         <div className="button-container">
           <button className="cancel-button" onClick={() => resetForm()}>Stornieren</button>
-          <button className="save-button">Speichern</button>
+          <button className="save-button" onClick={() => handleSave()}>Speichern</button>
         </div>
       </div>
     </div>
   );
 };
 
-export default CAccount;
+export default DongleAnfordern;

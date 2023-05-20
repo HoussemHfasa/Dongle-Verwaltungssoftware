@@ -1,4 +1,4 @@
-.createAcc-header {
+.DongleAnfordern-header {
   font-size: 31px;
   font-family: Arial, sans-serif;
   font-weight: 700;
@@ -8,7 +8,7 @@
   position: relative;
   }
   
-  .createAcc-list {
+  .DongleAnfordern-list {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -16,23 +16,23 @@
   margin-left: 75px;
   }
   
-  .createAcc-list li {
+  .DongleAnfordern-list li {
   margin-bottom: 50px;
   }
-  .createAcc-container {
+  .DongleAnfordern-container {
   display: grid;
   grid-template-columns: 1fr; /* Eine Spalte /
   grid-gap: 30px; / Abstand zwischen den Elementen */
   }
   
-  .createAcc-header {
+  .DongleAnfordern-header {
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 10px;
   align-items: center;
   }
   
-  .createAcc-form {
+  .DongleAnfordern-form {
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 10px;

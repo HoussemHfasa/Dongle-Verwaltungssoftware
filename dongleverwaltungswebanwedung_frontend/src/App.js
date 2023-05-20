@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Übersichtseite from "./Pages/Übersichtseite";
 import Home from "./Pages/Einloggen";
 import "./App.css";
-import CAccount from "./Pages/CreateAccount/cAccount";
+import DongleAnfordern from "./Pages/DongleAnfordern/DongleAnfordern";
 
 function App() {
   let component;
@@ -15,8 +15,8 @@ function App() {
     case "/Übersichtseite":
       component = <Übersichtseite />;
       break;
-    case "/CreateAccount":
-      component = <CAccount />;
+    case "/DongleAnfordern":
+      component = <DongleAnfordern />;
       break;
     default:
       break;
