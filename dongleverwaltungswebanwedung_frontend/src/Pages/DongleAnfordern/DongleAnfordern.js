@@ -52,7 +52,7 @@ const DongleAnfordern = () => {
   return (
     <div className="DongleAnfordern-container">
       <div className="DongleAnfordern-header">
-        <h1>Kunde erstellen</h1>
+        <h1>Dongle Anfordern</h1>
       </div>
       <div className="DongleAnfordern-form">
         <div className="form-row">
