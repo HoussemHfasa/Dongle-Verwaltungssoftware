@@ -4,14 +4,14 @@ import './DongleAnfordern.css';
 const DongleAnfordern = () => {
   const [dongleId, setDongleId] = useState('');
   const [productName, setProductName] = useState('');
-  const [kundenName, setKundenName] = useState('');
+  const [email, setEmail] = useState('');
   const [handler, setHandler] = useState('');
   const [ablaufdatum, setAblaufdatum] = useState('');
 
   const resetForm = () => {
     setDongleId('');
     setProductName('');
-    setKundenName('');
+    setEmail('');
     setHandler('');
     setAblaufdatum('');
   };
@@ -21,7 +21,7 @@ const DongleAnfordern = () => {
       title: productName,
       dongleId,
       handler,
-      kundenName,
+      email,
       ablaufdatum,
     };
 
@@ -64,8 +64,8 @@ const DongleAnfordern = () => {
           <input type="text" placeholder=" " value={productName} onChange={(e) => setProductName(e.target.value)} />
         </div>
         <div className="form-row">
-          <span className="form-label">Kundenname</span>
-          <input type="text" placeholder=" " value={kundenName} onChange={(e) => setKundenName(e.target.value)} />
+          <span className="form-label">email</span>
+          <input type="text" placeholder=" " value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
         <div className="form-row">
           <span className="form-label">Händler</span>
