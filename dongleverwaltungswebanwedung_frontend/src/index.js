@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Einloggen from "./Pages/Einloggen";
 import Übersichtseite from "./Pages/Übersichtseite";
-import DongleAnfordern from "./Pages/DongleAnfordern/DongleAnfordern";
+import DongleAnfordern from "./Pages/DongleAnfordern";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

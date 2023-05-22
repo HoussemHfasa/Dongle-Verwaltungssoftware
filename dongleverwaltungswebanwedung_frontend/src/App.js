@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Übersichtseite from "./Pages/Übersichtseite";
 import Home from "./Pages/Einloggen";
 import "./App.css";
-import DongleAnfordern from "./Pages/DongleAnfordern/DongleAnfordern";
+import DongleAnfordern from "./Pages/DongleAnfordern";
 
 function App() {
   let component;
@@ -27,9 +27,7 @@ function App() {
       <header className="App-header">
         <h1>React App</h1>
       </header>
-      <main>
-        {component}
-      </main>
+      <main>{component}</main>
     </div>
   );
 }

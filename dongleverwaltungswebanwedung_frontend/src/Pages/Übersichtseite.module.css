@@ -1,0 +1,31 @@
+
+
+.Dongleanfordern {
+  top: 221px;
+  left: 1298px;
+  width: 221px;
+  height: 86px;
+  position: absolute;
+  border-radius: 19px;
+  background: #FD9800;
+  cursor: pointer;
+  display: flex;         /* Add display flex */
+  justify-content: center; /* Center content horizontally */
+  align-items: center;     /* Center content vertically */
+}
+
+.Dongleanforderntext {
+  color: rgb(255, 255, 255);
+  width: 151px;
+  height: auto;
+  font-size: 30px;
+  font-style: Bold;
+  text-align: center;
+  font-family: Inter;
+  font-weight: 700;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+  margin: 0;              /* Reset any margins */
+  position: static;      /* Reset position */
+}

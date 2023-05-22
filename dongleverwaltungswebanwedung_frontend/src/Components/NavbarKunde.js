@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import styles from "./NavbarKunde.module.css";
+import styles from "./Navbar.module.css";
 import user_image from "./user.png";
 import Notification_image from "./active.png";
 import NotificationMenu from "./NotificationMenu";
@@ -66,15 +66,22 @@ const NavbarKunde = (props) => {
         <button className={styles["home"]}>Übersichtsseite</button>
         <button className={styles["lizenz"]}>Lizensübersicht</button>
         <button className={styles["anfrage"]}>Meine Anfrage</button>
-        <button className={styles["profileImageButton"]}>
+        <button
+          className={styles["profileImageButton"]}
+          onClick={toggleProfilePopup}
+          ref={profileButtonRef}
+        >
           <img
             alt="user_image"
             src={user_image}
             className={styles["profileimage"]}
           />
         </button>
-
-        <button className={styles["notificationImageButton"]}>
+        <button
+          className={styles["notificationImageButton"]}
+          onClick={toggleNotificationPopup}
+          ref={notificationButtonRef}
+        >
           <img
             alt="Notification_image"
             src={Notification_image}
