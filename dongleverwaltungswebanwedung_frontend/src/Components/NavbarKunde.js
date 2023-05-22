@@ -5,6 +5,7 @@ import user_image from "./user.png";
 import Notification_image from "./active.png";
 import NotificationMenu from "./NotificationMenu";
 import ProfileMenu from "./ProfileMenu";
+import gfaiLogo from "./gfai_logo.png";
 
 const NavbarKunde = (props) => {
   const [showProfilePopup, setShowProfilePopup] = useState(false);
@@ -62,14 +63,8 @@ const NavbarKunde = (props) => {
         {showNotificationPopup && (
           <NotificationMenu ref={notificationMenuRef} />
         )}
-        <img
-          alt="Rectangle352356"
-          src="/playground_assets/rectangle352356-32rk-200h.png"
-          className={styles["rectanglebackground"]}
-        />
-        <span className={styles["logo"]}>
-          <span>Logo</span>
-        </span>
+        <div className={styles["rectanglebackground"]}></div>
+        <img alt="GFAI Logo" src={gfaiLogo} className={styles["logo"]} />
         <button className={styles["home"]} onClick={navigateToUebersichtsseite}>
           Übersichtsseite
         </button>

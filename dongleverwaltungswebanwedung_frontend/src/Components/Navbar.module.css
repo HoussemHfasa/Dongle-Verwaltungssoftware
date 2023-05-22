@@ -34,18 +34,11 @@
   }
   .logo {
     top: 23px;
-    left: 43px;
-    color: rgba(255, 255, 255, 1);
-    height: auto;
+    left: 50px;
     position: absolute;
-    font-size: 48px;
-    font-style: Bold;
-    text-align: center;
-    font-family: Inter;
-    font-weight: 700;
-    line-height: normal;
-    font-stretch: normal;
-    text-decoration: none;
+    width: 150px; /* Adjust the width as needed */
+    height: auto; /* To maintain aspect ratio */
+    background-color: rgba(255, 255, 255, 1); /* White background */
   }
   .home:hover::after,
   .lizenz:hover::after,
