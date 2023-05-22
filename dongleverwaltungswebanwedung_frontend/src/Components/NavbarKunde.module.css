@@ -156,3 +156,168 @@
   transform: scale(0.8); /* Adjust the scale value as desired */
   transition: transform 0.1s ease;
 }
+
+
+
+.container1 {
+  position: absolute;
+  top: 160px;
+  left: 1545px;
+  z-index: 1000;
+  width: 140px;
+  height: 112px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  box-sizing: border-box;
+  border-radius: 15px;
+  border: 1px solid black;
+  animation: fadeIn 0.3s ease-in-out;
+
+}
+
+.profileButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  color: rgba(0, 0, 0, 1);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  font-style: italic;
+  text-align: left;
+  font-family: Inter;
+  font-weight: 700;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+  border-bottom: 1px solid black;
+  width: 100%;
+}
+
+.abmeldenButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  color: red;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  font-style: italic;
+  text-align: left;
+  font-family: Inter;
+  font-weight: 700;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+  width: 100%;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+.container1::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 90px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid white;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+@keyframes explode {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+.exploding {
+  animation: explode 0.5s forwards;
+}
+
+.notificationContainer {
+  position: absolute;
+  top: 140px;
+  left: 1245px;
+  background-color: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  width: 300px; /* Adjust the width as needed */
+  height: 270px;
+  z-index: 100;
+  background-color: white;
+  box-sizing: border-box;
+  border-radius: 15px;
+  border: 1px solid black;
+  animation: fadeIn 0.3s ease-in-out;
+}
+.notificationContainer::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 260px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid white;
+}
+
+/*notifications inside the notificastion container*/
+.notificationItem {
+  background-color: #f8f9fa;
+  border: 1px solid #00002E;
+  border-radius: 4px;
+  padding: 8px;
+  margin-bottom: 8px;
+  transition: background-color 0.2s ease;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.notificationItem:last-child {
+  margin-bottom: 0;
+}
+
+.notificationItem:hover {
+  background-color: #e9ecef;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

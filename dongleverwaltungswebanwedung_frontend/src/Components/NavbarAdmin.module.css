@@ -59,30 +59,29 @@
 .admin:active::after {
   transform: scaleX(0.3); /* Scale the line down to 80% of its original width */
 }
-  .home {
-    display: flex; /* Add display flex */
-  align-items: center; /* Center text vertically */
-  justify-content: center; /* Center text horizontally */
-  padding: 10px 20px; /* Add some padding for better appearance */
-    top: 119px;
-    left: 33px;
-    color: rgb(255, 255, 255);
-    width: 253px;
-    height: auto;
-    position: relative;
-    font-size: 32px;
-    font-style: italic;
-    text-align: left;
-    font-family: Inter;
-    font-weight: 700;
-    line-height: normal;
-    font-stretch: normal;
-    text-decoration: none;
-    background: transparent; /* Set background to transparent */
-    border: none;
-    cursor: pointer;
-
-  }
+.home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  top: 119px;
+  left: 33px;
+  color: rgb(255, 255, 255);
+  width: 253px;
+  height: auto;
+  position: absolute; /* Add this line */
+  font-size: 32px;
+  font-style: italic;
+  text-align: left;
+  font-family: Inter;
+  font-weight: 700;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
   .lizenz {
     display: flex; /* Add display flex */
   align-items: center; /* Center text vertically */
