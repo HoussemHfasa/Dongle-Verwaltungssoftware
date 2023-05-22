@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import user_image from "./user.png";
 import Notification_image from "./active.png";
@@ -12,6 +13,8 @@ const NavbarKunde = (props) => {
   const notificationMenuRef = useRef(null);
   const profileButtonRef = useRef(null);
   const notificationButtonRef = useRef(null);
+
+  const navigate = useNavigate();
 
   const toggleProfilePopup = () => {
     setShowProfilePopup(!showProfilePopup);
@@ -48,6 +51,10 @@ const NavbarKunde = (props) => {
     };
   }, [showProfilePopup, showNotificationPopup]);
 
+  const navigateToUebersichtsseite = () => {
+    navigate("/Übersichtseite");
+  };
+
   return (
     <div className={styles["container"]}>
       <div className={styles["frame"]}>
@@ -63,7 +70,9 @@ const NavbarKunde = (props) => {
         <span className={styles["logo"]}>
           <span>Logo</span>
         </span>
-        <button className={styles["home"]}>Übersichtsseite</button>
+        <button className={styles["home"]} onClick={navigateToUebersichtsseite}>
+          Übersichtsseite
+        </button>
         <button className={styles["lizenz"]}>Lizensübersicht</button>
         <button className={styles["anfrage"]}>Meine Anfrage</button>
         <button

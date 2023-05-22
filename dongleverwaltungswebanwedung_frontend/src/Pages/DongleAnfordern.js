@@ -46,9 +46,7 @@ const DongleAnfordern = () => {
       <div className="DongleAnfordern-header">
         <h1>Dongle Anfordern</h1>
       </div>
-      <h2 style={{ textAlign: "center", marginTop: "50px" }}>
-        Username: {username}
-      </h2>
+
       <div className="DongleAnfordern-form">
         <div className="form-row">
           <span className="form-label">Dongle-ID(Seriennummer)</span>

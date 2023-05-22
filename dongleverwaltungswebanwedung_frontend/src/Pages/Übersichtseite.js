@@ -32,7 +32,7 @@ const Übersichtseite = () => {
         übersichtseite
         <button
           className={styles["Dongleanfordern"]}
-          onClick={() => navigate("/DongleAnfordern")}
+          onClick={() => navigate("/DongleAnfordern", { state: { username } })}
         >
           <span className={styles["Dongleanforderntext"]}>
             <span>Dongle anfordern</span>
