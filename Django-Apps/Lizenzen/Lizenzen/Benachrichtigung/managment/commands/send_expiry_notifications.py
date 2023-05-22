@@ -17,7 +17,7 @@ class Command(BaseCommand):
             customer = UsersKunde.objects.get(firmcode=license.dognle_lfd_nr_field.benutzer_firmcode.firmcode)
             subject = "Ihre Lizenz läuft bald ab"
             message = f"Sehr geehrte Kundin, sehr geehrter Kunde,\n\nIhre Lizenz für {license.lizenzname} läuft in 3 Tagen ab. Bitte verlängern Sie Ihre Lizenz, um weiterhin Zugriff auf das Produkt zu haben.\n\nMit freundlichen Grüßen,\nIhr Team"
-            from_email = "noreply@example.com"
+            from_email = "ramaabazeed654@gmail.com"
             to_email = [customer.email]
 
             send_mail(subject, message, from_email, to_email)
