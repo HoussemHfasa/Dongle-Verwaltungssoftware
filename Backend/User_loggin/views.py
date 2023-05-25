@@ -6,7 +6,6 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
 from .models import AdminVerwalter, Kunde
 from .serializers import CustomTokenObtainPairSerializer
-from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import check_password
 
 

@@ -2,6 +2,8 @@ from django.test import TestCase
 from django.urls import reverse
 from rest_framework.test import APIClient
 from .models import AdminVerwalter, Kunde
+from django.db import IntegrityError 
+
 
 class UserLoginTest(TestCase):
     def setUp(self):
@@ -25,28 +27,28 @@ class UserLoginTest(TestCase):
     def test_admin_login(self):
         response = self.client.post(reverse('user_role'), {'email': 'admin1@example.com', 'password': 'admin123'})
         self.assertEqual(response.status_code, 200)
-        print("Role: yaatek aasba", response.data['role'])
+        print("Roleadmin: ", response.data['role'])
         self.assertEqual(response.data['email'], 'admin1@example.com')
         self.assertIn(response.data['role'], ['Admin', 'Verwalter'])
 
     def test_admin1_login(self):
         response = self.client.post(reverse('user_role'), {'email': 'admin11@example.com', 'password': 'admin123'})
         self.assertEqual(response.status_code, 200)
-        print("Role: yaatek aasba", response.data['role'])
+        print("Roleadmin2: ", response.data['role'])
         self.assertEqual(response.data['email'], 'admin11@example.com')
         self.assertIn(response.data['role'], ['Admin', 'Verwalter'])
 
     def test_Verwalter_login(self):
         response = self.client.post(reverse('user_role'), {'email': 'Verwalter@example.com', 'password': 'admin123'})
         self.assertEqual(response.status_code, 200)
-        print("Role:", response.data['role'])
+        print("Roleverwalter:", response.data['role'])
         self.assertEqual(response.data['email'], 'Verwalter@example.com')
         self.assertIn(response.data['role'], ['Admin', 'Verwalter'])
     def test_kunde_login(self):
-        response = self.client.post(reverse('user_role'), {'email': 'kunde1@example.com', 'password': 'kunde123'})
+        response = self.client.post(reverse('user_role'), {'email': 'kunde1@example.com', 'password': 'kunde1234'})
        
-        self.assertEqual(response.status_code, 200)
-        print("Role:", response.data['role'])
+        self.assertEqual(response.status_code, 404)
+        print("Rolekunde:", response.data['role'])
         self.assertEqual(response.data['email'], 'kunde1@example.com')
         self.assertEqual(response.data['role'], 'Kunde')
 

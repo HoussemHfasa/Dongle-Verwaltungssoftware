@@ -17,6 +17,8 @@ class AdminVerwalter(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
     role = models.CharField(max_length=10, choices=[('Admin', 'Admin'), ('Verwalter', 'Verwalter')])
+    is_admin = models.BooleanField(default=False)
+    
     groups = models.ManyToManyField(
         Group,
         verbose_name=_('groups'),
@@ -41,9 +43,14 @@ class AdminVerwalter(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['name', 'role']
+    
+    def save(self, *args, **kwargs):
+        if self.role == 'Admin':
+            self.is_admin = True
+        super().save(*args, **kwargs)
 
     class Meta:
-        pass
+        pass  
 
 class Kunde(AbstractBaseUser, PermissionsMixin):
     firmcode = models.CharField(max_length=255, primary_key=True)
