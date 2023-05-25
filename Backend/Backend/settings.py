@@ -33,14 +33,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
     'license_management',
-=======
     'User_loggin',
      'rest_framework',
     'rest_framework_simplejwt',
 
->>>>>>> 96342bd8148838481fddf11d2cf9449bbcfe509a
 ]
 
 MIDDLEWARE = [
