@@ -4,6 +4,7 @@ import dotenv
 from dotenv import load_dotenv
 import os
 
+STATIC_URL = '/static/'
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 load_dotenv(os.path.join(BASE_DIR, '.env'))
 load_dotenv()
@@ -32,10 +33,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+<<<<<<< HEAD
+    'license_management',
+=======
     'User_loggin',
      'rest_framework',
     'rest_framework_simplejwt',
 
+>>>>>>> 96342bd8148838481fddf11d2cf9449bbcfe509a
 ]
 
 MIDDLEWARE = [
@@ -119,8 +124,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
