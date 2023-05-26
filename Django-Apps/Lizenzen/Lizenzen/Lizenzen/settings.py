@@ -46,6 +46,7 @@ INSTALLED_APPS = [
      'dj_rest_auth',
      'rest_framework.authtoken',
       'rest_framework_simplejwt',
+      'übersichtsseite',
 ]
 
 REST_FRAMEWORK = {
