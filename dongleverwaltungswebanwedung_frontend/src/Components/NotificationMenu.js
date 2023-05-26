@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import styles from "./NavbarKunde.module.css";
+import styles from "./Navbar.module.css";
 
 const NotificationMenu = forwardRef((props, ref) => {
   return (
