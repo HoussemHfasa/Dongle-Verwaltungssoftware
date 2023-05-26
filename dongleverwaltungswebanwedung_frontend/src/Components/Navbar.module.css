@@ -1,45 +1,46 @@
 .container {
-    width: 100%;
-    display: flex;
-    overflow: auto;
-    min-height: 100vh;
-    align-items: center;
-    flex-direction: column;
-  }
-  .frame7 {
-    gap: 10px;
-    width: 100%;
-    display: flex;
-    overflow: hidden;
-    position: relative;
-    align-items: flex-start;
-    background-color: rgb(255, 255, 255);
-  }
-  
-  .content {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 187px;  /* Same height as .rectanglebackground */
-  }
-  
-  .rectanglebackground {
-    top: 0px;
-    left: 0px;
-    width: 1728px;
-    height: 187px;
-    position: absolute;
-    background-color: #00002E;
-  }
-  .logo {
-    top: 23px;
-    left: 50px;
-    position: absolute;
-    width: 150px; /* Adjust the width as needed */
-    height: auto; /* To maintain aspect ratio */
-    background-color: rgba(255, 255, 255, 1); /* White background */
-  }
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+}
+.frame7 {
+  gap: 10px;
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  align-items: flex-start;
+  background-color: rgb(255, 255, 255);
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20%; /* Use percentage for padding */
+}
+
+.rectanglebackground {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 187px; 
+  position: fixed; /* Change position to fixed */
+  background-color: #00002E;
+  z-index: -1; /* Set z-index to a lower value to ensure it stays behind the other elements */
+}
+.logo {
+  top: 23px;
+left: 50px;
+position: absolute;
+width: 150px; 
+height: auto; 
+background-color: rgba(255, 255, 255, 1); 
+}
   .home:hover::after,
   .lizenz:hover::after,
   .anfrage:hover::after,
@@ -55,39 +56,39 @@
 
   }
   .home:active::after,
-.lizenz:active::after,
-.anfrage:active::after,
-.admin:active::after {
-  transform: scaleX(0.3); /* Scale the line down to 80% of its original width */
-}
-.home {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 20px;
-  top: 119px;
-  left: 33px;
-  color: rgb(255, 255, 255);
-  width: 253px;
-  height: auto;
-  position: absolute; /* Add this line */
-  font-size: 32px;
-  font-style: italic;
-  text-align: left;
-  font-family: Inter;
-  font-weight: 700;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
+  .lizenz:active::after,
+  .anfrage:active::after,
+  .admin:active::after {
+    transform: scaleX(0.3); /* Scale the line down to 80% of its original width */
+  }
+  .home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    top: 119px;
+    left: 33px;
+    color: rgb(255, 255, 255);
+    width: 253px;
+    height: auto;
+    position: absolute; /* Add this line */
+    font-size: 32px;
+    font-style: italic;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
   .lizenz {
     display: flex; /* Add display flex */
-  align-items: center; /* Center text vertically */
-  justify-content: center; /* Center text horizontally */
-  padding: 10px 20px; /* Add some padding for better appearance */
+    align-items: center; /* Center text vertically */
+    justify-content: center; /* Center text horizontally */
+    padding: 10px 20px; /* Add some padding for better appearance */
     top: 118px;
     left: 336px;
     color: rgba(255, 255, 255, 1);
@@ -108,9 +109,9 @@
   }
   .anfrage {
     display: flex; /* Add display flex */
-  align-items: center; /* Center text vertically */
-  justify-content: center; /* Center text horizontally */
-  padding: 10px 20px; /* Add some padding for better appearance */
+    align-items: center; /* Center text vertically */
+    justify-content: center; /* Center text horizontally */
+    padding: 10px 20px; /* Add some padding for better appearance */
     top: 118px;
     left: 647px;
     color: rgba(255, 255, 255, 1);
@@ -148,7 +149,7 @@
     line-height: normal;
     font-stretch: normal;
     text-decoration: none;
-    background: transparent;
+    background: transparent; /* Set background to transparent */
     border: none;
     cursor: pointer;
   }

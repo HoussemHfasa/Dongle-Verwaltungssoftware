@@ -1,25 +1,30 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./Einloggen.module.css";
 import MyUsername from "./Username.png";
 import MyPassword from "./Password.png";
+import { useAuth } from "../Components/AuthContext"; // Import the useAuth hook
 
-const Einloggen = (props) => {
-  const [username, setUsername] = useState("");
+const Einloggen = () => {
+  const { setUsername } = useAuth();
+  const [inputUsername, setInputUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
+
     if (
-      username === "admin" ||
-      username === "Admin" ||
-      username === "verwalter" ||
-      username === "Verwalter" ||
-      username === "kunde" ||
-      username === "Kunde"
+      inputUsername === "admin" ||
+      inputUsername === "Admin" ||
+      inputUsername === "verwalter" ||
+      inputUsername === "Verwalter" ||
+      inputUsername === "kunde" ||
+      inputUsername === "Kunde"
     ) {
-      navigate("/Übersichtseite", { state: { username: username } });
+      setUsername(inputUsername); // Update the global state with the username
+      navigate("/Übersichtseite");
     }
   };
 
@@ -31,7 +36,7 @@ const Einloggen = (props) => {
           type="text"
           placeholder="Schreiben Sie Ihr Benutzername"
           className={styles.textbox_Benutzername}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => setInputUsername(e.target.value)}
         />
         <div className={styles["frame-Benutzername"]}>Benutzername</div>
         <div className={styles["frame-text-Benutzername"]}>

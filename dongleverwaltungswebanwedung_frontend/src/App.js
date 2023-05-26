@@ -1,34 +1,26 @@
-import logo from "./logo.svg";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React from "react";
+import { AuthProvider } from "./Components/AuthContext";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Übersichtseite from "./Pages/Übersichtseite";
-import Home from "./Pages/Einloggen";
+import Einloggen from "./Pages/Einloggen";
 import "./App.css";
 import DongleAnfordern from "./Pages/DongleAnfordern";
 
 function App() {
-  let component;
-
-  switch (window.location.pathname) {
-    case "/":
-      component = <Home />;
-      break;
-    case "/Übersichtseite":
-      component = <Übersichtseite />;
-      break;
-    case "/DongleAnfordern":
-      component = <DongleAnfordern />;
-      break;
-    default:
-      break;
-  }
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>React App</h1>
-      </header>
-      <main>{component}</main>
-    </div>
+    <AuthProvider>
+      <div className="App">
+        <main>
+          <Router>
+            <Routes>
+              <Route path="/" element={<Einloggen />} />
+              <Route path="/Übersichtseite" element={<Übersichtseite />} />
+              <Route path="/DongleAnfordern" element={<DongleAnfordern />} />
+            </Routes>
+          </Router>
+        </main>
+      </div>
+    </AuthProvider>
   );
 }
 

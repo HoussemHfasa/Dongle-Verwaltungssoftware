@@ -1,15 +1,9 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import NavbarAdmin from "../Components/NavbarAdmin";
-import NavbarKunde from "../Components/NavbarKunde";
-import NavbarVerwalter from "../Components/NavbarVerwalter";
 import "./DongleAnfordern.css";
+import NavbarWrapper from "../Components/NavbarWrapper"; // Import NavbarWrapper
 
 const DongleAnfordern = () => {
-  const location = useLocation();
-  const username = location.state?.username;
-  console.log("Username:", username);
-
   const [dongleId, setDongleId] = useState("");
   const [productName, setProductName] = useState("");
   const [email, setEmail] = useState("");
@@ -28,21 +22,9 @@ const DongleAnfordern = () => {
     // ...
   };
 
-  const renderNavbar = () => {
-    if (username === "admin" || username === "Admin") {
-      return <NavbarAdmin />;
-    } else if (username === "verwalter" || username === "Verwalter") {
-      return <NavbarVerwalter />;
-    } else if (username === "kunde" || username === "Kunde") {
-      return <NavbarKunde />;
-    } else {
-      return <></>;
-    }
-  };
-
   return (
     <div className="DongleAnfordern-container">
-      {renderNavbar()}
+      <NavbarWrapper />
       <div className="DongleAnfordern-header">
         <h1>Dongle Anfordern</h1>
       </div>
