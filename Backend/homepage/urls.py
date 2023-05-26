@@ -1,6 +1,6 @@
-from .views import DongleView  
-from django.urls import path  
-  
-urlpattern = [  
-    path('homepage/', DongleView.as_view())  
-]  
+from django.urls import path
+from .views import DongleView
+
+urlpatterns = [
+    path('homepage/', DongleView.as_view()),
+]
