@@ -458,7 +458,7 @@ CREATE TABLE `ticket` (
   `Beschreibung` varchar(45) NOT NULL,
   `Status` varchar(45) NOT NULL,
   `Erstellungsdatum` date NOT NULL,
-  `Schließungsdatum` date NOT NULL,
+  `Schliessungsdatum` date NOT NULL,
   `Admin/Verwalter_ID` int NOT NULL,
   `Dognle_Lfd. Nr.` int NOT NULL,
   `Dognle_Benutzer_Firmcode` int NOT NULL,
@@ -832,4 +832,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-26 14:09:22
+-- Dump completed on 2023-05-26 15:25:44
