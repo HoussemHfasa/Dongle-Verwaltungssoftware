@@ -1,9 +1,9 @@
 import os
 from pathlib import Path
-
 import os
+from dotenv import load_dotenv
 
-
+load_dotenv()
 
 
 # Quick-start development settings - unsuitable for production
@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'User_loggin',
     'rest_framework',
     'rest_framework_simplejwt',
+    'homepage'
     
 
 ]
