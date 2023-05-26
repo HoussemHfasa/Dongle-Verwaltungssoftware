@@ -24,4 +24,9 @@ urlpatterns = [
     # path('', views.home, name='home'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('User_loggin/', include('User_loggin.urls')),
-    path('admin/', admin.site.urls)]
+    path('admin/', admin.site.urls),
+    path('homepage/', include('homepage.urls')),
+    #path('homepage/', DongleView.as_view()),
+    
+    ]
+    

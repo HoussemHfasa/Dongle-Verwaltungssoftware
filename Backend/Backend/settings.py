@@ -35,8 +35,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'license_management',
     'User_loggin',
-     'rest_framework',
+    'rest_framework',
     'rest_framework_simplejwt',
+    'homepage'
+    
 
 ]
 
