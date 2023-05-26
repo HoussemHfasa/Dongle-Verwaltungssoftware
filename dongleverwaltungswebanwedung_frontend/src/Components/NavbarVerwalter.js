@@ -5,6 +5,7 @@ import Notification_image from "./active.png";
 import NotificationMenu from "./NotificationMenu";
 import ProfileMenu from "./ProfileMenu";
 import gfaiLogo from "./gfai_logo.png";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const NavbarVerwalter = (props) => {
   const [showProfilePopup, setShowProfilePopup] = useState(false);
@@ -17,6 +18,7 @@ const NavbarVerwalter = (props) => {
   const toggleProfilePopup = () => {
     setShowProfilePopup(!showProfilePopup);
   };
+  const navigate = useNavigate();
 
   const toggleNotificationPopup = () => {
     setShowNotificationPopup(!showNotificationPopup);
@@ -58,7 +60,12 @@ const NavbarVerwalter = (props) => {
         )}
         <div className={styles["rectanglebackground"]}></div>
         <img alt="GFAI Logo" src={gfaiLogo} className={styles["logo"]} />
-        <button className={styles["home"]}>Übersichtsseite</button>
+        <button
+          className={styles["home"]}
+          onClick={() => navigate("/Übersichtseite")} // Add the navigate function here
+        >
+          Übersichtsseite
+        </button>
         <button className={styles["lizenz"]}>Lizensübersicht</button>
         <button className={styles["anfrage"]}>Anfrage</button>
         <button

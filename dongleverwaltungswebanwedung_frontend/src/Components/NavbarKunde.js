@@ -65,7 +65,10 @@ const NavbarKunde = (props) => {
         )}
         <div className={styles["rectanglebackground"]}></div>
         <img alt="GFAI Logo" src={gfaiLogo} className={styles["logo"]} />
-        <button className={styles["home"]} onClick={navigateToUebersichtsseite}>
+        <button
+          className={styles["home"]}
+          onClick={() => navigate("/Übersichtseite")} // Add the navigate function here
+        >
           Übersichtsseite
         </button>
         <button className={styles["lizenz"]}>Lizensübersicht</button>

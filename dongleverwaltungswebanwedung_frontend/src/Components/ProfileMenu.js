@@ -1,11 +1,13 @@
 import React, { forwardRef, useState } from "react";
 import styles from "./Navbar.module.css";
 import { useNavigate } from "react-router-dom"; // Change this import
+import { useAuth } from "./AuthContext";
 
 const ProfileMenu = forwardRef((props, ref) => {
   const [profileExploding, setProfileExploding] = useState(false);
   const [abmeldenExploding, setAbmeldenExploding] = useState(false);
   const navigate = useNavigate(); // Change this line
+  const { setUsername } = useAuth(); // Get setUsername from the context
 
   const handleProfileClick = () => {
     setProfileExploding(true);
@@ -15,7 +17,8 @@ const ProfileMenu = forwardRef((props, ref) => {
   const handleAbmeldenClick = () => {
     setAbmeldenExploding(true);
     setTimeout(() => setAbmeldenExploding(false), 500);
-    navigate("/"); // Change this line
+    setUsername(null); // Reset the username in the context
+    navigate("/");
   };
 
   return (

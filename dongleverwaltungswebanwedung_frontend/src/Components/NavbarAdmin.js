@@ -5,6 +5,7 @@ import Notification_image from "./active.png";
 import NotificationMenu from "./NotificationMenu";
 import ProfileMenu from "./ProfileMenu";
 import gfaiLogo from "./gfai_logo.png";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const NavbarAdmin = (props) => {
   const [showProfilePopup, setShowProfilePopup] = useState(false);
@@ -21,6 +22,7 @@ const NavbarAdmin = (props) => {
   const toggleNotificationPopup = () => {
     setShowNotificationPopup(!showNotificationPopup);
   };
+  const navigate = useNavigate();
 
   const handleClickOutside = (e) => {
     if (
@@ -58,7 +60,12 @@ const NavbarAdmin = (props) => {
         )}
         <div className={styles["rectanglebackground"]}></div>
         <img alt="GFAI Logo" src={gfaiLogo} className={styles["logo"]} />
-        <button className={styles["home"]}>Übersichtsseite</button>
+        <button
+          className={styles["home"]}
+          onClick={() => navigate("/Übersichtseite")} // Add the navigate function here
+        >
+          Übersichtsseite
+        </button>
         <button className={styles["lizenz"]}>Lizensübersicht</button>
         <button className={styles["anfrage"]}>Anfrage</button>
         <button className={styles["admin"]}>Admin</button>
@@ -87,9 +94,7 @@ const NavbarAdmin = (props) => {
         <a
           href="https://www.flaticon.com/free-icons/notification"
           title="notification icons"
-        >
-          Notification icons created by Pixel perfect - Flaticon
-        </a>
+        ></a>
       </div>
     </div>
   );
