@@ -111,7 +111,7 @@ CREATE TABLE `auth_permission` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `auth_permission_content_type_id_codename_01ab375a_uniq` (`content_type_id`,`codename`),
   CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,7 +120,7 @@ CREATE TABLE `auth_permission` (
 
 LOCK TABLES `auth_permission` WRITE;
 /*!40000 ALTER TABLE `auth_permission` DISABLE KEYS */;
-INSERT INTO `auth_permission` VALUES (1,'Can add log entry',1,'add_logentry'),(2,'Can change log entry',1,'change_logentry'),(3,'Can delete log entry',1,'delete_logentry'),(4,'Can view log entry',1,'view_logentry'),(5,'Can add permission',2,'add_permission'),(6,'Can change permission',2,'change_permission'),(7,'Can delete permission',2,'delete_permission'),(8,'Can view permission',2,'view_permission'),(9,'Can add group',3,'add_group'),(10,'Can change group',3,'change_group'),(11,'Can delete group',3,'delete_group'),(12,'Can view group',3,'view_group'),(13,'Can add user',4,'add_user'),(14,'Can change user',4,'change_user'),(15,'Can delete user',4,'delete_user'),(16,'Can view user',4,'view_user'),(17,'Can add content type',5,'add_contenttype'),(18,'Can change content type',5,'change_contenttype'),(19,'Can delete content type',5,'delete_contenttype'),(20,'Can view content type',5,'view_contenttype'),(21,'Can add session',6,'add_session'),(22,'Can change session',6,'change_session'),(23,'Can delete session',6,'delete_session'),(24,'Can view session',6,'view_session'),(25,'Can add kunde',7,'add_kunde'),(26,'Can change kunde',7,'change_kunde'),(27,'Can delete kunde',7,'delete_kunde'),(28,'Can view kunde',7,'view_kunde'),(29,'Can add admin_verwalter',8,'add_admin_verwalter'),(30,'Can change admin_verwalter',8,'change_admin_verwalter'),(31,'Can delete admin_verwalter',8,'delete_admin_verwalter'),(32,'Can view admin_verwalter',8,'view_admin_verwalter'),(33,'Can add Token',9,'add_token'),(34,'Can change Token',9,'change_token'),(35,'Can delete Token',9,'delete_token'),(36,'Can view Token',9,'view_token'),(37,'Can add token',10,'add_tokenproxy'),(38,'Can change token',10,'change_tokenproxy'),(39,'Can delete token',10,'delete_tokenproxy'),(40,'Can view token',10,'view_tokenproxy');
+INSERT INTO `auth_permission` VALUES (1,'Can add log entry',1,'add_logentry'),(2,'Can change log entry',1,'change_logentry'),(3,'Can delete log entry',1,'delete_logentry'),(4,'Can view log entry',1,'view_logentry'),(5,'Can add permission',2,'add_permission'),(6,'Can change permission',2,'change_permission'),(7,'Can delete permission',2,'delete_permission'),(8,'Can view permission',2,'view_permission'),(9,'Can add group',3,'add_group'),(10,'Can change group',3,'change_group'),(11,'Can delete group',3,'delete_group'),(12,'Can view group',3,'view_group'),(13,'Can add user',4,'add_user'),(14,'Can change user',4,'change_user'),(15,'Can delete user',4,'delete_user'),(16,'Can view user',4,'view_user'),(17,'Can add content type',5,'add_contenttype'),(18,'Can change content type',5,'change_contenttype'),(19,'Can delete content type',5,'delete_contenttype'),(20,'Can view content type',5,'view_contenttype'),(21,'Can add session',6,'add_session'),(22,'Can change session',6,'change_session'),(23,'Can delete session',6,'delete_session'),(24,'Can view session',6,'view_session'),(25,'Can add kunde',7,'add_kunde'),(26,'Can change kunde',7,'change_kunde'),(27,'Can delete kunde',7,'delete_kunde'),(28,'Can view kunde',7,'view_kunde'),(29,'Can add admin_verwalter',8,'add_admin_verwalter'),(30,'Can change admin_verwalter',8,'change_admin_verwalter'),(31,'Can delete admin_verwalter',8,'delete_admin_verwalter'),(32,'Can view admin_verwalter',8,'view_admin_verwalter'),(33,'Can add Token',9,'add_token'),(34,'Can change Token',9,'change_token'),(35,'Can delete Token',9,'delete_token'),(36,'Can view Token',9,'view_token'),(37,'Can add token',10,'add_tokenproxy'),(38,'Can change token',10,'change_tokenproxy'),(39,'Can delete token',10,'delete_tokenproxy'),(40,'Can view token',10,'view_tokenproxy'),(41,'Can add admin verwalter',11,'add_adminverwalter'),(42,'Can change admin verwalter',11,'change_adminverwalter'),(43,'Can delete admin verwalter',11,'delete_adminverwalter'),(44,'Can view admin verwalter',11,'view_adminverwalter'),(45,'Can add kunde',12,'add_kunde'),(46,'Can change kunde',12,'change_kunde'),(47,'Can delete kunde',12,'delete_kunde'),(48,'Can view kunde',12,'view_kunde');
 /*!40000 ALTER TABLE `auth_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,7 +145,7 @@ CREATE TABLE `auth_user` (
   `date_joined` datetime(6) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154,7 +154,7 @@ CREATE TABLE `auth_user` (
 
 LOCK TABLES `auth_user` WRITE;
 /*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
-INSERT INTO `auth_user` VALUES (2,'pbkdf2_sha256$600000$fcMlZlID9wRnCqBq6NL58o$IQ0HleBky8CcVY8qtIDtcWOudzZmF3HZ74B3z2hGxRU=',NULL,1,'Houssem','','','Houssem.Hfasa@student.htw-berlin.de',1,1,'2023-05-18 21:54:52.951523');
+INSERT INTO `auth_user` VALUES (2,'pbkdf2_sha256$600000$fcMlZlID9wRnCqBq6NL58o$IQ0HleBky8CcVY8qtIDtcWOudzZmF3HZ74B3z2hGxRU=',NULL,1,'Houssem','','','Houssem.Hfasa@student.htw-berlin.de',1,1,'2023-05-18 21:54:52.951523'),(3,'pbkdf2_sha256$600000$RRP79otVL11U7JPhJ4Z1t0$BCQ1t1c0Nh8MrhqHaql6ycABSj3pGPAiobL3USNkNiw=','2023-05-24 14:47:20.286128',1,'Houssem1','','','houssemhfasa@gmail.com',1,1,'2023-05-24 14:44:37.464656');
 /*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -262,7 +262,7 @@ CREATE TABLE `django_admin_log` (
   CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
   CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`),
   CONSTRAINT `django_admin_log_chk_1` CHECK ((`action_flag` >= 0))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -271,6 +271,7 @@ CREATE TABLE `django_admin_log` (
 
 LOCK TABLES `django_admin_log` WRITE;
 /*!40000 ALTER TABLE `django_admin_log` DISABLE KEYS */;
+INSERT INTO `django_admin_log` VALUES (1,'2023-05-24 15:38:10.773590','1','houssemhfassa48@gmail.com',1,'[{\"added\": {}}]',11,3),(2,'2023-05-24 15:38:55.148140','2000','houssemhfassa25@gmail.com',1,'[{\"added\": {}}]',12,3);
 /*!40000 ALTER TABLE `django_admin_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -287,7 +288,7 @@ CREATE TABLE `django_content_type` (
   `model` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `django_content_type_app_label_model_76bd3d3b_uniq` (`app_label`,`model`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -296,7 +297,7 @@ CREATE TABLE `django_content_type` (
 
 LOCK TABLES `django_content_type` WRITE;
 /*!40000 ALTER TABLE `django_content_type` DISABLE KEYS */;
-INSERT INTO `django_content_type` VALUES (1,'admin','logentry'),(3,'auth','group'),(2,'auth','permission'),(4,'auth','user'),(9,'authtoken','token'),(10,'authtoken','tokenproxy'),(5,'contenttypes','contenttype'),(6,'sessions','session'),(8,'users','admin_verwalter'),(7,'users','kunde');
+INSERT INTO `django_content_type` VALUES (1,'admin','logentry'),(3,'auth','group'),(2,'auth','permission'),(4,'auth','user'),(9,'authtoken','token'),(10,'authtoken','tokenproxy'),(5,'contenttypes','contenttype'),(6,'sessions','session'),(8,'users','admin_verwalter'),(7,'users','kunde'),(11,'User_loggin','adminverwalter'),(12,'User_loggin','kunde');
 /*!40000 ALTER TABLE `django_content_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -313,7 +314,7 @@ CREATE TABLE `django_migrations` (
   `name` varchar(255) NOT NULL,
   `applied` datetime(6) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -322,7 +323,7 @@ CREATE TABLE `django_migrations` (
 
 LOCK TABLES `django_migrations` WRITE;
 /*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
-INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2023-05-14 10:08:38.432996'),(2,'auth','0001_initial','2023-05-14 10:08:38.717361'),(3,'admin','0001_initial','2023-05-14 10:08:38.792502'),(4,'admin','0002_logentry_remove_auto_add','2023-05-14 10:08:38.800710'),(5,'admin','0003_logentry_add_action_flag_choices','2023-05-14 10:08:38.808274'),(6,'contenttypes','0002_remove_content_type_name','2023-05-14 10:08:38.855614'),(7,'auth','0002_alter_permission_name_max_length','2023-05-14 10:08:38.889260'),(8,'auth','0003_alter_user_email_max_length','2023-05-14 10:08:38.927395'),(9,'auth','0004_alter_user_username_opts','2023-05-14 10:08:38.936265'),(10,'auth','0005_alter_user_last_login_null','2023-05-14 10:08:38.969299'),(11,'auth','0006_require_contenttypes_0002','2023-05-14 10:08:38.972739'),(12,'auth','0007_alter_validators_add_error_messages','2023-05-14 10:08:38.979315'),(13,'auth','0008_alter_user_username_max_length','2023-05-14 10:08:39.017145'),(14,'auth','0009_alter_user_last_name_max_length','2023-05-14 10:08:39.056392'),(15,'auth','0010_alter_group_name_max_length','2023-05-14 10:08:39.087321'),(16,'auth','0011_update_proxy_permissions','2023-05-14 10:08:39.095325'),(17,'auth','0012_alter_user_first_name_max_length','2023-05-14 10:08:39.135386'),(18,'sessions','0001_initial','2023-05-14 10:08:39.159333'),(19,'authtoken','0001_initial','2023-05-18 18:55:06.607667'),(20,'authtoken','0002_auto_20160226_1747','2023-05-18 18:55:06.626606'),(21,'authtoken','0003_tokenproxy','2023-05-18 18:55:06.630633'),(22,'users','0001_initial','2023-05-18 18:55:06.961665');
+INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2023-05-14 10:08:38.432996'),(2,'auth','0001_initial','2023-05-14 10:08:38.717361'),(3,'admin','0001_initial','2023-05-14 10:08:38.792502'),(4,'admin','0002_logentry_remove_auto_add','2023-05-14 10:08:38.800710'),(5,'admin','0003_logentry_add_action_flag_choices','2023-05-14 10:08:38.808274'),(6,'contenttypes','0002_remove_content_type_name','2023-05-14 10:08:38.855614'),(7,'auth','0002_alter_permission_name_max_length','2023-05-14 10:08:38.889260'),(8,'auth','0003_alter_user_email_max_length','2023-05-14 10:08:38.927395'),(9,'auth','0004_alter_user_username_opts','2023-05-14 10:08:38.936265'),(10,'auth','0005_alter_user_last_login_null','2023-05-14 10:08:38.969299'),(11,'auth','0006_require_contenttypes_0002','2023-05-14 10:08:38.972739'),(12,'auth','0007_alter_validators_add_error_messages','2023-05-14 10:08:38.979315'),(13,'auth','0008_alter_user_username_max_length','2023-05-14 10:08:39.017145'),(14,'auth','0009_alter_user_last_name_max_length','2023-05-14 10:08:39.056392'),(15,'auth','0010_alter_group_name_max_length','2023-05-14 10:08:39.087321'),(16,'auth','0011_update_proxy_permissions','2023-05-14 10:08:39.095325'),(17,'auth','0012_alter_user_first_name_max_length','2023-05-14 10:08:39.135386'),(18,'sessions','0001_initial','2023-05-14 10:08:39.159333'),(19,'authtoken','0001_initial','2023-05-18 18:55:06.607667'),(20,'authtoken','0002_auto_20160226_1747','2023-05-18 18:55:06.626606'),(21,'authtoken','0003_tokenproxy','2023-05-18 18:55:06.630633'),(22,'users','0001_initial','2023-05-18 18:55:06.961665'),(23,'User_loggin','0001_initial','2023-05-24 15:31:28.230083');
 /*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -348,6 +349,7 @@ CREATE TABLE `django_session` (
 
 LOCK TABLES `django_session` WRITE;
 /*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
+INSERT INTO `django_session` VALUES ('1lr6h2xx2joe76zglvq4xi0tgtd27djr','.eJxVjEEOwiAQRe_C2hCGIhSX7j0DGYZBqgaS0q6Md7dNutDtf-_9twi4LiWsnecwJXERgzj9bhHpyXUH6YH13iS1usxTlLsiD9rlrSV-XQ_376BgL1uNjMlmz1sBGniIRplkUemRwGUDnLwGYpe9U2P2njKYM2Z2VkXDhsTnCw6vOMM:1q1plo:aM_ew9GBpzvKssUeV0ABHOlrSjJJeD4uscfHWgX3V9Y','2023-06-07 14:47:20.289125');
 /*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -362,11 +364,11 @@ CREATE TABLE `dongle` (
   `Lfd. Nr.` int NOT NULL,
   `Serien-Nr` varchar(45) NOT NULL,
   `Name` varchar(45) NOT NULL,
-  `Gültig von` date NOT NULL,
-  `Gültig bis` date NOT NULL,
+  `Gueltig von` date NOT NULL,
+  `Gueltig bis` date NOT NULL,
   `Projekt/Produkt` varchar(45) NOT NULL,
   `Standort` varchar(45) NOT NULL,
-  `Händler` varchar(45) NOT NULL,
+  `Haendler` varchar(45) NOT NULL,
   `Datum letzte Änderung` date NOT NULL,
   `Datum Erstausgabe` date NOT NULL,
   `Benutzer_Firmcode` int NOT NULL,
@@ -423,7 +425,7 @@ CREATE TABLE `lizenz` (
   `ProductCode` int NOT NULL,
   `LizenzName` varchar(45) NOT NULL,
   `Einheiten` int DEFAULT NULL,
-  `Gültig von` date NOT NULL,
+  `Gueltig von` date NOT NULL,
   `Ablaufdatum` date NOT NULL,
   `LizenzAnzahl` int NOT NULL,
   `Mitarbeiter` varchar(45) NOT NULL,
@@ -456,7 +458,7 @@ CREATE TABLE `ticket` (
   `Beschreibung` varchar(45) NOT NULL,
   `Status` varchar(45) NOT NULL,
   `Erstellungsdatum` date NOT NULL,
-  `Schließungsdatum` date NOT NULL,
+  `Schliessungsdatum` date NOT NULL,
   `Admin/Verwalter_ID` int NOT NULL,
   `Dognle_Lfd. Nr.` int NOT NULL,
   `Dognle_Benutzer_Firmcode` int NOT NULL,
@@ -476,6 +478,178 @@ CREATE TABLE `ticket` (
 LOCK TABLES `ticket` WRITE;
 /*!40000 ALTER TABLE `ticket` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ticket` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_loggin_adminverwalter`
+--
+
+DROP TABLE IF EXISTS `user_loggin_adminverwalter`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_loggin_adminverwalter` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `last_login` datetime(6) DEFAULT NULL,
+  `is_superuser` tinyint(1) NOT NULL,
+  `email` varchar(254) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role` varchar(10) NOT NULL,
+  `is_admin` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_loggin_adminverwalter`
+--
+
+LOCK TABLES `user_loggin_adminverwalter` WRITE;
+/*!40000 ALTER TABLE `user_loggin_adminverwalter` DISABLE KEYS */;
+INSERT INTO `user_loggin_adminverwalter` VALUES (1,'2023-05-24 15:37:36.000000',0,'houssemhfassa48@gmail.com','Houssem','houssem123','Admin',0);
+/*!40000 ALTER TABLE `user_loggin_adminverwalter` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_loggin_adminverwalter_groups`
+--
+
+DROP TABLE IF EXISTS `user_loggin_adminverwalter_groups`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_loggin_adminverwalter_groups` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `adminverwalter_id` bigint NOT NULL,
+  `group_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `User_loggin_adminverwalt_adminverwalter_id_group__7f2fd53c_uniq` (`adminverwalter_id`,`group_id`),
+  KEY `User_loggin_adminver_group_id_fa3f31d7_fk_auth_grou` (`group_id`),
+  CONSTRAINT `User_loggin_adminver_adminverwalter_id_8f71950c_fk_User_logg` FOREIGN KEY (`adminverwalter_id`) REFERENCES `user_loggin_adminverwalter` (`id`),
+  CONSTRAINT `User_loggin_adminver_group_id_fa3f31d7_fk_auth_grou` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_loggin_adminverwalter_groups`
+--
+
+LOCK TABLES `user_loggin_adminverwalter_groups` WRITE;
+/*!40000 ALTER TABLE `user_loggin_adminverwalter_groups` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_loggin_adminverwalter_groups` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_loggin_adminverwalter_user_permissions`
+--
+
+DROP TABLE IF EXISTS `user_loggin_adminverwalter_user_permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_loggin_adminverwalter_user_permissions` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `adminverwalter_id` bigint NOT NULL,
+  `permission_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `User_loggin_adminverwalt_adminverwalter_id_permis_8bf5a5b5_uniq` (`adminverwalter_id`,`permission_id`),
+  KEY `User_loggin_adminver_permission_id_5375d3fe_fk_auth_perm` (`permission_id`),
+  CONSTRAINT `User_loggin_adminver_adminverwalter_id_e7bc0a99_fk_User_logg` FOREIGN KEY (`adminverwalter_id`) REFERENCES `user_loggin_adminverwalter` (`id`),
+  CONSTRAINT `User_loggin_adminver_permission_id_5375d3fe_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_loggin_adminverwalter_user_permissions`
+--
+
+LOCK TABLES `user_loggin_adminverwalter_user_permissions` WRITE;
+/*!40000 ALTER TABLE `user_loggin_adminverwalter_user_permissions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_loggin_adminverwalter_user_permissions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_loggin_kunde`
+--
+
+DROP TABLE IF EXISTS `user_loggin_kunde`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_loggin_kunde` (
+  `last_login` datetime(6) DEFAULT NULL,
+  `is_superuser` tinyint(1) NOT NULL,
+  `firmcode` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(254) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  PRIMARY KEY (`firmcode`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_loggin_kunde`
+--
+
+LOCK TABLES `user_loggin_kunde` WRITE;
+/*!40000 ALTER TABLE `user_loggin_kunde` DISABLE KEYS */;
+INSERT INTO `user_loggin_kunde` VALUES ('2023-05-24 15:38:16.000000',0,'2000','Houssemk','houssemhfassa25@gmail.com','houssem123');
+/*!40000 ALTER TABLE `user_loggin_kunde` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_loggin_kunde_groups`
+--
+
+DROP TABLE IF EXISTS `user_loggin_kunde_groups`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_loggin_kunde_groups` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `kunde_id` varchar(255) NOT NULL,
+  `group_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `User_loggin_kunde_groups_kunde_id_group_id_719a701f_uniq` (`kunde_id`,`group_id`),
+  KEY `User_loggin_kunde_groups_group_id_94845e82_fk_auth_group_id` (`group_id`),
+  CONSTRAINT `User_loggin_kunde_gr_kunde_id_6a4ba97d_fk_User_logg` FOREIGN KEY (`kunde_id`) REFERENCES `user_loggin_kunde` (`firmcode`),
+  CONSTRAINT `User_loggin_kunde_groups_group_id_94845e82_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_loggin_kunde_groups`
+--
+
+LOCK TABLES `user_loggin_kunde_groups` WRITE;
+/*!40000 ALTER TABLE `user_loggin_kunde_groups` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_loggin_kunde_groups` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_loggin_kunde_user_permissions`
+--
+
+DROP TABLE IF EXISTS `user_loggin_kunde_user_permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_loggin_kunde_user_permissions` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `kunde_id` varchar(255) NOT NULL,
+  `permission_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `User_loggin_kunde_user_p_kunde_id_permission_id_c388d7c3_uniq` (`kunde_id`,`permission_id`),
+  KEY `User_loggin_kunde_us_permission_id_8327f416_fk_auth_perm` (`permission_id`),
+  CONSTRAINT `User_loggin_kunde_us_kunde_id_239695c1_fk_User_logg` FOREIGN KEY (`kunde_id`) REFERENCES `user_loggin_kunde` (`firmcode`),
+  CONSTRAINT `User_loggin_kunde_us_permission_id_8327f416_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_loggin_kunde_user_permissions`
+--
+
+LOCK TABLES `user_loggin_kunde_user_permissions` WRITE;
+/*!40000 ALTER TABLE `user_loggin_kunde_user_permissions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_loggin_kunde_user_permissions` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -658,4 +832,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-22 15:24:58
+-- Dump completed on 2023-05-26 15:25:44
