@@ -111,7 +111,7 @@ CREATE TABLE `auth_permission` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `auth_permission_content_type_id_codename_01ab375a_uniq` (`content_type_id`,`codename`),
   CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,7 +120,7 @@ CREATE TABLE `auth_permission` (
 
 LOCK TABLES `auth_permission` WRITE;
 /*!40000 ALTER TABLE `auth_permission` DISABLE KEYS */;
-INSERT INTO `auth_permission` VALUES (1,'Can add log entry',1,'add_logentry'),(2,'Can change log entry',1,'change_logentry'),(3,'Can delete log entry',1,'delete_logentry'),(4,'Can view log entry',1,'view_logentry'),(5,'Can add permission',2,'add_permission'),(6,'Can change permission',2,'change_permission'),(7,'Can delete permission',2,'delete_permission'),(8,'Can view permission',2,'view_permission'),(9,'Can add group',3,'add_group'),(10,'Can change group',3,'change_group'),(11,'Can delete group',3,'delete_group'),(12,'Can view group',3,'view_group'),(13,'Can add user',4,'add_user'),(14,'Can change user',4,'change_user'),(15,'Can delete user',4,'delete_user'),(16,'Can view user',4,'view_user'),(17,'Can add content type',5,'add_contenttype'),(18,'Can change content type',5,'change_contenttype'),(19,'Can delete content type',5,'delete_contenttype'),(20,'Can view content type',5,'view_contenttype'),(21,'Can add session',6,'add_session'),(22,'Can change session',6,'change_session'),(23,'Can delete session',6,'delete_session'),(24,'Can view session',6,'view_session'),(25,'Can add kunde',7,'add_kunde'),(26,'Can change kunde',7,'change_kunde'),(27,'Can delete kunde',7,'delete_kunde'),(28,'Can view kunde',7,'view_kunde'),(29,'Can add admin_verwalter',8,'add_admin_verwalter'),(30,'Can change admin_verwalter',8,'change_admin_verwalter'),(31,'Can delete admin_verwalter',8,'delete_admin_verwalter'),(32,'Can view admin_verwalter',8,'view_admin_verwalter'),(33,'Can add Token',9,'add_token'),(34,'Can change Token',9,'change_token'),(35,'Can delete Token',9,'delete_token'),(36,'Can view Token',9,'view_token'),(37,'Can add token',10,'add_tokenproxy'),(38,'Can change token',10,'change_tokenproxy'),(39,'Can delete token',10,'delete_tokenproxy'),(40,'Can view token',10,'view_tokenproxy'),(41,'Can add admin verwalter',11,'add_adminverwalter'),(42,'Can change admin verwalter',11,'change_adminverwalter'),(43,'Can delete admin verwalter',11,'delete_adminverwalter'),(44,'Can view admin verwalter',11,'view_adminverwalter'),(45,'Can add kunde',12,'add_kunde'),(46,'Can change kunde',12,'change_kunde'),(47,'Can delete kunde',12,'delete_kunde'),(48,'Can view kunde',12,'view_kunde');
+INSERT INTO `auth_permission` VALUES (1,'Can add log entry',1,'add_logentry'),(2,'Can change log entry',1,'change_logentry'),(3,'Can delete log entry',1,'delete_logentry'),(4,'Can view log entry',1,'view_logentry'),(5,'Can add permission',2,'add_permission'),(6,'Can change permission',2,'change_permission'),(7,'Can delete permission',2,'delete_permission'),(8,'Can view permission',2,'view_permission'),(9,'Can add group',3,'add_group'),(10,'Can change group',3,'change_group'),(11,'Can delete group',3,'delete_group'),(12,'Can view group',3,'view_group'),(13,'Can add user',4,'add_user'),(14,'Can change user',4,'change_user'),(15,'Can delete user',4,'delete_user'),(16,'Can view user',4,'view_user'),(17,'Can add content type',5,'add_contenttype'),(18,'Can change content type',5,'change_contenttype'),(19,'Can delete content type',5,'delete_contenttype'),(20,'Can view content type',5,'view_contenttype'),(21,'Can add session',6,'add_session'),(22,'Can change session',6,'change_session'),(23,'Can delete session',6,'delete_session'),(24,'Can view session',6,'view_session'),(25,'Can add kunde',7,'add_kunde'),(26,'Can change kunde',7,'change_kunde'),(27,'Can delete kunde',7,'delete_kunde'),(28,'Can view kunde',7,'view_kunde'),(29,'Can add admin_verwalter',8,'add_admin_verwalter'),(30,'Can change admin_verwalter',8,'change_admin_verwalter'),(31,'Can delete admin_verwalter',8,'delete_admin_verwalter'),(32,'Can view admin_verwalter',8,'view_admin_verwalter'),(33,'Can add Token',9,'add_token'),(34,'Can change Token',9,'change_token'),(35,'Can delete Token',9,'delete_token'),(36,'Can view Token',9,'view_token'),(37,'Can add token',10,'add_tokenproxy'),(38,'Can change token',10,'change_tokenproxy'),(39,'Can delete token',10,'delete_tokenproxy'),(40,'Can view token',10,'view_tokenproxy'),(41,'Can add admin verwalter',11,'add_adminverwalter'),(42,'Can change admin verwalter',11,'change_adminverwalter'),(43,'Can delete admin verwalter',11,'delete_adminverwalter'),(44,'Can view admin verwalter',11,'view_adminverwalter'),(45,'Can add kunde',12,'add_kunde'),(46,'Can change kunde',12,'change_kunde'),(47,'Can delete kunde',12,'delete_kunde'),(48,'Can view kunde',12,'view_kunde'),(49,'Can add dongle',13,'add_dongle'),(50,'Can change dongle',13,'change_dongle'),(51,'Can delete dongle',13,'delete_dongle'),(52,'Can view dongle',13,'view_dongle');
 /*!40000 ALTER TABLE `auth_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -288,7 +288,7 @@ CREATE TABLE `django_content_type` (
   `model` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `django_content_type_app_label_model_76bd3d3b_uniq` (`app_label`,`model`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -297,7 +297,7 @@ CREATE TABLE `django_content_type` (
 
 LOCK TABLES `django_content_type` WRITE;
 /*!40000 ALTER TABLE `django_content_type` DISABLE KEYS */;
-INSERT INTO `django_content_type` VALUES (1,'admin','logentry'),(3,'auth','group'),(2,'auth','permission'),(4,'auth','user'),(9,'authtoken','token'),(10,'authtoken','tokenproxy'),(5,'contenttypes','contenttype'),(6,'sessions','session'),(8,'users','admin_verwalter'),(7,'users','kunde'),(11,'User_loggin','adminverwalter'),(12,'User_loggin','kunde');
+INSERT INTO `django_content_type` VALUES (1,'admin','logentry'),(3,'auth','group'),(2,'auth','permission'),(4,'auth','user'),(9,'authtoken','token'),(10,'authtoken','tokenproxy'),(5,'contenttypes','contenttype'),(13,'homepage','dongle'),(6,'sessions','session'),(8,'users','admin_verwalter'),(7,'users','kunde'),(11,'User_loggin','adminverwalter'),(12,'User_loggin','kunde');
 /*!40000 ALTER TABLE `django_content_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -314,7 +314,7 @@ CREATE TABLE `django_migrations` (
   `name` varchar(255) NOT NULL,
   `applied` datetime(6) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -323,7 +323,7 @@ CREATE TABLE `django_migrations` (
 
 LOCK TABLES `django_migrations` WRITE;
 /*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
-INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2023-05-14 10:08:38.432996'),(2,'auth','0001_initial','2023-05-14 10:08:38.717361'),(3,'admin','0001_initial','2023-05-14 10:08:38.792502'),(4,'admin','0002_logentry_remove_auto_add','2023-05-14 10:08:38.800710'),(5,'admin','0003_logentry_add_action_flag_choices','2023-05-14 10:08:38.808274'),(6,'contenttypes','0002_remove_content_type_name','2023-05-14 10:08:38.855614'),(7,'auth','0002_alter_permission_name_max_length','2023-05-14 10:08:38.889260'),(8,'auth','0003_alter_user_email_max_length','2023-05-14 10:08:38.927395'),(9,'auth','0004_alter_user_username_opts','2023-05-14 10:08:38.936265'),(10,'auth','0005_alter_user_last_login_null','2023-05-14 10:08:38.969299'),(11,'auth','0006_require_contenttypes_0002','2023-05-14 10:08:38.972739'),(12,'auth','0007_alter_validators_add_error_messages','2023-05-14 10:08:38.979315'),(13,'auth','0008_alter_user_username_max_length','2023-05-14 10:08:39.017145'),(14,'auth','0009_alter_user_last_name_max_length','2023-05-14 10:08:39.056392'),(15,'auth','0010_alter_group_name_max_length','2023-05-14 10:08:39.087321'),(16,'auth','0011_update_proxy_permissions','2023-05-14 10:08:39.095325'),(17,'auth','0012_alter_user_first_name_max_length','2023-05-14 10:08:39.135386'),(18,'sessions','0001_initial','2023-05-14 10:08:39.159333'),(19,'authtoken','0001_initial','2023-05-18 18:55:06.607667'),(20,'authtoken','0002_auto_20160226_1747','2023-05-18 18:55:06.626606'),(21,'authtoken','0003_tokenproxy','2023-05-18 18:55:06.630633'),(22,'users','0001_initial','2023-05-18 18:55:06.961665'),(23,'User_loggin','0001_initial','2023-05-24 15:31:28.230083');
+INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2023-05-14 10:08:38.432996'),(2,'auth','0001_initial','2023-05-14 10:08:38.717361'),(3,'admin','0001_initial','2023-05-14 10:08:38.792502'),(4,'admin','0002_logentry_remove_auto_add','2023-05-14 10:08:38.800710'),(5,'admin','0003_logentry_add_action_flag_choices','2023-05-14 10:08:38.808274'),(6,'contenttypes','0002_remove_content_type_name','2023-05-14 10:08:38.855614'),(7,'auth','0002_alter_permission_name_max_length','2023-05-14 10:08:38.889260'),(8,'auth','0003_alter_user_email_max_length','2023-05-14 10:08:38.927395'),(9,'auth','0004_alter_user_username_opts','2023-05-14 10:08:38.936265'),(10,'auth','0005_alter_user_last_login_null','2023-05-14 10:08:38.969299'),(11,'auth','0006_require_contenttypes_0002','2023-05-14 10:08:38.972739'),(12,'auth','0007_alter_validators_add_error_messages','2023-05-14 10:08:38.979315'),(13,'auth','0008_alter_user_username_max_length','2023-05-14 10:08:39.017145'),(14,'auth','0009_alter_user_last_name_max_length','2023-05-14 10:08:39.056392'),(15,'auth','0010_alter_group_name_max_length','2023-05-14 10:08:39.087321'),(16,'auth','0011_update_proxy_permissions','2023-05-14 10:08:39.095325'),(17,'auth','0012_alter_user_first_name_max_length','2023-05-14 10:08:39.135386'),(18,'sessions','0001_initial','2023-05-14 10:08:39.159333'),(19,'authtoken','0001_initial','2023-05-18 18:55:06.607667'),(20,'authtoken','0002_auto_20160226_1747','2023-05-18 18:55:06.626606'),(21,'authtoken','0003_tokenproxy','2023-05-18 18:55:06.630633'),(22,'users','0001_initial','2023-05-18 18:55:06.961665'),(23,'User_loggin','0001_initial','2023-05-24 15:31:28.230083'),(24,'homepage','0001_initial','2023-05-27 01:58:09.310753');
 /*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -369,7 +369,7 @@ CREATE TABLE `dongle` (
   `Projekt/Produkt` varchar(45) NOT NULL,
   `Standort` varchar(45) NOT NULL,
   `Haendler` varchar(45) NOT NULL,
-  `Datum letzte Änderung` date NOT NULL,
+  `Datum letzte Aenderung` date NOT NULL,
   `Datum Erstausgabe` date NOT NULL,
   `Benutzer_Firmcode` int NOT NULL,
   PRIMARY KEY (`Lfd. Nr.`,`Benutzer_Firmcode`),
@@ -832,4 +832,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-26 15:25:44
+-- Dump completed on 2023-05-27 13:42:51
