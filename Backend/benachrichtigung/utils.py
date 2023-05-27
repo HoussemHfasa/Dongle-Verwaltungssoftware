@@ -4,7 +4,6 @@ from .models import Lizenz, Kunde, Dongle
 from django.http import HttpResponse
 
 
-
 def check_lizenzen_ablauf(request):
     # Lesen Sie alle Lizenzen aus der Datenbank, deren Ablaufdatum in drei Tagen abläuft.
     today = datetime.now().date()
@@ -20,6 +19,7 @@ def check_lizenzen_ablauf(request):
             kunde = Kunde.objects.filter(firmcode=dongle.benutzer_firmcode).first()
 
             if kunde is not None:
+<<<<<<< HEAD
                 def send_email_notification():
                     # Senden Sie eine E-Mail an den Kunden, um ihn darüber zu informieren, dass seine Lizenz bald abläuft.
                     subject = 'Ihre Lizenz läuft bald ab'
@@ -29,3 +29,13 @@ def check_lizenzen_ablauf(request):
                     send_mail(subject, message, from_email, recipient_list)
                     
           
+=======
+                # Senden Sie eine E-Mail an den Kunden, um ihn darüber zu informieren, dass seine Lizenz bald abläuft.
+                subject = 'Ihre Lizenz läuft bald ab'
+                message = f'Ihre Lizenz mit der Seriennummer {lizenz.seriennummer} läuft in drei Tagen ab. Bitte verlängern Sie Ihre Lizenz, um sicherzustellen, dass Sie weiterhin auf alle Funktionen zugreifen können.'
+                from_email = 'admin@example.com'
+                recipient_list = [kunde.email]
+                send_mail(subject, message, from_email, recipient_list)
+
+    return HttpResponse("Lizenzen check completed.")
+>>>>>>> Abazied
