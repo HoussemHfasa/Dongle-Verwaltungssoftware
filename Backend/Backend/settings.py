@@ -132,9 +132,9 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': timedelta(days=1),
     },
 }
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# SMTP-Konfiguration für Sendinblue
 EMAIL_HOST = 'smtp-relay.sendinblue.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'Rama.Abazied@Student.HTW-Berlin.de'
-EMAIL_HOST_PASSWORD = 'PasswortIstPasswort'
+EMAIL_HOST_PASSWORD = 'rWU3K2OhYvfmNI8F'
