@@ -29,7 +29,8 @@ INSTALLED_APPS = [
     'User_loggin',
     'rest_framework',
     'rest_framework_simplejwt',
-    'homepage'
+    'homepage',
+    'benachrichtigung',
 
 ]
 
