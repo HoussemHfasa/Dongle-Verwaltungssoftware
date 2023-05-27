@@ -71,7 +71,10 @@ const NavbarKunde = (props) => {
         >
           Übersichtsseite
         </button>
-        <button className={styles["lizenz"]}>Lizensübersicht</button>
+        <button 
+        className={styles["lizenz"]}
+        onClick={() => navigate("/Lizenübersicht")}
+         >Lizensübersicht</button>
         <button className={styles["anfrage"]}>Meine Anfrage</button>
         <button
           className={styles["profileImageButton"]}

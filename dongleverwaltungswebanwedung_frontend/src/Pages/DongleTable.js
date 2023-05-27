@@ -1,37 +1,71 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Table } from 'antd';
 
 const DongleTable = () => {
-  const [employees, setDongles] = useState([]);
+  const [dataSource, setDataSource] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get('http://127.0.0.1:8000/homepage/');
-      setDongles(response.data.Dongle);
+      setDataSource(response.data.Dongle);
     };
 
     fetchData();
   }, []);
 
+  const columns = [
+    {
+      title: 'Lfd.Nr',
+      dataIndex: 'lfd_nr_field',
+    },
+    {
+      title: 'Serien Nr',
+      dataIndex: 'serien_nr',
+    },
+    {
+      title: 'Name',
+      dataIndex: 'name',
+    },
+    {
+      title: 'Gültig von',
+      dataIndex: 'gueltig_von',
+    },
+    {
+      title: 'Gültig bis',
+      dataIndex: 'gueltig_bis',
+    },
+    {
+      title: 'Projekt / Produkt',
+      dataIndex: 'projekt_produkt',
+    },
+    {
+      title: 'Standort',
+      dataIndex: 'standort',
+    },
+    {
+      title: 'Händler',
+      dataIndex: 'haendler',
+    },
+    {
+      title: 'Datum letzte Änderung',
+      dataIndex: 'datum_letzte_aenderung',
+    },
+    {
+      title: 'Datum Erstausgabe',
+      dataIndex: 'datum_erstausgabe',
+    },
+    {
+      title: 'Benutzer Firmcode',
+      dataIndex: 'benutzer_firmcode',
+    },
+  ];
+
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Lfd.Nr</th>
-          <th>Serien-Nr</th>
-          <th>Name</th>
-        </tr>
-      </thead>
-      <tbody>
-        {employees.map(employee => (
-          <tr>
-            <td>{employee.lfd_nr_field}</td>
-            <td>{employee.serien_nr}</td>
-            <td>{employee.name}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>  );
+    <div>
+      <Table columns={columns} dataSource={dataSource} />
+    </div>
+  );
 };
 
 export default DongleTable;

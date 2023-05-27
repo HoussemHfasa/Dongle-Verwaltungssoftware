@@ -10,7 +10,7 @@ class Dongle(models.Model):
     projekt_produkt = models.CharField(db_column='Projekt/Produkt', max_length=45)  # Field name made lowercase. Field renamed to remove unsuitable characters.
     standort = models.CharField(db_column='Standort', max_length=45)  # Field name made lowercase.
     haendler = models.CharField(db_column='Haendler', max_length=45)  # Field name made lowercase.
-    #datum_letzte_anderung = models.DateField(db_column='Datum letzte Änderung')  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    datum_letzte_aenderung = models.DateField(db_column='Datum letzte Aenderung')  # Field name made lowercase. Field renamed to remove unsuitable characters.
     datum_erstausgabe = models.DateField(db_column='Datum Erstausgabe')  # Field name made lowercase. Field renamed to remove unsuitable characters.
     benutzer_firmcode = models.IntegerField(db_column='Benutzer_Firmcode')  # Field name made lowercase.
 

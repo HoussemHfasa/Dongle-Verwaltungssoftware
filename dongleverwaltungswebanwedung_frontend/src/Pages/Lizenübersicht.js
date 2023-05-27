@@ -2,10 +2,11 @@ import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./Übersichtseite.module.css";
 import NavbarWrapper from "../Components/NavbarWrapper"; // Import NavbarWrapper
-import DongleTable from './DongleTable';
+
+import LizenzTable from "./LizenzTable";
 
 
-const Übersichtseite = () => {
+const Lizensüberscht = () => {
   const navigate = useNavigate();
   return (
     <div className={styles.container}>
@@ -15,18 +16,11 @@ const Übersichtseite = () => {
       </div>
       
       <div className={styles.content}>
-        übersichtseite
-        <DongleTable/>
-        <button
-          className={styles["Dongleanfordern"]}
-          onClick={() => navigate("/DongleAnfordern")}
-        >
-          <span className={styles["Dongleanforderntext"]}>
-            <span>Dongle anfordern</span>
-          </span>
-        </button>
+        
+        <LizenzTable/>
+        
       </div>
     </div>
   );
 };
-export default Übersichtseite;
+export default Lizensüberscht;

@@ -66,7 +66,10 @@ const NavbarAdmin = (props) => {
         >
           Übersichtsseite
         </button>
-        <button className={styles["lizenz"]}>Lizensübersicht</button>
+        <button 
+        className={styles["lizenz"]}
+        onClick={() => navigate("/Lizenübersicht")}
+        >Lizensübersicht</button>
         <button className={styles["anfrage"]}>Anfrage</button>
         <button className={styles["admin"]}>Admin</button>
         <button

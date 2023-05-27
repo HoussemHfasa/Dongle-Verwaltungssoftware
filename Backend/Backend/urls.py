@@ -28,5 +28,6 @@ urlpatterns = [
     path('User_loggin/', include('User_loggin.urls')),
     path("", include("homepage.urls")),
     path("", include("benachrichtigung.urls")),
+    path("", include("Lizenzseite.urls")),
 
 ]

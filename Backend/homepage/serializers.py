@@ -10,7 +10,7 @@ class DongleSerializer(serializers.ModelSerializer):
     projekt_produkt = serializers.CharField(max_length=45)
     standort = serializers.CharField(max_length=45)
     haendler = serializers.CharField(max_length=45)
-    #datum_letzte_anderung = serializers.DateField()
+    datum_letzte_aenderung  = serializers.DateField()
     datum_erstausgabe = serializers.DateField()
     benutzer_firmcode = serializers.IntegerField()
 
