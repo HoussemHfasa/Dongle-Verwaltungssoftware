@@ -1,9 +1,11 @@
 from datetime import datetime, timedelta
 from django.core.mail import send_mail
 from .models import Lizenz, Kunde, Dongle
+from django.http import HttpResponse
 
 
-def check_lizenzen_ablauf():
+
+def check_lizenzen_ablauf(request):
     # Lesen Sie alle Lizenzen aus der Datenbank, deren Ablaufdatum in drei Tagen abläuft.
     today = datetime.now().date()
     expire_in_3_days = today + timedelta(days=3)
@@ -24,3 +26,5 @@ def check_lizenzen_ablauf():
                 from_email = 'admin@example.com'
                 recipient_list = [kunde.email]
                 send_mail(subject, message, from_email, recipient_list)
+                    
+    return HttpResponse("Lizenzen check completed.")            
