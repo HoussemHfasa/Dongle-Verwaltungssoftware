@@ -7,7 +7,7 @@ const ProfileMenu = forwardRef((props, ref) => {
   const [profileExploding, setProfileExploding] = useState(false);
   const [abmeldenExploding, setAbmeldenExploding] = useState(false);
   const navigate = useNavigate(); // Change this line
-  const { setUsername } = useAuth(); // Get setUsername from the context
+  const { setEmail, setPassword, setRole } = useAuth(); // Get setUsername from the context
 
   const handleProfileClick = () => {
     setProfileExploding(true);
@@ -17,7 +17,13 @@ const ProfileMenu = forwardRef((props, ref) => {
   const handleAbmeldenClick = () => {
     setAbmeldenExploding(true);
     setTimeout(() => setAbmeldenExploding(false), 500);
-    setUsername(null); // Reset the username in the context
+    setEmail(null); // Reset the email in the context
+    setPassword(null);
+    setRole(null);
+
+    localStorage.removeItem("role"); // Remove the role from local storage
+    console.log("Role after removal:", localStorage.getItem("role")); // Log the role after removal
+
     navigate("/");
   };
 

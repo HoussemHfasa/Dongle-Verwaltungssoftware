@@ -1,4 +1,4 @@
-import React from "react";
+/*import React from "react";
 import "./style.css";
 
 
@@ -27,4 +27,4 @@ className="frame-1mage" alt-{"Image") src= ("image-3.png") />
 </div>
 </div>
 
-
+*/
