@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Table } from "antd";
 
+// LizenzTable-Komponente
 const LizenzTable = () => {
+  // Zustand für die Datenquelle der Tabelle
   const [dataSource, setDataSource] = useState([]);
 
+  // Daten abrufen, wenn die Komponente eingebunden wird
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get("http://127.0.0.1:8000/Lizenzseite/");
@@ -14,6 +17,7 @@ const LizenzTable = () => {
     fetchData();
   }, []);
 
+  // Spaltenkonfiguration für die Tabelle
   const columns = [
     {
       title: "Lfd.Nr",
@@ -57,6 +61,7 @@ const LizenzTable = () => {
     },
   ];
 
+  // Tabellenkomponente rendern
   return (
     <div>
       <Table columns={columns} dataSource={dataSource} />
