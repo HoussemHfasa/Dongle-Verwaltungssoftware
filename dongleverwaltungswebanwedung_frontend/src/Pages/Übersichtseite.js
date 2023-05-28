@@ -15,8 +15,9 @@ const Übersichtseite = () => {
       </div>
       
       <div className={styles.content}>
-        übersichtseite
-        <DongleTable/>
+        <div className={styles["DongleTable"]}>
+        <DongleTable /></div>
+        
         <button
           className={styles["Dongleanfordern"]}
           onClick={() => navigate("/DongleAnfordern")}

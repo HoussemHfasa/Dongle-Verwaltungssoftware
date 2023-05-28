@@ -2,10 +2,10 @@
 
 .Dongleanfordern {
   top: 221px;
-  left: 1298px;
+  left: 1450px;
   width: 221px;
   height: 86px;
-  position: absolute;
+  position: fixed;
   border-radius: 19px;
   background: #FD9800;
   cursor: pointer;
@@ -27,5 +27,20 @@
   font-stretch: normal;
   text-decoration: none;
   margin: 0;              /* Reset any margins */
-  position: static;      /* Reset position */
+  position: fixed;      /* Reset position */
+}
+
+.DongleTable {
+  position: fixed;
+  top: 340px; 
+  left: 0px;
+  right: 0px;
+}
+
+.Lizenz{
+
+  position: fixed;
+  top: 340px; 
+  left: 20px;
+  right: 20px;
 }
