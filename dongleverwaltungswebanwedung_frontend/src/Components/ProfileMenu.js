@@ -17,12 +17,12 @@ const ProfileMenu = forwardRef((props, ref) => {
   const handleAbmeldenClick = () => {
     setAbmeldenExploding(true);
     setTimeout(() => setAbmeldenExploding(false), 500);
-    setEmail(null); // Reset the email in the context
+    setEmail(null);
     setPassword(null);
     setRole(null);
 
-    localStorage.removeItem("role"); // Remove the role from local storage
-    console.log("Role after removal:", localStorage.getItem("role")); // Log the role after removal
+    localStorage.removeItem("role"); // Remove the role from localStorage
+    console.log("Role after removal:", localStorage.getItem("role"));
 
     navigate("/");
   };
