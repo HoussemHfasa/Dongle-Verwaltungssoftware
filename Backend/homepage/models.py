@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Dongle(models.Model):
-    lfd_nr_field = models.IntegerField(db_column='Lfd. Nr.', primary_key=True)  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it ended with '_'. The composite primary key (Lfd. Nr., Benutzer_Firmcode) found, that is not supported. The first column is selected.
+    lfd_nr_field = models.IntegerField(db_column='Lfd. Nr.', primary_key=True)  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it ended with '_'.
     serien_nr = models.CharField(db_column='Serien-Nr', max_length=45)  # Field name made lowercase. Field renamed to remove unsuitable characters.
     name = models.CharField(db_column='Name', max_length=45)  # Field name made lowercase.
     gueltig_von = models.DateField(db_column='Gueltig von')  # Field name made lowercase. Field renamed to remove unsuitable characters.
@@ -12,7 +12,7 @@ class Dongle(models.Model):
     haendler = models.CharField(db_column='Haendler', max_length=45)  # Field name made lowercase.
     datum_letzte_aenderung = models.DateField(db_column='Datum letzte Aenderung')  # Field name made lowercase. Field renamed to remove unsuitable characters.
     datum_erstausgabe = models.DateField(db_column='Datum Erstausgabe')  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    benutzer_firmcode = models.IntegerField(db_column='Benutzer_Firmcode')  # Field name made lowercase.
+    benutzer_firmcode = models.CharField(db_column='Benutzer_Firmcode', max_length=45)  # Field name made lowercase.
 
     class Meta:
         managed = False
