@@ -1,19 +1,19 @@
-
-
+/* Dongle-Anforderungs-Button */
 .Dongleanfordern {
+  position: fixed;
   top: 221px;
   left: 1450px;
   width: 221px;
   height: 86px;
-  position: fixed;
   border-radius: 19px;
   background: #FD9800;
   cursor: pointer;
-  display: flex;         /* Add display flex */
-  justify-content: center; /* Center content horizontally */
-  align-items: center;     /* Center content vertically */
+  display: flex;           /* Flexbox hinzugefügt */
+  justify-content: center; /* Inhalt horizontal zentrieren */
+  align-items: center;     /* Inhalt vertikal zentrieren */
 }
 
+/* Dongle-Anforderungstext */
 .Dongleanforderntext {
   color: rgb(255, 255, 255);
   width: 151px;
@@ -26,10 +26,11 @@
   line-height: normal;
   font-stretch: normal;
   text-decoration: none;
-  margin: 0;              /* Reset any margins */
-  position: fixed;      /* Reset position */
+  margin: 0;              /* Ränder zurücksetzen */
+  position: static;       /* Position zurücksetzen */
 }
 
+/* Dongle-Tabelle */
 .DongleTable {
   position: fixed;
   top: 340px; 
@@ -37,8 +38,8 @@
   right: 0px;
 }
 
-.Lizenz{
-
+/* Lizenz */
+.Lizenz {
   position: fixed;
   top: 340px; 
   left: 20px;

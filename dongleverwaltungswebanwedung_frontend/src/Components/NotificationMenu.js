@@ -3,17 +3,18 @@ import styles from "./Navbar.module.css";
 
 const NotificationMenu = forwardRef((props, ref) => {
   return (
+    // Verwenden von forwardRef, um die ref-Instanz von außerhalb der Komponente zu verwalten
     <div className={styles["notificationContainer"]} ref={ref}>
       <div className={styles["notificationItem"]}>
-        <p>Notification 1</p>
+        <p>Benachrichtigung 1</p>
       </div>
       <div className={styles["notificationItem"]}>
-        <p>Notification 2</p>
+        <p>Benachrichtigung 2</p>
       </div>
       <div className={styles["notificationItem"]}>
-        <p>Notification 3</p>
+        <p>Benachrichtigung 3</p>
       </div>
-      {/* Add more notification items as needed */}
+      {/* Fügen Sie bei Bedarf weitere Benachrichtigungselemente hinzu */}
     </div>
   );
 });

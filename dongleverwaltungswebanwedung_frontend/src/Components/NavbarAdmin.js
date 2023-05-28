@@ -5,25 +5,33 @@ import Notification_image from "./active.png";
 import NotificationMenu from "./NotificationMenu";
 import ProfileMenu from "./ProfileMenu";
 import gfaiLogo from "./gfai_logo.png";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const NavbarAdmin = (props) => {
+  // State für die Anzeige der Popup-Menüs
   const [showProfilePopup, setShowProfilePopup] = useState(false);
   const [showNotificationPopup, setShowNotificationPopup] = useState(false);
+
+  // Referenzen zum Erkennen von Klicks außerhalb der Popup-Menüs
   const profileMenuRef = useRef(null);
   const notificationMenuRef = useRef(null);
   const profileButtonRef = useRef(null);
   const notificationButtonRef = useRef(null);
 
+  // Funktion zum Umschalten der Anzeige des Profil-Popup-Menüs
   const toggleProfilePopup = () => {
     setShowProfilePopup(!showProfilePopup);
   };
 
+  // Funktion zum Umschalten der Anzeige des Benachrichtigungs-Popup-Menüs
   const toggleNotificationPopup = () => {
     setShowNotificationPopup(!showNotificationPopup);
   };
+
+  // Hook zum Navigieren innerhalb der Anwendung
   const navigate = useNavigate();
 
+  // Funktion zum Behandeln von Klicks außerhalb der Popup-Menüs
   const handleClickOutside = (e) => {
     if (
       showProfilePopup &&
@@ -44,12 +52,13 @@ const NavbarAdmin = (props) => {
     }
   };
 
+  // Hinzufügen eines EventListeners, um Klicks außerhalb der Popup-Menüs zu erkennen
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [showProfilePopup, showNotificationPopup]);
+  }, [showProfilePopup, showNotificationPopup, handleClickOutside]); // Füge handleClickOutside zur Abhängigkeiten-Liste hinzu
 
   return (
     <div className={styles["container"]}>
@@ -62,14 +71,16 @@ const NavbarAdmin = (props) => {
         <img alt="GFAI Logo" src={gfaiLogo} className={styles["logo"]} />
         <button
           className={styles["home"]}
-          onClick={() => navigate("/Übersichtseite")} // Add the navigate function here
+          onClick={() => navigate("/Übersichtseite")}
         >
           Übersichtsseite
         </button>
-        <button 
-        className={styles["lizenz"]}
-        onClick={() => navigate("/Lizenübersicht")}
-        >Lizensübersicht</button>
+        <button
+          className={styles["lizenz"]}
+          onClick={() => navigate("/Lizenübersicht")}
+        >
+          Lizensübersicht
+        </button>
         <button className={styles["anfrage"]}>Anfrage</button>
         <button className={styles["admin"]}>Admin</button>
         <button
@@ -97,6 +108,7 @@ const NavbarAdmin = (props) => {
         <a
           href="https://www.flaticon.com/free-icons/notification"
           title="notification icons"
+          aria-label="notification icons"
         ></a>
       </div>
     </div>

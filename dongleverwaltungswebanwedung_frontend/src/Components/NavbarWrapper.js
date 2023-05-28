@@ -5,12 +5,15 @@ import NavbarVerwalter from "./NavbarVerwalter";
 import NavbarKunde from "./NavbarKunde";
 
 const NavbarWrapper = () => {
-  const { role, setRole } = useAuth();
+  // Auth Context verwenden, um die Benutzerrolle abzurufen
+  const { role } = useAuth();
 
+  // Rolle im localStorage speichern, wenn sie sich ändert
   useEffect(() => {
-    localStorage.setItem("role", role); // Update the role in localStorage whenever it changes
+    localStorage.setItem("role", role);
   }, [role]);
 
+  // Entscheiden, welche Navbar-Komponente basierend auf der Benutzerrolle anzuzeigen ist
   if (role === "Admin") {
     return <NavbarAdmin />;
   } else if (role === "Verwalter") {
@@ -18,6 +21,7 @@ const NavbarWrapper = () => {
   } else if (role === "Kunde") {
     return <NavbarKunde />;
   } else {
+    // Keine Navbar-Komponente anzeigen, wenn keine Rolle vorhanden ist
     return null;
   }
 };

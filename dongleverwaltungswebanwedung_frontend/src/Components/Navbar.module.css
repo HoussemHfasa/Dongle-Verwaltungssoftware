@@ -1,3 +1,4 @@
+/*Dieser Container enthält den gesamten Inhalt der Seite */
 .container {
   width: 100%;
   display: flex;
@@ -6,6 +7,7 @@
   align-items: center;
   flex-direction: column;
 }
+/* Dieser Rahmen enthält die Navigationselemente*/
 .frame7 {
   gap: 10px;
   width: 100%;
@@ -16,23 +18,26 @@
   background-color: rgb(255, 255, 255);
 }
 
+/*Dieser Abschnitt enthält den Seiteninhalt*/
 .content {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 20%; /* Use percentage for padding */
+  padding-top: 20%;
 }
 
+/*Dies erstellt einen blauen Balken oben auf der Seite */
 .rectanglebackground {
   top: 0;
   left: 0;
   width: 100%;
   height: 187px; 
-  position: fixed; /* Change position to fixed */
+  position: fixed; 
   background-color: #00002E;
-  z-index: -1; /* Set z-index to a lower value to ensure it stays behind the other elements */
+  z-index: -1; 
 }
+/*Logo der Anwendung */
 .logo {
   top: 23px;
 left: 50px;
@@ -50,17 +55,19 @@ background-color: rgba(255, 255, 255, 1);
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 2px; /* Height of the white line */
+    height: 2px; 
     background-color: white;
-    transition: transform 0.1s ease; /* Add a transition */
+    transition: transform 0.1s ease; 
 
   }
   .home:active::after,
   .lizenz:active::after,
   .anfrage:active::after,
   .admin:active::after {
-    transform: scaleX(0.3); /* Scale the line down to 80% of its original width */
+    transform: scaleX(0.3); 
   }
+
+  /*Navigationsschaltflächen oben*/
   .home {
     display: flex;
     align-items: center;
@@ -71,7 +78,7 @@ background-color: rgba(255, 255, 255, 1);
     color: rgb(255, 255, 255);
     width: 253px;
     height: auto;
-    position: absolute; /* Add this line */
+    position: absolute; 
     font-size: 32px;
     font-style: italic;
     text-align: left;
@@ -85,10 +92,10 @@ background-color: rgba(255, 255, 255, 1);
     cursor: pointer;
   }
   .lizenz {
-    display: flex; /* Add display flex */
-    align-items: center; /* Center text vertically */
-    justify-content: center; /* Center text horizontally */
-    padding: 10px 20px; /* Add some padding for better appearance */
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    padding: 10px 20px;
     top: 118px;
     left: 336px;
     color: rgba(255, 255, 255, 1);
@@ -103,13 +110,13 @@ background-color: rgba(255, 255, 255, 1);
     line-height: normal;
     font-stretch: normal;
     text-decoration: none;
-    background: transparent; /* Set background to transparent */
+    background: transparent; 
     border: none;
     cursor: pointer;
   }
   .anfrage {
-    display: flex; /* Add display flex */
-    align-items: center; /* Center text vertically */
+    display: flex; 
+    align-items: center; 
     justify-content: center; /* Center text horizontally */
     padding: 10px 20px; /* Add some padding for better appearance */
     top: 118px;
@@ -153,6 +160,8 @@ background-color: rgba(255, 255, 255, 1);
     border: none;
     cursor: pointer;
   }
+
+  /*Benutzerprofilbildschaltfläche*/
   .profileimage {
     top: 35px;
     left: 1579px;
@@ -165,6 +174,7 @@ background-color: rgba(255, 255, 255, 1);
     padding: 0;
     margin: 0;
   }
+  /*Benachrichtigungssymbolschaltfläche */
   .notificationimage {
     top: 56px;
     left: 1485px;
@@ -184,7 +194,7 @@ background-color: rgba(255, 255, 255, 1);
 }
 
 
-
+/*Popover-Container, der beim Klicken auf das Benutzerprofilbild angezeigt wird.*/
 .container1 {
   position: absolute;
   top: 160px;
@@ -203,7 +213,7 @@ background-color: rgba(255, 255, 255, 1);
   animation: fadeIn 0.3s ease-in-out;
 
 }
-
+/* Schaltflächen innerhalb des .container1 */
 .profileButton {
   display: flex;
   align-items: center;
@@ -245,6 +255,7 @@ background-color: rgba(255, 255, 255, 1);
   width: 100%;
 }
 
+/*Fade-in-Animation für die Popover-Container*/
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -267,6 +278,7 @@ background-color: rgba(255, 255, 255, 1);
   border-bottom: 10px solid white;
 }
 
+/* Überlagert die gesamte Seite, wenn die Benachrichtigungen oder das Profilmenü angezeigt werden */
 .overlay {
   position: fixed;
   top: 0;
@@ -286,10 +298,11 @@ background-color: rgba(255, 255, 255, 1);
     opacity: 0;
   }
 }
+/*Animiert das Explodieren und Verschwinden der Schaltflächen.*/
 .exploding {
   animation: explode 0.5s forwards;
 }
-
+/* Container für Benachrichtigungen, die beim Klicken auf das Benachrichtigungssymbol angezeigt werden. */
 .notificationContainer {
   position: absolute;
   top: 140px;
@@ -319,7 +332,7 @@ background-color: rgba(255, 255, 255, 1);
   border-bottom: 10px solid white;
 }
 
-/*notifications inside the notificastion container*/
+/*Benachrichtigungselemente innerhalb des .notificationContainer */
 .notificationItem {
   background-color: #f8f9fa;
   border: 1px solid #00002E;
