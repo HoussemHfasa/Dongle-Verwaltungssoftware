@@ -1,8 +1,8 @@
 /* Dongle-Anforderungs-Button */
 .Dongleanfordern {
-  position: fixed;
+  position: absolute;
   top: 221px;
-  left: 1450px;
+  right: 275px;
   width: 221px;
   height: 86px;
   border-radius: 19px;
@@ -32,7 +32,7 @@
 
 /* Dongle-Tabelle */
 .DongleTable {
-  position: fixed;
+  position: absolute;
   top: 340px; 
   left: 0px;
   right: 0px;
@@ -40,7 +40,7 @@
 
 /* Lizenz */
 .Lizenz {
-  position: fixed;
+  position: absolute;
   top: 340px; 
   left: 20px;
   right: 20px;
