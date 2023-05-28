@@ -1,48 +1,49 @@
-from multiprocessing import AuthenticationError
-from django.contrib.auth.backends import BaseBackend
-from rest_framework import status
-from rest_framework.decorators import api_view
+from django.contrib.auth import get_user_model
+from django.shortcuts import render
+from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
-from .models import AdminVerwalter, Kunde
-from .serializers import CustomTokenObtainPairSerializer
-from django.contrib.auth.hashers import check_password
+from . import models
+from . import serializers
+from django.contrib.auth import authenticate
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import AllowAny
+from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
 
+User = get_user_model()
 
-@api_view(['POST'])
-def user_role(request):
-    email = request.data.get('email')
-    password = request.data.get('password')
+class UserLoginAPIView(TokenObtainPairView):
+    serializer_class = serializers.UserLoginSerializer
 
-    # Use the custom authentication backend
-    backend = CustomAuthenticationBackend()
-    user = backend.authenticate(request, email=email, password=password)
+class UserListView(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = serializers.UserSerializer
 
-    if user:
-        if isinstance(user, AdminVerwalter):
-            role = user.role
-        elif isinstance(user, Kunde):
-            role = 'Kunde'
-        else:
-            role = 'Unknown'
+class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = serializers.UserSerializer
 
-        return Response({'email': email, 'role': role}, status=status.HTTP_200_OK)
-    else:
-        return Response({'error': 'User not found or password incorrect.'}, status=status.HTTP_404_NOT_FOUND)
+class AdminListView(generics.ListCreateAPIView):
+    queryset = User.objects.filter(role='Admin')
+    serializer_class = serializers.UserSerializer
 
+class AdminDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.filter(role='Admin')
+    serializer_class = serializers.UserSerializer
 
-class CustomAuthenticationBackend(BaseBackend):
-    def authenticate(self, request, email=None, password=None, **kwargs):
-        try:
-            user = AdminVerwalter.objects.get(email=email)
-        except AdminVerwalter.DoesNotExist:
-            try:
-                user = Kunde.objects.get(email=email)
-            except Kunde.DoesNotExist:
-                return None
+class VerwalterListView(generics.ListCreateAPIView):
+    queryset = User.objects.filter(role='Verwalter')
+    serializer_class = serializers.UserSerializer
 
-        if check_password(password, user.password):
-            return user
+class VerwalterDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.filter(role='Verwalter')
+    serializer_class = serializers.UserSerializer
 
-class CustomTokenObtainPairView(TokenObtainPairView):
-    serializer_class = CustomTokenObtainPairSerializer
+class KundeListView(generics.ListCreateAPIView):
+    queryset = User.objects.filter(role='Kunde')
+    serializer_class = serializers.UserSerializer
+
+class KundeDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.filter(role='Kunde')
+    serializer_class = serializers.UserSerializer

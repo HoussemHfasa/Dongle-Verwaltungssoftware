@@ -1,57 +1,67 @@
-from django.test import TestCase
+from django.contrib.auth import get_user_model
 from django.urls import reverse
-from rest_framework.test import APIClient
-from .models import AdminVerwalter, Kunde
-from django.db import IntegrityError 
+from rest_framework import status
+from rest_framework.test import APITestCase, APIRequestFactory, force_authenticate
+from . import models
+from . import serializers
+from . import views
 
+User = get_user_model()
 
-class UserLoginTest(TestCase):
+class CustomUserTestCase(APITestCase):
+
     def setUp(self):
-        self.client = APIClient()
-        self.admin = AdminVerwalter.objects.create(email="admin1@example.com", name="Admin User1", role="Admin", password="admin123")
-        self.admin.set_password("admin123")
-        self.admin.save()
+        self.admin_user = User.objects.create_user(email='admin@example.com', password='testpassword', name='Admin User', role='Admin')
+        self.factory = APIRequestFactory()
 
-        self.admin = AdminVerwalter.objects.create(email="Verwalter@example.com", name="Verwalter User", role="Verwalter", password="admin123")
-        self.admin.set_password("admin123")
-        self.admin.save()
+    def test_user_serializer(self):
+     serializer = serializers.UserSerializer(instance=self.admin_user)
+     print("Serialized data:", serializer.data)
+     self.assertEqual(serializer.data, {
+        'id': self.admin_user.id,
+        'email': 'admin@example.com',
+        'name': 'Admin User',
+        'role': 'Admin',
+        'firm_code': None,
+    })
 
-        self.admin = AdminVerwalter.objects.create(email="admin11@example.com", name="Admin User11", role="Admin", password="admin123")
-        self.admin.set_password("admin123")
-        self.admin.save()
-        
-        self.kunde = Kunde.objects.create(email="kunde1@example.com", name="Kunde User", firmcode="kunde123", password="kunde123")
-        self.kunde.set_password("kunde123")
-        self.kunde.save()
-        
-    def test_admin_login(self):
-        response = self.client.post(reverse('user_role'), {'email': 'admin1@example.com', 'password': 'admin123'})
-        self.assertEqual(response.status_code, 200)
-        print("Roleadmin: ", response.data['role'])
-        self.assertEqual(response.data['email'], 'admin1@example.com')
-        self.assertIn(response.data['role'], ['Admin', 'Verwalter'])
+    def test_create_user(self):
+     request = self.factory.post('/users/', {
+        'email': 'newuser@example.com',
+        'name': 'New User',
+        'role': 'Verwalter',
+        'password': 'testpassword',
+    })
+     force_authenticate(request, user=self.admin_user)
+     view = views.UserListView.as_view()
+     response = view(request)
+     print("Response status code:", response.status_code)
+     self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+ 
+     created_user = User.objects.filter(email='newuser@example.com').first()
+     print("Created user:", created_user)
+     self.assertIsNotNone(created_user)
+     self.assertEqual(created_user.name, 'New User')
+     self.assertEqual(created_user.role, 'Verwalter')
 
-    def test_admin1_login(self):
-        response = self.client.post(reverse('user_role'), {'email': 'admin11@example.com', 'password': 'admin123'})
-        self.assertEqual(response.status_code, 200)
-        print("Roleadmin2: ", response.data['role'])
-        self.assertEqual(response.data['email'], 'admin11@example.com')
-        self.assertIn(response.data['role'], ['Admin', 'Verwalter'])
+     print("Created user name:", created_user.name)
+     print("Created user role:", created_user.role)
 
-    def test_Verwalter_login(self):
-        response = self.client.post(reverse('user_role'), {'email': 'Verwalter@example.com', 'password': 'admin123'})
-        self.assertEqual(response.status_code, 200)
-        print("Roleverwalter:", response.data['role'])
-        self.assertEqual(response.data['email'], 'Verwalter@example.com')
-        self.assertIn(response.data['role'], ['Admin', 'Verwalter'])
-    def test_kunde_login(self):
-        response = self.client.post(reverse('user_role'), {'email': 'kunde1@example.com', 'password': 'kunde1234'})
-       
-        self.assertEqual(response.status_code, 404)
-        print("Rolekunde:", response.data['role'])
-        self.assertEqual(response.data['email'], 'kunde1@example.com')
-        self.assertEqual(response.data['role'], 'Kunde')
+    def test_create_kunde_user_with_firm_code(self):
+        request = self.factory.post('/users/', {
+            'email': 'kundeuser@example.com',
+            'name': 'Kunde User',
+            'role': 'Kunde',
+            'password': 'testpassword',
+            'firm_code': 'FIRM123',
+        })
+        force_authenticate(request, user=self.admin_user)
+        view = views.UserListView.as_view()
+        response = view(request)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-    def test_invalid_login(self):
-        response = self.client.post(reverse('user_role'), {'email': 'invalid@example.com', 'password': 'invalid123'})
-        self.assertEqual(response.status_code, 404)
+        created_user = User.objects.filter(email='kundeuser@example.com').first()
+        self.assertIsNotNone(created_user)
+        self.assertEqual(created_user.name, 'Kunde User')
+        self.assertEqual(created_user.role, 'Kunde')
+        self.assertEqual(created_user.firm_code, 'FIRM123')

@@ -25,13 +25,18 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    # 'django.contrib.staticfiles',
+    'django.contrib.staticfiles',
     'User_loggin',
     'rest_framework',
     'rest_framework_simplejwt',
     'homepage',
     'benachrichtigung',
     'Lizenzseite',
+<<<<<<< HEAD
+=======
+    'corsheaders',
+    
+>>>>>>> 6a149b278999185f603605a09dd391e39a920a12
 
 ]
 
@@ -44,9 +49,14 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+
 ]
 CORS_ALLOW_ALL_ORIGINS = True
 ROOT_URLCONF = 'Backend.urls'
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",  # Replace with the address of your React frontend
+]
 
 TEMPLATES = [
     {
@@ -101,6 +111,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+AUTH_USER_MODEL = 'User_loggin.CustomUser'
+SILENCED_SYSTEM_CHECKS = ["auth.E403"]
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -141,3 +153,10 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'Rama.Abazied@Student.HTW-Berlin.de'
 EMAIL_HOST_PASSWORD = 'rWU3K2OhYvfmNI8F'
+STATIC_URL = '/static/'
+
+
+AUTHENTICATION_BACKENDS = [
+    'User_loggin.backends.CustomUserModelAuthBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]

@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./Übersichtseite.module.css";
 import NavbarWrapper from "../Components/NavbarWrapper"; // Import NavbarWrapper
 import DongleTable from './DongleTable';
@@ -15,8 +15,9 @@ const Übersichtseite = () => {
       </div>
       
       <div className={styles.content}>
-        übersichtseite
-        <DongleTable/>
+        <div className={styles["DongleTable"]}>
+        <DongleTable /></div>
+        
         <button
           className={styles["Dongleanfordern"]}
           onClick={() => navigate("/DongleAnfordern")}

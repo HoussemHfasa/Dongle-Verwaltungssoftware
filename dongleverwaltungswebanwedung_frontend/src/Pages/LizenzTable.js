@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Table } from 'antd';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Table } from "antd";
 
 const LizenzTable = () => {
   const [dataSource, setDataSource] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get('http://127.0.0.1:8000/Lizenzseite/');
+      const response = await axios.get("http://127.0.0.1:8000/Lizenzseite/");
       setDataSource(response.data.Lizenz);
     };
 
@@ -16,44 +16,44 @@ const LizenzTable = () => {
 
   const columns = [
     {
-      title: 'Lfd.Nr',
-      dataIndex: 'lfd_nr_field',
+      title: "Lfd.Nr",
+      dataIndex: "lfd_nr_field",
     },
     {
-      title: 'Product Code',
-      dataIndex: 'productcode',
+      title: "Product Code",
+      dataIndex: "productcode",
     },
     {
-      title: 'Lizenzname',
-      dataIndex: 'lizenzname',
+      title: "Lizenzname",
+      dataIndex: "lizenzname",
     },
     {
-      title: 'Einheiten',
-      dataIndex: 'einheiten',
+      title: "Einheiten",
+      dataIndex: "einheiten",
     },
     {
-      title: 'Gültig von',
-      dataIndex: 'gueltig_von',
+      title: "Gültig von",
+      dataIndex: "gueltig_von",
     },
     {
-      title: 'Ablaufdatum',
-      dataIndex: 'ablaufdatum',
+      title: "Ablaufdatum",
+      dataIndex: "ablaufdatum",
     },
     {
-      title: 'Lizenzanzahl',
-      dataIndex: 'lizenzanzahl',
+      title: "Lizenzanzahl",
+      dataIndex: "lizenzanzahl",
     },
     {
-      title: 'Mitarbeiter',
-      dataIndex: 'mitarbeiter',
+      title: "Mitarbeiter",
+      dataIndex: "mitarbeiter",
     },
     {
-      title: 'Projekt',
-      dataIndex: 'projekt',
+      title: "Projekt",
+      dataIndex: "projekt",
     },
     {
-      title: 'Dognle Lfd.Nr',
-      dataIndex: 'dognle_lfd_nr_field',
+      title: "Dongle Lfd.Nr",
+      dataIndex: "dongle_lfd_nr_field",
     },
   ];
 
