@@ -32,11 +32,10 @@ INSTALLED_APPS = [
     'homepage',
     'benachrichtigung',
     'Lizenzseite',
-<<<<<<< HEAD
-=======
+
     'corsheaders',
     
->>>>>>> 6a149b278999185f603605a09dd391e39a920a12
+
 
 ]
 
