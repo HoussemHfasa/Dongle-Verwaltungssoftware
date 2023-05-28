@@ -1,19 +1,29 @@
+# Standard Backend importieren 
 from django.contrib.auth.backends import BaseBackend
-from django.contrib.auth import get_user_model
 
-User = get_user_model()
+# Nutzermodell importieren 
+from django.contrib.auth import get_user_model   
 
+# Nutzermodel definieren
+User = get_user_model()  
+
+# Eigene Backend-Klasse 
 class CustomUserModelAuthBackend(BaseBackend):
-    def authenticate(self, request, email=None, password=None, **kwargs):
+    # Nutzer authentifizieren
+    def authenticate(self, request, email=None, password=None, **kwargs): 
         try:
-            user = User.objects.get(email=email)
-            if user.check_password(password):
+            # Nutzer mit Email abrufen
+            user = User.objects.get(email=email)  
+            # Prüfen, ob Passwort korrekt ist
+            if user.check_password(password):  
                 return user
-        except User.DoesNotExist:
+        except User.DoesNotExist:  
+            # Keinen Nutzer gefunden, None zurückgeben 
             return None
 
-    def get_user(self, user_id):
+    # Nutzer mit Nutzer-ID abrufen
+    def get_user(self, user_id):  
         try:
-            return User.objects.get(pk=user_id)
-        except User.DoesNotExist:
+            return User.objects.get(pk=user_id) 
+        except User.DoesNotExist:  
             return None

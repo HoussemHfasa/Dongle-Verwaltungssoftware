@@ -1,19 +1,18 @@
-#!/usr/bin/env python
-"""Django's command-line utility for administrative tasks."""
-import os
+"""Befehlszeilen-Tool von Django für administrative Aufgaben."""
+
+import os  
 import sys
 
-
 def main():
-    """Run administrative tasks."""
+    """Administrative Aufgaben ausführen."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Backend.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
         raise ImportError(
-            "Couldn't import Django. Are you sure it's installed and "
-            "available on your PYTHONPATH environment variable? Did you "
-            "forget to activate a virtual environment?"
+            "Django konnte nicht importiert werden. Sind Sie sicher, dass es installiert ist und "
+            "auf der PYTHONPATH-Umgebungsvariable verfügbar ist? Haben Sie "
+            "vergessen, eine virtuelle Umgebung zu aktivieren?"
         ) from exc
     execute_from_command_line(sys.argv)
 

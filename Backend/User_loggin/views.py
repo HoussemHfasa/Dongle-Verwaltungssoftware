@@ -1,49 +1,86 @@
-from django.contrib.auth import get_user_model
+# Nutzermodell importieren
+from django.contrib.auth import get_user_model  
+
+# Views importieren 
 from django.shortcuts import render
 from rest_framework import generics
-from rest_framework.response import Response
-from rest_framework_simplejwt.views import TokenObtainPairView
+
+# JWT Token Response importieren
+from rest_framework_simplejwt.views import TokenObtainPairView  
+
+# Eigene Serializers und Models importieren
 from . import models
-from . import serializers
+from . import serializers  
+
+# Authentifizierung importieren
 from django.contrib.auth import authenticate
+
+# APIView, Response und Statuscodes importieren
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
-from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
+from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST  
 
+# Nutzermodell definieren 
 User = get_user_model()
 
-class UserLoginAPIView(TokenObtainPairView):
+# Login View
+class UserLoginAPIView(TokenObtainPairView): 
+    # Login Serializer verwenden 
     serializer_class = serializers.UserLoginSerializer
 
+# Nutzerliste 
 class UserListView(generics.ListCreateAPIView):
-    queryset = User.objects.all()
+    # Alle Nutzer anzeigen
+    queryset = User.objects.all()  
+    # Nutzer Serializer verwenden 
     serializer_class = serializers.UserSerializer
 
+# Detailansicht eines Nutzers 
 class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = User.objects.all()
-    serializer_class = serializers.UserSerializer
+    # Alle Nutzer anzeigen
+    queryset = User.objects.all()  
+    # Nutzer Serializer verwenden
+    serializer_class = serializers.UserSerializer  
 
+# Administratorenliste  
 class AdminListView(generics.ListCreateAPIView):
-    queryset = User.objects.filter(role='Admin')
-    serializer_class = serializers.UserSerializer
+    # Nur Administratoren anzeigen
+    queryset = User.objects.filter(role='Admin')  
+    # Nutzer Serializer verwenden
+    serializer_class = serializers.UserSerializer   
 
+# Detailansicht eines Administrators
 class AdminDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = User.objects.filter(role='Admin')
-    serializer_class = serializers.UserSerializer
+    # Nur Administratoren anzeigen 
+    queryset = User.objects.filter(role='Admin')   
+    # Nutzer Serializer verwenden  
+    serializer_class = serializers.UserSerializer   
 
+# Verwalterliste
 class VerwalterListView(generics.ListCreateAPIView):
-    queryset = User.objects.filter(role='Verwalter')
+    # Nur Verwalter anzeigen
+    queryset = User.objects.filter(role='Verwalter')  
+    # Nutzer Serializer verwenden
     serializer_class = serializers.UserSerializer
 
+# Detailansicht eines Verwalters
 class VerwalterDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = User.objects.filter(role='Verwalter')
+    # Nur Verwalter anzeigen
+    queryset = User.objects.filter(role='Verwalter')  
+    # Nutzer Serializer verwenden
     serializer_class = serializers.UserSerializer
 
+# Kundenliste 
 class KundeListView(generics.ListCreateAPIView):
-    queryset = User.objects.filter(role='Kunde')
+    # Nur Kunden anzeigen
+    queryset = User.objects.filter(role='Kunde') 
+    # Nutzer Serializer verwenden 
     serializer_class = serializers.UserSerializer
 
+# Detailansicht eines Kunden
 class KundeDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = User.objects.filter(role='Kunde')
+    # Nur Kunden anzeigen
+    queryset = User.objects.filter(role='Kunde')  
+    # Nutzer Serializer verwenden
     serializer_class = serializers.UserSerializer

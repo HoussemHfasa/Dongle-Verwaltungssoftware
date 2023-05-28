@@ -12,7 +12,7 @@ class DongleSerializer(serializers.ModelSerializer):
     haendler = serializers.CharField(max_length=45)
     datum_letzte_aenderung  = serializers.DateField()
     datum_erstausgabe = serializers.DateField()
-    benutzer_firmcode = serializers.IntegerField()
+    benutzer_firmcode = serializers.CharField(max_length=45)
 
     class Meta:
         model = Dongle
