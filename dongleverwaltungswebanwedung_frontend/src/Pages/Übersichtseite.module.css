@@ -32,7 +32,7 @@
 
 /* Dongle-Tabelle */
 .DongleTable {
-  position: absolute;
+  position: fixed;
   top: 340px; 
   left: 0px;
   right: 0px;
@@ -40,7 +40,7 @@
 
 /* Lizenz */
 .Lizenz {
-  position: absolute;
+  position: fixed;
   top: 340px; 
   left: 20px;
   right: 20px;
