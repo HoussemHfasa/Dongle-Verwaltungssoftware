@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAuth } from "./AuthContext";
 import NavbarAdmin from "./NavbarAdmin";
 import NavbarVerwalter from "./NavbarVerwalter";
 import NavbarKunde from "./NavbarKunde";
 
 const NavbarWrapper = () => {
-  const { role } = useAuth(); // Change username to role
+  const { role, setRole } = useAuth();
+
+  useEffect(() => {
+    localStorage.setItem("role", role); // Update the role in localStorage whenever it changes
+  }, [role]);
 
   if (role === "Admin") {
     return <NavbarAdmin />;

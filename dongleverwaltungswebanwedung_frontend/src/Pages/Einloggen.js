@@ -24,10 +24,11 @@ const Einloggen = () => {
         password: inputPassword, // Use inputPassword instead of this.state.password
       });
       if (response.status === 200) {
-        setRole(response.data.role); // Update the global state with the role
-        setEmail(inputEmail); // Update the global email state
-        setPassword(inputPassword); // Update the global password state
-        console.log("Role, email, and password set successfully"); // Log a message to check if this part of code is executed
+        setRole(response.data.role);
+        setEmail(inputEmail);
+        setPassword(inputPassword);
+        localStorage.setItem("role", response.data.role); // Store the role in localStorage
+        console.log("Role, email, and password set successfully");
         navigate("/Übersichtseite");
       }
     } catch (error) {
