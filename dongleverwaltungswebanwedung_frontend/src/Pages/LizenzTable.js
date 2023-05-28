@@ -64,7 +64,7 @@ const LizenzTable = () => {
   // Tabellenkomponente rendern
   return (
     <div>
-      <Table columns={columns} dataSource={dataSource} />
+      <Table columns={columns} dataSource={dataSource} pagination={{ pageSize: 7 }} />
     </div>
   );
 };

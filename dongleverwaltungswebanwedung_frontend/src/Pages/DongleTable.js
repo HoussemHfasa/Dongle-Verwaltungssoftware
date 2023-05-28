@@ -98,12 +98,12 @@ const DongleTable = () => {
     },
   ];
 
-  // Tabellenkomponente rendern
-  return (
-    <div>
-      <Table columns={columns} dataSource={dataSource} />
-    </div>
-  );
+ // Tabellenkomponente rendern
+return (
+  <div>
+    <Table columns={columns} dataSource={dataSource} pagination={{ pageSize: 7 }} />
+  </div>
+);
 };
 
 export default DongleTable;
