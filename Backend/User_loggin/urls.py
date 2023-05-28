@@ -1,7 +1,13 @@
-
 from django.urls import path
-from .views import user_role  # Import view directly
+from .views import (UserLoginAPIView, UserListView, UserDetailView,
+                    AdminListView, VerwalterListView, KundeListView)
 
 urlpatterns = [
-    path('user_role/', user_role, name='user_role'), 
+    #path('login/', UserLoginAPIView.as_view(), name='user-login'),  # Add this line
+    path('login/', UserLoginAPIView.as_view(), name='user-login'),
+    path('users/', UserListView.as_view(), name='user-list'),
+    path('users/<int:pk>/', UserDetailView.as_view(), name='user-detail'),
+    path('admin/', AdminListView.as_view(), name='admin-list'),
+    path('verwalter/', VerwalterListView.as_view(), name='verwalter-list'),
+    path('kunde/', KundeListView.as_view(), name='kunde-list'),
 ]

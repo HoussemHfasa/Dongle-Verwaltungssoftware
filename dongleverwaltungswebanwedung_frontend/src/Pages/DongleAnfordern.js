@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
 import "./DongleAnfordern.css";
 import NavbarWrapper from "../Components/NavbarWrapper"; // Import NavbarWrapper
 

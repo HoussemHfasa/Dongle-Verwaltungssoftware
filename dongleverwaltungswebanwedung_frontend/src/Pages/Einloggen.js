@@ -3,28 +3,41 @@ import { useNavigate } from "react-router-dom";
 import styles from "./Einloggen.module.css";
 import MyUsername from "./Username.png";
 import MyPassword from "./Password.png";
-import { useAuth } from "../Components/AuthContext"; // Import the useAuth hook
+import { useAuth } from "../Components/AuthContext";
+import axios from "axios"; // Import axios
 
 const Einloggen = () => {
-  const { setUsername } = useAuth();
-  const [inputUsername, setInputUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const { setRole, setEmail, setPassword, handleLogin } = useAuth(); // Add setRole here
+  const [inputEmail, setInputEmail] = useState(""); // Add back the local state variable for email input
+  const [inputPassword, setInputPassword] = useState(""); // Add back the local state variable for password input
+  const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      inputUsername === "admin" ||
-      inputUsername === "Admin" ||
-      inputUsername === "verwalter" ||
-      inputUsername === "Verwalter" ||
-      inputUsername === "kunde" ||
-      inputUsername === "Kunde"
-    ) {
-      setUsername(inputUsername); // Update the global state with the username
-      navigate("/Übersichtseite");
+    try {
+      // Send a POST request to the API with the user's email and password
+      const response = await axios.post("http://localhost:8000/login/", {
+        email: inputEmail, // Use inputEmail instead of this.state.email
+        password: inputPassword, // Use inputPassword instead of this.state.password
+      });
+      if (response.status === 200) {
+        setRole(response.data.role); // Update the global state with the role
+        setEmail(inputEmail); // Update the global email state
+        setPassword(inputPassword); // Update the global password state
+        console.log("Role, email, and password set successfully"); // Log a message to check if this part of code is executed
+        navigate("/Übersichtseite");
+      }
+    } catch (error) {
+      console.error("Login failed:", error.message);
+      if (error.response) {
+        console.error("Server response data:", error.response.data);
+        setErrorMessage(
+          "Login fehlgeschlagen. Bitte überprüfen Sie Ihre E-Mail und Passwort."
+        );
+      }
     }
   };
 
@@ -34,11 +47,11 @@ const Einloggen = () => {
         <div className={styles["white-rectangle"]} />
         <input
           type="text"
-          placeholder="Schreiben Sie Ihr Benutzername"
+          placeholder="Schreiben Sie Ihr E-Mail"
           className={styles.textbox_Benutzername}
-          onChange={(e) => setInputUsername(e.target.value)}
+          onChange={(e) => setInputEmail(e.target.value)}
         />
-        <div className={styles["frame-Benutzername"]}>Benutzername</div>
+        <div className={styles["frame-Benutzername"]}>E-Mail</div>
         <div className={styles["frame-text-Benutzername"]}>
           Schreiben Sie Ihr Benutzername
         </div>
@@ -49,10 +62,10 @@ const Einloggen = () => {
         />
         <div className={styles["frame-text-Password"]}>Passwort</div>
         <input
-          type="text"
+          type="password"
           placeholder="Schreiben Sie Ihr Passwort"
           className={styles.textbox_Passwort}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => setInputPassword(e.target.value)}
         />
         <img
           className={styles["frame-image-Password"]}
@@ -62,11 +75,17 @@ const Einloggen = () => {
         <div className={styles["frame-text-vergessen"]}>
           Passwort vergessen?
         </div>
-        <button className={styles["rectangular-button"]} onClick={handleLogin}>
+        <button
+          className={styles["rectangular-button"]}
+          onClick={handleLoginSubmit}
+        >
           Anmelden
         </button>
         <div className={styles["frame-overlap"]}></div>
       </div>
+      {errorMessage && (
+        <div className={styles.error_message}>{errorMessage}</div>
+      )}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react"; // Add missing imports here
 
 const AuthContext = createContext();
 
@@ -7,12 +7,18 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState(""); // Add role state
 
-  // Der Wert sollte ein Objekt sein, das die setUsername Funktion enthält
+  // Include setRole function in the value object
   const value = {
-    username,
-    setUsername,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    role,
+    setRole, // Add setRole to the context
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

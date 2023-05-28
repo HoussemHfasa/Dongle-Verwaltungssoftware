@@ -5,7 +5,7 @@ import Notification_image from "./active.png";
 import NotificationMenu from "./NotificationMenu";
 import ProfileMenu from "./ProfileMenu";
 import gfaiLogo from "./gfai_logo.png";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const NavbarVerwalter = (props) => {
   const [showProfilePopup, setShowProfilePopup] = useState(false);

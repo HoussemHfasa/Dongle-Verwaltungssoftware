@@ -26,12 +26,13 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    #'django.contrib.staticfiles',
+    'django.contrib.staticfiles',
     'User_loggin',
     'rest_framework',
     'rest_framework_simplejwt',
-    'homepage'
-    
+    'homepage',
+    'corsheaders',
+
 
 ]
 
@@ -43,9 +44,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
+CORS_ALLOW_ALL_ORIGINS = True
+
 
 ROOT_URLCONF = 'Backend.urls'
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",  # Replace with the address of your React frontend
+]
 
 TEMPLATES = [
     {
@@ -100,7 +108,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
+AUTH_USER_MODEL = 'User_loggin.CustomUser'
+SILENCED_SYSTEM_CHECKS = ["auth.E403"]
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -128,3 +137,11 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
+
+STATIC_URL = '/static/'
+
+
+AUTHENTICATION_BACKENDS = [
+    'User_loggin.backends.CustomUserModelAuthBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]

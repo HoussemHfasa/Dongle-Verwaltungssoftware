@@ -5,13 +5,13 @@ import NavbarVerwalter from "./NavbarVerwalter";
 import NavbarKunde from "./NavbarKunde";
 
 const NavbarWrapper = () => {
-  const { username } = useAuth();
+  const { role } = useAuth(); // Change username to role
 
-  if (username === "admin" || username === "Admin") {
+  if (role === "Admin") {
     return <NavbarAdmin />;
-  } else if (username === "verwalter" || username === "Verwalter") {
+  } else if (role === "Verwalter") {
     return <NavbarVerwalter />;
-  } else if (username === "kunde" || username === "Kunde") {
+  } else if (role === "Kunde") {
     return <NavbarKunde />;
   } else {
     return null;

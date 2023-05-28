@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./Übersichtseite.module.css";
 import NavbarWrapper from "../Components/NavbarWrapper"; // Import NavbarWrapper
 

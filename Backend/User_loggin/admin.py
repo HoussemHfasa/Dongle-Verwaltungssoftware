@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import AdminVerwalter, Kunde
+from django.contrib.admin.models import LogEntry
+from .models import CustomUser  
 
-# Register your models here.
-admin.site.register(AdminVerwalter)
-admin.site.register(Kunde)
+admin.site.register(LogEntry) 
+admin.site.register(CustomUser)
+admin.site.unregister(LogEntry)

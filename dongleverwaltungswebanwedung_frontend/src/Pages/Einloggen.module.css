@@ -192,3 +192,7 @@
   border-radius: 50px;
 }
 
+.error_message {
+  color: red;
+  margin-bottom: 10px;
+}
