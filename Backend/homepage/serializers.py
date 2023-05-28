@@ -32,9 +32,7 @@ class DongleSerializer(serializers.ModelSerializer):
     
     # Datum der Erstausgabe
     datum_erstausgabe = serializers.DateField()
-    
-    # Benutzer und Firmencode
-    benutzer_firmcode = serializers.IntegerField()
+    benutzer_firmcode = serializers.CharField(max_length=45)
 
     class Meta:
         # Verknüpfung des Serializers mit dem Dongle-Modell

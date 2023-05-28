@@ -3,14 +3,15 @@ from datetime import timedelta
 from pathlib import Path
 from dotenv import load_dotenv
 
+# Laden der Umgebungsvariablen
 load_dotenv()
 
+# Django Einstellungen
 SECRET_KEY = 'django-insecure-94j33)2i@&eg%yxah@)4e1x-)87^cnr0c=&tqn41m3+5e3&s9p'
-
 DEBUG = True
-
 ALLOWED_HOSTS = []
 
+# Installierte Apps
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -27,6 +28,7 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
+# Middleware Einstellungen
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -39,12 +41,14 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
 ]
 
+# CORS Einstellungen
 CORS_ALLOW_ALL_ORIGINS = True
 ROOT_URLCONF = 'Backend.urls'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",
 ]
 
+# Template Einstellungen
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -61,8 +65,10 @@ TEMPLATES = [
     },
 ]
 
+# WSGI-Anwendung
 WSGI_APPLICATION = 'Backend.wsgi.application'
 
+# Datenbank Einstellungen
 DATABASES = {
     'default': {
         'ENGINE': os.environ.get('DATABASE_ENGINE'),
@@ -77,6 +83,7 @@ DATABASES = {
     }
 }
 
+# Passwort-Validierung
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -92,25 +99,27 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Benutzermodell
 AUTH_USER_MODEL = 'User_loggin.CustomUser'
 SILENCED_SYSTEM_CHECKS = ["auth.E403"]
 
+# Sprache und Zeitzone
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
+# Standard Auto-Feld
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# REST Framework Einstellungen
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
 
+# Celery Einstellungen
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
 CELERY_TIMEZONE = 'Europe/Berlin'
 CELERY_BEAT_SCHEDULE = {
@@ -120,13 +129,17 @@ CELERY_BEAT_SCHEDULE = {
     },
 }
 
+# E-Mail Einstellungen
 EMAIL_HOST = 'smtp-relay.sendinblue.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'Rama.Abazied@Student.HTW-Berlin.de'
 EMAIL_HOST_PASSWORD = 'rWU3K2OhYvfmNI8F'
+
+# Statische Dateien
 STATIC_URL = '/static/'
 
+# Authentifizierung-Backends
 AUTHENTICATION_BACKENDS = [
     'User_loggin.backends.CustomUserModelAuthBackend',
     'django.contrib.auth.backends.ModelBackend',
