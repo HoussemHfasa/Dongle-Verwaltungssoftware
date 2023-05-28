@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Table } from 'antd';
+import {Input,Table } from 'antd';
 
 const DongleTable = () => {
   const [dataSource, setDataSource] = useState([]);
@@ -17,7 +17,8 @@ const DongleTable = () => {
   const columns = [
     {
       title: 'Lfd.Nr',
-      dataIndex: 'lfd_nr_field',
+    dataIndex: 'lfd_nr_field',
+    
     },
     {
       title: 'Serien Nr',
@@ -26,6 +27,26 @@ const DongleTable = () => {
     {
       title: 'Name',
       dataIndex: 'name',
+      filterDropdown: ({ setSelectedKeys, selectedKeys, confirm }) => {
+        return (
+          <Input
+            placeholder="Lfd.Nr suchen"
+            value={selectedKeys[0]}
+            onChange={(e) => {
+              setSelectedKeys(e.target.value ? [e.target.value] : []);
+            }}
+            onPressEnter={() => {
+              confirm();
+            }}
+            onBlur={() => {
+              confirm();
+            }}
+          ></Input>
+        );
+      },
+      onFilter: (value, record) => {
+        return record.name.toLowerCase().includes(value.toLowerCase());
+        }
     },
     {
       title: 'Gültig von',
