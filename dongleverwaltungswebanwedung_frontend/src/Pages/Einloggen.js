@@ -4,39 +4,40 @@ import styles from "./Einloggen.module.css";
 import MyUsername from "./Username.png";
 import MyPassword from "./Password.png";
 import { useAuth } from "../Components/AuthContext";
-import axios from "axios"; // Import axios
+import axios from "axios";
 
+// Einloggen-Komponente
 const Einloggen = () => {
-  const { setRole, setEmail, setPassword, handleLogin } = useAuth(); // Add setRole here
-  const [inputEmail, setInputEmail] = useState(""); // Add back the local state variable for email input
-  const [inputPassword, setInputPassword] = useState(""); // Add back the local state variable for password input
+  const { setRole, setEmail, setPassword } = useAuth();
+  const [inputEmail, setInputEmail] = useState("");
+  const [inputPassword, setInputPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-
   const navigate = useNavigate();
 
+  // Verarbeitet das Einreichen des Login-Formulars
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      // Send a POST request to the API with the user's email and password
       const response = await axios.post("http://localhost:8000/login/", {
-        email: inputEmail, // Use inputEmail instead of this.state.email
-        password: inputPassword, // Use inputPassword instead of this.state.password
+        email: inputEmail,
+        password: inputPassword,
       });
+
       if (response.status === 200) {
         setRole(response.data.role);
         setEmail(inputEmail);
         setPassword(inputPassword);
-        localStorage.setItem("role", response.data.role); // Store the role in localStorage
-        console.log("Role, email, and password set successfully");
+        localStorage.setItem("role", response.data.role);
+        console.log("Rolle, E-Mail und Passwort erfolgreich gesetzt");
         navigate("/Übersichtseite");
       }
     } catch (error) {
-      console.error("Login failed:", error.message);
+      console.error("Anmeldung fehlgeschlagen:", error.message);
       if (error.response) {
-        console.error("Server response data:", error.response.data);
+        console.error("Server-Antwortdaten:", error.response.data);
         setErrorMessage(
-          "Login fehlgeschlagen. Bitte überprüfen Sie Ihre E-Mail und Passwort."
+          "Anmeldung fehlgeschlagen. Bitte überprüfen Sie Ihre E-Mail und Passwort."
         );
       }
     }
@@ -46,6 +47,8 @@ const Einloggen = () => {
     <div className={styles.container}>
       <div className={styles.Background}>
         <div className={styles["white-rectangle"]} />
+
+        {/* E-Mail-Feld */}
         <input
           type="text"
           placeholder="Schreiben Sie Ihr E-Mail"
@@ -61,6 +64,8 @@ const Einloggen = () => {
           alt="MyUsername"
           src={MyUsername}
         />
+
+        {/* Passwort-Feld */}
         <div className={styles["frame-text-Password"]}>Passwort</div>
         <input
           type="password"
@@ -73,17 +78,24 @@ const Einloggen = () => {
           alt="MyPassword"
           src={MyPassword}
         />
+
+        {/* Passwort-vergessen-Link */}
         <div className={styles["frame-text-vergessen"]}>
           Passwort vergessen?
         </div>
+
+        {/* Anmeldeknopf */}
         <button
           className={styles["rectangular-button"]}
           onClick={handleLoginSubmit}
         >
           Anmelden
         </button>
+
         <div className={styles["frame-overlap"]}></div>
       </div>
+
+      {/* Fehlermeldung */}
       {errorMessage && (
         <div className={styles.error_message}>{errorMessage}</div>
       )}

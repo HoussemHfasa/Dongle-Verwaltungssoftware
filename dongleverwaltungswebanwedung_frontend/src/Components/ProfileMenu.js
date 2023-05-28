@@ -1,19 +1,21 @@
 import React, { forwardRef, useState } from "react";
 import styles from "./Navbar.module.css";
-import { useNavigate } from "react-router-dom"; // Change this import
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 
 const ProfileMenu = forwardRef((props, ref) => {
   const [profileExploding, setProfileExploding] = useState(false);
   const [abmeldenExploding, setAbmeldenExploding] = useState(false);
-  const navigate = useNavigate(); // Change this line
-  const { setEmail, setPassword, setRole } = useAuth(); // Get setUsername from the context
+  const navigate = useNavigate();
+  const { setEmail, setPassword, setRole } = useAuth();
 
+  // Funktion zum Behandeln des Klicks auf den Profil-Button
   const handleProfileClick = () => {
     setProfileExploding(true);
     setTimeout(() => setProfileExploding(false), 500);
   };
 
+  // Funktion zum Behandeln des Klicks auf den Abmelden-Button
   const handleAbmeldenClick = () => {
     setAbmeldenExploding(true);
     setTimeout(() => setAbmeldenExploding(false), 500);
@@ -21,13 +23,16 @@ const ProfileMenu = forwardRef((props, ref) => {
     setPassword(null);
     setRole(null);
 
-    localStorage.removeItem("role"); // Remove the role from localStorage
-    console.log("Role after removal:", localStorage.getItem("role"));
+    // Entfernen der Rolle aus dem localStorage
+    localStorage.removeItem("role");
+    console.log("Rolle nach Entfernung:", localStorage.getItem("role"));
 
+    // Navigieren zum Startbildschirm
     navigate("/");
   };
 
   return (
+    // Verwenden von forwardRef, um die ref-Instanz von außerhalb der Komponente zu verwalten
     <div className={styles["container1"]} ref={ref}>
       <button
         className={`${styles["profileButton"]} ${
@@ -35,7 +40,7 @@ const ProfileMenu = forwardRef((props, ref) => {
         }`}
         onClick={handleProfileClick}
       >
-        Profile
+        Profil
       </button>
       <button
         className={`${styles["abmeldenButton"]} ${

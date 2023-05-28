@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./DongleAnfordern.css";
-import NavbarWrapper from "../Components/NavbarWrapper"; // Import NavbarWrapper
+import NavbarWrapper from "../Components/NavbarWrapper";
 
 const DongleAnfordern = () => {
   const [dongleId, setDongleId] = useState("");
@@ -9,6 +9,7 @@ const DongleAnfordern = () => {
   const [handler, setHandler] = useState("");
   const [ablaufdatum, setAblaufdatum] = useState("");
 
+  // Funktion zum Zurücksetzen des Formulars
   const resetForm = () => {
     setDongleId("");
     setProductName("");
@@ -17,18 +18,24 @@ const DongleAnfordern = () => {
     setAblaufdatum("");
   };
 
+  // Funktion zum Speichern der eingegebenen Daten
   const handleSave = async () => {
     // ...
   };
 
   return (
     <div className="DongleAnfordern-container">
+      {/* Navbar */}
       <NavbarWrapper />
+
+      {/* Überschrift */}
       <div className="DongleAnfordern-header">
         <h1>Dongle Anfordern</h1>
       </div>
 
+      {/* Formular */}
       <div className="DongleAnfordern-form">
+        {/* Dongle-ID (Seriennummer) */}
         <div className="form-row">
           <span className="form-label">Dongle-ID(Seriennummer)</span>
           <input
@@ -38,6 +45,7 @@ const DongleAnfordern = () => {
             onChange={(e) => setDongleId(e.target.value)}
           />
         </div>
+        {/* Produktname */}
         <div className="form-row">
           <span className="form-label">Produktname</span>
           <input
@@ -47,6 +55,7 @@ const DongleAnfordern = () => {
             onChange={(e) => setProductName(e.target.value)}
           />
         </div>
+        {/* E-Mail */}
         <div className="form-row">
           <span className="form-label">email</span>
           <input
@@ -56,6 +65,7 @@ const DongleAnfordern = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
+        {/* Händler */}
         <div className="form-row">
           <span className="form-label">Händler</span>
           <input
@@ -65,6 +75,7 @@ const DongleAnfordern = () => {
             onChange={(e) => setHandler(e.target.value)}
           />
         </div>
+        {/* Ablaufdatum */}
         <div className="form-row">
           <span className="form-label">Ablaufdatum</span>
           <input
@@ -74,10 +85,13 @@ const DongleAnfordern = () => {
             onChange={(e) => setAblaufdatum(e.target.value)}
           />
         </div>
+        {/* Button-Container */}
         <div className="button-container">
+          {/* Stornieren-Button */}
           <button className="cancel-button" onClick={() => resetForm()}>
             Stornieren
           </button>
+          {/* Speichern-Button */}
           <button className="save-button" onClick={() => handleSave()}>
             Speichern
           </button>
@@ -86,4 +100,5 @@ const DongleAnfordern = () => {
     </div>
   );
 };
+
 export default DongleAnfordern;
