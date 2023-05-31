@@ -14,7 +14,7 @@ Dieses Django-Projekt wurde mit Anaconda erstellt und enthält eine `requirement
 2. Erstellen Sie neue Umgebungen, um verschiedene Projekte zu verwalten und zu isolieren.
 
 # Installation des Projekts
-1. Öffnen Sie eine Kommandozeile und navigieren Sie zu dem Verzeichnis, indem das Django-Projekt gespeichert ist. Verwenden Sie dazu den Befehl `cd (Pfad des Ordners)`.
+1. Öffnen Sie eine Kommandozeile und navigieren Sie zu dem Verzeichnis, indem das Django-Projekt gespeichert ist. Verwenden Sie dazu den Befehl `cd (Pfad des Backend)`.
 
 2. Erstellen Sie eine neue Umgebung in Anaconda mit dem Befehl: 
      `conda create -n myenv python=3.8`
@@ -102,7 +102,7 @@ Schritt 2: MySQL Workbench einrichten
 Schritt 3: Datenbank mit Initialisierungsskript erstellen
 
 1. Öffnen Sie die Verbindung, die Sie in Schritt 2 erstellt haben, indem Sie auf den Verbindungsnamen klicken.
-2. Klicken Sie im Menü auf "File" > "Open SQL Script" und wählen Sie das bereitgestellte Initialisierungsskript ('Webanwendungdatenbank.sql').
+2. Klicken Sie im Menü auf "File" > "Open SQL Script" und wählen Sie das bereitgestellte Initialisierungsskript ('dongle1.sql').
 3. Klicken Sie auf das Blitz-Symbol, um das Skript auszuführen und die Datenbank zu erstellen.
 
 Schritt 4: Django-Projekt mit der Datenbank verbinden

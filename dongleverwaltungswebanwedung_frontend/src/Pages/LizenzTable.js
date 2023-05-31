@@ -56,15 +56,19 @@ const LizenzTable = () => {
       dataIndex: "projekt",
     },
     {
-      title: "Dongle Lfd.Nr",
-      dataIndex: "dongle_lfd_nr_field",
+      title: "Kunde",
+      dataIndex: "kunde",
     },
   ];
 
   // Tabellenkomponente rendern
   return (
     <div>
-      <Table columns={columns} dataSource={dataSource} pagination={{ pageSize: 7 }} />
+      <Table
+        columns={columns}
+        dataSource={dataSource}
+        pagination={{ pageSize: 7 }}
+      />
     </div>
   );
 };

@@ -21,6 +21,8 @@ class DongleSerializer(serializers.ModelSerializer):
     # Projekt oder Produkt, für das der Dongle verwendet wird
     projekt_produkt = serializers.CharField(max_length=45)
     
+    #houssem
+    kunde=serializers.CharField(max_length=45)
     # Standort des Dongles
     standort = serializers.CharField(max_length=45)
     
@@ -32,7 +34,7 @@ class DongleSerializer(serializers.ModelSerializer):
     
     # Datum der Erstausgabe
     datum_erstausgabe = serializers.DateField()
-    benutzer_firmcode = serializers.CharField(max_length=45)
+    firmcode = serializers.CharField(max_length=45)
 
     class Meta:
         # Verknüpfung des Serializers mit dem Dongle-Modell

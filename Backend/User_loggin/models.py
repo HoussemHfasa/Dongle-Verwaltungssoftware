@@ -44,8 +44,6 @@ class CustomUserManager(BaseUserManager):
 # Eigene Nutzermodel 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
-    # Standard Nutzername 
-    username = models.CharField(max_length=255, default="default_username") 
     name = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
     role = models.CharField(
@@ -55,8 +53,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     )
     firm_code = models.CharField(max_length=255, blank=True, null=True) 
 
-    is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False) 
     
     # Eigene Berechtigung
     class Meta:

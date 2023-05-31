@@ -9,6 +9,9 @@ class LizenzSerializer(serializers.ModelSerializer):
     # Produktcode
     productcode = serializers.IntegerField()
     
+    firmcode= serializers.CharField(max_length=45)
+
+    productcode=serializers.IntegerField()
     # Lizenzname
     lizenzname = serializers.CharField(max_length=45)
     
@@ -19,7 +22,7 @@ class LizenzSerializer(serializers.ModelSerializer):
     gueltig_von = serializers.DateField()
     
     # Ablaufdatum der Lizenz
-    ablaufdatum = serializers.DateField()
+    gueltig_bis = serializers.DateField()
     
     # Anzahl der Lizenzen
     lizenzanzahl = serializers.IntegerField()
@@ -30,8 +33,11 @@ class LizenzSerializer(serializers.ModelSerializer):
     # Projekt, für das die Lizenz verwendet wird
     projekt = serializers.CharField(max_length=45)
     
+    kunde=serializers.CharField(max_length=45)
     # Primärschlüsselbezogenes Feld für den Dongle (Laufende Nummer des Dongles)
-    dongle_lfd_nr_field = serializers.PrimaryKeyRelatedField(queryset=Dongle.objects.all())
+    dongle_serien_nr = serializers.PrimaryKeyRelatedField(queryset=Dongle.objects.all())
+
+
 
     class Meta:
         model = Lizenz

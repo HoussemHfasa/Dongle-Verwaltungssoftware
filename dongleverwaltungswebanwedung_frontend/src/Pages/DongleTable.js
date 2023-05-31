@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Input, Table } from 'antd';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Input, Table } from "antd";
 
 // DongleTable-Komponente
 const DongleTable = () => {
@@ -10,7 +10,7 @@ const DongleTable = () => {
   // Daten abrufen, wenn die Komponente eingebunden wird
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get('http://127.0.0.1:8000/homepage/');
+      const response = await axios.get("http://127.0.0.1:8000/homepage/");
       setDataSource(response.data.Dongle);
     };
 
@@ -21,18 +21,18 @@ const DongleTable = () => {
   const columns = [
     // Laufende Nummer
     {
-      title: 'Lfd.Nr',
-      dataIndex: 'lfd_nr_field',
+      title: "Lfd.Nr",
+      dataIndex: "lfd_nr_field",
     },
     // Seriennummer
     {
-      title: 'Serien Nr',
-      dataIndex: 'serien_nr',
+      title: "Serien Nr",
+      dataIndex: "serien_nr",
     },
     // Name
     {
-      title: 'Name',
-      dataIndex: 'name',
+      title: "Name",
+      dataIndex: "name",
       // Filter-Dropdown-Konfiguration
       filterDropdown: ({ setSelectedKeys, selectedKeys, confirm }) => {
         return (
@@ -58,52 +58,56 @@ const DongleTable = () => {
     },
     // Gültig von
     {
-      title: 'Gültig von',
-      dataIndex: 'gueltig_von',
+      title: "Gültig von",
+      dataIndex: "gueltig_von",
     },
     // Gültig bis
     {
-      title: 'Gültig bis',
-      dataIndex: 'gueltig_bis',
+      title: "Gültig bis",
+      dataIndex: "gueltig_bis",
     },
     // Projekt / Produkt
     {
-      title: 'Projekt / Produkt',
-      dataIndex: 'projekt_produkt',
+      title: "Projekt / Produkt",
+      dataIndex: "projekt_produkt",
     },
     // Standort
     {
-      title: 'Standort',
-      dataIndex: 'standort',
+      title: "Standort",
+      dataIndex: "standort",
     },
     // Händler
     {
-      title: 'Händler',
-      dataIndex: 'haendler',
+      title: "Händler",
+      dataIndex: "haendler",
     },
     // Datum der letzten Änderung
     {
-      title: 'Datum letzte Änderung',
-      dataIndex: 'datum_letzte_aenderung',
+      title: "Datum letzte Änderung",
+      dataIndex: "datum_letzte_aenderung",
     },
     // Datum der Erstausgabe
     {
-      title: 'Datum Erstausgabe',
-      dataIndex: 'datum_erstausgabe',
+      title: "Datum Erstausgabe",
+      dataIndex: "datum_erstausgabe",
     },
     // Benutzer Firmencode
     {
-      title: 'Benutzer Firmcode',
-      dataIndex: 'benutzer_firmcode',
+      title: "Kunde",
+      dataIndex: "kunde",
     },
   ];
 
- // Tabellenkomponente rendern
-return (
-  <div>
-    <Table columns={columns} dataSource={dataSource} pagination={{ pageSize: 7 }} />
-  </div>
-);
+  // Tabellenkomponente rendern
+  return (
+    <div>
+      <Table
+        columns={columns}
+        dataSource={dataSource}
+        pagination={{ pageSize: 7 }}
+      />
+    </div>
+  );
 };
 
 export default DongleTable;
