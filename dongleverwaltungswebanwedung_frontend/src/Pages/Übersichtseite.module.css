@@ -1,6 +1,6 @@
 /* Dongle-Anforderungs-Button */
 .Dongleanfordern {
-  position: fixed;
+  position: absolute;
   top: 221px;
   right: 275px;
   width: 221px;
@@ -27,12 +27,12 @@
   font-stretch: normal;
   text-decoration: none;
   margin: 0;              /* Ränder zurücksetzen */
-  position: static;       /* Position zurücksetzen */
+  position: absolute;       /* Position zurücksetzen */
 }
 
 /* Dongle-Tabelle */
 .DongleTable {
-  position: fixed;
+  position: absolute;
   top: 340px; 
   left: 0px;
   right: 0px;
