@@ -8,7 +8,7 @@ import axios from "axios";
 
 // Einloggen-Komponente
 const Einloggen = () => {
-  const { setRole, setEmail, setPassword } = useAuth();
+  const { setRole, setEmail, setPassword, setFirmcode } = useAuth();
   const [inputEmail, setInputEmail] = useState("");
   const [inputPassword, setInputPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -26,9 +26,12 @@ const Einloggen = () => {
 
       if (response.status === 200) {
         setRole(response.data.role);
+        setFirmcode(response.data.firm_code);
         setEmail(inputEmail);
         setPassword(inputPassword);
         localStorage.setItem("role", response.data.role);
+        localStorage.setItem("Firmcode", response.data.firm_code);
+        console.log("Firmcode:", response.data.firm_code);
         console.log("Rolle, E-Mail und Passwort erfolgreich gesetzt");
         navigate("/Übersichtseite");
       }

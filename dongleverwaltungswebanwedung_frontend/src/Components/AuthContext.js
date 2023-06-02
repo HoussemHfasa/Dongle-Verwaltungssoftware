@@ -14,6 +14,8 @@ export const AuthProvider = ({ children }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState(() => localStorage.getItem("role") || "");
+  //test
+  const [Firmcode, setFirmcode] = useState("");
 
   // Wertobjekt für den Kontext
   const value = {
@@ -23,6 +25,8 @@ export const AuthProvider = ({ children }) => {
     setPassword,
     role,
     setRole,
+    Firmcode,
+    setFirmcode,
   };
 
   // Authentifizierungskontext bereitstellen

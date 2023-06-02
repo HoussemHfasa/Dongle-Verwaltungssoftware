@@ -1,0 +1,29 @@
+.Kontoerstellen {
+    position: absolute;
+    top: 221px;
+    right: 275px;
+    width: 221px;
+    height: 86px;
+    border-radius: 19px;
+    background: #FD9800;
+    cursor: pointer;
+    display: flex;           /* Flexbox hinzugefügt */
+    justify-content: center; /* Inhalt horizontal zentrieren */
+    align-items: center;     /* Inhalt vertikal zentrieren */
+  }
+  /* Dongle-Anforderungstext */
+.Kontoerstellentext {
+    color: rgb(255, 255, 255);
+    width: 190px;
+    height: auto;
+    font-size: 30px;
+    font-style: Bold;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+    margin: 0;              /* Ränder zurücksetzen */
+    position: absolute;       /* Position zurücksetzen */
+  }

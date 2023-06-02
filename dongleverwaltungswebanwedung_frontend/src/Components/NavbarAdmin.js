@@ -82,7 +82,9 @@ const NavbarAdmin = (props) => {
           Lizensübersicht
         </button>
         <button className={styles["anfrage"]}>Anfrage</button>
-        <button className={styles["admin"]}>Admin</button>
+        <button className={styles["admin"]} onClick={() => navigate("/Admin")}>
+          Admin
+        </button>
         <button
           className={styles["profileImageButton"]}
           onClick={toggleProfilePopup}
