@@ -9,6 +9,8 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 # Model importieren 
 from .models import CustomUser
+import logging
+
 
 # Nutzermodell definieren
 User = get_user_model()
@@ -20,25 +22,27 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     def get_token(cls, user):
         token = super().get_token(user)
         token['role'] = user.role
+        token['firm_code'] = user.firm_code  # Add firm_code here
         return token
 
 # Login Serializer 
 class UserLoginSerializer(CustomTokenObtainPairSerializer):
-    # Beim Validation auch Refresh-Token  und Access Token hinzufügen 
     def validate(self, attrs):
         data = super().validate(attrs)
         refresh = self.get_token(self.user)
         data['refresh'] = str(refresh)
         data['access'] = str(refresh.access_token)
 
-        # Zusätzliche Nutzerdaten hinzufügen 
         data['role'] = self.user.role
+        data['firm_code'] = self.user.firm_code  # Add firm_code here
+        print("Role:", data['role'], ";Firmcode:", data['firm_code']) 
         return data
 
 # Nutzer Serializer
 class UserSerializer(serializers.ModelSerializer):
     # Token Serializer Methode hinzufügen  
     token = serializers.SerializerMethodField()
+    firm_code = serializers.CharField(max_length=45, required=False)
 
     class Meta:
         model = User

@@ -9,6 +9,7 @@ from rest_framework import viewsets
 from . import serializers   
 from . import permissions  
 
+
 # APIView, Response und Status codes importieren
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -17,6 +18,11 @@ from rest_framework.permissions import AllowAny
 
 # Authentifizierung importieren
 from django.contrib.auth import authenticate
+
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 # Nutzermodel definieren
 User = get_user_model()   
@@ -30,10 +36,13 @@ class UserLoginAPIView(APIView):
         email = data.get('email', None)
         password = data.get('password', None)
 
+
         user = authenticate(request, email=email, password=password)   
 
         if user is not None:    
             serializer = serializers.UserSerializer(user)
+            response = super().post(request, *args, **kwargs)
+            logger.info(f'Firmcode: {response.data["Firmcode"]}')
             return Response(serializer.data, status=HTTP_200_OK)
         else:   
             return Response({"detail": "Invalid email or password"}, status=HTTP_400_BAD_REQUEST)
@@ -42,6 +51,7 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()   
     serializer_class = serializers.UserSerializer  
     permission_classes = [permissions.IsAdminOrReadOnly]  
+
 
     filter_backends = [filters.SearchFilter]
     search_fields = ['email', 'name']  

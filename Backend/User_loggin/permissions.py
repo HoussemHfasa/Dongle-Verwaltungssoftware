@@ -9,4 +9,4 @@ class IsAdminOrReadOnly(permissions.BasePermission):
         if request.method in permissions.SAFE_METHODS:
             return True 
         # Ansonsten nur Admin-Nutzer 
-        return request.user.is_staff
+        return request.user.role == "Admin"

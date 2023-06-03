@@ -43,6 +43,9 @@ class CustomUserManager(BaseUserManager):
 
 # Eigene Nutzermodel 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
+    id = models.BigAutoField(primary_key=True)
+    last_login = models.DateTimeField(blank=True, null=True)
+    is_superuser = models.IntegerField()
     email = models.EmailField(unique=True)
     name = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
@@ -51,13 +54,15 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         max_length=10,  
         choices=[("Admin", "Admin"), ("Verwalter", "Verwalter"), ("Kunde", "Kunde")],
     )
-    firm_code = models.CharField(max_length=255, blank=True, null=True) 
+    firm_code = models.CharField(max_length=45, blank=True, null=True)
 
     
     # Eigene Berechtigung
     class Meta:
         permissions = [("can_view_user", "Can view user")]
-       
+        managed = False
+        db_table = 'user_loggin_customuser'   
+    
 
     # Eigene Manager-Klasse
     objects = CustomUserManager()

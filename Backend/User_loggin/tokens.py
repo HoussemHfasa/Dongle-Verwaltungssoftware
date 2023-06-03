@@ -10,3 +10,4 @@ class CustomAccessToken(AccessToken):
         self.payload['email'] = self.user.email
         self.payload['name'] = self.user.name
         self.payload['role'] = self.user.role
+        self.payload['Firmcode'] = self.user.firm_code
