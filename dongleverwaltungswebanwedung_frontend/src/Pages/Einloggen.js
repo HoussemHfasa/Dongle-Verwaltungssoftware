@@ -12,7 +12,17 @@ const Einloggen = () => {
   const [inputEmail, setInputEmail] = useState("");
   const [inputPassword, setInputPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [emailInputKey, setEmailInputKey] = useState(0);
+  const [passwordInputKey, setPasswordInputKey] = useState(0);
   const navigate = useNavigate();
+
+  const handleOkClick = () => {
+    setErrorMessage("");
+    setInputEmail("");
+    setInputPassword("");
+    setEmailInputKey((prevKey) => prevKey + 1);
+    setPasswordInputKey((prevKey) => prevKey + 1);
+  };
 
   // Verarbeitet das Einreichen des Login-Formulars
   const handleLoginSubmit = async (e) => {
@@ -53,6 +63,7 @@ const Einloggen = () => {
 
         {/* E-Mail-Feld */}
         <input
+          key={emailInputKey}
           type="text"
           placeholder="Schreiben Sie Ihr E-Mail"
           className={styles.textbox_Benutzername}
@@ -71,6 +82,7 @@ const Einloggen = () => {
         {/* Passwort-Feld */}
         <div className={styles["frame-text-Password"]}>Passwort</div>
         <input
+          key={passwordInputKey}
           type="password"
           placeholder="Schreiben Sie Ihr Passwort"
           className={styles.textbox_Passwort}
@@ -100,7 +112,12 @@ const Einloggen = () => {
 
       {/* Fehlermeldung */}
       {errorMessage && (
-        <div className={styles.error_message}>{errorMessage}</div>
+        <div className={styles.popup_error_message}>
+          {errorMessage}
+          <button className={styles.ok_button} onClick={handleOkClick}>
+            OK
+          </button>
+        </div>
       )}
     </div>
   );

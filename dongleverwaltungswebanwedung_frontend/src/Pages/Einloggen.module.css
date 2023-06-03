@@ -161,3 +161,35 @@
   color: red;
   margin-bottom: 10px;
 }
+
+/* Popup error message */
+.popup_error_message {
+  position: absolute;
+  top: 42%; /* Adjust as needed to position the popup below the textbox_Benutzername */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: red;
+  background-color: white;
+  padding: 10px;
+  border: 1px solid red;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+/* OK button */
+.ok_button {
+  display: block;
+  margin: 10px auto;
+  padding: 5px 15px;
+  background-color: #8d8dda;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.ok_button:hover {
+  background-color: #6c6cbf;
+}
