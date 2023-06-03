@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import NavbarWrapper from "../Components/NavbarWrapper";
 import styles from "./Kontoerstellen.module.css";
+import { useAuth } from "../Components/AuthContext";
 
 const Kontoerstellen = () => {
   const navigate = useNavigate();
@@ -12,11 +13,20 @@ const Kontoerstellen = () => {
   const [name1, setName1] = useState("");
   const [password1, setPassword1] = useState("");
   const [firmCode, setFirmCode] = useState("");
+  const { email, password } = useAuth();
+  useEffect(() => {
+    localStorage.setItem("email", email);
+  }, [email]);
+  useEffect(() => {
+    localStorage.setItem("password", password);
+  }, [password]);
 
   const isEmailValid = (emailAddress) => {
     const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
     return emailRegex.test(emailAddress);
   };
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const isFormValid =
     role1 &&
@@ -24,7 +34,32 @@ const Kontoerstellen = () => {
     email1 === confirmEmail &&
     name1 &&
     password1 &&
+    password1 === confirmPassword &&
     (role1 !== "Kunde" || firmCode);
+
+  const getAdminAccessToken = async () => {
+    try {
+      console.log(email, password);
+      const response = await axios.post(
+        "http://127.0.0.1:8000/admin-access-token/",
+        {
+          email: email, // Replace with the actual admin email
+          password: password, // Replace with the actual admin password
+        }
+      );
+
+      if (response.status === 200) {
+        return response.data.access_token;
+      }
+    } catch (error) {
+      console.error("Error obtaining admin access token:", error.message);
+      if (error.response) {
+        console.error("Server response data:", error.response.data);
+      }
+    }
+
+    return null;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,9 +72,15 @@ const Kontoerstellen = () => {
         firm_code: firmCode,
       };
       console.log({ role1, email1, name1, password1, firmCode });
+
       try {
-        const adminAccessToken = response.data.access; // Replace this with the actual admin access token
-        console.log(adminAccessToken);
+        const adminAccessToken = await getAdminAccessToken();
+        if (!adminAccessToken) {
+          console.error("Failed to obtain admin access token");
+          return;
+        }
+
+        console.log("3asba", adminAccessToken);
 
         const response = await axios.post(
           "http://127.0.0.1:8000/users/",
@@ -55,7 +96,7 @@ const Kontoerstellen = () => {
         if (response.status === 201) {
           console.log("New user created:", response.data);
           // Show a success message or redirect to another page
-          navigate("/some-success-page");
+          navigate("/Admin");
         }
       } catch (error) {
         console.error("Error creating user:", error.message);
@@ -78,47 +119,56 @@ const Kontoerstellen = () => {
           <div className={styles.rectanglebackground}></div>
         </div>
         <form onSubmit={handleSubmit}>
-          <select value={role1} onChange={(e) => setRole1(e.target.value)}>
-            <option value="">Rolle wählen</option>
-            <option value="Admin">Admin</option>
-            <option value="Verwalter">Verwalter</option>
-            <option value="Kunde">Kunde</option>
-          </select>
-          <input
-            type="email"
-            placeholder="E-Mail"
-            value={email1}
-            onChange={(e) => setEmail1(e.target.value)}
-          />
-          <input
-            type="email"
-            placeholder="E-Mail bestätigen"
-            value={confirmEmail}
-            onChange={(e) => setConfirmEmail(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Name"
-            value={name1}
-            onChange={(e) => setName1(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="Passwort"
-            value={password1}
-            onChange={(e) => setPassword1(e.target.value)}
-          />
-          {role1 === "Kunde" && (
+          <div className={styles.inputContainer}>
+            <select value={role1} onChange={(e) => setRole1(e.target.value)}>
+              <option value="">Rolle wählen</option>
+              <option value="Admin">Admin</option>
+              <option value="Verwalter">Verwalter</option>
+              <option value="Kunde">Kunde</option>
+            </select>
+            <input
+              type="email"
+              placeholder="E-Mail"
+              value={email1}
+              onChange={(e) => setEmail1(e.target.value)}
+            />
+            <input
+              type="email"
+              placeholder="E-Mail bestätigen"
+              value={confirmEmail}
+              onChange={(e) => setConfirmEmail(e.target.value)}
+            />
             <input
               type="text"
-              placeholder="Firmencode"
-              value={firmCode}
-              onChange={(e) => setFirmCode(e.target.value)}
+              placeholder="Name"
+              value={name1}
+              onChange={(e) => setName1(e.target.value)}
             />
-          )}
-          <button type="submit" disabled={!isFormValid}>
-            Benutzer erstellen
-          </button>
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Passwort"
+              value={password1}
+              onChange={(e) => setPassword1(e.target.value)}
+            />
+
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Passwort bestätigen"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+            {role1 === "Kunde" && (
+              <input
+                type="text"
+                placeholder="Firmencode"
+                value={firmCode}
+                onChange={(e) => setFirmCode(e.target.value)}
+              />
+            )}
+            <button type="submit" disabled={!isFormValid}>
+              Benutzer erstellen
+            </button>
+          </div>
         </form>
       </div>
     </div>

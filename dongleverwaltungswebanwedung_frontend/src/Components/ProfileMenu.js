@@ -25,6 +25,8 @@ const ProfileMenu = forwardRef((props, ref) => {
 
     // Entfernen der Rolle aus dem localStorage
     localStorage.removeItem("role");
+    localStorage.removeItem("email");
+    localStorage.removeItem("password");
     console.log("Rolle nach Entfernung:", localStorage.getItem("role"));
 
     // Navigieren zum Startbildschirm
