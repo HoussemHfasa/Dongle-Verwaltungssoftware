@@ -14,12 +14,28 @@ const Kontoerstellen = () => {
   const [password1, setPassword1] = useState("");
   const [firmCode, setFirmCode] = useState("");
   const { email, password } = useAuth();
+  const isInputOnlySpaces = (input) => {
+    return /^\s*$/.test(input);
+  };
   useEffect(() => {
     localStorage.setItem("email", email);
   }, [email]);
   useEffect(() => {
     localStorage.setItem("password", password);
   }, [password]);
+  /*neue Konto erstellen pop up*/
+  const [showPopup, setShowPopup] = useState(false);
+  const showSuccessPopup = () => {
+    setShowPopup(true);
+  };
+  const SuccessPopup = () => (
+    <div className={styles.popupWrapper}>
+      <div className={styles.popup}>
+        <p>Neuer Benutzer erstellt</p>
+        <button onClick={() => navigate("/Admin")}>OK</button>
+      </div>
+    </div>
+  );
 
   const isEmailValid = (emailAddress) => {
     const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
@@ -31,11 +47,15 @@ const Kontoerstellen = () => {
   const isFormValid =
     role1 &&
     isEmailValid(email1) &&
+    !isInputOnlySpaces(email1) &&
     email1 === confirmEmail &&
+    !isInputOnlySpaces(name1) &&
     name1 &&
     password1 &&
+    !isInputOnlySpaces(password1) &&
     password1 === confirmPassword &&
-    (role1 !== "Kunde" || firmCode);
+    !isInputOnlySpaces(confirmPassword) &&
+    (role1 !== "Kunde" || (firmCode && !isInputOnlySpaces(firmCode)));
 
   const getAdminAccessToken = async () => {
     try {
@@ -95,8 +115,7 @@ const Kontoerstellen = () => {
 
         if (response.status === 201) {
           console.log("New user created:", response.data);
-          // Show a success message or redirect to another page
-          navigate("/Admin");
+          showSuccessPopup();
         }
       } catch (error) {
         console.error("Error creating user:", error.message);
@@ -110,6 +129,7 @@ const Kontoerstellen = () => {
 
   return (
     <div className={styles.wrapper}>
+      {showPopup && <SuccessPopup />}
       <div className={styles.container}>
         {/* Rahmen für Navbar und Hintergrund */}
         <div className={styles.frame7}>
