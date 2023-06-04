@@ -1,3 +1,4 @@
+# User_loggin/views.py
 # Nutzermodell importieren
 from django.contrib.auth import get_user_model  
 
@@ -30,6 +31,7 @@ from .permissions import IsAdminOrReadOnly
 
 #testcreat account
 from .serializers import CustomTokenObtainPairSerializer
+from .serializers import UserSerializer
 from django.contrib.auth import authenticate
 from rest_framework import status
 from rest_framework.response import Response
@@ -149,3 +151,6 @@ class CreateUserView(APIView):
             return Response({"success": "User created successfully"}, status=status.HTTP_201_CREATED)
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        
+
+

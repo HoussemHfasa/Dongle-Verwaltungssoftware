@@ -1,3 +1,4 @@
+#serializers.py
 # Serializers importieren 
 from rest_framework import serializers
 
