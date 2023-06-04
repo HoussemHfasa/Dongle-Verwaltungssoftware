@@ -10,8 +10,8 @@ class DongleView(APIView):
 
     # GET-Methode für die API-Anfrage
     def get(self, request, *args, **kwargs):
-        # Abfrage aller Dongle-Objekte aus der Datenbank
-        result = Dongle.objects.all()
+        # Abfrage aller Dongle-Objekte aus der Datenbank mit firmcode = 1
+        result = Dongle.objects.filter(firmcode='1')
         
         serializers = DongleSerializer(result, many=True)
         
