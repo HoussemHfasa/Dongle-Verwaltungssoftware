@@ -3,7 +3,7 @@
 from django.urls import path
 
 # Eigene Views importieren 
-from .views import (UserLoginAPIView, UserListView, UserDetailView,  
+from .views import (UserLoginAPIView, UserDetailView,  
                     AdminListView, VerwalterListView, KundeListView, ObtainAdminAccessToken,CreateUserView)
 
 urlpatterns = [

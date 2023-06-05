@@ -18,7 +18,7 @@ class DongleView(APIView):
         # Get role and firmcode from the authenticated user
         user_role = request.user.role
         user_firmcode = request.user.firm_code
-        # Abfrage aller Dongle-Objekte aus der Datenbank
+        
          # Apply filters based on user's role and firmcode
         if user_role == 'Admin':
             # Admin can see all dongles

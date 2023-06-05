@@ -8,9 +8,6 @@ from django.contrib.auth import get_user_model
 # JWT Token importieren 
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer 
 
-# Model importieren 
-from .models import CustomUser
-import logging
 
 
 # Nutzermodell definieren
@@ -36,7 +33,6 @@ class UserLoginSerializer(CustomTokenObtainPairSerializer):
 
         data['role'] = self.user.role
         data['firm_code'] = self.user.firm_code  # Add firm_code here
-        print("Role:", data['role'], ";Firmcode:", data['firm_code']) 
         return data
 
 # Nutzer Serializer

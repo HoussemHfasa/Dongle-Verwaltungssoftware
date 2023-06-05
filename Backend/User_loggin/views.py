@@ -19,7 +19,6 @@ from django.contrib.auth import authenticate
 # APIView, Response und Statuscodes importieren
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny
 from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST  
 
 
@@ -31,7 +30,6 @@ from .permissions import IsAdminOrReadOnly
 
 #testcreat account
 from .serializers import CustomTokenObtainPairSerializer
-from .serializers import UserSerializer
 from django.contrib.auth import authenticate
 from rest_framework import status
 from rest_framework.response import Response
