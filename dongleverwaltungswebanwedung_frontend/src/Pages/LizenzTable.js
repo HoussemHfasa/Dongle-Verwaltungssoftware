@@ -1,21 +1,28 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Table } from "antd";
+import { useAuth } from "../Components/AuthContext";
 
 // LizenzTable-Komponente
 const LizenzTable = () => {
   // Zustand für die Datenquelle der Tabelle
   const [dataSource, setDataSource] = useState([]);
+  const { email, password } = useAuth();
 
   // Daten abrufen, wenn die Komponente eingebunden wird
+
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("http://127.0.0.1:8000/Lizenzseite/");
+      const response = await axios.get("http://127.0.0.1:8000/Lizenzseite/", {
+        headers: {
+          Authorization: `Basic ${btoa(`${email}:${password}`)}`,
+        },
+      });
       setDataSource(response.data.Lizenz);
     };
 
     fetchData();
-  }, []);
+  }, [email, password]);
 
   // Spaltenkonfiguration für die Tabelle
   const columns = [

@@ -1,8 +1,9 @@
+# User_loggin/urls.py
 # URLs importieren 
 from django.urls import path
 
 # Eigene Views importieren 
-from .views import (UserLoginAPIView, UserListView, UserDetailView,  
+from .views import (UserLoginAPIView, UserDetailView,  
                     AdminListView, VerwalterListView, KundeListView, ObtainAdminAccessToken,CreateUserView)
 
 urlpatterns = [
@@ -15,6 +16,7 @@ urlpatterns = [
     path('kunde/', KundeListView.as_view(), name='kunde-list'),
     #path('admin-access-token/', AdminAccessTokenView.as_view(), name='admin-access-token'),
     path('admin-access-token/', ObtainAdminAccessToken.as_view(), name='admin-access-token'),
-        path('users/', CreateUserView.as_view(), name='create-user'),
+    path('users/', CreateUserView.as_view(), name='create-user'),
+    
 
 ]

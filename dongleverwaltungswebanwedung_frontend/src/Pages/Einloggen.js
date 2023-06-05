@@ -50,7 +50,7 @@ const Einloggen = () => {
       if (error.response) {
         console.error("Server-Antwortdaten:", error.response.data);
         setErrorMessage(
-          "Anmeldung fehlgeschlagen. Bitte überprüfen Sie Ihre E-Mail und Passwort."
+          "Anmeldung fehlgeschlagen. Bitte überprüfen Sie Ihre E-Mail oder Passwort."
         );
       }
     }

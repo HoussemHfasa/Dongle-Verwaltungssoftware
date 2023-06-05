@@ -1,21 +1,27 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Input, Table } from "antd";
+import { useAuth } from "../Components/AuthContext";
 
 // DongleTable-Komponente
 const DongleTable = () => {
   // Zustand für die Datenquelle der Tabelle
   const [dataSource, setDataSource] = useState([]);
+  const { email, password } = useAuth();
 
   // Daten abrufen, wenn die Komponente eingebunden wird
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("http://127.0.0.1:8000/homepage/");
+      const response = await axios.get("http://127.0.0.1:8000/homepage/", {
+        headers: {
+          Authorization: `Basic ${btoa(`${email}:${password}`)}`,
+        },
+      });
       setDataSource(response.data.Dongle);
     };
 
     fetchData();
-  }, []);
+  }, [email, password]);
 
   // Spaltenkonfiguration für die Tabelle
   const columns = [

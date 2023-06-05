@@ -1,3 +1,4 @@
+# User_loggin/views.py
 # Nutzermodell importieren
 from django.contrib.auth import get_user_model  
 
@@ -18,7 +19,6 @@ from django.contrib.auth import authenticate
 # APIView, Response und Statuscodes importieren
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny
 from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST  
 
 
@@ -149,3 +149,6 @@ class CreateUserView(APIView):
             return Response({"success": "User created successfully"}, status=status.HTTP_201_CREATED)
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        
+
+
