@@ -14,6 +14,8 @@ const Kontoerstellen = () => {
   const [password1, setPassword1] = useState("");
   const [firmCode, setFirmCode] = useState("");
   const { email, password } = useAuth();
+  const [showPassword, setShowPassword] = useState(false);
+
   const isInputOnlySpaces = (input) => {
     return /^\s*$/.test(input);
   };
@@ -25,6 +27,7 @@ const Kontoerstellen = () => {
   }, [password]);
   /*neue Konto erstellen pop up*/
   const [showPopup, setShowPopup] = useState(false);
+
   const showSuccessPopup = () => {
     setShowPopup(true);
   };
@@ -42,7 +45,6 @@ const Kontoerstellen = () => {
     return emailRegex.test(emailAddress);
   };
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
 
   const isFormValid =
     role1 &&

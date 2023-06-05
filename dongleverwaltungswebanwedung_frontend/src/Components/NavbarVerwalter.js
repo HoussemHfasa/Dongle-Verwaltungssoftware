@@ -104,11 +104,6 @@ const NavbarVerwalter = (props) => {
             className={styles["notificationimage"]}
           />
         </button>
-        <a
-          href="https://www.flaticon.com/free-icons/notification"
-          title="notification icons"
-          aria-label="notification icons"
-        ></a>
       </div>
     </div>
   );
