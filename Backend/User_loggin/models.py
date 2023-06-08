@@ -57,6 +57,9 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     )
     firm_code = models.CharField(max_length=45, blank=True, null=True)
 
+    @property
+    def is_staff(self):
+        return self.is_superuser
     
     # Eigene Berechtigung
     class Meta:

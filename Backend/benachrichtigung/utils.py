@@ -1,8 +1,8 @@
-from .models import Lizenz, Dongle, UserLogginCustomuser
 from datetime import datetime, timedelta
+
 from django.core.mail import send_mail
 from django.http import HttpResponse
-
+from .models import Lizenz, UserLogginCustomuser
 
 def check_lizenzen_ablauf(request):
     # Lesen Sie alle Lizenzen aus der Datenbank, deren Ablaufdatumin drei Tagen abläuft.
