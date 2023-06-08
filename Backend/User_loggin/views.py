@@ -148,8 +148,8 @@ class CreateUserView(APIView):
             # Serialize the created user object, if needed
             # user_data = UserSerializer(user).data
             # Senden Sie eine E-Mail an den neu erstellten Benutzer
-            subject = 'Willkommen bei unserer App!'
-            body = f"Lieber {name},\n\nVielen Dank für die Erstellung eines Kontos in unserer App! Hier sind Ihre Anmeldeinformationen:\n\nE-Mail: {email}\nPasswort: {password}\n\nBitte bewahren Sie Ihre Anmeldeinformationen sicher auf.\n\nMit freundlichen Grüßen,\nDas Our App-Team"
+            subject = 'Willkommen bei GFal!'
+            body = f"Lieber {name},\n\nIhnen wurde von einem Administrator ein Konto in unserer App erstellt! Hier sind Ihre Anmeldeinformationen:\n\nE-Mail: {email}\nPasswort: {password}\n\nBitte bewahren Sie Ihre Anmeldeinformationen sicher auf.\n\nMit freundlichen Grüßen,\nDas Our GFal-Team"
             email = EmailMessage(subject, body, to=[email])
             email.send()
             return Response({"success": "User created successfully"}, status=status.HTTP_201_CREATED)
