@@ -102,7 +102,7 @@ const Kontoerstellen = () => {
           return;
         }
 
-        console.log("3asba", adminAccessToken);
+        console.log(adminAccessToken);
 
         const response = await axios.post(
           "http://127.0.0.1:8000/users/",
