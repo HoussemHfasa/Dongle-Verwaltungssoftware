@@ -8,6 +8,7 @@ import Adminseite from "./Pages/Adminseite";
 import "./App.css";
 import DongleAnfordern from "./Pages/DongleAnfordern";
 import Kontoerstellen from "./Pages/Kontoerstellen";
+import Profileseite from "./Pages/Profileseite";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
               <Route path="/Lizenübersicht" element={<Lizensüberscht />} />
               <Route path="/Admin" element={<Adminseite />} />
               <Route path="/Kontoerstellen" element={<Kontoerstellen />} />
+              <Route path="/Profile" element={<Profileseite />} />
             </Routes>
           </Router>
         </main>

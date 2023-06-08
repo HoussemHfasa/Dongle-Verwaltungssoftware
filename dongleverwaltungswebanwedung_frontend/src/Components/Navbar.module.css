@@ -47,6 +47,7 @@ width: 150px;
 height: auto; 
 background-color: rgba(255, 255, 255, 1); 
 }
+/* line unterhalb */
   .home:hover::after,
   .lizenz:hover::after,
   .anfrage:hover::after,
@@ -61,6 +62,7 @@ background-color: rgba(255, 255, 255, 1);
     transition: transform 0.1s ease; 
 
   }
+  
   .home:active::after,
   .lizenz:active::after,
   .anfrage:active::after,
