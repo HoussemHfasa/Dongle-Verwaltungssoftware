@@ -15,6 +15,7 @@ class DongleView(APIView):
 
     # GET-Methode für die API-Anfrage
     def get(self, request, *args, **kwargs):
+
         # Get role and firmcode from the authenticated user
         user_role = request.user.role
         user_firmcode = request.user.firm_code
@@ -32,6 +33,7 @@ class DongleView(APIView):
         else:
             # Return an empty queryset if the role is not recognized
             result = Dongle.objects.none()
+
         
         serializers = DongleSerializer(result, many=True)
         # Rückgabe der serialisierten Daten als JSON-Antwort

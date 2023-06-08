@@ -14,5 +14,6 @@ urlpatterns = [
     path("", include("Lizenzseite.urls")),
     path('', include('User_loggin.urls')),  
     path("api/login", UserLoginAPIView.as_view(), name="api-login"),
+    path("", include("Adminseite.urls")),
     ]
     

@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'benachrichtigung',
     'Lizenzseite',
     'corsheaders',
+    'Adminseite',
 ]
 
 # Middleware Einstellungen
