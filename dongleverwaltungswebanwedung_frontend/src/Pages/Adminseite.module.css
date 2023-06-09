@@ -27,3 +27,10 @@
     margin: 0;              /* Ränder zurücksetzen */
     position: absolute;       /* Position zurücksetzen */
   }
+
+  .CustomuserTable {
+    position: absolute;
+    top: 340px; 
+    left: 0px;
+    right: 0px;
+  }

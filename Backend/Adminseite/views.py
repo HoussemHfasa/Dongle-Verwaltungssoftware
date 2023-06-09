@@ -5,6 +5,7 @@ from rest_framework import status
 from .models import Customuser
 from .serializers import CustomuserSerializer
 
+
 class CustomuserView(APIView):
     def get(self, request, *args, **kwargs):
         result = Customuser.objects.all()
