@@ -112,7 +112,7 @@ class AdminAccessTokenView(GenericAPIView):
         token = str(CustomTokenObtainPairSerializer.get_token(request.user).access_token)
         return Response({'access_token': token})
 
-
+#in frontend benutzt
 class ObtainAdminAccessToken(APIView):
     def post(self, request, *args, **kwargs):
         email = request.data.get("email")
@@ -155,3 +155,46 @@ class CreateUserView(APIView):
             return Response({"success": "User created successfully"}, status=status.HTTP_201_CREATED)
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+class Passwordchangeview(APIView):
+
+    def post(self, request, *args, **kwargs):
+        email = request.data.get("email")
+        old_password = request.data.get("oldPassword")
+        new_password = request.data.get("newPassword") 
+
+        if not email or not old_password or not new_password:
+            return Response({"error": "All fields are required"}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            user = User.objects.get(email=email)
+
+            # Check if the old password is correct
+            if not user.check_password(old_password):
+                return Response({"error": "Old password is incorrect"}, status=status.HTTP_400_BAD_REQUEST)
+
+            # Set the new password
+            user.set_password(new_password)
+            user.save()
+
+            return Response({"success": "Password changed successfully"}, status=status.HTTP_200_OK)
+
+        except User.DoesNotExist:
+            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        
+class ObtainAccessToken(APIView):
+    def post(self, request, *args, **kwargs):
+        email = request.data.get("email")
+        password = request.data.get("password")
+        user = authenticate(request, username=email, password=password)
+        if user is not None:
+            token = str(CustomTokenObtainPairSerializer.get_token(user).access_token)
+            return Response({"access_token": token})
+        else:
+            return Response({"error": "Invalid email or password"}, status=status.HTTP_401_UNAUTHORIZED)
+
