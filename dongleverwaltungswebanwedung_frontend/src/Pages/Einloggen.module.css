@@ -1,4 +1,5 @@
 /* Dieser Container enthält den gesamten Login-Bildschirm */
+
 .container {
   width: 100%;
   display: flex;
@@ -40,7 +41,7 @@
 
 /* Weißer rechteckiger Bereich, der das Login-Formular enthält */
 .white-rectangle {
-  width: 50%;
+  width: 150%;
   height: 70%;
   background-color: rgb(255, 255, 255);
   top: 15%;

@@ -30,7 +30,7 @@ select {
   border-radius: 4px;
   width: 50%; 
 }
-
+/*
 button {
   
   padding: 0.6rem;
@@ -51,9 +51,8 @@ button:hover {
 button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
-}
-/*
-.submit-button {
+}*/
+.createAccountBtn {
   padding: 0.6rem;
   font-size: 1.4rem;
   background-color: #007bff;
@@ -62,22 +61,18 @@ button:disabled {
   border-radius: 4px;
   cursor: pointer;
   width: 50%;
-  margin-top: 1rem; 
+  margin-top: 1rem;
 }
 
-.submit-button:hover {
+.createAccountBtn:hover {
   background-color: #0056b3;
 }
 
-.submit-button:disabled {
+.createAccountBtn:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
 
-<button type="submit" disabled={!isFormValid} class="submit-button">
-  Benutzer erstellen
-</button>
-*/
 
 .eyeIcon {
   position: absolute;

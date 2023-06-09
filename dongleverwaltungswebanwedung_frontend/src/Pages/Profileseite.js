@@ -162,7 +162,11 @@ const Profileseite = () => {
                 checkFormValidity(oldPassword, newPassword, e.target.value);
               }}
             />
-            <button type="submit" disabled={!isFormValid}>
+            <button
+              className={styles.changePasswordBtn} // Add the new class here
+              type="submit"
+              disabled={!isFormValid}
+            >
               Passwort ändern
             </button>
           </div>

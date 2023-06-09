@@ -187,7 +187,11 @@ const Kontoerstellen = () => {
                 onChange={(e) => setFirmCode(e.target.value)}
               />
             )}
-            <button type="submit" disabled={!isFormValid}>
+            <button
+              className={styles.createAccountBtn} // Add the new class here
+              type="submit"
+              disabled={!isFormValid}
+            >
               Benutzer erstellen
             </button>
           </div>

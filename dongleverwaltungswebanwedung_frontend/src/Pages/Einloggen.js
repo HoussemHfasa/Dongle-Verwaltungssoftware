@@ -60,53 +60,53 @@ const Einloggen = () => {
     <div className={styles.container}>
       <div className={styles.Background}>
         <div className={styles["white-rectangle"]} />
+        {/* Wrap input fields and the button with a form element */}
+        <form onSubmit={handleLoginSubmit}>
+          {/* E-Mail-Feld */}
+          <input
+            key={emailInputKey}
+            type="text"
+            placeholder="Schreiben Sie Ihr E-Mail"
+            className={styles.textbox_Benutzername}
+            onChange={(e) => setInputEmail(e.target.value)}
+          />
+          <div className={styles["frame-Benutzername"]}>E-Mail</div>
+          <div className={styles["frame-text-Benutzername"]}>
+            Schreiben Sie Ihr Benutzername
+          </div>
+          <img
+            className={styles["frame-image-Username"]}
+            alt="MyUsername"
+            src={MyUsername}
+          />
 
-        {/* E-Mail-Feld */}
-        <input
-          key={emailInputKey}
-          type="text"
-          placeholder="Schreiben Sie Ihr E-Mail"
-          className={styles.textbox_Benutzername}
-          onChange={(e) => setInputEmail(e.target.value)}
-        />
-        <div className={styles["frame-Benutzername"]}>E-Mail</div>
-        <div className={styles["frame-text-Benutzername"]}>
-          Schreiben Sie Ihr Benutzername
-        </div>
-        <img
-          className={styles["frame-image-Username"]}
-          alt="MyUsername"
-          src={MyUsername}
-        />
+          {/* Passwort-Feld */}
+          <input
+            key={passwordInputKey}
+            type="password"
+            placeholder="Schreiben Sie Ihr Passwort"
+            className={styles.textbox_Passwort}
+            onChange={(e) => setInputPassword(e.target.value)}
+          />
+          <img
+            className={styles["frame-image-Password"]}
+            alt="MyPassword"
+            src={MyPassword}
+          />
 
-        {/* Passwort-Feld */}
-        <div className={styles["frame-text-Password"]}>Passwort</div>
-        <input
-          key={passwordInputKey}
-          type="password"
-          placeholder="Schreiben Sie Ihr Passwort"
-          className={styles.textbox_Passwort}
-          onChange={(e) => setInputPassword(e.target.value)}
-        />
-        <img
-          className={styles["frame-image-Password"]}
-          alt="MyPassword"
-          src={MyPassword}
-        />
+          {/* Passwort-vergessen-Link */}
+          <div className={styles["frame-text-vergessen"]}>
+            Passwort vergessen?
+          </div>
 
-        {/* Passwort-vergessen-Link */}
-        <div className={styles["frame-text-vergessen"]}>
-          Passwort vergessen?
-        </div>
-
-        {/* Anmeldeknopf */}
-        <button
-          className={styles["rectangular-button"]}
-          onClick={handleLoginSubmit}
-        >
-          Anmelden
-        </button>
-
+          {/* Anmeldeknopf */}
+          <button
+            className={styles["rectangular-button"]}
+            type="submit" // Add type="submit" to the button
+          >
+            Anmelden
+          </button>
+        </form>
         <div className={styles["frame-overlap"]}></div>
       </div>
 
