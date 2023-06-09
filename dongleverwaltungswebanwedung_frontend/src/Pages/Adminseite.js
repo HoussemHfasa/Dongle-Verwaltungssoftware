@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import NavbarWrapper from "../Components/NavbarWrapper";
 import styles from "./Adminseite.module.css";
+import CustomuserTable from "./CustomuserTable";
 
 const Adminseite = () => {
   const navigate = useNavigate();
@@ -23,6 +24,9 @@ const Adminseite = () => {
           <span>Kontoerstellen</span>
         </span>
       </button>
+      <div className={styles["CustomuserTable"]}>
+          <CustomuserTable />
+        </div>
     </div>
   );
 };
