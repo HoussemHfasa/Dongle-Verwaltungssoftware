@@ -40,7 +40,7 @@ const ProfileMenu = forwardRef((props, ref) => {
         className={`${styles["profileButton"]} ${
           profileExploding ? styles["exploding"] : ""
         }`}
-        onClick={() => navigate("/Profile")}
+        onClick={() => navigate("/Profileseite")}
       >
         Profil
       </button>

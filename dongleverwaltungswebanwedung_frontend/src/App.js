@@ -23,7 +23,7 @@ function App() {
               <Route path="/Lizenübersicht" element={<Lizensüberscht />} />
               <Route path="/Admin" element={<Adminseite />} />
               <Route path="/Kontoerstellen" element={<Kontoerstellen />} />
-              <Route path="/Profile" element={<Profileseite />} />
+              <Route path="/Profileseite" element={<Profileseite />} />
             </Routes>
           </Router>
         </main>
