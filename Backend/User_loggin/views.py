@@ -185,7 +185,7 @@ class Passwordchangeview(APIView):
             user.save()
              # Senden Sie eine E-Mail an den neu erstellten Benutzer
             subject = 'Passwort erfolgreich geändert!'
-            body = f"Lieber {user_name},\n\nIhr Passwort wurde erfolgreich geändert. Wenn Sie diese Änderung nicht veranlasst haben, versuchen Sie, Ihr Passwort auf der Anmeldeseite über die Option 'Passwort vergessen' zurückzusetzen. Andernfalls setzen Sie sich bitte umgehend mit unserem Support in Verbindung.\n\nMit freundlichen Grüßen,\nDas Our GFal-Team"
+            body = f"Lieber Kunde,\n\nIhr Passwort wurde erfolgreich geändert. Wenn Sie diese Änderung nicht veranlasst haben, versuchen Sie, Ihr Passwort auf der Anmeldeseite über die Option 'Passwort vergessen' zurückzusetzen. Andernfalls setzen Sie sich bitte umgehend mit unserem Support in Verbindung.\n\nMit freundlichen Grüßen,\nDas Our GFal-Team"
             email = EmailMessage(subject, body, to=[email])
             email.send()
 
