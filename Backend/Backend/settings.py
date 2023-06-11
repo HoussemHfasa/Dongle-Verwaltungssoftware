@@ -27,6 +27,8 @@ INSTALLED_APPS = [
     'Lizenzseite',
     'corsheaders',
     'Adminseite',
+    'Dongle_hinzufügen',
+
 ]
 
 # Middleware Einstellungen

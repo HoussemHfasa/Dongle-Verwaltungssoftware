@@ -1,13 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./DongleAnfordern.css";
 import NavbarWrapper from "../Components/NavbarWrapper";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../Components/AuthContext";
+
 
 const DongleAnfordern = () => {
+  const navigate = useNavigate();
   const [dongleId, setDongleId] = useState("");
   const [productName, setProductName] = useState("");
   const [email, setEmail] = useState("");
   const [handler, setHandler] = useState("");
-  const [ablaufdatum, setAblaufdatum] = useState("");
+  const [standort, setStandort] = useState("");
+  const [gültigVon, setGültigVon] = useState("");
+  const [gültigBis, setGültigBis] = useState("");
+  const [firmCode, setFirmCode] = useState("");
+  const [datumErsteAusgabe, setDatumErsteAusgabe] = useState("");
+  const [projekt, setProjekt] = useState("");
 
   // Funktion zum Zurücksetzen des Formulars
   const resetForm = () => {
@@ -15,12 +25,42 @@ const DongleAnfordern = () => {
     setProductName("");
     setEmail("");
     setHandler("");
-    setAblaufdatum("");
+    setStandort("");
+    setGültigVon("");
+    setGültigBis("");
+    setFirmCode("");
+    setDatumErsteAusgabe("");
+    setProjekt("");
   };
 
   // Funktion zum Speichern der eingegebenen Daten
   const handleSave = async () => {
-    // ...
+    try {
+      const response = await axios.post('http://localhost:8000/api/dongle/create/', {
+        serien_nr: dongleId,
+        name: productName,
+        gueltig_von: gültigVon,
+        gueltig_bis: gültigBis,
+        projekt_produkt: projekt,
+        kunde: email,
+        standort: standort,
+        haendler: handler,
+        datum_letzte_aenderung: new Date().toISOString(),
+        datum_erstausgabe: datumErsteAusgabe,
+        firmcode: firmCode
+      });
+  
+      if (response.status === 201) {
+        alert('Dongle erfolgreich gespeichert!');
+        resetForm();
+      } else {
+        alert('Fehler beim Speichern des Dongles');
+      }
+    } catch (error) {
+      console.error('Fehler beim Speichern des Dongles:', error);
+      alert('Fehler beim Speichern des Dongles: ' + error.message);
+    
+    }
   };
 
   return (
@@ -75,14 +115,64 @@ const DongleAnfordern = () => {
             onChange={(e) => setHandler(e.target.value)}
           />
         </div>
-        {/* Ablaufdatum */}
+        {/* Standort */}
         <div className="form-row">
-          <span className="form-label">Ablaufdatum</span>
+          <span className="form-label">Standort</span>
           <input
             type="text"
             placeholder=" "
-            value={ablaufdatum}
-            onChange={(e) => setAblaufdatum(e.target.value)}
+            value={standort}
+            onChange={(e) => setStandort(e.target.value)}
+          />
+        </div>
+        {/* Gültig von */}
+        <div className="form-row">
+          <span className="form-label">Gültig von</span>
+          <input
+            type="text"
+            placeholder=" "
+            value={gültigVon}
+            onChange={(e) => setGültigVon(e.target.value)}
+          />
+        </div>
+        {/* Gültig bis */}
+        <div className="form-row">
+          <span className="form-label">Gültig bis</span>
+          <input
+            type="text"
+            placeholder=" "
+            value={gültigBis}
+            onChange={(e) => setGültigBis(e.target.value)}
+          />
+        </div>
+        {/* FirmCode */}
+        <div className="form-row">
+          <span className="form-label">FirmCode</span>
+          <input
+            type="text"
+            placeholder=" "
+            value={firmCode}
+            onChange={(e) => setFirmCode(e.target.value)}
+          />
+        </div>
+        {/* Datum ersteausgabe */}
+        <div className="form-row">
+          <span className="form-label">Datum ersteausgabe</span>
+          <input
+            type="text"
+            placeholder=" "
+            value={datumErsteAusgabe}
+            onChange={(e) => setDatumErsteAusgabe(e.target.value)}
+          />
+        </div>
+        {/* Projekt */}
+        <div className="form-row">
+          <span className="form-label">Projekt</span>
+          <input
+            type="text"
+            placeholder=" "
+            value={projekt}
+            onChange={(e) => setProjekt(e.target.value)}
           />
         </div>
         {/* Button-Container */}
