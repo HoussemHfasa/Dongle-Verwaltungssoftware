@@ -35,7 +35,9 @@ const Kontoerstellen = () => {
     <div className={styles.popupWrapper}>
       <div className={styles.popup}>
         <p>Neuer Benutzer erstellt</p>
-        <button onClick={() => navigate("/Admin")}>OK</button>
+        <button className={styles.okButton} onClick={() => navigate("/Admin")}>
+          OK
+        </button>
       </div>
     </div>
   );
@@ -53,10 +55,6 @@ const Kontoerstellen = () => {
     email1 === confirmEmail &&
     !isInputOnlySpaces(name1) &&
     name1 &&
-    password1 &&
-    !isInputOnlySpaces(password1) &&
-    password1 === confirmPassword &&
-    !isInputOnlySpaces(confirmPassword) &&
     (role1 !== "Kunde" || (firmCode && !isInputOnlySpaces(firmCode)));
 
   const getAdminAccessToken = async () => {
@@ -90,10 +88,10 @@ const Kontoerstellen = () => {
         email: email1,
         name: name1,
         role: role1,
-        password: password1,
+
         firm_code: firmCode,
       };
-      console.log({ role1, email1, name1, password1, firmCode });
+      console.log({ role1, email1, name1, firmCode });
 
       try {
         const adminAccessToken = await getAdminAccessToken();
@@ -166,19 +164,7 @@ const Kontoerstellen = () => {
               value={name1}
               onChange={(e) => setName1(e.target.value)}
             />
-            <input
-              type={showPassword ? "text" : "password"}
-              placeholder="Passwort"
-              value={password1}
-              onChange={(e) => setPassword1(e.target.value)}
-            />
 
-            <input
-              type={showPassword ? "text" : "password"}
-              placeholder="Passwort bestätigen"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
             {role1 === "Kunde" && (
               <input
                 type="text"

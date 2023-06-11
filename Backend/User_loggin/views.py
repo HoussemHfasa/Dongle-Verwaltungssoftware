@@ -22,8 +22,9 @@ from .permissions import IsAdminOrReadOnly
 # testcreat account
 from .serializers import CustomTokenObtainPairSerializer
 
-# Authentifizierung importieren
-
+# Passwort generieren
+import string
+import secrets
 
 # Nutzermodell definieren
 User = get_user_model()
@@ -132,22 +133,26 @@ class ObtainAdminAccessToken(APIView):
 class CreateUserView(APIView):
     permission_classes = [IsAdminOrReadOnly]
 
+    def generate_strong_password(self, length):
+        characters = string.ascii_letters + string.digits + string.punctuation
+        return ''.join(secrets.choice(characters) for _ in range(length))
+
     def post(self, request, *args, **kwargs):
         email = request.data.get("email")
         name = request.data.get("name")
+        password_length = secrets.randbelow(4) + 12
+        password = self.generate_strong_password(password_length)
         role = request.data.get("role")
-        password = request.data.get("password")
         firm_code = request.data.get("firm_code")
 
-        if not email or not name or not role or not password:
+        if not email or not name or not role:
             return Response({"error": "All fields are required"}, status=status.HTTP_400_BAD_REQUEST)
+
+        
 
         try:
             user = User.objects.create_user(is_superuser=False, email=email, name=name, role=role, password=password,
                                             firm_code=firm_code)
-            # Serialize the created user object, if needed
-            # user_data = UserSerializer(user).data
-            # Senden Sie eine E-Mail an den neu erstellten Benutzer
             subject = 'Willkommen bei GFal!'
             body = f"Lieber {name},\n\nIhnen wurde von einem Administrator ein Konto in unserer App erstellt! Hier sind Ihre Anmeldeinformationen:\n\nE-Mail: {email}\nPasswort: {password}\n\nBitte bewahren Sie Ihre Anmeldeinformationen sicher auf.\n\nMit freundlichen Grüßen,\nDas Our GFal-Team"
             email = EmailMessage(subject, body, to=[email])
@@ -155,7 +160,6 @@ class CreateUserView(APIView):
             return Response({"success": "User created successfully"}, status=status.HTTP_201_CREATED)
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
-
 
 
 
@@ -179,6 +183,11 @@ class Passwordchangeview(APIView):
             # Set the new password
             user.set_password(new_password)
             user.save()
+             # Senden Sie eine E-Mail an den neu erstellten Benutzer
+            subject = 'Passwort erfolgreich geändert!'
+            body = f"Lieber {user_name},\n\nIhr Passwort wurde erfolgreich geändert. Wenn Sie diese Änderung nicht veranlasst haben, versuchen Sie, Ihr Passwort auf der Anmeldeseite über die Option 'Passwort vergessen' zurückzusetzen. Andernfalls setzen Sie sich bitte umgehend mit unserem Support in Verbindung.\n\nMit freundlichen Grüßen,\nDas Our GFal-Team"
+            email = EmailMessage(subject, body, to=[email])
+            email.send()
 
             return Response({"success": "Password changed successfully"}, status=status.HTTP_200_OK)
 

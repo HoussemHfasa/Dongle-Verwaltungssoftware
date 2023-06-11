@@ -12,15 +12,15 @@ const Einloggen = () => {
   const [inputEmail, setInputEmail] = useState("");
   const [inputPassword, setInputPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [emailInputKey, setEmailInputKey] = useState(0);
+  /*const [emailInputKey, setEmailInputKey] = useState(0);*/
   const [passwordInputKey, setPasswordInputKey] = useState(0);
   const navigate = useNavigate();
 
   const handleOkClick = () => {
     setErrorMessage("");
-    setInputEmail("");
+    /*setInputEmail("");*/
     setInputPassword("");
-    setEmailInputKey((prevKey) => prevKey + 1);
+    /*setEmailInputKey((prevKey) => prevKey + 1);*/
     setPasswordInputKey((prevKey) => prevKey + 1);
   };
 
@@ -64,7 +64,7 @@ const Einloggen = () => {
         <form onSubmit={handleLoginSubmit}>
           {/* E-Mail-Feld */}
           <input
-            key={emailInputKey}
+            /* key={emailInputKey}*/
             type="text"
             placeholder="Schreiben Sie Ihr E-Mail"
             className={styles.textbox_Benutzername}

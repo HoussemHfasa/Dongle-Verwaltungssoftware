@@ -22,7 +22,12 @@ const Profileseite = () => {
     <div className={styles.popupWrapper}>
       <div className={styles.popup}>
         <p>Passwort erfolgreich geändert</p>
-        <button onClick={() => navigate("/Übersichtseite")}>OK</button>
+        <button
+          className={styles.okButton}
+          onClick={() => navigate("/Übersichtseite")}
+        >
+          OK
+        </button>
       </div>
     </div>
   );

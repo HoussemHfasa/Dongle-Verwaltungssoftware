@@ -31,27 +31,6 @@
     border-radius: 4px;
     width: 50%;
   }
-  /*
-  button {
-    padding: 0.6rem;
-    font-size: 1.4rem;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 50%;
-    margin-top: 1rem;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }*/
   .changePasswordBtn {
     padding: 0.6rem;
     font-size: 1.4rem;
@@ -73,7 +52,7 @@
     cursor: not-allowed;
   }
 
-  .popupWrapper {
+  /*.popupWrapper {
     position: fixed;
     top: 0;
     left: 0;
@@ -86,8 +65,69 @@
   }
   
   .popup {
+    position: absolute;
+    top: 42%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: red;
     background-color: white;
-    padding: 20px;
+    padding: 10px;
+    border: 1px solid red;
     border-radius: 5px;
-    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+  }*/
+  
+.popupWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(3px); /* Add a blur effect behind the popup */
+}
+
+.popup {
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  width: 80%; /* Set a width for the popup */
+  max-width: 600px; /* Set a maximum width for the popup */
+  animation: fadeIn 0.3s ease-out; /* Add a fade-in animation */
+}
+
+/* Create a fade-in animation for the popup */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
   }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.okButton {
+  background-color: #8d8dda;
+  border: none;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 2px;
+  cursor: pointer;
+  padding: 12px 24px;
+  border-radius: 4px;
+  transition-duration: 0.4s;
+}
+
+.okButton:hover {
+  background-color: #6c6cbf;
+}
