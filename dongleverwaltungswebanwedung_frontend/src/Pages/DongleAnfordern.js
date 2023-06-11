@@ -45,7 +45,7 @@ const DongleAnfordern = () => {
         kunde: email,
         standort: standort,
         haendler: handler,
-        datum_letzte_aenderung: new Date().toISOString(),
+        datum_letzte_aenderung: new Date().toISOString().split('T')[0],
         datum_erstausgabe: datumErsteAusgabe,
         firmcode: firmCode
       });

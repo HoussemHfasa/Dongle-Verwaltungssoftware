@@ -6,22 +6,25 @@ from .models import Dongle
 from .serializers import DongleSerializer
 from .models import UserLogginCustomuser
 
-
 class DongleCreateView(APIView):
-
     def post(self, request, *args, **kwargs):
-        serializer = DongleSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
+        print("Request data:", request.data)  # Debugging print statement
 
-        # Den höchsten lfd_nr_field-Wert des aktuellen Benutzers abrufen
-        lfd_nr_field = Dongle.objects.filter(created_by=request.user).aggregate(Max('lfd_nr_field'))[
-            'lfd_nr_field__max']
+        serializer = DongleSerializer(data=request.data)
+        try:
+            serializer.is_valid(raise_exception=True)
+        except Exception as e:
+            print("Serializer error:", str(e))  # Debugging print statement
+            return JsonResponse({"error": f"An error occurred while creating the dongle: {str(e)}"}, status=400)
+
+        # Get the highest lfd_nr_field value
+        lfd_nr_field = Dongle.objects.aggregate(Max('lfd_nr_field'))['lfd_nr_field__max']
         if lfd_nr_field is None:
             lfd_nr_field = 1
         else:
             lfd_nr_field += 1
 
-        # Die Werte aus den React-Eingaben abrufen
+        # Retrieve the values from the React inputs
         serien_nr = request.data.get('serien_nr')
         name = request.data.get('name')
         gueltig_von = request.data.get('gueltig_von')
@@ -34,7 +37,7 @@ class DongleCreateView(APIView):
         datum_erstausgabe = request.data.get('datum_erstausgabe')
         firmcode = request.data.get('firmcode')
 
-        # Den Kundenname basierend auf der E-Mail-Adresse abrufen
+        # Retrieve the customer name based on the email address
         customer = UserLogginCustomuser.objects.filter(email=kunde_email).first()
         if customer:
             kunde = customer.name
@@ -60,4 +63,5 @@ class DongleCreateView(APIView):
             dongle.save()
             return Response({"success": "Dongle created successfully"}, status=status.HTTP_201_CREATED)
         except Exception as e:
-            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+             return Response({"error": f"An error occurred while creating the dongle: {str(e)}"},
+                     status=status.HTTP_400_BAD_REQUEST)
