@@ -138,7 +138,7 @@ DB_PORT=3306
 
 6. Speichern Sie die Änderungen.
 
-## Schritt 6: Frontend-Pakete installieren und ausführen
+## Schritt 5: Frontend-Pakete installieren und ausführen
 
 1. Öffnen Sie ein Terminal oder eine Kommandozeile und navigieren Sie zum Frontend-Verzeichnis des Projekts mit dem Befehl `cd "../team01/Frontend"`.
 
@@ -146,7 +146,7 @@ DB_PORT=3306
 
 3. Führen Sie den Befehl `npm start` aus, um das Frontend zu starten. Die Anwendung sollte nun im Browser unter `http://localhost:3000` erreichbar sein.
 
-## Schritt 7: Django-Server ausführen
+## Schritt 6: Django-Server ausführen
 
 1. Öffnen Sie ein neues Terminal oder eine Kommandozeile und navigieren Sie zum Backend-Verzeichnis des Projekts mit dem Befehl `cd "../team01/Backend"`.
 
@@ -155,6 +155,24 @@ DB_PORT=3306
 3. Führen Sie den Befehl `python manage.py runserver` aus, um den Django-Server zu starten. Der Server sollte nun unter `http://localhost:8000` erreichbar sein.
 
 Jetzt sollten sowohl das Frontend als auch das Backend laufen, und Sie können die Anwendung in Ihrem Browser verwenden. Wenn Sie auf Probleme stoßen oder weitere Unterstützung benötigen, zögern Sie nicht, uns zu kontaktieren.
+
+Hier sind einige Konten, die Sie zum Testen der Anwendung verwenden können:
+
+Admin-Konto:
+
+E-Mail: admin@example.com
+Passwort: testpassword
+
+Verwalter-Konto:
+
+E-Mail: newuser@example.com
+Passwort: testpassword
+
+Kunden-Konto:
+
+E-Mail: kundeuser@example.com
+Passwort: testpassword
+Verwenden Sie diese Anmeldedaten, um die verschiedenen Rollen und Funktionen innerhalb der Anwendung zu testen. Wenn Sie auf Probleme stoßen oder weitere Unterstützung benötigen, zögern Sie nicht, uns zu kontaktieren.
 
 ## Usage
 

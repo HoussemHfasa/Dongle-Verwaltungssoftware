@@ -34,7 +34,13 @@ function CustomuserTable() {
           <Select
             style={{ width: "100%" }}
             value={form.getFieldValue("role")}
-            onChange={(value) => form.setFieldsValue({ role: value })}
+            onChange={(value) => {
+              form.setFieldsValue({ role: value });
+
+              if (record.email === email) {
+                setRole(value);
+              }
+            }}
             onBlur={() => save(record.id)}
           >
             <Option value="Admin">Admin</Option>
@@ -119,7 +125,18 @@ function CustomuserTable() {
           okText="Yes"
           cancelText="No"
         >
-          <Button type="danger">Delete</Button>
+          <Button
+            type="danger"
+            style={{
+              backgroundColor: "red",
+              borderColor: "red",
+              width: "100%",
+              height: "100%",
+              color: "white", // Add this property to make the text white
+            }}
+          >
+            Delete
+          </Button>
         </Popconfirm>
       ),
     },

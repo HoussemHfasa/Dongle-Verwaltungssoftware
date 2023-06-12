@@ -216,6 +216,9 @@ class ObtainAccessToken(APIView):
 #Passwortzurücksetzung
 
 class GetUserPasswordView(APIView):
+    def generate_strong_password(self, length):
+        characters = string.ascii_letters + string.digits + string.punctuation
+        return ''.join(secrets.choice(characters) for _ in range(length))
 
     def post(self, request, *args, **kwargs):
         email = request.data.get("email")
@@ -224,9 +227,12 @@ class GetUserPasswordView(APIView):
             return Response({"error": "Email field is required"}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
+            password_length = secrets.randbelow(4) + 12
+            password = self.generate_strong_password(password_length)
             user = User.objects.get(email=email)
-            password = user.password
-            subject = 'Willkommen bei GFal!'
+            user.set_password(password)
+            user.save()
+            subject = 'Passwortzurücksetzung für Ihr GFal-Konto'
             body = f"Lieber {user.name},\n\nSie haben Ihr Passwort vergessen und eine Passwortzurücksetzung angefordert. Hier sind Ihre aktualisierten Anmeldeinformationen:\n\nE-Mail: {email}\nNeues Passwort: {password}\n\nBitte bewahren Sie Ihre Anmeldeinformationen sicher auf und ändern Sie Ihr Passwort, sobald Sie sich das nächste Mal anmelden.\n\nMit freundlichen Grüßen,\nDas Our GFal-Team"
             email = EmailMessage(subject, body, to=[email])
             email.send()
