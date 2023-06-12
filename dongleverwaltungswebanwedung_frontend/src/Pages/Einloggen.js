@@ -16,7 +16,7 @@ const Einloggen = () => {
   const [passwordInputKey, setPasswordInputKey] = useState(0);
   const navigate = useNavigate();
   useEffect(() => {
-    if (role) {
+    if (role === "Admin" || role === "Verwalter" || role === "Kunde") {
       console.log("User is already logged in, redirecting...");
       navigate("/Übersichtseite");
     }
