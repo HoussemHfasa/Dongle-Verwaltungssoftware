@@ -9,6 +9,7 @@ import "./App.css";
 import DongleAnfordern from "./Pages/DongleAnfordern";
 import Kontoerstellen from "./Pages/Kontoerstellen";
 import Profileseite from "./Pages/Profileseite";
+import Passwortzurücksetzung from "./Pages/Passwortzurücksetzung";
 
 function App() {
   return (
@@ -24,6 +25,10 @@ function App() {
               <Route path="/Admin" element={<Adminseite />} />
               <Route path="/Kontoerstellen" element={<Kontoerstellen />} />
               <Route path="/Profileseite" element={<Profileseite />} />
+              <Route
+                path="/Passwortzurücksetzung"
+                element={<Passwortzurücksetzung />}
+              />
             </Routes>
           </Router>
         </main>

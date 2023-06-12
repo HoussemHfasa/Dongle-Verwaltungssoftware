@@ -25,6 +25,9 @@ from .serializers import CustomTokenObtainPairSerializer
 # Passwort generieren
 import string
 import secrets
+#Passwortzurücksetzung
+from django.core.exceptions import ObjectDoesNotExist
+
 
 # Nutzermodell definieren
 User = get_user_model()
@@ -184,8 +187,9 @@ class Passwordchangeview(APIView):
             user.set_password(new_password)
             user.save()
              # Senden Sie eine E-Mail an den neu erstellten Benutzer
+            user = User.objects.get(email=email)
             subject = 'Passwort erfolgreich geändert!'
-            body = f"Lieber Kunde,\n\nIhr Passwort wurde erfolgreich geändert. Wenn Sie diese Änderung nicht veranlasst haben, versuchen Sie, Ihr Passwort auf der Anmeldeseite über die Option 'Passwort vergessen' zurückzusetzen. Andernfalls setzen Sie sich bitte umgehend mit unserem Support in Verbindung.\n\nMit freundlichen Grüßen,\nDas Our GFal-Team"
+            body = f"Lieber {user.name},\n\nIhr Passwort wurde erfolgreich geändert. Wenn Sie diese Änderung nicht veranlasst haben, versuchen Sie, Ihr Passwort auf der Anmeldeseite über die Option 'Passwort vergessen' zurückzusetzen. Andernfalls setzen Sie sich bitte umgehend mit unserem Support in Verbindung.\n\nMit freundlichen Grüßen,\nDas Our GFal-Team"
             email = EmailMessage(subject, body, to=[email])
             email.send()
 
@@ -207,3 +211,29 @@ class ObtainAccessToken(APIView):
         else:
             return Response({"error": "Invalid email or password"}, status=status.HTTP_401_UNAUTHORIZED)
 
+
+
+#Passwortzurücksetzung
+
+class GetUserPasswordView(APIView):
+
+    def post(self, request, *args, **kwargs):
+        email = request.data.get("email")
+
+        if not email:
+            return Response({"error": "Email field is required"}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            user = User.objects.get(email=email)
+            password = user.password
+            subject = 'Willkommen bei GFal!'
+            body = f"Lieber {user.name},\n\nSie haben Ihr Passwort vergessen und eine Passwortzurücksetzung angefordert. Hier sind Ihre aktualisierten Anmeldeinformationen:\n\nE-Mail: {email}\nNeues Passwort: {password}\n\nBitte bewahren Sie Ihre Anmeldeinformationen sicher auf und ändern Sie Ihr Passwort, sobald Sie sich das nächste Mal anmelden.\n\nMit freundlichen Grüßen,\nDas Our GFal-Team"
+            email = EmailMessage(subject, body, to=[email])
+            email.send()
+
+            return Response({"password": password}, status=status.HTTP_200_OK)
+
+        except ObjectDoesNotExist:
+            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)

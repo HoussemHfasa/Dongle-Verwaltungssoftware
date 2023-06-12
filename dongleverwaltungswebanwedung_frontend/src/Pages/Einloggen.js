@@ -23,6 +23,9 @@ const Einloggen = () => {
     /*setEmailInputKey((prevKey) => prevKey + 1);*/
     setPasswordInputKey((prevKey) => prevKey + 1);
   };
+  const handlePasswordResetClick = () => {
+    navigate("/Passwortzurücksetzung");
+  };
 
   // Verarbeitet das Einreichen des Login-Formulars
   const handleLoginSubmit = async (e) => {
@@ -95,9 +98,13 @@ const Einloggen = () => {
           />
 
           {/* Passwort-vergessen-Link */}
-          <div className={styles["frame-text-vergessen"]}>
-            Passwort vergessen?
-          </div>
+          <button
+            type="button"
+            className={styles["frame-text-vergessen"]}
+            onClick={handlePasswordResetClick}
+          >
+            Passwort vergessen ?
+          </button>
 
           {/* Anmeldeknopf */}
           <button

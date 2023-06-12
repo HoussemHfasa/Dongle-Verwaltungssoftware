@@ -1,0 +1,230 @@
+/* Add or modify the existing CSS with these styles */
+/* Dieser Container enthält den gesamten Login-Bildschirm */
+
+.container {
+    width: 100%;
+    display: flex;
+    overflow: auto;
+    min-height: 100vh;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  /* Hintergrund */
+  .Background {
+    gap: 10px;
+    width: 100%;
+    height: 1117px;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    align-items: flex-start;
+    background-color: rgba(0, 0, 46, 1);
+  }
+
+  .white-rectangle {
+    width: 150%;
+    height: 70%;
+    background-color: rgb(255, 255, 255);
+    top: 15%;
+    left: 25%;
+    border-radius: 3px;
+    position: relative;
+  }
+/* Textbox für E-Mail */
+.textbox_Email {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    padding: 1rem;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    font-size: 1rem;
+  }
+  
+  
+  /* E-Mail-Überschrift */
+  .frame-Email {
+    position: absolute;
+    top: 30%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    color: rgba(112, 112, 112, 1);
+    height: auto;
+    font-size: 24px;
+    font-style: bold;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  
+  /* Textbox für Bestätigungs-E-Mail */
+  .textbox_ConfirmEmail {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    padding: 1rem;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    font-size: 1rem;
+    
+  }
+  
+  /* Bestätigungs-E-Mail-Überschrift */
+  .frame-ConfirmEmail {
+    position: absolute;
+    top: 45%;
+    left: 44%;
+    transform: translate(-50%, -50%);
+    color: rgba(112, 112, 112, 1);
+    height: auto;
+    font-size: 24px;
+    font-style: bold;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  
+ /* Add or modify the existing CSS with these styles */
+
+/* Captcha container */
+.frame-Captcha-container {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 30%;
+    padding: 0.5rem 1rem;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+  }
+  
+  /* Captcha */
+  .frame-Captcha {
+    color: rgba(112, 112, 112, 1);
+    font-size: 24px;
+    font-style: bold;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  
+  /* Refresh captcha icon */
+  .refresh-captcha {
+    color: rgba(112, 112, 112, 1);
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  /* Textbox für CaptchaInput */
+  .textbox_CaptchaInput {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    padding: 1rem;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    font-size: 1rem;
+  }
+  
+  /* Passwort-zurücksetzen-Knopf */
+  .rectangular-button {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    height: 3.5rem;
+    background-color: #8D8DDA;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 24px;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: normal;
+    font-stretch: normal;
+    cursor: pointer;
+    border-radius: 20px;
+  }
+  
+  /* Hover-Effekt für den Passwort-zurücksetzen-Knopf */
+  .rectangular-button:hover {
+    background-color: rgb(50, 50, 150);
+  }
+
+
+  .popupWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(3px); /* Add a blur effect behind the popup */
+  }
+  
+  .popup {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    width: 80%; /* Set a width for the popup */
+    max-width: 600px; /* Set a maximum width for the popup */
+    animation: fadeIn 0.3s ease-out; /* Add a fade-in animation */
+  }
+  
+  /* Create a fade-in animation for the popup */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .okButton {
+    background-color: #8d8dda;
+    border: none;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 2px;
+    cursor: pointer;
+    padding: 12px 24px;
+    border-radius: 4px;
+    transition-duration: 0.4s;
+  }
+  
+  .okButton:hover {
+    background-color: #6c6cbf;
+  }
