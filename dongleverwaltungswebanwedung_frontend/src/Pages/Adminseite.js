@@ -7,14 +7,14 @@ import useAdminAccess from "./useAdminAccess";
 
 const Adminseite = () => {
   const navigate = useNavigate();
-  const isAdmin = useAdminAccess();
+  const { isAdmin, isLoading } = useAdminAccess();
 
   useEffect(() => {
-    if (!isAdmin) {
+    if (!isLoading && !isAdmin) {
       console.log("isAdmin:", isAdmin);
-      navigate("/Übersichtseite"); // Redirect non-admin users to the homepage or another appropriate page
+      navigate("/Übersichtseite");
     }
-  }, [isAdmin, navigate]);
+  }, [isAdmin, navigate, isLoading]);
   return (
     <div className={styles.container}>
       {/* Rahmen für Navbar und Hintergrund */}

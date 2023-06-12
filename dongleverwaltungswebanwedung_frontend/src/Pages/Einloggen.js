@@ -97,6 +97,8 @@ const Einloggen = () => {
             className={styles.textbox_Passwort}
             onChange={(e) => setInputPassword(e.target.value)}
           />
+          <div className={styles["frame-Passwort"]}>Passwort</div>
+          <div className={styles["frame-text-Password"]}></div>
           <img
             className={styles["frame-image-Password"]}
             alt="MyPassword"

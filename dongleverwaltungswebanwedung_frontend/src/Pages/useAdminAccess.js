@@ -5,9 +5,11 @@ import { useAuth } from "../Components/AuthContext";
 const useAdminAccess = () => {
   const { email, password } = useAuth();
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const getAdminAccessToken = async () => {
+      setIsLoading(true);
       try {
         const response = await axios.post(
           "http://127.0.0.1:8000/admin-access-token/",
@@ -19,6 +21,7 @@ const useAdminAccess = () => {
 
         if (response.status === 200) {
           setIsAdmin(true);
+          setIsLoading(false);
           return response.data.access_token;
         }
       } catch (error) {
@@ -29,13 +32,14 @@ const useAdminAccess = () => {
       }
 
       setIsAdmin(false);
+      setIsLoading(false);
       return null;
     };
 
     getAdminAccessToken();
   }, [email, password]);
 
-  return isAdmin;
+  return { isAdmin, isLoading };
 };
 
 export default useAdminAccess;

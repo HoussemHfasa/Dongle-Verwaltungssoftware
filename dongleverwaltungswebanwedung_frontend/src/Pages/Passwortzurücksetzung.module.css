@@ -31,8 +31,8 @@
     border-radius: 3px;
     position: relative;
   }
-/* Textbox für E-Mail */
-.textbox_Email {
+  /* Textbox für E-Mail */
+  .textbox_Email {
     position: absolute;
     top: 35%;
     left: 50%;
@@ -186,6 +186,7 @@
     align-items: center;
     justify-content: center;
     backdrop-filter: blur(3px); /* Add a blur effect behind the popup */
+    z-index: 10;
   }
   
   .popup {

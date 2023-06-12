@@ -35,7 +35,7 @@ const Passwortzurücksetzung = () => {
     <div className={styles.popupWrapper}>
       <div className={styles.popup}>
         <p>Passwort zurückgesetzt</p>
-        <button className={styles.okButton} onClick={() => navigate("")}>
+        <button className={styles.okButton} onClick={() => navigate("/")}>
           OK
         </button>
       </div>
@@ -55,8 +55,7 @@ const Passwortzurücksetzung = () => {
           newUser
         );
 
-        if (response.status === 201) {
-          console.log("Passwort per E-Mail gesendet:", response.data);
+        if (response.status === 200) {
           showSuccessPopup();
         }
       } catch (error) {
@@ -71,6 +70,7 @@ const Passwortzurücksetzung = () => {
 
   return (
     <div className={styles.container}>
+      {showPopup && <SuccessPopup />}
       <div className={styles.Background}>
         <div className={styles["white-rectangle"]} />
         <form onSubmit={handlePasswordResetSubmit}>

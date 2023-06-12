@@ -16,14 +16,7 @@ const Kontoerstellen = () => {
   const [firmCode, setFirmCode] = useState("");
   const { email, password } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
-  const isAdmin = useAdminAccess();
-
-  useEffect(() => {
-    if (!isAdmin) {
-      console.log("isAdmin:", isAdmin);
-      navigate("/Übersichtseite"); // Redirect non-admin users to the homepage or another appropriate page
-    }
-  }, [isAdmin, navigate]);
+  const { isAdmin, isLoading } = useAdminAccess();
 
   const isInputOnlySpaces = (input) => {
     return /^\s*$/.test(input);
@@ -34,6 +27,12 @@ const Kontoerstellen = () => {
   useEffect(() => {
     localStorage.setItem("password", password);
   }, [password]);
+  useEffect(() => {
+    if (!isLoading && !isAdmin) {
+      console.log("isAdmin:", isAdmin);
+      navigate("/Übersichtseite");
+    }
+  }, [isAdmin, navigate, isLoading]);
   /*neue Konto erstellen pop up*/
   const [showPopup, setShowPopup] = useState(false);
 
