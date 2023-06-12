@@ -1,3 +1,5 @@
+from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework import status
@@ -31,7 +33,7 @@ class DongleCreateView(APIView):
         gueltig_von = request.data.get('gueltig_von')
         gueltig_bis = request.data.get('gueltig_bis')
         projekt_produkt = request.data.get('projekt_produkt')
-        kunde_email = request.data.get('email')
+        kunde_email = request.data.get('kunde')
         standort = request.data.get('standort')
         haendler = request.data.get('haendler')
         datum_letzte_aenderung = request.data.get('datum_letzte_aenderung')
@@ -59,10 +61,19 @@ class DongleCreateView(APIView):
                 'datum_letzte_aenderung': datum_letzte_aenderung,
                 'datum_erstausgabe': datum_erstausgabe,
                 'firmcode': firmcode
+                
             }
             dongle = Dongle.objects.create(**dongle_data)
             dongle.save()
+        # Send email to the user
+            subject = "Dongle zugewiesen"
+            body = f"Liebe {name},\n\n der Administrator hat Ihnen einen Dongle zugewiesen.  \n\nEnglish Version:\n\nDear {name},\n\nThe administrator has assigned a dongle to you."
+            email=kunde_email
+            email1 = EmailMessage(subject, body, to=[email])
+            email1.send()
+    
+
             return Response({"success": "Dongle created successfully"}, status=status.HTTP_201_CREATED)
         except Exception as e:
-             return Response({"error": f"An error occurred while creating the dongle: {str(e)}"},
-                     status=status.HTTP_400_BAD_REQUEST)
+            return Response({"error": f"An error occurred while creating the dongle: {str(e)}"},
+                            status=status.HTTP_400_BAD_REQUEST)

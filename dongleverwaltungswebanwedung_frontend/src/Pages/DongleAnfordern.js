@@ -5,7 +5,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Components/AuthContext";
 
-
 const DongleAnfordern = () => {
   const navigate = useNavigate();
   const [dongleId, setDongleId] = useState("");
@@ -36,7 +35,7 @@ const DongleAnfordern = () => {
   // Funktion zum Speichern der eingegebenen Daten
   const handleSave = async () => {
     try {
-      const response = await axios.post('http://localhost:8000/api/dongle/create/', {
+      const response = await axios.post("http://localhost:8000/api/dongle/create/", {
         serien_nr: dongleId,
         name: productName,
         gueltig_von: gültigVon,
@@ -45,21 +44,20 @@ const DongleAnfordern = () => {
         kunde: email,
         standort: standort,
         haendler: handler,
-        datum_letzte_aenderung: new Date().toISOString().split('T')[0],
+        datum_letzte_aenderung: new Date().toISOString().split("T")[0],
         datum_erstausgabe: datumErsteAusgabe,
-        firmcode: firmCode
+        firmcode: firmCode,
       });
-  
+
       if (response.status === 201) {
-        alert('Dongle erfolgreich gespeichert!');
+        alert("Dongle erfolgreich gespeichert!");
         resetForm();
       } else {
-        alert('Fehler beim Speichern des Dongles');
+        alert("Fehler beim Speichern des Dongles");
       }
     } catch (error) {
-      console.error('Fehler beim Speichern des Dongles:', error);
-      alert('Fehler beim Speichern des Dongles: ' + error.message);
-    
+      console.error("Fehler beim Speichern des Dongles:", error);
+      alert("Fehler beim Speichern des Dongles: " + error.message);
     }
   };
 
@@ -80,7 +78,7 @@ const DongleAnfordern = () => {
           <span className="form-label">Dongle-ID(Seriennummer)</span>
           <input
             type="text"
-            placeholder=" "
+            placeholder="Dongle-ID (Seriennummer)"
             value={dongleId}
             onChange={(e) => setDongleId(e.target.value)}
           />
@@ -90,7 +88,7 @@ const DongleAnfordern = () => {
           <span className="form-label">Produktname</span>
           <input
             type="text"
-            placeholder=" "
+            placeholder="Produktname"
             value={productName}
             onChange={(e) => setProductName(e.target.value)}
           />
@@ -100,9 +98,10 @@ const DongleAnfordern = () => {
           <span className="form-label">email</span>
           <input
             type="text"
-            placeholder=" "
+            placeholder="E-Mail"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            name="email" // Fügen Sie den Namen "email" hinzu
           />
         </div>
         {/* Händler */}
@@ -110,7 +109,7 @@ const DongleAnfordern = () => {
           <span className="form-label">Händler</span>
           <input
             type="text"
-            placeholder=" "
+            placeholder="Händler"
             value={handler}
             onChange={(e) => setHandler(e.target.value)}
           />
@@ -120,7 +119,7 @@ const DongleAnfordern = () => {
           <span className="form-label">Standort</span>
           <input
             type="text"
-            placeholder=" "
+            placeholder="Standort"
             value={standort}
             onChange={(e) => setStandort(e.target.value)}
           />
@@ -130,7 +129,8 @@ const DongleAnfordern = () => {
           <span className="form-label">Gültig von</span>
           <input
             type="text"
-            placeholder=" "
+            placeholder="yyyy-mm-dd"
+            pattern="\d{4}-\d{2}-\d{2}"
             value={gültigVon}
             onChange={(e) => setGültigVon(e.target.value)}
           />
@@ -140,7 +140,8 @@ const DongleAnfordern = () => {
           <span className="form-label">Gültig bis</span>
           <input
             type="text"
-            placeholder=" "
+            placeholder="yyyy-mm-dd"
+            pattern="\d{4}-\d{2}-\d{2}"
             value={gültigBis}
             onChange={(e) => setGültigBis(e.target.value)}
           />
@@ -150,17 +151,18 @@ const DongleAnfordern = () => {
           <span className="form-label">FirmCode</span>
           <input
             type="text"
-            placeholder=" "
+            placeholder="FirmCode"
             value={firmCode}
             onChange={(e) => setFirmCode(e.target.value)}
           />
         </div>
-        {/* Datum ersteausgabe */}
+        {/* Datum erste Ausgabe */}
         <div className="form-row">
-          <span className="form-label">Datum ersteausgabe</span>
+          <span className="form-label">Datum erste Ausgabe</span>
           <input
             type="text"
-            placeholder=" "
+            placeholder="yyyy-mm-dd"
+            pattern="\d{4}-\d{2}-\d{2}"
             value={datumErsteAusgabe}
             onChange={(e) => setDatumErsteAusgabe(e.target.value)}
           />
@@ -170,7 +172,7 @@ const DongleAnfordern = () => {
           <span className="form-label">Projekt</span>
           <input
             type="text"
-            placeholder=" "
+            placeholder="Projekt"
             value={projekt}
             onChange={(e) => setProjekt(e.target.value)}
           />

@@ -1,50 +1,74 @@
-/*Dieser Container enthält das gesamte Dongle-Anforderungsformular*/
+/* Navigationsleiste */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f8f8f8;
+  z-index: 999;
+}
+
+/* Dieser Container enthält das gesamte Dongle-Anforderungsformular */
 .DongleAnfordern-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 80px; /* Berücksichtige die Höhe der Navigation */
 }
-/*Überschrift des Formulars*/
+
+/* Überschrift des Formulars */
 .DongleAnfordern-header {
   font-size: 31px;
   font-family: Arial, sans-serif;
   font-weight: 700;
   color: rgb(105, 104, 104);
- margin-top: -600px; 
-}
-/*Grid-Container für das Anforderungsformular */
-.DongleAnfordern-form {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 10px;
-}
-/*Ein Formularzeilenelement im Grid*/
-.form-row {
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  grid-gap: 15px;
-  align-items: center;
-}
-/*Formularbeschriftung */
-.form-label {
-  margin-right: 120px;
   margin-bottom: 20px;
 }
-/*Eingabefelder innerhalb einer Formularzeile */
+
+/* Grid-Container für das Anforderungsformular */
+.DongleAnfordern-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Passe die Spalten automatisch an */
+  grid-gap: 15px;
+  max-width: 800px; /* Begrenze die Breite des Formulars */
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Ein Formularzeilenelement im Grid */
+.form-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Formularbeschriftung */
+.form-label {
+  width: 200px;
+  margin-right: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Eingabefelder innerhalb einer Formularzeile */
 .form-row input {
-  width: 100%;
+  flex: 1;
   height: 30px;
   border-color: rgb(100, 165, 226);
   border-radius: 10px;
+  padding: 5px;
 }
-/*Button-Container am unteren Ende des Formulars */
+
+/* Button-Container am unteren Ende des Formulars */
 .button-container {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
 }
-/*Abbrechen-Schaltfläche */
+
+/* Abbrechen-Schaltfläche */
 .cancel-button {
   background-color: rgb(255, 255, 255);
   color: rgb(100, 165, 226);
@@ -55,7 +79,7 @@
   width: 100px;
 }
 
-/*Speichern-Schaltfläche */
+/* Speichern-Schaltfläche */
 .save-button {
   background-color: orange;
   border-color: orange;
