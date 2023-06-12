@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Einloggen.module.css";
 import MyUsername from "./Username.png";
@@ -8,13 +8,19 @@ import axios from "axios";
 
 // Einloggen-Komponente
 const Einloggen = () => {
-  const { setRole, setEmail, setPassword, setFirmcode } = useAuth();
+  const { setRole, setEmail, setPassword, setFirmcode, role } = useAuth();
   const [inputEmail, setInputEmail] = useState("");
   const [inputPassword, setInputPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   /*const [emailInputKey, setEmailInputKey] = useState(0);*/
   const [passwordInputKey, setPasswordInputKey] = useState(0);
   const navigate = useNavigate();
+  useEffect(() => {
+    if (role) {
+      console.log("User is already logged in, redirecting...");
+      navigate("/Übersichtseite");
+    }
+  }, [role, navigate]);
 
   const handleOkClick = () => {
     setErrorMessage("");

@@ -30,6 +30,7 @@ export const AuthProvider = ({ children }) => {
     Firmcode,
     setFirmcode,
   };
+  console.log("AuthProvider value:", value);
 
   // Authentifizierungskontext bereitstellen
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

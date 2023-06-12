@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import NavbarWrapper from "../Components/NavbarWrapper";
 import styles from "./Kontoerstellen.module.css";
 import { useAuth } from "../Components/AuthContext";
+import useAdminAccess from "./useAdminAccess";
 
 const Kontoerstellen = () => {
   const navigate = useNavigate();
@@ -15,6 +16,14 @@ const Kontoerstellen = () => {
   const [firmCode, setFirmCode] = useState("");
   const { email, password } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
+  const isAdmin = useAdminAccess();
+
+  useEffect(() => {
+    if (!isAdmin) {
+      console.log("isAdmin:", isAdmin);
+      navigate("/Übersichtseite"); // Redirect non-admin users to the homepage or another appropriate page
+    }
+  }, [isAdmin, navigate]);
 
   const isInputOnlySpaces = (input) => {
     return /^\s*$/.test(input);
