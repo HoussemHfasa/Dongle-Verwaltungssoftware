@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Table, Button, Popconfirm, Form, Input, Select } from 'antd';
+import React, { useState, useEffect } from "react";
+import { Table, Button, Popconfirm, Form, Input, Select } from "antd";
+import { useAuth } from "../Components/AuthContext";
 
 const { Option } = Select;
 
@@ -7,9 +8,10 @@ function CustomuserTable() {
   const [data, setData] = useState([]);
   const [editingId, setEditingId] = useState(null);
   const [form] = Form.useForm();
+  const { email, setRole } = useAuth();
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/Adminseite/')
+    fetch("http://127.0.0.1:8000/Adminseite/")
       .then((response) => response.json())
       .then((data) => setData(data.data))
       .catch((error) => console.error(error));
@@ -44,7 +46,7 @@ function CustomuserTable() {
       ) : (
         dataIndex !== "role" && <Input />
       );
-  
+
     return (
       <td {...restProps}>
         {editing ? (
@@ -69,9 +71,12 @@ function CustomuserTable() {
 
   const handleDelete = async (record) => {
     try {
-      const response = await fetch(`http://127.0.0.1:8000/Adminseite/${record.id}/`, {
-        method: 'DELETE',
-      });
+      const response = await fetch(
+        `http://127.0.0.1:8000/Adminseite/${record.id}/`,
+        {
+          method: "DELETE",
+        }
+      );
 
       if (response.ok) {
         setData(data.filter((item) => item.id !== record.id));
@@ -83,34 +88,30 @@ function CustomuserTable() {
     }
   };
 
-  
-  
-  
-  
   const columns = [
     {
-      title: 'ID',
-      dataIndex: 'id',
+      title: "ID",
+      dataIndex: "id",
     },
     {
-      title: 'Email',
-      dataIndex: 'email',
+      title: "Email",
+      dataIndex: "email",
     },
     {
-      title: 'Name',
-      dataIndex: 'name',
+      title: "Name",
+      dataIndex: "name",
     },
     {
-      title: 'Role',
-      dataIndex: 'role',
+      title: "Role",
+      dataIndex: "role",
       editable: true,
     },
     {
-      title: 'Firm Code',
-      dataIndex: 'firm_code',
+      title: "Firm Code",
+      dataIndex: "firm_code",
     },
     {
-      title: 'Delete',
+      title: "Delete",
       render: (text, record) => (
         <Popconfirm
           title={`Are you sure you want to delete the Customuser with id ${record.id}?`}
@@ -122,7 +123,6 @@ function CustomuserTable() {
         </Popconfirm>
       ),
     },
-    
   ];
 
   const isEditing = (record) => record.id === editingId;
@@ -144,22 +144,28 @@ function CustomuserTable() {
       const row = await form.validateFields();
       const newData = [...data];
       const index = newData.findIndex((item) => id === item.id);
-  
+
       if (index > -1) {
         const updatedItem = { ...newData[index], ...row };
         try {
-          const response = await fetch(`http://127.0.0.1:8000/Adminseite/${id}/`, {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(updatedItem),
-          });
-  
+          const response = await fetch(
+            `http://127.0.0.1:8000/Adminseite/${id}/`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(updatedItem),
+            }
+          );
+
           if (response.ok) {
             newData.splice(index, 1, updatedItem);
             setData(newData);
             setEditingId(null);
+            if (updatedItem.email === email) {
+              setRole(updatedItem.role);
+            }
           } else {
             console.error(`Failed to update Customuser with id ${id}`);
           }

@@ -8,10 +8,17 @@ const DongleTable = () => {
   // Zustand für die Datenquelle der Tabelle
   const [dataSource, setDataSource] = useState([]);
   const { email, password } = useAuth();
+  useEffect(() => {
+    localStorage.setItem("email", email);
+  }, [email]);
+  useEffect(() => {
+    localStorage.setItem("password", password);
+  }, [password]);
 
   // Daten abrufen, wenn die Komponente eingebunden wird
   useEffect(() => {
     const fetchData = async () => {
+      console.log("email test in dongletable", email, password);
       const response = await axios.get("http://127.0.0.1:8000/homepage/", {
         headers: {
           Authorization: `Basic ${btoa(`${email}:${password}`)}`,

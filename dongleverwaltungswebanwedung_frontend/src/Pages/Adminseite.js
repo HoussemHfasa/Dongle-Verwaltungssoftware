@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import NavbarWrapper from "../Components/NavbarWrapper";
 import styles from "./Adminseite.module.css";
 import CustomuserTable from "./CustomuserTable";
+import useAdminAccess from "./useAdminAccess";
 
 const Adminseite = () => {
   const navigate = useNavigate();
+  const isAdmin = useAdminAccess();
+
+  useEffect(() => {
+    if (!isAdmin) {
+      console.log("isAdmin:", isAdmin);
+      navigate("/Übersichtseite"); // Redirect non-admin users to the homepage or another appropriate page
+    }
+  }, [isAdmin, navigate]);
   return (
     <div className={styles.container}>
       {/* Rahmen für Navbar und Hintergrund */}
@@ -25,8 +34,8 @@ const Adminseite = () => {
         </span>
       </button>
       <div className={styles["CustomuserTable"]}>
-          <CustomuserTable />
-        </div>
+        <CustomuserTable />
+      </div>
     </div>
   );
 };

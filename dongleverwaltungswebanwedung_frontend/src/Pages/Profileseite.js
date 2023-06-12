@@ -11,7 +11,7 @@ const Profileseite = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
-  const { email, password } = useAuth();
+  const { email, password, setPassword } = useAuth();
   const [showPopup, setShowPopup] = useState(false);
 
   const showSuccessPopup = () => {
@@ -105,7 +105,10 @@ const Profileseite = () => {
 
         if (response.status === 200) {
           console.log("Password successfully changed:", response.data);
+
           showSuccessPopup();
+          setPassword(newPassword);
+          console.log("old password:", password, " new password", newPassword);
           /*showSuccessPopup();*/
         }
       } catch (error) {
