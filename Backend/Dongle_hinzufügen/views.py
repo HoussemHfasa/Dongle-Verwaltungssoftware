@@ -8,8 +8,19 @@ from django.db.models import Max
 from .models import Dongle
 from .serializers import DongleSerializer
 from .models import UserLogginCustomuser
+from rest_framework.permissions import IsAuthenticated, BasePermission
+
+#
+class CanAddDonglePermission(BasePermission):
+    def has_permission(self, request, view):
+        # Überprüfen, ob der Benutzer die Rolle Admin oder Verwalter hat
+        user_role = request.user.role
+        return user_role == 'Admin' or user_role == 'Verwalter'
+    
 
 class DongleCreateView(APIView):
+    permission_classes = [IsAuthenticated, CanAddDonglePermission]
+
     def post(self, request, *args, **kwargs):
         print("Request data:", request.data)  # Debugging print statement
 
