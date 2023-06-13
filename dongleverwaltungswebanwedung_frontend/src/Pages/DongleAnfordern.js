@@ -9,7 +9,6 @@ const DongleAnfordern = () => {
   const navigate = useNavigate();
   const [dongleId, setDongleId] = useState("");
   const [productName, setProductName] = useState("");
-  const [email, setEmail] = useState("");
   const [handler, setHandler] = useState("");
   const [standort, setStandort] = useState("");
   const [gültigVon, setGültigVon] = useState("");
@@ -22,7 +21,6 @@ const DongleAnfordern = () => {
   const resetForm = () => {
     setDongleId("");
     setProductName("");
-    setEmail("");
     setHandler("");
     setStandort("");
     setGültigVon("");
@@ -41,7 +39,6 @@ const DongleAnfordern = () => {
         gueltig_von: gültigVon,
         gueltig_bis: gültigBis,
         projekt_produkt: projekt,
-        kunde: email,
         standort: standort,
         haendler: handler,
         datum_letzte_aenderung: new Date().toISOString().split("T")[0],
@@ -93,18 +90,7 @@ const DongleAnfordern = () => {
             onChange={(e) => setProductName(e.target.value)}
           />
         </div>
-        {/* E-Mail */}
-        <div className="form-row">
-          <span className="form-label">email</span>
-          <input
-            type="text"
-            placeholder="E-Mail"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            name="email" // Fügen Sie den Namen "email" hinzu
-          />
-        </div>
-        {/* Händler */}
+               {/* Händler */}
         <div className="form-row">
           <span className="form-label">Händler</span>
           <input

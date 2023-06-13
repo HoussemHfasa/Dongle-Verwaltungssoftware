@@ -10,10 +10,13 @@
 
 /* Dieser Container enthält das gesamte Dongle-Anforderungsformular */
 .DongleAnfordern-container {
+  margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 80px; /* Berücksichtige die Höhe der Navigation */
+  max-height: 20vh;
+  justify-content: center;
+  height: calc(80vh); /* Setze die Höhe des Containers auf die verfügbare Bildschirmhöhe abzüglich der Navigationshöhe */
 }
 
 /* Überschrift des Formulars */

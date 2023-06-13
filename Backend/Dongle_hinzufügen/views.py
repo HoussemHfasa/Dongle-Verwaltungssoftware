@@ -33,7 +33,6 @@ class DongleCreateView(APIView):
         gueltig_von = request.data.get('gueltig_von')
         gueltig_bis = request.data.get('gueltig_bis')
         projekt_produkt = request.data.get('projekt_produkt')
-        kunde_email = request.data.get('kunde')
         standort = request.data.get('standort')
         haendler = request.data.get('haendler')
         datum_letzte_aenderung = request.data.get('datum_letzte_aenderung')
@@ -41,11 +40,13 @@ class DongleCreateView(APIView):
         firmcode = request.data.get('firmcode')
 
         # Retrieve the customer name based on the email address
-        customer = UserLogginCustomuser.objects.filter(email=kunde_email).first()
+        customer = UserLogginCustomuser.objects.filter(firm_code=firmcode).first()
         if customer:
             kunde = customer.name
+            kunde_email = customer.email
         else:
             kunde = ""
+            kunde_email = ""
 
         try:
             dongle_data = {
@@ -61,19 +62,16 @@ class DongleCreateView(APIView):
                 'datum_letzte_aenderung': datum_letzte_aenderung,
                 'datum_erstausgabe': datum_erstausgabe,
                 'firmcode': firmcode
-                
             }
             dongle = Dongle.objects.create(**dongle_data)
             dongle.save()
-        # Send email to the user
-            subject = "Dongle zugewiesen"
-            body = f"Liebe {kunde},\n\n der Administrator hat Ihnen einen Dongle zugewiesen.  \n\nEnglish Version:\n\nDear {name},\n\nThe administrator has assigned a dongle to you."
-            email=kunde_email
-            email1 = EmailMessage(subject, body, to=[email])
-            email1.send()
-    
 
-            return Response({"success": "Dongle created successfully"}, status=status.HTTP_201_CREATED)
+            # Send email to the customer
+            email_subject = f"New Dongle Created: {serien_nr}"
+            email_body = f"Liebe {kunde},\n\n der Administrator hat Ihnen einen Dongle zugewiesen mit der Seriennummer {serien_nr}.  \n\nEnglish Version:\n\nDear {kunde},\n\nThe administrator has assigned a dongle to you with the serial number: {serien_nr}."
+            email = EmailMessage(subject=email_subject, body=email_body, to=[kunde_email])
+            email.send()
+
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         except Exception as e:
-            return Response({"error": f"An error occurred while creating the dongle: {str(e)}"},
-                            status=status.HTTP_400_BAD_REQUEST)
+            return JsonResponse({"error": f"An error occurred while creating the dongle: {str(e)}"}, status=400)
