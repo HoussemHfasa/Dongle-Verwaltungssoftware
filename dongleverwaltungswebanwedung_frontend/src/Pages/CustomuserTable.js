@@ -120,7 +120,7 @@ function CustomuserTable() {
       title: "Löschen",
       render: (text, record) => (
         <Popconfirm
-          title={`Sind Sie sicher, dass Sie den Kunden mit der ID ${record.id} löschen wollen??`}
+          title={`Sind Sie sicher, dass Sie den Kunden mit der ID ${record.id} löschen möchten?`}
           onConfirm={() => handleDelete(record)}
           okText="Ja"
           cancelText="Nein"
