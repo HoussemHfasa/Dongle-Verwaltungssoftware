@@ -67,7 +67,7 @@ class DongleCreateView(APIView):
             dongle.save()
         # Send email to the user
             subject = "Dongle zugewiesen"
-            body = f"Liebe {name},\n\n der Administrator hat Ihnen einen Dongle zugewiesen.  \n\nEnglish Version:\n\nDear {name},\n\nThe administrator has assigned a dongle to you."
+            body = f"Liebe {kunde},\n\n der Administrator hat Ihnen einen Dongle zugewiesen.  \n\nEnglish Version:\n\nDear {name},\n\nThe administrator has assigned a dongle to you."
             email=kunde_email
             email1 = EmailMessage(subject, body, to=[email])
             email1.send()
