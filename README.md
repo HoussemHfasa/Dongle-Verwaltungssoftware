@@ -161,7 +161,7 @@ Hier sind einige Konten, die Sie zum Testen der Anwendung verwenden können:
 Admin-Konto:
 
 E-Mail: admin@example.com
-Passwort: testpassword
+Passwort: testpassword1
 
 Verwalter-Konto:
 

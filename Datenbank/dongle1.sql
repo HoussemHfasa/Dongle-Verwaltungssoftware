@@ -84,7 +84,7 @@ CREATE TABLE `auth_permission` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `auth_permission_content_type_id_codename_01ab375a_uniq` (`content_type_id`,`codename`),
   CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,7 +93,7 @@ CREATE TABLE `auth_permission` (
 
 LOCK TABLES `auth_permission` WRITE;
 /*!40000 ALTER TABLE `auth_permission` DISABLE KEYS */;
-INSERT INTO `auth_permission` VALUES (1,'Can add log entry',1,'add_logentry'),(2,'Can change log entry',1,'change_logentry'),(3,'Can delete log entry',1,'delete_logentry'),(4,'Can view log entry',1,'view_logentry'),(5,'Can add permission',2,'add_permission'),(6,'Can change permission',2,'change_permission'),(7,'Can delete permission',2,'delete_permission'),(8,'Can view permission',2,'view_permission'),(9,'Can add group',3,'add_group'),(10,'Can change group',3,'change_group'),(11,'Can delete group',3,'delete_group'),(12,'Can view group',3,'view_group'),(13,'Can add content type',4,'add_contenttype'),(14,'Can change content type',4,'change_contenttype'),(15,'Can delete content type',4,'delete_contenttype'),(16,'Can view content type',4,'view_contenttype'),(17,'Can add session',5,'add_session'),(18,'Can change session',5,'change_session'),(19,'Can delete session',5,'delete_session'),(20,'Can view session',5,'view_session'),(21,'Can add custom user',6,'add_customuser'),(22,'Can change custom user',6,'change_customuser'),(23,'Can delete custom user',6,'delete_customuser'),(24,'Can view custom user',6,'view_customuser'),(25,'Can view user',6,'can_view_user'),(26,'Can add dongle',7,'add_dongle'),(27,'Can change dongle',7,'change_dongle'),(28,'Can delete dongle',7,'delete_dongle'),(29,'Can view dongle',7,'view_dongle'),(30,'Can add dongle',8,'add_dongle'),(31,'Can change dongle',8,'change_dongle'),(32,'Can delete dongle',8,'delete_dongle'),(33,'Can view dongle',8,'view_dongle'),(34,'Can add kunde',9,'add_kunde'),(35,'Can change kunde',9,'change_kunde'),(36,'Can delete kunde',9,'delete_kunde'),(37,'Can view kunde',9,'view_kunde'),(38,'Can add lizenz',10,'add_lizenz'),(39,'Can change lizenz',10,'change_lizenz'),(40,'Can delete lizenz',10,'delete_lizenz'),(41,'Can view lizenz',10,'view_lizenz'),(42,'Can add lizenz',11,'add_lizenz'),(43,'Can change lizenz',11,'change_lizenz'),(44,'Can delete lizenz',11,'delete_lizenz'),(45,'Can view lizenz',11,'view_lizenz');
+INSERT INTO `auth_permission` VALUES (1,'Can add log entry',1,'add_logentry'),(2,'Can change log entry',1,'change_logentry'),(3,'Can delete log entry',1,'delete_logentry'),(4,'Can view log entry',1,'view_logentry'),(5,'Can add permission',2,'add_permission'),(6,'Can change permission',2,'change_permission'),(7,'Can delete permission',2,'delete_permission'),(8,'Can view permission',2,'view_permission'),(9,'Can add group',3,'add_group'),(10,'Can change group',3,'change_group'),(11,'Can delete group',3,'delete_group'),(12,'Can view group',3,'view_group'),(13,'Can add content type',4,'add_contenttype'),(14,'Can change content type',4,'change_contenttype'),(15,'Can delete content type',4,'delete_contenttype'),(16,'Can view content type',4,'view_contenttype'),(17,'Can add session',5,'add_session'),(18,'Can change session',5,'change_session'),(19,'Can delete session',5,'delete_session'),(20,'Can view session',5,'view_session'),(21,'Can add custom user',6,'add_customuser'),(22,'Can change custom user',6,'change_customuser'),(23,'Can delete custom user',6,'delete_customuser'),(24,'Can view custom user',6,'view_customuser'),(25,'Can view user',6,'can_view_user'),(26,'Can add dongle',7,'add_dongle'),(27,'Can change dongle',7,'change_dongle'),(28,'Can delete dongle',7,'delete_dongle'),(29,'Can view dongle',7,'view_dongle'),(30,'Can add dongle',8,'add_dongle'),(31,'Can change dongle',8,'change_dongle'),(32,'Can delete dongle',8,'delete_dongle'),(33,'Can view dongle',8,'view_dongle'),(34,'Can add kunde',9,'add_kunde'),(35,'Can change kunde',9,'change_kunde'),(36,'Can delete kunde',9,'delete_kunde'),(37,'Can view kunde',9,'view_kunde'),(38,'Can add lizenz',10,'add_lizenz'),(39,'Can change lizenz',10,'change_lizenz'),(40,'Can delete lizenz',10,'delete_lizenz'),(41,'Can view lizenz',10,'view_lizenz'),(42,'Can add lizenz',11,'add_lizenz'),(43,'Can change lizenz',11,'change_lizenz'),(44,'Can delete lizenz',11,'delete_lizenz'),(45,'Can view lizenz',11,'view_lizenz'),(46,'Can add user loggin customuser',12,'add_userloggincustomuser'),(47,'Can change user loggin customuser',12,'change_userloggincustomuser'),(48,'Can delete user loggin customuser',12,'delete_userloggincustomuser'),(49,'Can view user loggin customuser',12,'view_userloggincustomuser'),(50,'Can add customuser',13,'add_customuser'),(51,'Can change customuser',13,'change_customuser'),(52,'Can delete customuser',13,'delete_customuser'),(53,'Can view customuser',13,'view_customuser'),(54,'Can add dongle',14,'add_dongle'),(55,'Can change dongle',14,'change_dongle'),(56,'Can delete dongle',14,'delete_dongle'),(57,'Can view dongle',14,'view_dongle'),(58,'Can add user loggin customuser',15,'add_userloggincustomuser'),(59,'Can change user loggin customuser',15,'change_userloggincustomuser'),(60,'Can delete user loggin customuser',15,'delete_userloggincustomuser'),(61,'Can view user loggin customuser',15,'view_userloggincustomuser');
 /*!40000 ALTER TABLE `auth_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -144,7 +144,7 @@ CREATE TABLE `django_content_type` (
   `model` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `django_content_type_app_label_model_76bd3d3b_uniq` (`app_label`,`model`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153,7 +153,7 @@ CREATE TABLE `django_content_type` (
 
 LOCK TABLES `django_content_type` WRITE;
 /*!40000 ALTER TABLE `django_content_type` DISABLE KEYS */;
-INSERT INTO `django_content_type` VALUES (1,'admin','logentry'),(3,'auth','group'),(2,'auth','permission'),(8,'benachrichtigung','dongle'),(9,'benachrichtigung','kunde'),(10,'benachrichtigung','lizenz'),(4,'contenttypes','contenttype'),(7,'homepage','dongle'),(11,'Lizenzseite','lizenz'),(5,'sessions','session'),(6,'User_loggin','customuser');
+INSERT INTO `django_content_type` VALUES (1,'admin','logentry'),(13,'Adminseite','customuser'),(3,'auth','group'),(2,'auth','permission'),(8,'benachrichtigung','dongle'),(9,'benachrichtigung','kunde'),(10,'benachrichtigung','lizenz'),(12,'benachrichtigung','userloggincustomuser'),(4,'contenttypes','contenttype'),(14,'Dongle_hinzufügen','dongle'),(15,'Dongle_hinzufügen','userloggincustomuser'),(7,'homepage','dongle'),(11,'Lizenzseite','lizenz'),(5,'sessions','session'),(6,'User_loggin','customuser');
 /*!40000 ALTER TABLE `django_content_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -170,7 +170,7 @@ CREATE TABLE `django_migrations` (
   `name` varchar(255) NOT NULL,
   `applied` datetime(6) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -179,7 +179,7 @@ CREATE TABLE `django_migrations` (
 
 LOCK TABLES `django_migrations` WRITE;
 /*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
-INSERT INTO `django_migrations` VALUES (1,'Lizenzseite','0001_initial','2023-05-28 14:32:39.093011'),(2,'contenttypes','0001_initial','2023-05-28 14:32:39.118653'),(3,'contenttypes','0002_remove_content_type_name','2023-05-28 14:32:39.149390'),(4,'auth','0001_initial','2023-05-28 14:32:39.273775'),(5,'auth','0002_alter_permission_name_max_length','2023-05-28 14:32:39.302301'),(6,'auth','0003_alter_user_email_max_length','2023-05-28 14:32:39.308654'),(7,'auth','0004_alter_user_username_opts','2023-05-28 14:32:39.314754'),(8,'auth','0005_alter_user_last_login_null','2023-05-28 14:32:39.321289'),(9,'auth','0006_require_contenttypes_0002','2023-05-28 14:32:39.324287'),(10,'auth','0007_alter_validators_add_error_messages','2023-05-28 14:32:39.330500'),(11,'auth','0008_alter_user_username_max_length','2023-05-28 14:32:39.336763'),(12,'auth','0009_alter_user_last_name_max_length','2023-05-28 14:32:39.342882'),(13,'auth','0010_alter_group_name_max_length','2023-05-28 14:32:39.355296'),(14,'auth','0011_update_proxy_permissions','2023-05-28 14:32:39.363219'),(15,'auth','0012_alter_user_first_name_max_length','2023-05-28 14:32:39.369954'),(16,'User_loggin','0001_initial','2023-05-28 14:32:39.515382'),(17,'admin','0001_initial','2023-05-28 14:32:39.585370'),(18,'admin','0002_logentry_remove_auto_add','2023-05-28 14:32:39.594068'),(19,'admin','0003_logentry_add_action_flag_choices','2023-05-28 14:32:39.602626'),(20,'benachrichtigung','0001_initial','2023-05-28 14:32:39.614478'),(21,'homepage','0001_initial','2023-05-28 14:32:39.618955'),(22,'sessions','0001_initial','2023-05-28 14:32:39.650662');
+INSERT INTO `django_migrations` VALUES (1,'Lizenzseite','0001_initial','2023-05-28 14:32:39.093011'),(2,'contenttypes','0001_initial','2023-05-28 14:32:39.118653'),(3,'contenttypes','0002_remove_content_type_name','2023-05-28 14:32:39.149390'),(4,'auth','0001_initial','2023-05-28 14:32:39.273775'),(5,'auth','0002_alter_permission_name_max_length','2023-05-28 14:32:39.302301'),(6,'auth','0003_alter_user_email_max_length','2023-05-28 14:32:39.308654'),(7,'auth','0004_alter_user_username_opts','2023-05-28 14:32:39.314754'),(8,'auth','0005_alter_user_last_login_null','2023-05-28 14:32:39.321289'),(9,'auth','0006_require_contenttypes_0002','2023-05-28 14:32:39.324287'),(10,'auth','0007_alter_validators_add_error_messages','2023-05-28 14:32:39.330500'),(11,'auth','0008_alter_user_username_max_length','2023-05-28 14:32:39.336763'),(12,'auth','0009_alter_user_last_name_max_length','2023-05-28 14:32:39.342882'),(13,'auth','0010_alter_group_name_max_length','2023-05-28 14:32:39.355296'),(14,'auth','0011_update_proxy_permissions','2023-05-28 14:32:39.363219'),(15,'auth','0012_alter_user_first_name_max_length','2023-05-28 14:32:39.369954'),(16,'User_loggin','0001_initial','2023-05-28 14:32:39.515382'),(17,'admin','0001_initial','2023-05-28 14:32:39.585370'),(18,'admin','0002_logentry_remove_auto_add','2023-05-28 14:32:39.594068'),(19,'admin','0003_logentry_add_action_flag_choices','2023-05-28 14:32:39.602626'),(20,'benachrichtigung','0001_initial','2023-05-28 14:32:39.614478'),(21,'homepage','0001_initial','2023-05-28 14:32:39.618955'),(22,'sessions','0001_initial','2023-05-28 14:32:39.650662'),(23,'User_loggin','0002_alter_customuser_options','2023-06-08 11:14:13.491526'),(24,'benachrichtigung','0002_userloggincustomuser_delete_kunde','2023-06-08 11:14:13.497799'),(25,'Adminseite','0001_initial','2023-06-08 22:48:09.248610'),(26,'User_loggin','0003_alter_customuser_table','2023-06-08 22:48:09.259755'),(27,'Adminseite','0002_alter_customuser_table','2023-06-08 22:49:04.570268'),(28,'Dongle_hinzufügen','0001_initial','2023-06-11 21:53:33.828163');
 /*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -205,7 +205,7 @@ CREATE TABLE `django_session` (
 
 LOCK TABLES `django_session` WRITE;
 /*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
-INSERT INTO `django_session` VALUES ('3csoq7jpcnwiqbifywx6bv89lr2pvwbt','.eJxVjDsOwjAQBe_iGln-EpuSPmew1rtrHECOFCcV4u4QKQW0b2beSyTY1pq2zkuaSFyEE6ffLQM-uO2A7tBus8S5rcuU5a7Ig3Y5zsTP6-H-HVTo9VuzK9Zlskioctbaae95UDYWrTGAHc7gEcmrDNGgjaQRuIAxwZI3IYj3B_mSOEs:1q3IxJ:aoNDQCWGia7phFr3g3uBrJHu0dIze_9VeJzzstty36U','2023-06-11 16:09:17.343186');
+INSERT INTO `django_session` VALUES ('5o96lojgposm2mz9yla20vcn1myehkdy','.eJxVjDsOwjAQBe_iGln-EpuSPmew1rtrHECOFCcV4u4QKQW0b2beSyTY1pq2zkuaSFyEE6ffLQM-uO2A7tBus8S5rcuU5a7Ig3Y5zsTP6-H-HVTo9VuzK9Zlskioctbaae95UDYWrTGAHc7gEcmrDNGgjaQRuIAxwZI3IYj3B_mSOEs:1q7DyE:Q7OLgF49f12n3v8ceehsw2L7Ee8MmSJPSwbIdzy76Gg','2023-06-22 11:38:26.144033');
 /*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -239,7 +239,7 @@ CREATE TABLE `dongle` (
 
 LOCK TABLES `dongle` WRITE;
 /*!40000 ALTER TABLE `dongle` DISABLE KEYS */;
-INSERT INTO `dongle` VALUES (1,'5-1234567','Testdongle					',NULL,NULL,'intern','GFal','a',NULL,'2019-01-01','2020-02-27',''),(2,'6-8889998','Dongle Berlin					',NULL,NULL,'SW A','Firma Z','Hamburg',NULL,'2019-09-01','2019-09-27',''),(3,'3-1337424','Dongle Hamburg					',NULL,'2023-01-31','SW A','Firma LGmbH','Kiel',NULL,'2021-12-22','2021-01-08',''),(4,'2-4242424','Dongle Hanover',NULL,'2023-12-31','SW C','GAG','a',NULL,'2021-12-17','2021-04-27',''),(5,'4-7070707	','Dongle Kiel',NULL,'2023-12-31','SW U','Firma LGmbH','a',NULL,'2021-12-17','2021-04-27',''),(6,'1-1111111	','Dongle Bremen',NULL,'2022-08-31','SW K','F.F','a',NULL,'2021-08-01','2021-08-30',''),(7,'9-6571231	','Dongle Dresden',NULL,'2023-06-30','SW K','SWE','a',NULL,'2020-11-01','2020-11-01','');
+INSERT INTO `dongle` VALUES (1,'5-1234567','Testdongle					',NULL,NULL,'intern','GFal','a',NULL,'2019-01-01','2020-02-27',''),(2,'6-8889998','Dongle Berlin					',NULL,NULL,'SW A','Firma Z','Hamburg',NULL,'2019-09-01','2019-09-27',''),(3,'3-1337424','Dongle Hamburg					',NULL,'2023-01-31','SW A','Firma LGmbH','Kiel',NULL,'2021-12-22','2021-01-08',''),(4,'2-4242424','Dongle Hanover',NULL,'2023-12-31','SW C','GAG','a',NULL,'2021-12-17','2021-04-27',''),(5,'4-7070707	','Dongle Kiel',NULL,'2023-12-31','SW U','Firma LGmbH','a',NULL,'2021-12-17','2021-04-27',''),(6,'1-1111111	','Dongle Bremen',NULL,'2022-08-31','SW K','F.F','a',NULL,'2021-08-01','2021-08-30',''),(7,'9-6571231	','Dongle Dresden',NULL,'2023-06-30','SW K','SWE','a',NULL,'2020-11-01','2020-11-01',''),(8,'6571232	','Dongle Dresden',NULL,'2023-06-30','SW K','Kunde User','a',NULL,'2020-11-01','2020-11-01','FIRM123');
 /*!40000 ALTER TABLE `dongle` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -273,7 +273,7 @@ CREATE TABLE `lizenz` (
 
 LOCK TABLES `lizenz` WRITE;
 /*!40000 ALTER TABLE `lizenz` DISABLE KEYS */;
-INSERT INTO `lizenz` VALUES (1,'101758',41000,'Hauptmodul',1,'2019-09-27',NULL,NULL,'D. Elgnod','SW A','Firma Z','6-8889998'),(2,'101758',41103,'Modul 1',1,'2019-09-27',NULL,NULL,'D. Elgnod','SW A','Firma Z',NULL),(3,'101758',41160,'Modul 3',1,'2019-09-27',NULL,NULL,'D. Elgnod','SW A','Firma Z',NULL),(4,'101758',41300,'Algorithmus Add',1,'2019-09-27',NULL,NULL,'D. Elgnod','SW A','Firma Z',NULL),(5,'101758',41487,'Algorithmus Sub',1,'2019-09-27',NULL,NULL,'D. Elgnod','SW A','Firma Z',NULL);
+INSERT INTO `lizenz` VALUES (1,'101758',41000,'Hauptmodul',1,'2019-09-27',NULL,NULL,'D. Elgnod','SW A','Firma Z','6-8889998'),(2,'101758',41103,'Modul 1',1,'2019-09-27',NULL,NULL,'D. Elgnod','SW A','Firma Z',NULL),(3,'101758',41160,'Modul 3',1,'2019-09-27',NULL,NULL,'D. Elgnod','SW A','Firma Z',NULL),(4,'101758',41300,'Algorithmus Add',1,'2019-09-27',NULL,NULL,'D. Elgnod','SW A','Firma Z',NULL),(5,'101758',41487,'Algorithmus Sub',1,'2019-09-27',NULL,NULL,'D. Elgnod','SW A','Firma Z',NULL),(6,'FIRM123',41489,'Algorithmus Sub',1,'2019-09-27',NULL,NULL,'D. Elgnod','SW A','Kunde User',NULL);
 /*!40000 ALTER TABLE `lizenz` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -324,7 +324,7 @@ CREATE TABLE `user_loggin_customuser` (
   UNIQUE KEY `email` (`email`),
   KEY `idx_user_loggin_customuser_firm_code` (`firm_code`),
   CONSTRAINT `chk_role_values` CHECK ((`role` in (_utf8mb4'Admin',_utf8mb4'Verwalter',_utf8mb4'Kunde')))
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -333,7 +333,7 @@ CREATE TABLE `user_loggin_customuser` (
 
 LOCK TABLES `user_loggin_customuser` WRITE;
 /*!40000 ALTER TABLE `user_loggin_customuser` DISABLE KEYS */;
-INSERT INTO `user_loggin_customuser` VALUES (1,NULL,0,'admin@example.com','Admin User','pbkdf2_sha256$600000$KI8s1w4TrDfG5Da6bekdEe$J81L6x/yiMzRgWrszK/iTgJUHMPxlySmroBDLID2Gsw=','Admin',NULL),(2,NULL,0,'newuser@example.com','New User','pbkdf2_sha256$600000$ah7i3YnMg1rAALChP85DCz$aDMwX42235kTw+HGopCom6nyHlOHPnNQiD13u+EXovQ=','Verwalter',NULL),(3,NULL,0,'kundeuser@example.com','Kunde User','pbkdf2_sha256$600000$fDcpbGPQ1M0dnYzKPcrJzd$ry8pHNrVSrrKwxxU8wCZo8RaeHAwJkQqeGIq2Dv3Izg=','Kunde','FIRM123'),(4,'2023-05-28 16:09:17.340316',1,'houssemhfasa@gmail.com','Houssem','pbkdf2_sha256$600000$xOElDSz6TVrMj5WlXlxW8Q$OT3OKdoii8f3Uz2LTza638kLzIU8C/NMgTX3sN9io7o=','Admin',NULL),(5,NULL,0,'firmaz@example.com','Firma Z','testpassword','Kunde','101758');
+INSERT INTO `user_loggin_customuser` VALUES (1,NULL,0,'admin@example.com','Admin User','pbkdf2_sha256$600000$0cB88KwL7FNZ7OsOsy1Jlx$MSnvtFanW1w2QsiCg30MZH4rlfzQAtsCemWmwzAA04M=','Admin',NULL),(2,NULL,0,'newuser@example.com','New User','pbkdf2_sha256$600000$U25W5EKpbv5dTfHo4Vw7l1$xrUqIXfQ0cmSF8pn+wCAt+DzbwqasMv9z30fwIRVJgc=','Admin',NULL),(3,NULL,0,'kundeuser@example.com','Kunde User','pbkdf2_sha256$600000$fDcpbGPQ1M0dnYzKPcrJzd$ry8pHNrVSrrKwxxU8wCZo8RaeHAwJkQqeGIq2Dv3Izg=','Kunde','FIRM123'),(5,NULL,0,'firmaz@example.com','Firma Z','testpassword','Kunde','101758'),(8,NULL,0,'houssemhfasa2@gmail.com','Houssemkunde','pbkdf2_sha256$600000$dE4tLLNsyOt07RYd3SdcqC$VSRAdBzxC8xNA1I6NfGYKIW5rWPGdJ3EuWgBKesi64A=','Kunde','18'),(10,NULL,0,'haha@gmail.com','hahatestadmin','pbkdf2_sha256$600000$FFqvICPUvRkV8dJsa51ZyT$rpfy9wrwT4B2ERKMoco5IRSLkQaOyHxyevIRGJjwWUc=','Admin',''),(11,NULL,0,'hh@gmail.com','Houtest','pbkdf2_sha256$600000$mgMwkWY01YxkZdrLLdGTKJ$BkgNEvCQyu2zNU2tFvCh4wtD2u27VGhynwuoUrAg3hw=','Verwalter',''),(12,NULL,0,'hahatofeha@gmail.com','rama','pbkdf2_sha256$600000$ubZ1ovxDGwCmMuJyOdvff1$88y2FhbCMYcAqg398lKSnIJ6RQ2p7qOhd1tR1ps7XLw=','Kunde','65154'),(15,NULL,0,'houssemhfassa48@gmail.com','Houssemtest1','pbkdf2_sha256$600000$FOj1dYUEZYZ7LlSvSEOshv$AbQPt5s4C5/K4ROVqlTCXL7nBeHnJg6Hi9/fDSigAJg=','Admin',''),(20,NULL,0,'houssemhfasa@gmail.com','houssem147','pbkdf2_sha256$600000$RGiKrESbXXTo3OqPbLx5Lk$cQfywAukFYpQMmEHKkVBCSFBv6+XAsJsmuVn0rlh+ig=','Admin',''),(21,NULL,0,'houssemhfassa28@gmail.com','houssemrandom','pbkdf2_sha256$600000$Ju1EPuZYJrKdXharcyILEZ$1h83KYegTE+ugxZNqKqOiG3cllmYeS4oF8VQjmCWXfA=','Admin',''),(22,NULL,0,'houssemhfassa25@gmail.com','Houssemzolt','pbkdf2_sha256$600000$eEWm4xAbX4rNr7RNASwC66$+96XyysMu4ZDPaPE5c35YOBe7kH2kcH6xD/sP0zqlpU=','Verwalter',''),(23,NULL,0,'zoghlami.taher@esprit.tn','taher','pbkdf2_sha256$600000$YemNXWeNuY440vnBpSMgrN$XKQtFiQNhUoVDRdP9Jk68VgDTU+d5lNXoHFVUThjZ+E=','Admin','');
 /*!40000 ALTER TABLE `user_loggin_customuser` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -402,4 +402,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-31 15:05:50
+-- Dump completed on 2023-06-13  8:15:15
