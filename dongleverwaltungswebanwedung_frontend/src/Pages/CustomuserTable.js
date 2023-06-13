@@ -117,13 +117,13 @@ function CustomuserTable() {
       dataIndex: "firm_code",
     },
     {
-      title: "Delete",
+      title: "Löschen",
       render: (text, record) => (
         <Popconfirm
-          title={`Are you sure you want to delete the Customuser with id ${record.id}?`}
+          title={`Sind Sie sicher, dass Sie den Kunden mit der ID ${record.id} löschen wollen??`}
           onConfirm={() => handleDelete(record)}
-          okText="Yes"
-          cancelText="No"
+          okText="Ja"
+          cancelText="Nein"
         >
           <Button
             type="danger"
@@ -135,7 +135,7 @@ function CustomuserTable() {
               color: "white", // Add this property to make the text white
             }}
           >
-            Delete
+            Löschen
           </Button>
         </Popconfirm>
       ),
