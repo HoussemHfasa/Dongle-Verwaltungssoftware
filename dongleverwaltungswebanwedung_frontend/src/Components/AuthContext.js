@@ -11,11 +11,9 @@ export const useAuth = () => {
 // Authentifizierungsanbieter-Komponente
 export const AuthProvider = ({ children }) => {
   // Authentifizierungsstatus verwalten
-  const [email, setEmail] = useState(() => localStorage.getItem("email") || "");
-  const [password, setPassword] = useState(
-    () => localStorage.getItem("password") || ""
-  );
-  const [role, setRole] = useState(() => localStorage.getItem("role") || "");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
   //test
   const [Firmcode, setFirmcode] = useState("");
 

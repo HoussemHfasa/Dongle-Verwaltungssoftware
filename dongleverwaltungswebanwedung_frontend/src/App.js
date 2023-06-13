@@ -6,7 +6,7 @@ import Lizensüberscht from "./Pages/Lizenübersicht";
 import Einloggen from "./Pages/Einloggen";
 import Adminseite from "./Pages/Adminseite";
 import "./App.css";
-import DongleAnfordern from "./Pages/DongleAnfordern";
+import Donglehinzufuegen from "./Pages/Donglehinzufuegen";
 import Kontoerstellen from "./Pages/Kontoerstellen";
 import Profileseite from "./Pages/Profileseite";
 import Passwortzurücksetzung from "./Pages/Passwortzurücksetzung";
@@ -20,7 +20,10 @@ function App() {
             <Routes>
               <Route path="/" element={<Einloggen />} />
               <Route path="/Übersichtseite" element={<Übersichtseite />} />
-              <Route path="/DongleAnfordern" element={<DongleAnfordern />} />
+              <Route
+                path="/Donglehinzufuegen"
+                element={<Donglehinzufuegen />}
+              />
               <Route path="/Lizenübersicht" element={<Lizensüberscht />} />
               <Route path="/Admin" element={<Adminseite />} />
               <Route path="/Kontoerstellen" element={<Kontoerstellen />} />

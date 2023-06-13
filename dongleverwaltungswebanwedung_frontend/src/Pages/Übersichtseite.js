@@ -3,9 +3,11 @@ import { useNavigate } from "react-router-dom";
 import styles from "./Übersichtseite.module.css";
 import NavbarWrapper from "../Components/NavbarWrapper";
 import DongleTable from "./DongleTable";
+import { useAuth } from "../Components/AuthContext";
 
 const Übersichtseite = () => {
   const navigate = useNavigate();
+  const { role } = useAuth();
 
   return (
     <div className={styles.container}>
@@ -25,14 +27,27 @@ const Übersichtseite = () => {
         </div>
 
         {/* Dongle-Anforderungsbutton */}
-        <button
-          className={styles["Dongleanfordern"]}
-          onClick={() => navigate("/DongleAnfordern")}
-        >
-          <span className={styles["Dongleanforderntext"]}>
-            <span>Dongle anfordern</span>
-          </span>
-        </button>
+        {role === "Admin" || role === "Verwalter" ? (
+          <button
+            className={styles["Donglehinzufuegen"]}
+            onClick={() => navigate("/Donglehinzufuegen")}
+          >
+            <span className={styles["Donglehinzufuegentext"]}>
+              <span>Dongle hinzufügen</span>
+            </span>
+          </button>
+        ) : (
+          role === "Kunde" && (
+            <button
+              className={styles["Donglehinzufuegen"]}
+              onClick={() => navigate("/Lizenübersicht")}
+            >
+              <span className={styles["Donglehinzufuegentext"]}>
+                <span>Dongle anfordern</span>
+              </span>
+            </button>
+          )
+        )}
       </div>
     </div>
   );

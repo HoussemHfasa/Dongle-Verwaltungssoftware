@@ -1,5 +1,5 @@
 /* Dongle-Anforderungs-Button */
-.Dongleanfordern {
+.Donglehinzufuegen {
   position: absolute;
   top: 221px;
   right: 275px;
@@ -14,7 +14,7 @@
 }
 
 /* Dongle-Anforderungstext */
-.Dongleanforderntext {
+.Donglehinzufuegentext {
   color: rgb(255, 255, 255);
   width: 151px;
   height: auto;

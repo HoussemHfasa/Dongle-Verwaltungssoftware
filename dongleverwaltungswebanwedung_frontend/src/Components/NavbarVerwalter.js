@@ -79,7 +79,7 @@ const NavbarVerwalter = (props) => {
           className={styles["lizenz"]}
           onClick={() => navigate("/Lizenübersicht")}
         >
-          Lizensübersicht
+          Lizenzübersicht
         </button>
         <button className={styles["anfrage"]}>Anfrage</button>
         <button

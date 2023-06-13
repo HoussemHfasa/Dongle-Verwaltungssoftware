@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import "./DongleAnfordern.css";
+import "./Donglehinzufuegen.css";
 import NavbarWrapper from "../Components/NavbarWrapper";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Components/AuthContext";
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-const DongleAnfordern = () => {
+const Donglehinzufuegen = () => {
   const navigate = useNavigate();
   const [dongleId, setDongleId] = useState("");
   const [productName, setProductName] = useState("");
@@ -35,21 +35,30 @@ const DongleAnfordern = () => {
   // Funktion zum Speichern der eingegebenen Daten
   const handleSave = async () => {
     try {
-      const formattedGültigVon = new Date(gültigVon).toISOString().split("T")[0];
-      const formattedGültigBis = new Date(gültigBis).toISOString().split("T")[0];
-      const fotmateddatum_erstausgabe = new Date(datumErsteAusgabe).toISOString().split("T")[0];
-      const response = await axios.post("http://localhost:8000/api/dongle/create/", {
-        serien_nr: dongleId,
-        name: productName,
-        gueltig_von: formattedGültigVon,
-        gueltig_bis: formattedGültigBis,
-        projekt_produkt: projekt,
-        standort: standort,
-        haendler: handler,
-        datum_letzte_aenderung: new Date().toISOString().split("T")[0],
-        datum_erstausgabe: fotmateddatum_erstausgabe,
-        firmcode: firmCode,
-      });
+      const formattedGültigVon = new Date(gültigVon)
+        .toISOString()
+        .split("T")[0];
+      const formattedGültigBis = new Date(gültigBis)
+        .toISOString()
+        .split("T")[0];
+      const fotmateddatum_erstausgabe = new Date(datumErsteAusgabe)
+        .toISOString()
+        .split("T")[0];
+      const response = await axios.post(
+        "http://localhost:8000/api/dongle/create/",
+        {
+          serien_nr: dongleId,
+          name: productName,
+          gueltig_von: formattedGültigVon,
+          gueltig_bis: formattedGültigBis,
+          projekt_produkt: projekt,
+          standort: standort,
+          haendler: handler,
+          datum_letzte_aenderung: new Date().toISOString().split("T")[0],
+          datum_erstausgabe: fotmateddatum_erstausgabe,
+          firmcode: firmCode,
+        }
+      );
 
       if (response.status === 201) {
         alert("Dongle erfolgreich gespeichert!");
@@ -95,7 +104,7 @@ const DongleAnfordern = () => {
             onChange={(e) => setProductName(e.target.value)}
           />
         </div>
-               {/* Händler */}
+        {/* Händler */}
         <div className="form-row">
           <span className="form-label">Händler</span>
           <input
@@ -146,15 +155,7 @@ const DongleAnfordern = () => {
           />
         </div>
         {/* Datum erste Ausgabe */}
-        <div className="form-row">
-          <span className="form-label">Datum erste Ausgabe</span>
-          <input
-            type="date"
-            placeholder="yyyy-mm-dd"
-            value={datumErsteAusgabe}
-            onChange={(e) => setDatumErsteAusgabe(e.target.value)}
-          />
-        </div>
+
         {/* Projekt */}
         <div className="form-row">
           <span className="form-label">Projekt</span>
@@ -181,4 +182,4 @@ const DongleAnfordern = () => {
   );
 };
 
-export default DongleAnfordern;
+export default Donglehinzufuegen;
