@@ -16,7 +16,6 @@ const Donglehinzufuegen = () => {
   const [gültigVon, setGültigVon] = useState("");
   const [gültigBis, setGültigBis] = useState("");
   const [firmCode, setFirmCode] = useState("");
-  const [datumErsteAusgabe, setDatumErsteAusgabe] = useState("");
   const [projekt, setProjekt] = useState("");
 
   // Funktion zum Zurücksetzen des Formulars
@@ -28,7 +27,6 @@ const Donglehinzufuegen = () => {
     setGültigVon("");
     setGültigBis("");
     setFirmCode("");
-    setDatumErsteAusgabe("");
     setProjekt("");
   };
 
@@ -41,9 +39,7 @@ const Donglehinzufuegen = () => {
       const formattedGültigBis = new Date(gültigBis)
         .toISOString()
         .split("T")[0];
-      const fotmateddatum_erstausgabe = new Date(datumErsteAusgabe)
-        .toISOString()
-        .split("T")[0];
+     
       const response = await axios.post(
         "http://localhost:8000/api/dongle/create/",
         {
@@ -55,7 +51,7 @@ const Donglehinzufuegen = () => {
           standort: standort,
           haendler: handler,
           datum_letzte_aenderung: new Date().toISOString().split("T")[0],
-          datum_erstausgabe: fotmateddatum_erstausgabe,
+          datum_erstausgabe: new Date().toISOString().split("T")[0],
           firmcode: firmCode,
         }
       );

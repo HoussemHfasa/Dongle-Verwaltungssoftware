@@ -41,8 +41,8 @@ class DongleCreateView(APIView):
         standort = request.data.get('standort')
         haendler = request.data.get('haendler')
         datum_letzte_aenderung = request.data.get('datum_letzte_aenderung')
-        #datum_erstausgabe = request.data.get('datum_erstausgabe')
-        datum_erstausgabe =date.today()
+        datum_erstausgabe = request.data.get('datum_erstausgabe')
+        #datum_erstausgabe =date.today()
         firmcode = request.data.get('firmcode')
 
         # Retrieve the customer name based on the email address
@@ -66,6 +66,7 @@ class DongleCreateView(APIView):
                 'standort': standort,
                 'haendler': haendler,
                 'datum_letzte_aenderung': datum_letzte_aenderung,
+                'datum_erstausgabe': datum_erstausgabe,
                 'firmcode': firmcode
             }
             dongle = Dongle.objects.create(**dongle_data)
