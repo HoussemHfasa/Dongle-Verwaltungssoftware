@@ -52,7 +52,7 @@ class LizenzCreateView(APIView):
         if serienNr:
             dongle_serien_nr= serienNr.serien_nr
         else:
-            serienNr=""
+            dongle_serien_nr=""
 
         customer = UserLogginCustomuser.objects.filter(firm_code=firmcode).first()
         if customer:
@@ -83,10 +83,9 @@ class LizenzCreateView(APIView):
             # Send email to the customer
             email_subject = f"New license Created: {dongle_serien_nr}"
             email_body = f"Liebe {kunde},\n\n der Administrator hat Ihnen einen Lizenz zugewiesen mit der Seriennummer {dongle_serien_nr}.  \n\nEnglish Version:\n\nDear {kunde},\n\nThe administrator has assigned a license to you with the serial number: {dongle_serien_nr}."
-            email = EmailMessage(subject=email_subject, body=email_body, to=[kunde_email])
+            email = EmailMessage(email_subject, email_body, to=[kunde_email])
             email.send()
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except Exception as e:
-            return JsonResponse({"error": f"An error occurred while creating the dongle: {str(e)}"}, status=400)
-# Create your views here.
+            return JsonResponse({"error": f"An error occurred while creating the license: {str(e)}"}, status=400)

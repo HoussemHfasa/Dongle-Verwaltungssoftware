@@ -151,7 +151,17 @@ const Lizenzhinzufuegen = () => {
             onChange={(e) => setFirmCode(e.target.value)}
           />
         </div>
-        {/* Datum erste Ausgabe */}
+        {/* Lizenzanzahl */}
+        <div className="form-row">
+           <span className="form-label">Lizenzanzahl</span>
+           <input
+           type="text"
+           placeholder="Lizenzanzahl"
+           value={lizenzAnzahl}
+           onChange={(e) => setLizenzAnzahl(e.target.value)}
+        />
+     </div>
+        
 
         {/* Projekt */}
         <div className="form-row">

@@ -4,20 +4,19 @@ from rest_framework import generics
 
 
 class LizenzSerializer(serializers.ModelSerializer):
-    lfd_nr_field = serializers.IntegerField(required=False)  # Anpassung: Das Feld ist optional
+    lfd_nr_field = serializers.IntegerField(required=False)
     firmcode = serializers.CharField()
-    productcode = serializers.IntegerField() 
+    productcode = serializers.IntegerField()
     lizenzname = serializers.CharField(allow_blank=True)
-    Einheiten = serializers.IntegerField() 
+    einheiten = serializers.IntegerField()
     gueltig_von = serializers.DateField()
     gueltig_bis = serializers.DateField()
     projekt = serializers.CharField()
-    lizenzanzahl = serializers.IntegerField() 
-    mitarbeiter= serializers.CharField()
-    dongle_serien_nr = serializers.CharField()
-    kunde=serializers.CharField()
+    lizenzanzahl = serializers.IntegerField()
+    mitarbeiter = serializers.CharField()
+    dongle_serien_nr = serializers.CharField(required=False)
+    kunde = serializers.CharField(required=False)
 
-    # Füge das kunde-Feld hinzu
     class Meta:
         model = Lizenz
         fields = '__all__'
