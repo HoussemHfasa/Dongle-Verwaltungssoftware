@@ -1,4 +1,5 @@
 from Dongle_hinzufügen.views import DongleCreateView
+from Lizenzhinzufügen.views import LizenzCreateView
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework_simplejwt.views import (
@@ -17,6 +18,7 @@ urlpatterns = [
     path("api/login", UserLoginAPIView.as_view(), name="api-login"),
     path("", include("Adminseite.urls")),
     path('api/', include('Dongle_hinzufügen.urls')),
+    path('api/', include('Lizenzhinzufügen.urls')),
     
     ]
     
