@@ -75,7 +75,7 @@ const Donglehinzufuegen = () => {
 
       {/* Überschrift */}
       <div className="DongleAnfordern-header">
-        <h1>Dongle Anfordern</h1>
+        <h1>Dongle hinzufügen</h1>
       </div>
 
       {/* Formular */}

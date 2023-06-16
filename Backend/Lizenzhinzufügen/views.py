@@ -82,7 +82,7 @@ class LizenzCreateView(APIView):
 
             # Send email to the customer
             email_subject = f"New license Created: {dongle_serien_nr}"
-            email_body = f"Liebe {kunde},\n\n der Administrator hat Ihnen einen Lizenz zugewiesen mit der Seriennummer {dongle_serien_nr}.  \n\nEnglish Version:\n\nDear {kunde},\n\nThe administrator has assigned a license to you with the serial number: {dongle_serien_nr}."
+            email_body = f"Liebe {kunde},\n\n der Administrator hat Ihnen einen Lizenz zugewiesen mit dem FirmCode {firmcode}.  \n\nEnglish Version:\n\nDear {kunde},\n\nThe administrator has assigned a license to you with the FirmCode: {firmcode}."
             email = EmailMessage(email_subject, email_body, to=[kunde_email])
             email.send()
 
