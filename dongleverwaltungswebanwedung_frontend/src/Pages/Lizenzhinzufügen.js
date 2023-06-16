@@ -41,7 +41,7 @@ const Lizenzhinzufuegen = () => {
       const formattedGültigBis = new Date(gültigBis)
         .toISOString()
         .split("T")[0];
-     
+
       const response = await axios.post(
         "http://localhost:8000/api/license/create/",
         {
@@ -97,7 +97,7 @@ const Lizenzhinzufuegen = () => {
           <input
             type="text"
             placeholder="lizenzname"
-            value={productName}
+            value={lizenzName}
             onChange={(e) => setLizenzName(e.target.value)}
           />
         </div>
@@ -107,7 +107,7 @@ const Lizenzhinzufuegen = () => {
           <input
             type="text"
             placeholder="Einheiten"
-            value={handler}
+            value={einheiten}
             onChange={(e) => setEinheiten(e.target.value)}
           />
         </div>
@@ -117,7 +117,7 @@ const Lizenzhinzufuegen = () => {
           <input
             type="text"
             placeholder="ProductCode"
-            value={standort}
+            value={productCode}
             onChange={(e) => setProductCode(e.target.value)}
           />
         </div>

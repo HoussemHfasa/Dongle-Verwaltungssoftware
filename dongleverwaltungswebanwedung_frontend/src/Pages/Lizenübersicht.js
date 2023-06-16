@@ -24,7 +24,7 @@ const Lizenzübersicht = () => {
         {role === "Admin" || role === "Verwalter" ? (
           <button
             className={styles["Donglehinzufuegen"]}
-            onClick={() => navigate("/Profileseite")}
+            onClick={() => navigate("/Lizenzhinzufuegen")}
           >
             <span className={styles["Donglehinzufuegentext"]}>
               <span>Lizenz hinzufügen</span>
