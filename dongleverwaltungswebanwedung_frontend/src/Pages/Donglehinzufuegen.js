@@ -61,17 +61,13 @@ const Donglehinzufuegen = () => {
       }
     } catch (error) {
       console.error("Fehler beim Speichern des Dongles:", error);
-<<<<<<< HEAD
-  
+
       if (error.response && error.response.data) {
         const errorMessage = error.response.data;
         alert("Fehler beim Speichern des Dongles: " + errorMessage);
       } else {
         alert("Fehler beim Speichern des Dongles: " + error.message);
       }
-=======
-      alert("Leider gibt es keinen Kunden mit diesem Firmcode");
->>>>>>> Houssem
     }
   };
 
