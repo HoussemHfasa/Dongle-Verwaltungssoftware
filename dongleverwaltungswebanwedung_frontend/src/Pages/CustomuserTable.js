@@ -76,6 +76,11 @@ function CustomuserTable() {
   };
 
   const handleDelete = async (record) => {
+    if (record.is_superuser === 1) {
+      // If the user has is_superuser set to 1, show an alert and return early.
+      alert("Cannot delete an admin account with superuser privileges.");
+      return;
+    }
     try {
       const response = await fetch(
         `http://127.0.0.1:8000/Adminseite/${record.id}/`,
@@ -104,16 +109,21 @@ function CustomuserTable() {
       dataIndex: "email",
     },
     {
+      title: "Superuser",
+      dataIndex: "is_superuser",
+      render: (value) => (value === 1 ? "Ja" : "Nein"),
+    },
+    {
       title: "Name",
       dataIndex: "name",
     },
     {
-      title: "Role",
+      title: "Rolle",
       dataIndex: "role",
       editable: true,
     },
     {
-      title: "Firm Code",
+      title: "Firmcode",
       dataIndex: "firm_code",
     },
     {

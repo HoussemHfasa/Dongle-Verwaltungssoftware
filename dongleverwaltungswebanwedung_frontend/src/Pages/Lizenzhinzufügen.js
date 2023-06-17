@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Lizenzhinzufügen.css";
 import NavbarWrapper from "../Components/NavbarWrapper";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../Components/AuthContext";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const Lizenzhinzufuegen = () => {
-  const navigate = useNavigate();
   const [mitarbeiter, setMitarbeiter] = useState("");
   const [lizenzName, setLizenzName] = useState("");
   const [einheiten, setEinheiten] = useState("");
@@ -65,7 +62,9 @@ const Lizenzhinzufuegen = () => {
       }
     } catch (error) {
       console.error("Fehler beim Speichern des Lizenzes:", error);
-      alert("Fehler beim Speichern des Lizenzes: " + error.message);
+      alert(
+        "Leider gibt es keinen Kunden mit diesem Firmcode: " + error.message
+      );
     }
   };
 
@@ -153,15 +152,14 @@ const Lizenzhinzufuegen = () => {
         </div>
         {/* Lizenzanzahl */}
         <div className="form-row">
-           <span className="form-label">Lizenzanzahl</span>
-           <input
-           type="text"
-           placeholder="Lizenzanzahl"
-           value={lizenzAnzahl}
-           onChange={(e) => setLizenzAnzahl(e.target.value)}
-        />
-     </div>
-        
+          <span className="form-label">Lizenzanzahl</span>
+          <input
+            type="text"
+            placeholder="Lizenzanzahl"
+            value={lizenzAnzahl}
+            onChange={(e) => setLizenzAnzahl(e.target.value)}
+          />
+        </div>
 
         {/* Projekt */}
         <div className="form-row">

@@ -28,6 +28,14 @@ class CustomuserView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk, *args, **kwargs):
-        instance = get_object_or_404(Customuser, pk=pk)
-        instance.delete()
-        return Response({'status': 'success', 'message': 'Deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
+     instance = get_object_or_404(Customuser, pk=pk)
+ 
+     # Check if the user has is_superuser set to 1
+     if instance.is_superuser == 1:
+        return Response(
+            {'status': 'error', 'message': 'Cannot delete an admin account with superuser privileges.'},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+     instance.delete()
+     return Response({'status': 'success', 'message': 'Deleted successfully'}, status=status.HTTP_204_NO_CONTENT)

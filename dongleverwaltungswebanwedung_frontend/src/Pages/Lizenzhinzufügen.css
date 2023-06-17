@@ -91,3 +91,8 @@
     height: 40px;
     width: 100px;
   }
+
+  .tableContainer {
+    max-width: 80%; /* Adjust this percentage as needed */
+    margin: auto;
+  }
