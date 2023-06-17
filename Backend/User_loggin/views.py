@@ -29,32 +29,53 @@ import secrets
 from django.core.exceptions import ObjectDoesNotExist
 
 
+
 # Nutzermodell definieren
 User = get_user_model()
 
+# Klasse zum Abrufen des Zugriffstokens
+class ObtainAccessToken(APIView):
+    # POST-Methode zum Abrufen des Zugriffstokens
+    def post(self, request, *args, **kwargs):
+        email = request.data.get("email")
+        password = request.data.get("password")
+        user = authenticate(request, username=email, password=password)
+
+        # Wenn der Benutzer authentifiziert ist, gib das Token zurück
+        if user is not None:
+            token = str(CustomTokenObtainPairSerializer.get_token(user).access_token)
+            return Response({"access_token": token})
+        else:
+            return Response({"error": "Ungültige E-Mail oder Passwort"}, status=status.HTTP_401_UNAUTHORIZED)
+
 # Login View
 class UserLoginAPIView(TokenObtainPairView):
-    # Login Serializer verwenden 
+    # Login Serializer verwenden
     serializer_class = serializers.UserLoginSerializer
 
-
+# Klasse zum Abrufen des Admin-Zugriffstokens
 class AdminAccessTokenView(GenericAPIView):
+    # Nur authentifizierte Benutzer können auf diese Ansicht zugreifen
     permission_classes = [IsAuthenticated]
 
+    # GET-Methode zum Abrufen des Admin-Zugriffstokens
     def get(self, request, *args, **kwargs):
+        # Wenn der Benutzer keine Admin-Rolle hat, gib einen Fehler zurück
         if request.user.role != 'Admin':
             return Response({'error': 'Only admin users can obtain admin access token'}, status=HTTP_400_BAD_REQUEST)
 
+        # Wenn der Benutzer ein Admin ist, gib das Token zurück
         token = str(CustomTokenObtainPairSerializer.get_token(request.user).access_token)
         return Response({'access_token': token})
 
-#in frontend benutzt
+# Klasse zum Abrufen des Admin-Zugriffstokens mit der POST-Methode
 class ObtainAdminAccessToken(APIView):
     def post(self, request, *args, **kwargs):
         email = request.data.get("email")
         password = request.data.get("password")
         user = authenticate(request, username=email, password=password)
 
+        # Wenn der Benutzer authentifiziert ist und Admin-Rolle hat, gib das Token zurück
         if user is not None:
             if user.role == "Admin":
                 token = str(CustomTokenObtainPairSerializer.get_token(user).access_token)
@@ -64,14 +85,17 @@ class ObtainAdminAccessToken(APIView):
         else:
             return Response({"error": "Invalid email or password"}, status=status.HTTP_401_UNAUTHORIZED)
 
-
+# Klasse zum Erstellen eines neuen Benutzers
 class CreateUserView(APIView):
+    # Nur Admins können neue Benutzer erstellen, andere Benutzer haben schreibgeschützten Zugriff
     permission_classes = [IsAdminOrReadOnly]
 
+    # Funktion zum Generieren eines sicheren Passworts
     def generate_strong_password(self, length):
         characters = string.ascii_letters + string.digits + string.punctuation
         return ''.join(secrets.choice(characters) for _ in range(length))
 
+    # POST-Methode zum Erstellen eines neuen Benutzers
     def post(self, request, *args, **kwargs):
         email = request.data.get("email")
         name = request.data.get("name")
@@ -80,15 +104,15 @@ class CreateUserView(APIView):
         role = request.data.get("role")
         firm_code = request.data.get("firm_code")
 
+        # Überprüfe, ob alle erforderlichen Felder ausgefüllt sind
         if not email or not name or not role:
             return Response({"error": "All fields are required"}, status=status.HTTP_400_BAD_REQUEST)
 
-        
-
+        # Erstelle einen neuen Benutzer und sende eine Willkommens-E-Mail
         try:
             user = User.objects.create_user(is_superuser=False, email=email, name=name, role=role, password=password,
                                             firm_code=firm_code)
-            subject = 'Willkommen bei GFal!'
+            subject ='Willkommen bei GFal!'
             body = f"Lieber {name},\n\nIhnen wurde von einem Administrator ein Konto in unserer App erstellt! Hier sind Ihre Anmeldeinformationen:\n\nE-Mail: {email}\nPasswort: {password}\n\nBitte bewahren Sie Ihre Anmeldeinformationen sicher auf.\n\nMit freundlichen Grüßen,\nDas Our GFal-Team"
             email = EmailMessage(subject, body, to=[email])
             email.send()
@@ -96,82 +120,62 @@ class CreateUserView(APIView):
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
-
-
+# Klasse zum Ändern des Passworts
 class Passwordchangeview(APIView):
-
+    # POST-Methode zum Ändern des Passworts
     def post(self, request, *args, **kwargs):
         email = request.data.get("email")
         old_password = request.data.get("oldPassword")
-        new_password = request.data.get("newPassword") 
+        new_password = request.data.get("newPassword")
 
+        # Überprüfe, ob alle erforderlichen Felder ausgefüllt sind
         if not email or not old_password or not new_password:
             return Response({"error": "All fields are required"}, status=status.HTTP_400_BAD_REQUEST)
 
+        # Ändere das Passwort, wenn der Benutzer gefunden wird und das alte Passwort korrekt ist
         try:
             user = User.objects.get(email=email)
 
-            # Check if the old password is correct
+            # Überprüfen, ob das alte Passwort korrekt ist
             if not user.check_password(old_password):
-                return Response({"error": "Old password is incorrect"}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({"error": "Altes Passwort ist nicht korrekt"}, status=status.HTTP_400_BAD_REQUEST)
 
-            # Set the new password
+            # Neues Passwort setzen
             user.set_password(new_password)
             user.save()
-             # Senden Sie eine E-Mail an den neu erstellten Benutzer
-            user = User.objects.get(email=email)
-            subject = 'Passwort erfolgreich geändert!'
-            body = f"Lieber {user.name},\n\nIhr Passwort wurde erfolgreich geändert. Wenn Sie diese Änderung nicht veranlasst haben, versuchen Sie, Ihr Passwort auf der Anmeldeseite über die Option 'Passwort vergessen' zurückzusetzen. Andernfalls setzen Sie sich bitte umgehend mit unserem Support in Verbindung.\n\nMit freundlichen Grüßen,\nDas Our GFal-Team"
-            email = EmailMessage(subject, body, to=[email])
-            email.send()
-
-            return Response({"success": "Password changed successfully"}, status=status.HTTP_200_OK)
-
-        except User.DoesNotExist:
-            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"success": "Passwort erfolgreich geändert"}, status=status.HTTP_200_OK)
+        except ObjectDoesNotExist:
+            return Response({"error": "Benutzer nicht gefunden"}, status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
         
-class ObtainAccessToken(APIView):
-    def post(self, request, *args, **kwargs):
-        email = request.data.get("email")
-        password = request.data.get("password")
-        user = authenticate(request, username=email, password=password)
-        if user is not None:
-            token = str(CustomTokenObtainPairSerializer.get_token(user).access_token)
-            return Response({"access_token": token})
-        else:
-            return Response({"error": "Invalid email or password"}, status=status.HTTP_401_UNAUTHORIZED)
-
-
-
-#Passwortzurücksetzung
+        #Passwortzurücksetzung
 
 class GetUserPasswordView(APIView):
-    def generate_strong_password(self, length):
-        characters = string.ascii_letters + string.digits + string.punctuation
-        return ''.join(secrets.choice(characters) for _ in range(length))
+ def generate_strong_password(self, length):
+  characters = string.ascii_letters + string.digits + string.punctuation
+  return ''.join(secrets.choice(characters) for _ in range(length))
 
-    def post(self, request, *args, **kwargs):
-        email = request.data.get("email")
+ def post(self, request, *args, **kwargs):
+    email = request.data.get("email")
 
-        if not email:
-            return Response({"error": "Email field is required"}, status=status.HTTP_400_BAD_REQUEST)
+    if not email:
+        return Response({"error": "Email field is required"}, status=status.HTTP_400_BAD_REQUEST)
 
-        try:
-            password_length = secrets.randbelow(4) + 12
-            password = self.generate_strong_password(password_length)
-            user = User.objects.get(email=email)
-            user.set_password(password)
-            user.save()
-            subject = 'Passwortzurücksetzung für Ihr GFal-Konto'
-            body = f"Lieber {user.name},\n\nSie haben Ihr Passwort vergessen und eine Passwortzurücksetzung angefordert. Hier sind Ihre aktualisierten Anmeldeinformationen:\n\nE-Mail: {email}\nNeues Passwort: {password}\n\nBitte bewahren Sie Ihre Anmeldeinformationen sicher auf und ändern Sie Ihr Passwort, sobald Sie sich das nächste Mal anmelden.\n\nMit freundlichen Grüßen,\nDas Our GFal-Team"
-            email = EmailMessage(subject, body, to=[email])
-            email.send()
+    try:
+        password_length = secrets.randbelow(4) + 12
+        password = self.generate_strong_password(password_length)
+        user = User.objects.get(email=email)
+        user.set_password(password)
+        user.save()
+        subject = 'Passwortzurücksetzung für Ihr GFal-Konto'
+        body = f"Lieber {user.name},\n\nSie haben Ihr Passwort vergessen und eine Passwortzurücksetzung angefordert. Hier sind Ihre aktualisierten Anmeldeinformationen:\n\nE-Mail: {email}\nNeues Passwort: {password}\n\nBitte bewahren Sie Ihre Anmeldeinformationen sicher auf und ändern Sie Ihr Passwort, sobald Sie sich das nächste Mal anmelden.\n\nMit freundlichen Grüßen,\nDas Our GFal-Team"
+        email = EmailMessage(subject, body, to=[email])
+        email.send()
 
-            return Response({"password": password}, status=status.HTTP_200_OK)
+        return Response({"password": password}, status=status.HTTP_200_OK)
 
-        except ObjectDoesNotExist:
-            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
-        except Exception as e:
-            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+    except ObjectDoesNotExist:
+        return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+    except Exception as e:
+        return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
