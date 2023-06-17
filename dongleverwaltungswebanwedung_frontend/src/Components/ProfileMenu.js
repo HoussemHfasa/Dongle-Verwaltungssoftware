@@ -4,16 +4,16 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 
 const ProfileMenu = forwardRef((props, ref) => {
-  const [profileExploding, setProfileExploding] = useState(false);
+  const [profileExploding /*setProfileExploding*/] = useState(false);
   const [abmeldenExploding, setAbmeldenExploding] = useState(false);
   const navigate = useNavigate();
   const { setEmail, setPassword, setRole } = useAuth();
 
-  // Funktion zum Behandeln des Klicks auf den Profil-Button
+  /*// Funktion zum Behandeln des Klicks auf den Profil-Button
   const handleProfileClick = () => {
     setProfileExploding(true);
     setTimeout(() => setProfileExploding(false), 500);
-  };
+  };*/
 
   // Funktion zum Behandeln des Klicks auf den Abmelden-Button
   const handleAbmeldenClick = () => {

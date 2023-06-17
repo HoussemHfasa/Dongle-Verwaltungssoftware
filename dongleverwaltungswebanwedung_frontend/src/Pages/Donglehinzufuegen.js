@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Donglehinzufuegen.css";
 import NavbarWrapper from "../Components/NavbarWrapper";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
 
 const Donglehinzufuegen = () => {

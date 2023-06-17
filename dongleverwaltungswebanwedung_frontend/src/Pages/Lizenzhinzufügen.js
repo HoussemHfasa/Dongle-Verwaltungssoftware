@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./Lizenzhinzufügen.css";
 import NavbarWrapper from "../Components/NavbarWrapper";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
 
 const Lizenzhinzufuegen = () => {

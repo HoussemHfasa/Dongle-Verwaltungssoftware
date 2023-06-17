@@ -65,9 +65,3 @@ class UserViewSet(viewsets.ModelViewSet):
         else:
             return User.objects.none()
             
-class AdminViewSet(viewsets.ModelViewSet):
-    ...
-class VerwalterViewSet(viewsets.ModelViewSet):
-    ...  
-class KundeViewSet(viewsets.ModelViewSet):
-    ...
