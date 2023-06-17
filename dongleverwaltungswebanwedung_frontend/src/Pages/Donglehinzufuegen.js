@@ -3,12 +3,9 @@ import "./Donglehinzufuegen.css";
 import NavbarWrapper from "../Components/NavbarWrapper";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../Components/AuthContext";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const Donglehinzufuegen = () => {
-  const navigate = useNavigate();
   const [dongleId, setDongleId] = useState("");
   const [productName, setProductName] = useState("");
   const [handler, setHandler] = useState("");
@@ -39,7 +36,7 @@ const Donglehinzufuegen = () => {
       const formattedGültigBis = new Date(gültigBis)
         .toISOString()
         .split("T")[0];
-     
+
       const response = await axios.post(
         "http://localhost:8000/api/dongle/create/",
         {
@@ -64,6 +61,7 @@ const Donglehinzufuegen = () => {
       }
     } catch (error) {
       console.error("Fehler beim Speichern des Dongles:", error);
+<<<<<<< HEAD
   
       if (error.response && error.response.data) {
         const errorMessage = error.response.data;
@@ -71,6 +69,9 @@ const Donglehinzufuegen = () => {
       } else {
         alert("Fehler beim Speichern des Dongles: " + error.message);
       }
+=======
+      alert("Leider gibt es keinen Kunden mit diesem Firmcode");
+>>>>>>> Houssem
     }
   };
 

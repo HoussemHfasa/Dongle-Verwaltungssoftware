@@ -22,7 +22,9 @@ const Übersichtseite = () => {
       {/* Inhalt der Übersichtsseite */}
       <div className={styles.content}>
         {/* Dongle-Tabelle */}
-        <div className={styles["DongleTable"]}>
+        <div className={`${styles["DongleTable"]} ${styles.tableContainer}`}>
+          {" "}
+          {/* Add the new CSS class here */}
           <DongleTable />
         </div>
 

@@ -12,10 +12,8 @@ const Kontoerstellen = () => {
   const [email1, setEmail1] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
   const [name1, setName1] = useState("");
-  const [password1, setPassword1] = useState("");
   const [firmCode, setFirmCode] = useState("");
   const { email, password } = useAuth();
-  const [showPassword, setShowPassword] = useState(false);
   const { isAdmin, isLoading } = useAdminAccess();
 
   const isInputOnlySpaces = (input) => {
@@ -54,7 +52,6 @@ const Kontoerstellen = () => {
     const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
     return emailRegex.test(emailAddress);
   };
-  const [confirmPassword, setConfirmPassword] = useState("");
 
   const isFormValid =
     role1 &&

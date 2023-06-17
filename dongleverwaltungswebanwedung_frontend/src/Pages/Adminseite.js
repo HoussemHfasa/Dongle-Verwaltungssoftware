@@ -15,6 +15,7 @@ const Adminseite = () => {
       navigate("/Übersichtseite");
     }
   }, [isAdmin, navigate, isLoading]);
+  // ...
   return (
     <div className={styles.container}>
       {/* Rahmen für Navbar und Hintergrund */}
@@ -33,7 +34,9 @@ const Adminseite = () => {
           <span>Kontoerstellen</span>
         </span>
       </button>
-      <div className={styles["CustomuserTable"]}>
+      <div className={`${styles["CustomuserTable"]} ${styles.tableContainer}`}>
+        {" "}
+        {/* Add the new CSS class here */}
         <CustomuserTable />
       </div>
     </div>

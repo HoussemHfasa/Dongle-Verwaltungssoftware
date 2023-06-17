@@ -5,7 +5,7 @@
     width: 221px;
     height: 86px;
     border-radius: 19px;
-    background: #FD9800;
+    background: #4C90E0;
     cursor: pointer;
     display: flex;           /* Flexbox hinzugefügt */
     justify-content: center; /* Inhalt horizontal zentrieren */
@@ -33,4 +33,8 @@
     top: 340px; 
     left: 0px;
     right: 0px;
+  }
+  .tableContainer {
+    max-width: 80%; /* Adjust this percentage as needed */
+    margin: auto;
   }

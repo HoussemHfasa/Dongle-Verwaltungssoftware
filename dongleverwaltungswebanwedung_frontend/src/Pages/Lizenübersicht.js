@@ -17,7 +17,9 @@ const Lizenzübersicht = () => {
       </div>
 
       <div className={styles.content}>
-        <div className={styles["Lizenz"]}>
+        <div
+          className={`${styles["Lizenz"]} ${styles.tableContainer} ${styles.tableScrollable}`}
+        >
           <LizenzTable />
         </div>
 
