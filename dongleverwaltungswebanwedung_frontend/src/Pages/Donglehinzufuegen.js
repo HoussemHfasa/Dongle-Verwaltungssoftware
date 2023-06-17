@@ -64,7 +64,13 @@ const Donglehinzufuegen = () => {
       }
     } catch (error) {
       console.error("Fehler beim Speichern des Dongles:", error);
-      alert("Fehler beim Speichern des Dongles: " + error.message);
+  
+      if (error.response && error.response.data) {
+        const errorMessage = error.response.data;
+        alert("Fehler beim Speichern des Dongles: " + errorMessage);
+      } else {
+        alert("Fehler beim Speichern des Dongles: " + error.message);
+      }
     }
   };
 

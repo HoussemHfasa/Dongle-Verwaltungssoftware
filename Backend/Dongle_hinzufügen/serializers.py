@@ -26,3 +26,26 @@ class DongleSerializer(serializers.ModelSerializer):
 class DongleCreateView(generics.CreateAPIView):
     queryset = Dongle.objects.all()
     serializer_class = DongleSerializer
+def validate(self, attrs):
+        if not attrs['serien_nr']:
+            raise serializers.ValidationError("Seriennummer ist erforderlich.")
+        if not attrs['name']:
+            raise serializers.ValidationError("Name ist erforderlich.")
+        if not attrs['gueltig_von']:
+            raise serializers.ValidationError("Gültig von ist erforderlich.")
+        if not attrs['gueltig_bis']:
+            raise serializers.ValidationError("Gültig bis ist erforderlich.")
+        if not attrs['projekt_produkt']:
+            raise serializers.ValidationError("Projekt/Produkt ist erforderlich.")
+        if not attrs['standort']:
+            raise serializers.ValidationError("Standort ist erforderlich.")
+        if not attrs['haendler']:
+            raise serializers.ValidationError("Händler ist erforderlich.")
+        if not attrs['datum_letzte_aenderung']:
+            raise serializers.ValidationError("Datum der letzten Änderung ist erforderlich.")
+        if not attrs['datum_erstausgabe']:
+            raise serializers.ValidationError("Datum der Erstausgabe ist erforderlich.")
+        if not attrs['firmcode']:
+            raise serializers.ValidationError("Firmcode ist erforderlich.")
+
+        return attrs
