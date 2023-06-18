@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Table, Button, Popconfirm, Form, Input, Select } from "antd";
+import { Table, Button, Popconfirm, Form, Select } from "antd";
 import { useAuth } from "../Components/AuthContext";
-
+import { Modal } from "antd";
 const { Option } = Select;
 
 function CustomuserTable() {
@@ -26,36 +26,29 @@ function CustomuserTable() {
     children,
     ...restProps
   }) => {
-    const shouldRenderDropdown =
-      record && ["Admin", "Verwalter"].includes(record[dataIndex]);
-    const inputNode =
-      dataIndex === "role" ? (
-        shouldRenderDropdown ? (
-          <Select
-            style={{ width: "100%" }}
-            value={form.getFieldValue("role")}
-            onChange={(value) => {
-              form.setFieldsValue({ role: value });
-
-              if (record.email === email) {
-                setRole(value);
-              }
-            }}
-            onBlur={() => save(record.id)}
-          >
-            <Option value="Admin">Admin</Option>
-            <Option value="Verwalter">Verwalter</Option>
-          </Select>
-        ) : (
-          record[dataIndex]
-        )
-      ) : (
-        dataIndex !== "role" && <Input />
-      );
-
-    return (
-      <td {...restProps}>
-        {editing ? (
+    const [showConfirm, setShowConfirm] = useState(false);
+  
+    const handleConfirm = () => {
+      Modal.confirm({
+        title: "Bestätigung der Rollenänderung",
+        content: `Sind Sie sicher, dass Sie die Rolle in eine ${form.getFieldValue(
+          "role"
+        )} ändern möchten?`,
+        onOk: () => {
+          save(record.id);
+          setShowConfirm(false);
+        },
+        onCancel: () => {
+          setShowConfirm(false);
+        },
+        okText: "Ja",      // Add this line
+        cancelText: "Nein", // Add this line
+      });
+    };
+  
+    if (editing && dataIndex === "role") {
+      return (
+        <td {...restProps}>
           <Form.Item
             name={dataIndex}
             style={{ margin: 0 }}
@@ -66,13 +59,34 @@ function CustomuserTable() {
               },
             ]}
           >
-            {inputNode}
+            <Select
+              style={{ width: "100%" }}
+              value={form.getFieldValue("role")}
+              onChange={(value) => {
+                form.setFieldsValue({ role: value });
+  
+                if (record.email === email) {
+                  setRole(value);
+                }
+  
+                setShowConfirm(true);
+              }}
+              onBlur={() => setShowConfirm(false)}
+            >
+              <Option value="Admin">Admin</Option>
+              <Option value="Verwalter">Verwalter</Option>
+            </Select>
+            {showConfirm && (
+              <Button type="primary" onClick={handleConfirm}>
+                Bestätigen 
+              </Button>
+            )}
           </Form.Item>
-        ) : (
-          children
-        )}
-      </td>
-    );
+        </td>
+      );
+    }
+  
+    return <td {...restProps}>{children}</td>;
   };
 
   const handleDelete = async (record) => {
@@ -127,27 +141,36 @@ function CustomuserTable() {
       dataIndex: "firm_code",
     },
     {
-      title: "Löschen",
+      title: "Aktionen",
       render: (text, record) => (
-        <Popconfirm
-          title={`Sind Sie sicher, dass Sie den Kunden mit der ID ${record.id} löschen möchten?`}
-          onConfirm={() => handleDelete(record)}
-          okText="Ja"
-          cancelText="Nein"
-        >
-          <Button
-            type="danger"
-            style={{
-              backgroundColor: "red",
-              borderColor: "red",
-              width: "100%",
-              height: "100%",
-              color: "white", // Add this property to make the text white
-            }}
+        <>
+          {record.role !== "Kunde" && !isEditing(record) && (
+            <Button
+              type="primary"
+              onClick={() => edit(record)}
+              style={{ marginRight: 8 }}
+            >
+              Rolle ändern
+            </Button>
+          )}
+          <Popconfirm
+            title={`Sind Sie sicher, dass Sie den Kunden mit der ID ${record.id} löschen möchten?`}
+            onConfirm={() => handleDelete(record)}
+            okText="Ja"
+            cancelText="Nein"
           >
-            Löschen
-          </Button>
-        </Popconfirm>
+            <Button
+              type="danger"
+              style={{
+                backgroundColor: "red",
+                borderColor: "red",
+                color: "white",
+              }}
+            >
+              Löschen
+            </Button>
+          </Popconfirm>
+        </>
       ),
     },
   ];
@@ -239,13 +262,6 @@ function CustomuserTable() {
           onChange: cancel,
         }}
         rowKey="id"
-        onRow={(record) => ({
-          onClick: () => {
-            if (!isEditing(record)) {
-              edit(record);
-            }
-          },
-        })}
       />
     </Form>
   );
