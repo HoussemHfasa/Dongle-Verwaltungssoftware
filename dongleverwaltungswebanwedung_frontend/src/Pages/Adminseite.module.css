@@ -1,43 +1,50 @@
+/* Kontoerstellen-Button */
 .Kontoerstellen {
-    position: fixed;
-    top: 221px;
-    right: 275px;
-    width: 221px;
-    height: 86px;
-    border-radius: 19px;
-    background: #8D8DDA;
-    cursor: pointer;
-    display: flex;          
-    justify-content: center; 
-    align-items: center;     
-  }
-  .Kontoerstellen:hover {
-    background-color: rgb(50, 50, 150);
-  }
-  /* Dongle-Anforderungstext */
-.Kontoerstellentext {
-    color: rgb(255, 255, 255);
-    width: 190px;
-    height: auto;
-    font-size: 30px;
-    font-style: Bold;
-    text-align: center;
-    font-family: Inter;
-    font-weight: 700;
-    line-height: normal;
-    font-stretch: normal;
-    text-decoration: none;
-    margin: 0;              
-    position: absolute;      
-  }
+  position: fixed;
+  top: 221px;
+  right: 275px;
+  width: 221px;
+  height: 86px;
+  border-radius: 19px;
+  background: #8D8DDA;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .CustomuserTable {
-    position: absolute;
-    top: 340px; 
-    left: 0px;
-    right: 0px;
-  }
-  .tableContainer {
-    max-width: 90%; 
-    margin: auto;
-  }
+/* Hintergrundfarbe beim Überfahren des Kontoerstellen-Buttons ändern */
+.Kontoerstellen:hover {
+  background-color: rgb(50, 50, 150);
+}
+
+/* Stil des Kontoerstellentextes */
+.Kontoerstellentext {
+  color: rgb(255, 255, 255);
+  width: 190px;
+  height: auto;
+  font-size: 30px;
+  font-style: Bold;
+  text-align: center;
+  font-family: Inter;
+  font-weight: 700;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+  margin: 0;
+  position: absolute;
+}
+
+/* Positionierung der benutzerdefinierten Tabelle */
+.CustomuserTable {
+  position: absolute;
+  top: 340px;
+  left: 0px;
+  right: 0px;
+}
+
+/* Stil des tableContainer */
+.tableContainer {
+  max-width: 90%;
+  margin: auto;
+}

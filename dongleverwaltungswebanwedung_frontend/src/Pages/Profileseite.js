@@ -32,9 +32,11 @@ const Profileseite = () => {
     </div>
   );
   useEffect(() => {
+    //Email in Lokalspeicher speichern
     localStorage.setItem("email", email);
   }, [email]);
   useEffect(() => {
+    //Passwort in Lokalspeicher speichern
     localStorage.setItem("password", password);
   }, [password]);
 
@@ -43,6 +45,7 @@ const Profileseite = () => {
     currentNewPassword,
     currentConfirmNewPassword
   ) => {
+    //Überprüfen, ob das Formular gültig ist
     setIsFormValid(
       currentOldPassword === password &&
         currentNewPassword.trim() !== "" &&
@@ -50,6 +53,7 @@ const Profileseite = () => {
     );
   };
   const getUserAccessToken = async () => {
+    //Benutzerzugriffstoken abrufen
     try {
       console.log(email, password);
       const response = await axios.post(
@@ -63,6 +67,7 @@ const Profileseite = () => {
         return response.data.access_token;
       }
     } catch (error) {
+      //Fehlerbehandlung
       console.error("Error obtaining user access token:", error.message);
       if (error.response) {
         console.error("Server response data:", error.response.data);
@@ -71,14 +76,17 @@ const Profileseite = () => {
     return null;
   };
   const handleSubmit = async (e) => {
+    //Passwort ändern
     e.preventDefault();
     if (isFormValid) {
       const newUser = {
+        //Neuer Benutzer
         email: email,
         oldPassword: password,
         newPassword: newPassword,
       };
       console.log({
+        //Alte und neue Passwörter sowie E-Mail protokollieren
         "old password: ": oldPassword,
         "new password:": newPassword,
         "Email :": email,
@@ -104,18 +112,20 @@ const Profileseite = () => {
         );
 
         if (response.status === 200) {
+          //Passwort erfolgreich geändert
           console.log("Password successfully changed:", response.data);
-
+          //Popup anzeigen
           showSuccessPopup();
           setPassword(newPassword);
           console.log("old password:", password, " new password", newPassword);
           /*showSuccessPopup();*/
         }
       } catch (error) {
+        //Fehlerbehandlung
         console.error("Error changing password:", error.message);
         if (error.response) {
           console.error("Server response data:", error.response.data);
-          // Show an error message or handle the error as needed
+          //Fehlermeldung anzeigen oder Fehler wie erforderlich behandeln
         }
       }
     }
@@ -123,8 +133,8 @@ const Profileseite = () => {
 
   return (
     <div className={styles.wrapper}>
+      {/* Popup anzeigen, wenn showSuccessPopup wahr ist */}
       {showPopup && <SuccessPopup />}
-      {/* Display the success popup if showSuccessPopup is true */}
       <div className={styles.container}>
         {/* Rahmen für Navbar und Hintergrund */}
         <div className={styles.frame7}>
@@ -171,7 +181,8 @@ const Profileseite = () => {
               }}
             />
             <button
-              className={styles.changePasswordBtn} // Add the new class here
+              className={styles.changePasswordBtn}
+              // Neue Klasse hier hinzufügen
               type="submit"
               disabled={!isFormValid}
             >

@@ -1,3 +1,4 @@
+// Importiere notwendige Pakete und Komponenten
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Passwortzurücksetzung.module.css";
@@ -6,31 +7,41 @@ import { AiOutlineReload } from "react-icons/ai";
 
 // Passwortzurücksetzung-Komponente
 const Passwortzurücksetzung = () => {
+  // Verwende den 'useNavigate' Hook, um die Navigation zu ermöglichen
   const navigate = useNavigate();
+
+  // Verwalte den Zustand für E-Mail, Bestätigungs-E-Mail, Captcha-Eingabe und zufälliges Captcha
   const [inputEmail, setInputEmail] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
   const [captchaInput, setCaptchaInput] = useState("");
   const [captcha, setCaptcha] = useState(generateRandomCaptcha());
   const [showPopup, setShowPopup] = useState(false);
 
+  // Funktion zum Generieren eines zufälligen Captchas
   function generateRandomCaptcha() {
     return Math.random().toString(36).substring(2, 8).toUpperCase();
   }
 
+  // Funktion zum Aktualisieren des Captchas
   function refreshCaptcha() {
     setCaptcha(generateRandomCaptcha());
   }
 
+  // Überprüfe, ob das Formular gültig ist
   const isFormValid =
     inputEmail.length > 0 &&
     confirmEmail.length > 0 &&
     captchaInput.length > 0 &&
     inputEmail === confirmEmail &&
     captcha === captchaInput;
+
+  // Funktion zum Anzeigen des Erfolgspopups
   const showSuccessPopup = () => {
     console.log("showSuccessPopup called");
     setShowPopup(true);
   };
+
+  // Erfolgspopup-Komponente
   const SuccessPopup = () => (
     <div className={styles.popupWrapper}>
       <div className={styles.popup}>
@@ -42,6 +53,7 @@ const Passwortzurücksetzung = () => {
     </div>
   );
 
+  // Funktion zum Senden der Passwortzurücksetzung
   const handlePasswordResetSubmit = async (e) => {
     e.preventDefault();
     if (isFormValid) {
@@ -68,6 +80,7 @@ const Passwortzurücksetzung = () => {
     }
   };
 
+  // Rendere die Passwortzurücksetzung-Komponente
   return (
     <div className={styles.container}>
       {showPopup && <SuccessPopup />}
@@ -121,4 +134,5 @@ const Passwortzurücksetzung = () => {
   );
 };
 
+// Exportiere die Passwortzurücksetzung-Komponente
 export default Passwortzurücksetzung;

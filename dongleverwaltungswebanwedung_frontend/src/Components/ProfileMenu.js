@@ -23,11 +23,11 @@ const ProfileMenu = forwardRef((props, ref) => {
     setPassword(null);
     setRole(null);
 
-    // Entfernen der Rolle aus dem localStorage
-    localStorage.removeItem("role");
-    localStorage.removeItem("email");
-    localStorage.removeItem("password");
-    console.log("Rolle nach Entfernung:", localStorage.getItem("role"));
+    // Entfernen der Rolle aus dem sessionStorage
+    sessionStorage.removeItem("role");
+    sessionStorage.removeItem("email");
+    sessionStorage.removeItem("password");
+    console.log("Rolle nach Entfernung:", sessionStorage.getItem("role"));
 
     // Navigieren zum Startbildschirm
     navigate("/");

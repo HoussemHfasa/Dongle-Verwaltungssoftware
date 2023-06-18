@@ -5,18 +5,19 @@ import { Modal } from "antd";
 const { Option } = Select;
 
 function CustomuserTable() {
+  // Zustandsvariablen
   const [data, setData] = useState([]);
   const [editingId, setEditingId] = useState(null);
   const [form] = Form.useForm();
   const { email, setRole } = useAuth();
-
+  // Daten von der API abrufen
   useEffect(() => {
     fetch("http://127.0.0.1:8000/Adminseite/")
       .then((response) => response.json())
       .then((data) => setData(data.data))
       .catch((error) => console.error(error));
   }, []);
-
+  // Editierbare Zelle-Komponente
   const EditableCell = ({
     editing,
     dataIndex,
@@ -27,7 +28,7 @@ function CustomuserTable() {
     ...restProps
   }) => {
     const [showConfirm, setShowConfirm] = useState(false);
-
+    // Bestätigungsdialog anzeigen
     const handleConfirm = () => {
       Modal.confirm({
         title: "Bestätigung der Rollenänderung",
@@ -45,7 +46,7 @@ function CustomuserTable() {
         cancelText: "Nein", // Add this line
       });
     };
-
+    // Editierbare Dropdown-Tabelle
     if (editing && dataIndex === "role") {
       return (
         <td {...restProps}>
@@ -88,7 +89,7 @@ function CustomuserTable() {
 
     return <td {...restProps}>{children}</td>;
   };
-
+  // Löschen eines Benutzers
   const handleDelete = async (record) => {
     if (record.is_superuser === 1) {
       // If the user has is_superuser set to 1, show an alert and return early.
@@ -178,9 +179,9 @@ function CustomuserTable() {
       ),
     },
   ];
-
+  // Überprüfen, ob eine Zeile bearbeitet wird
   const isEditing = (record) => record.id === editingId;
-
+  // Bearbeitungsmodus aktivieren
   const edit = (record) => {
     form.setFieldsValue({
       role: "",
@@ -188,11 +189,11 @@ function CustomuserTable() {
     });
     setEditingId(record.id);
   };
-
+  // Bearbeitungsmodus abbrechen
   const cancel = () => {
     setEditingId(null);
   };
-
+  // Benutzerdaten speichern
   const save = async (id) => {
     try {
       const row = await form.validateFields();
@@ -235,7 +236,7 @@ function CustomuserTable() {
       console.log("Validate Failed:", errInfo);
     }
   };
-
+  // Bearbeitbare Spalten erstellen
   const columnsWithEdit = columns.map((col) => {
     if (!col.editable) {
       return col;

@@ -9,13 +9,14 @@ const Adminseite = () => {
   const navigate = useNavigate();
   const { isAdmin, isLoading } = useAdminAccess();
 
+  // Überprüft, ob der Benutzer ein Administrator ist und leitet ihn gegebenenfalls zur Übersichtseite weiter
   useEffect(() => {
     if (!isLoading && !isAdmin) {
       console.log("isAdmin:", isAdmin);
       navigate("/Übersichtseite");
     }
   }, [isAdmin, navigate, isLoading]);
-  // ...
+
   return (
     <div className={styles.container}>
       {/* Rahmen für Navbar und Hintergrund */}
@@ -25,7 +26,7 @@ const Adminseite = () => {
         {/* Rechteckiger Hintergrund */}
         <div className={styles.rectanglebackground}></div>
       </div>
-      {/* Kontoerstellen-button */}
+      {/* Kontoerstellen-Button */}
       <button
         className={styles["Kontoerstellen"]}
         onClick={() => navigate("/Kontoerstellen")}
@@ -34,9 +35,8 @@ const Adminseite = () => {
           <span>Kontoerstellen</span>
         </span>
       </button>
+      {/* Benutzerdefinierte Tabelle */}
       <div className={`${styles["CustomuserTable"]} ${styles.tableContainer}`}>
-        {" "}
-        {/* Add the new CSS class here */}
         <CustomuserTable />
       </div>
     </div>

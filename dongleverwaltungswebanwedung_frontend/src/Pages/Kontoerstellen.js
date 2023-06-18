@@ -7,33 +7,43 @@ import { useAuth } from "../Components/AuthContext";
 import useAdminAccess from "./useAdminAccess";
 
 const Kontoerstellen = () => {
+  // Navigation
   const navigate = useNavigate();
+
+  // Zustände für Eingabefelder
   const [role1, setRole1] = useState("");
   const [email1, setEmail1] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
   const [name1, setName1] = useState("");
   const [firmCode, setFirmCode] = useState("");
+
+  // Authentifizierung
   const { email, password } = useAuth();
   const { isAdmin, isLoading } = useAdminAccess();
 
+  // Funktion zum Überprüfen, ob Eingabe nur Leerzeichen enthält
   const isInputOnlySpaces = (input) => {
     return /^\s*$/.test(input);
   };
+
+  // Effekte für die Speicherung von E-Mail und Passwort im localStorage
   useEffect(() => {
     localStorage.setItem("email", email);
   }, [email]);
   useEffect(() => {
     localStorage.setItem("password", password);
   }, [password]);
+
+  // Weiterleitung zur Übersichtseite, wenn Benutzer kein Admin ist
   useEffect(() => {
     if (!isLoading && !isAdmin) {
       console.log("isAdmin:", isAdmin);
       navigate("/Übersichtseite");
     }
   }, [isAdmin, navigate, isLoading]);
-  /*neue Konto erstellen pop up*/
-  const [showPopup, setShowPopup] = useState(false);
 
+  // Popup für erfolgreiche Erstellung eines neuen Benutzers
+  const [showPopup, setShowPopup] = useState(false);
   const showSuccessPopup = () => {
     setShowPopup(true);
   };
@@ -48,11 +58,13 @@ const Kontoerstellen = () => {
     </div>
   );
 
+  // Funktion zum Überprüfen, ob E-Mail-Adresse gültig ist
   const isEmailValid = (emailAddress) => {
     const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
     return emailRegex.test(emailAddress);
   };
 
+  // Überprüfung der Gültigkeit des Formulars
   const isFormValid =
     role1 &&
     isEmailValid(email1) &&
@@ -62,14 +74,15 @@ const Kontoerstellen = () => {
     name1 &&
     (role1 !== "Kunde" || (firmCode && !isInputOnlySpaces(firmCode)));
 
+  // Funktion zum Abrufen des Admin-Zugriffstokens
   const getAdminAccessToken = async () => {
     try {
       console.log(email, password);
       const response = await axios.post(
         "http://127.0.0.1:8000/admin-access-token/",
         {
-          email: email, // Replace with the actual admin email
-          password: password, // Replace with the actual admin password
+          email: email,
+          password: password,
         }
       );
 
@@ -86,6 +99,7 @@ const Kontoerstellen = () => {
     return null;
   };
 
+  // Formular-Handler zum Erstellen eines neuen Benutzers
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isFormValid) {
@@ -93,10 +107,8 @@ const Kontoerstellen = () => {
         email: email1,
         name: name1,
         role: role1,
-
         firm_code: firmCode,
       };
-      console.log({ role1, email1, name1, firmCode });
 
       try {
         const adminAccessToken = await getAdminAccessToken();
@@ -104,8 +116,6 @@ const Kontoerstellen = () => {
           console.error("Failed to obtain admin access token");
           return;
         }
-
-        console.log(adminAccessToken);
 
         const response = await axios.post(
           "http://127.0.0.1:8000/users/",
@@ -126,12 +136,12 @@ const Kontoerstellen = () => {
         console.error("Error creating user:", error.message);
         if (error.response) {
           console.error("Server response data:", error.response.data);
-          // Show an error message or handle the error as needed
         }
       }
     }
   };
 
+  // Render-Funktion für das Kontoerstellen-Formular
   return (
     <div className={styles.wrapper}>
       {showPopup && <SuccessPopup />}
@@ -145,31 +155,35 @@ const Kontoerstellen = () => {
         </div>
         <form onSubmit={handleSubmit}>
           <div className={styles.inputContainer}>
+            {/* Rollenauswahl */}
             <select value={role1} onChange={(e) => setRole1(e.target.value)}>
               <option value="">Rolle wählen</option>
               <option value="Admin">Admin</option>
               <option value="Verwalter">Verwalter</option>
               <option value="Kunde">Kunde</option>
             </select>
+            {/* E-Mail-Eingabe */}
             <input
               type="email"
               placeholder="E-Mail"
               value={email1}
               onChange={(e) => setEmail1(e.target.value)}
             />
+            {/* E-Mail-Bestätigung */}
             <input
               type="email"
               placeholder="E-Mail bestätigen"
               value={confirmEmail}
               onChange={(e) => setConfirmEmail(e.target.value)}
             />
+            {/* Name-Eingabe */}
             <input
               type="text"
               placeholder="Name"
               value={name1}
               onChange={(e) => setName1(e.target.value)}
             />
-
+            {/* Firmencode-Eingabe, nur wenn Rolle "Kunde" */}
             {role1 === "Kunde" && (
               <input
                 type="text"
@@ -178,8 +192,9 @@ const Kontoerstellen = () => {
                 onChange={(e) => setFirmCode(e.target.value)}
               />
             )}
+            {/* Benutzer erstellen-Button */}
             <button
-              className={styles.createAccountBtn} // Add the new class here
+              className={styles.createAccountBtn}
               type="submit"
               disabled={!isFormValid}
             >

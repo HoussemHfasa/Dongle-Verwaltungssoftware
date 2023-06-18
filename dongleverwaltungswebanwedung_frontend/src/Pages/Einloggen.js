@@ -8,13 +8,19 @@ import axios from "axios";
 
 // Einloggen-Komponente
 const Einloggen = () => {
+  // Verwenden von useAuth für Authentifizierungszwecke
   const { setRole, setEmail, setPassword, setFirmcode, role } = useAuth();
+
+  // Verwenden von useState für lokale Zustandsverwaltung
   const [inputEmail, setInputEmail] = useState("");
   const [inputPassword, setInputPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  /*const [emailInputKey, setEmailInputKey] = useState(0);*/
   const [passwordInputKey, setPasswordInputKey] = useState(0);
+
+  // Verwenden von useNavigate für die Navigation zwischen den Seiten
   const navigate = useNavigate();
+
+  // Verwenden von useEffect, um den Benutzer zur Übersichtsseite weiterzuleiten, wenn er bereits angemeldet ist
   useEffect(() => {
     if (role === "Admin" || role === "Verwalter" || role === "Kunde") {
       console.log("User is already logged in, redirecting...");
@@ -22,18 +28,19 @@ const Einloggen = () => {
     }
   }, [role, navigate]);
 
+  // Funktion zum Zurücksetzen des Passworts und der Fehlermeldung
   const handleOkClick = () => {
     setErrorMessage("");
-    /*setInputEmail("");*/
     setInputPassword("");
-    /*setEmailInputKey((prevKey) => prevKey + 1);*/
     setPasswordInputKey((prevKey) => prevKey + 1);
   };
+
+  // Funktion zum Navigieren zur Passwortzurücksetzungsseite
   const handlePasswordResetClick = () => {
     navigate("/Passwortzurücksetzung");
   };
 
-  // Verarbeitet das Einreichen des Login-Formulars
+  // Funktion zum Verarbeiten des Einreichens des Login-Formulars
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
 
@@ -67,6 +74,7 @@ const Einloggen = () => {
     }
   };
 
+  // Rückgabe der Einloggen-Komponente
   return (
     <div className={styles.container}>
       <div className={styles.Background}>
@@ -75,7 +83,6 @@ const Einloggen = () => {
         <form onSubmit={handleLoginSubmit}>
           {/* E-Mail-Feld */}
           <input
-            /* key={emailInputKey}*/
             type="text"
             placeholder="Schreiben Sie Ihr E-Mail"
             className={styles.textbox_Benutzername}
@@ -117,10 +124,7 @@ const Einloggen = () => {
           </button>
 
           {/* Anmeldeknopf */}
-          <button
-            className={styles["rectangular-button"]}
-            type="submit" // Add type="submit" to the button
-          >
+          <button className={styles["rectangular-button"]} type="submit">
             Anmelden
           </button>
         </form>

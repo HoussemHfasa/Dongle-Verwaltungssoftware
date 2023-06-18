@@ -23,13 +23,14 @@ const Übersichtseite = () => {
       <div className={styles.content}>
         {/* Dongle-Tabelle */}
         <div className={`${styles["DongleTable"]} ${styles.tableContainer}`}>
-          {" "}
-          {/* Add the new CSS class here */}
+          {/* Neue CSS-Klasse hier hinzufügen */}
           <DongleTable />
         </div>
 
         {/* Dongle-Anforderungsbutton */}
-        {role === "Admin" || role === "Verwalter" ? (
+        {role === "Admin" ||
+        role ===
+          "Verwalter" /*Dongle-Hinzufügeknopf anzeigen wenn Benutzer Admin oder Verwalter ist*/ ? (
           <button
             className={styles["Donglehinzufuegen"]}
             onClick={() => navigate("/Donglehinzufuegen")}
@@ -39,7 +40,8 @@ const Übersichtseite = () => {
             </span>
           </button>
         ) : (
-          role === "Kunde" && (
+          role ===
+            "Kunde" /*Dongleanforderungsknopf anzeigen, wenn Benutzer Kunde ist */ && (
             <button
               className={styles["Donglehinzufuegen"]}
               onClick={() => navigate("/Lizenübersicht")}
