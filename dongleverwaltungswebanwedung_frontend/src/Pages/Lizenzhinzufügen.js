@@ -14,6 +14,7 @@ const Lizenzhinzufuegen = () => {
   const [firmCode, setFirmCode] = useState("");
   const [projekt, setProjekt] = useState("");
   const [lizenzAnzahl, setLizenzAnzahl] = useState("");
+  const [dongleSeriennummer, setDongleSeriennummer] = useState("");
 
   // Funktion zum Zurücksetzen des Formulars
   const resetForm = () => {
@@ -26,6 +27,7 @@ const Lizenzhinzufuegen = () => {
     setFirmCode("");
     setProjekt("");
     setLizenzAnzahl("");
+    setDongleSeriennummer("");
   };
 
   // Funktion zum Speichern der eingegebenen Daten
@@ -41,7 +43,6 @@ const Lizenzhinzufuegen = () => {
       const response = await axios.post(
         "http://localhost:8000/api/license/create/",
         {
-          lizenzanzahl: lizenzAnzahl,
           lizenzname: lizenzName,
           gueltig_von: formattedGültigVon,
           gueltig_bis: formattedGültigBis,
@@ -50,6 +51,8 @@ const Lizenzhinzufuegen = () => {
           productcode: productCode,
           mitarbeiter: mitarbeiter,
           firmcode: firmCode,
+          lizenzanzahl: lizenzAnzahl,
+          dongle_serien_nr: dongleSeriennummer,
         }
       );
 
@@ -57,13 +60,11 @@ const Lizenzhinzufuegen = () => {
         alert("Lizenz erfolgreich gespeichert!");
         resetForm();
       } else {
-        alert("Fehler beim Speichern des Lizenzes");
+        alert("Fehler beim Speichern der Lizenz");
       }
     } catch (error) {
-      console.error("Fehler beim Speichern des Lizenzes:", error);
-      alert(
-        "Leider gibt es keinen Kunden mit diesem Firmcode: " + error.message
-      );
+      console.error("Fehler beim Speichern der Lizenz:", error);
+      alert("Fehler beim Speichern der Lizenz: " + error.message);
     }
   };
 
@@ -79,7 +80,7 @@ const Lizenzhinzufuegen = () => {
 
       {/* Formular */}
       <div className="Lizenzhinzufügen-form">
-        {/* Dongle-ID (Seriennummer) */}
+        {/* Mitarbeiter */}
         <div className="form-row">
           <span className="form-label">Mitarbeiter</span>
           <input
@@ -89,17 +90,17 @@ const Lizenzhinzufuegen = () => {
             onChange={(e) => setMitarbeiter(e.target.value)}
           />
         </div>
-        {/* Produktname */}
+        {/* Lizenzname */}
         <div className="form-row">
-          <span className="form-label">LizenzName</span>
+          <span className="form-label">Lizenzname</span>
           <input
             type="text"
-            placeholder="lizenzname"
+            placeholder="Lizenzname"
             value={lizenzName}
             onChange={(e) => setLizenzName(e.target.value)}
           />
         </div>
-        {/* Händler */}
+        {/* Einheiten */}
         <div className="form-row">
           <span className="form-label">Einheiten</span>
           <input
@@ -109,7 +110,7 @@ const Lizenzhinzufuegen = () => {
             onChange={(e) => setEinheiten(e.target.value)}
           />
         </div>
-        {/* Standort */}
+        {/* ProductCode */}
         <div className="form-row">
           <span className="form-label">ProductCode</span>
           <input
@@ -139,6 +140,16 @@ const Lizenzhinzufuegen = () => {
             onChange={(e) => setGültigBis(e.target.value)}
           />
         </div>
+            {/* Projekt */}
+            <div className="form-row">
+          <span className="form-label">Projekt</span>
+          <input
+            type="text"
+            placeholder="Projekt"
+            value={projekt}
+            onChange={(e) => setProjekt(e.target.value)}
+          />
+        </div>
         {/* FirmCode */}
         <div className="form-row">
           <span className="form-label">FirmCode</span>
@@ -159,15 +170,14 @@ const Lizenzhinzufuegen = () => {
             onChange={(e) => setLizenzAnzahl(e.target.value)}
           />
         </div>
-
-        {/* Projekt */}
+        {/* Dongle Seriennummer */}
         <div className="form-row">
-          <span className="form-label">Projekt</span>
+          <span className="form-label">Dongle Seriennummer</span>
           <input
             type="text"
-            placeholder="Projekt"
-            value={projekt}
-            onChange={(e) => setProjekt(e.target.value)}
+            placeholder="Dongle Seriennummer"
+            value={dongleSeriennummer}
+            onChange={(e) => setDongleSeriennummer(e.target.value)}
           />
         </div>
         {/* Button-Container */}
@@ -185,5 +195,4 @@ const Lizenzhinzufuegen = () => {
     </div>
   );
 };
-
 export default Lizenzhinzufuegen;

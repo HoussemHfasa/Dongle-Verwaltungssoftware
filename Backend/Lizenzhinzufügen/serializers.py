@@ -14,7 +14,7 @@ class LizenzSerializer(serializers.ModelSerializer):
     projekt = serializers.CharField()
     lizenzanzahl = serializers.IntegerField()
     mitarbeiter = serializers.CharField()
-    dongle_serien_nr = serializers.CharField(required=False)
+    dongle_serien_nr = serializers.CharField(required=False, allow_blank=True)
     kunde = serializers.CharField(required=False)
 
     class Meta:

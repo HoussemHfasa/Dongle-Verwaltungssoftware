@@ -46,13 +46,16 @@ class LizenzCreateView(APIView):
         #datum_erstausgabe =date.today()
         firmcode = request.data.get('firmcode')
         lizenzanzahl=request.data.get('lizenzanzahl')
-
+        dongle_serien_nr = request.data.get('dongle_serien_nr')
         # Retrieve the customer name based on the email address
-        serienNr=Dongle.objects.filter(firmcode=firmcode).first()
-        if serienNr:
-            dongle_serien_nr= serienNr.serien_nr
+        if dongle_serien_nr:
+            # Search for Dongle with the given dongle_serien_nr
+            dongle = Dongle.objects.filter(serien_nr=dongle_serien_nr).first()
+            if not dongle:
+                return JsonResponse({"error": "'dongle_serien_nr' nicht vorhanden."}, status=400)
         else:
-            dongle_serien_nr=""
+            dongle_serien_nr = ""
+
 
         customer = UserLogginCustomuser.objects.filter(firm_code=firmcode).first()
         if customer:
@@ -77,15 +80,31 @@ class LizenzCreateView(APIView):
                 'mitarbeiter': mitarbeiter,
                 'lizenzanzahl': lizenzanzahl
             }
-            lizenz = Lizenz.objects.create(**lizenz_data)
+            lizenz = Lizenz(**lizenz_data)
             lizenz.save()
 
-            # Send email to the customer
-            email_subject = f"New license Created: {dongle_serien_nr}"
-            email_body = f"Liebe {kunde},\n\n der Administrator hat Ihnen einen Lizenz zugewiesen mit dem FirmCode {firmcode}.  \n\nEnglish Version:\n\nDear {kunde},\n\nThe administrator has assigned a license to you with the FirmCode: {firmcode}."
-            email = EmailMessage(email_subject, email_body, to=[kunde_email])
-            email.send()
+            # Send an email notification
+            subject = f"Neue Lizenz erstellt: {lizenzname}"
+            message = f"Es wurde eine neue Lizenz erstellt:\n\n" \
+                      f"Lizenzname: {lizenzname}\n" \
+                      f"Gültig von: {gueltig_von}\n" \
+                      f"Gültig bis: {gueltig_bis}\n" \
+                      f"Projekt: {projekt}\n" \
+                      f"Einheiten: {einheiten}\n" \
+                      f"Productcode: {productcode}\n" \
+                      f"Firmcode: {firmcode}\n" \
+                      f"Mitarbeiter: {mitarbeiter}\n" \
+                      f"Lizenzanzahl: {lizenzanzahl}\n" \
+                      f"Dongle Seriennummer: {dongle_serien_nr}\n"
 
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            send_mail(
+                subject=subject,
+                message=message,
+                from_email="sender@example.com",
+                recipient_list=[kunde_email],
+                fail_silently=True,
+            )
+
+            return JsonResponse({"success": "Die Lizenz wurde erfolgreich erstellt."}, status=201)
         except Exception as e:
             return JsonResponse({"error": f"An error occurred while creating the license: {str(e)}"}, status=400)
