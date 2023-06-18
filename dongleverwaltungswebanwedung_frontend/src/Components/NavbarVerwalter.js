@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./Navbar.module.css";
-import user_image from "./user.png";
-import Notification_image from "./active.png";
+import user_image from "../Pictures/user.png";
+import Notification_image from "../Pictures/active.png";
+import gfaiLogo from "../Pictures/gfai_logo.png";
 import NotificationMenu from "./NotificationMenu";
 import ProfileMenu from "./ProfileMenu";
-import gfaiLogo from "./gfai_logo.png";
 import { useNavigate } from "react-router-dom";
 
 const NavbarVerwalter = (props) => {

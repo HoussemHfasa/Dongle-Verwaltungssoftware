@@ -27,7 +27,7 @@ function CustomuserTable() {
     ...restProps
   }) => {
     const [showConfirm, setShowConfirm] = useState(false);
-  
+
     const handleConfirm = () => {
       Modal.confirm({
         title: "Bestätigung der Rollenänderung",
@@ -41,11 +41,11 @@ function CustomuserTable() {
         onCancel: () => {
           setShowConfirm(false);
         },
-        okText: "Ja",      // Add this line
+        okText: "Ja", // Add this line
         cancelText: "Nein", // Add this line
       });
     };
-  
+
     if (editing && dataIndex === "role") {
       return (
         <td {...restProps}>
@@ -64,11 +64,11 @@ function CustomuserTable() {
               value={form.getFieldValue("role")}
               onChange={(value) => {
                 form.setFieldsValue({ role: value });
-  
+
                 if (record.email === email) {
                   setRole(value);
                 }
-  
+
                 setShowConfirm(true);
               }}
               onBlur={() => setShowConfirm(false)}
@@ -78,21 +78,23 @@ function CustomuserTable() {
             </Select>
             {showConfirm && (
               <Button type="primary" onClick={handleConfirm}>
-                Bestätigen 
+                Bestätigen
               </Button>
             )}
           </Form.Item>
         </td>
       );
     }
-  
+
     return <td {...restProps}>{children}</td>;
   };
 
   const handleDelete = async (record) => {
     if (record.is_superuser === 1) {
       // If the user has is_superuser set to 1, show an alert and return early.
-      alert("Cannot delete an admin account with superuser privileges.");
+      alert(
+        "Sie können ein Admin-Konto mit Superuser-Privilegien nicht löschen."
+      );
       return;
     }
     try {
@@ -144,15 +146,17 @@ function CustomuserTable() {
       title: "Aktionen",
       render: (text, record) => (
         <>
-          {record.role !== "Kunde" && !isEditing(record) && (
-            <Button
-              type="primary"
-              onClick={() => edit(record)}
-              style={{ marginRight: 8 }}
-            >
-              Rolle ändern
-            </Button>
-          )}
+          {record.role !== "Kunde" &&
+            !isEditing(record) &&
+            record.is_superuser !== 1 && (
+              <Button
+                type="primary"
+                onClick={() => edit(record)}
+                style={{ marginRight: 8 }}
+              >
+                Rolle ändern
+              </Button>
+            )}
           <Popconfirm
             title={`Sind Sie sicher, dass Sie den Kunden mit der ID ${record.id} löschen möchten?`}
             onConfirm={() => handleDelete(record)}

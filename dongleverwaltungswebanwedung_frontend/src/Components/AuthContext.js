@@ -1,21 +1,19 @@
 import React, { createContext, useContext, useState } from "react";
 
-// Authentifizierungskontext erstellen
-const AuthContext = createContext();
-
-// Benutzerdefinierter Hook, um den Authentifizierungskontext abzurufen
-export const useAuth = () => {
-  return useContext(AuthContext);
-};
-
 // Authentifizierungsanbieter-Komponente
+export const AuthContext = createContext();
+
 export const AuthProvider = ({ children }) => {
   // Authentifizierungsstatus verwalten
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
+  const [email, setEmail] = useState(sessionStorage.getItem("email") || "");
+  const [password, setPassword] = useState(
+    sessionStorage.getItem("password") || ""
+  );
+  const [role, setRole] = useState(sessionStorage.getItem("role") || "");
   //test
-  const [Firmcode, setFirmcode] = useState("");
+  const [Firmcode, setFirmcode] = useState(
+    sessionStorage.getItem("Firmcode") || ""
+  );
 
   // Wertobjekt für den Kontext
   const value = {
@@ -32,4 +30,12 @@ export const AuthProvider = ({ children }) => {
 
   // Authentifizierungskontext bereitstellen
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+};
+
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return context;
 };

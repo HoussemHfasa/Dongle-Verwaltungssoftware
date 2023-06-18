@@ -5,11 +5,14 @@
     width: 221px;
     height: 86px;
     border-radius: 19px;
-    background: #4C90E0;
+    background: #8D8DDA;
     cursor: pointer;
-    display: flex;           /* Flexbox hinzugefügt */
-    justify-content: center; /* Inhalt horizontal zentrieren */
-    align-items: center;     /* Inhalt vertikal zentrieren */
+    display: flex;          
+    justify-content: center; 
+    align-items: center;     
+  }
+  .Kontoerstellen:hover {
+    background-color: rgb(50, 50, 150);
   }
   /* Dongle-Anforderungstext */
 .Kontoerstellentext {
@@ -24,8 +27,8 @@
     line-height: normal;
     font-stretch: normal;
     text-decoration: none;
-    margin: 0;              /* Ränder zurücksetzen */
-    position: absolute;       /* Position zurücksetzen */
+    margin: 0;              
+    position: absolute;      
   }
 
   .CustomuserTable {
@@ -35,6 +38,6 @@
     right: 0px;
   }
   .tableContainer {
-    max-width: 80%; /* Adjust this percentage as needed */
+    max-width: 90%; 
     margin: auto;
   }

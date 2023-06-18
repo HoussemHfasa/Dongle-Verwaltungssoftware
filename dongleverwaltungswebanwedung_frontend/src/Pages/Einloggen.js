@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Einloggen.module.css";
-import MyUsername from "./Username.png";
-import MyPassword from "./Password.png";
+import MyUsername from "../Pictures/Username.png";
+import MyPassword from "../Pictures/Password.png";
 import { useAuth } from "../Components/AuthContext";
 import axios from "axios";
 
@@ -48,8 +48,10 @@ const Einloggen = () => {
         setFirmcode(response.data.firm_code);
         setEmail(inputEmail);
         setPassword(inputPassword);
-        localStorage.setItem("role", response.data.role);
-        localStorage.setItem("Firmcode", response.data.firm_code);
+        sessionStorage.setItem("role", response.data.role);
+        sessionStorage.setItem("Firmcode", response.data.firm_code);
+        sessionStorage.setItem("email", inputEmail);
+        sessionStorage.setItem("password", inputPassword);
         console.log("Firmcode:", response.data.firm_code);
         console.log("Rolle, E-Mail und Passwort erfolgreich gesetzt");
         navigate("/Übersichtseite");
