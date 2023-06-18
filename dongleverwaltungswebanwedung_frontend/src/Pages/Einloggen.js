@@ -16,6 +16,11 @@ const Einloggen = () => {
   const [inputPassword, setInputPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [passwordInputKey, setPasswordInputKey] = useState(0);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
 
   // Verwenden von useNavigate für die Navigation zwischen den Seiten
   const navigate = useNavigate();
@@ -99,13 +104,7 @@ const Einloggen = () => {
           />
 
           {/* Passwort-Feld */}
-          <input
-            key={passwordInputKey}
-            type="password"
-            placeholder="Schreiben Sie Ihr Passwort"
-            className={styles.textbox_Passwort}
-            onChange={(e) => setInputPassword(e.target.value)}
-          />
+
           <div className={styles["frame-Passwort"]}>Passwort</div>
           <div className={styles["frame-text-Password"]}></div>
           <img
@@ -113,6 +112,24 @@ const Einloggen = () => {
             alt="MyPassword"
             src={MyPassword}
           />
+          {/* Passwort-Feld */}
+          <input
+            key={passwordInputKey}
+            type={showPassword ? "text" : "password"}
+            placeholder="Schreiben Sie Ihr Passwort"
+            className={styles.textbox_Passwort}
+            onChange={(e) => setInputPassword(e.target.value)}
+            style={{ paddingRight: "50px" }} // Increase the right padding to make room for the button
+          />
+
+          {/* Füge einen Button hinzu, um die Passwort-Sichtbarkeit umzuschalten */}
+          <button
+            type="button"
+            className={styles["show-password-button"]}
+            onClick={togglePasswordVisibility}
+          >
+            {showPassword ? "Verbergen" : "Anzeigen"}
+          </button>
 
           {/* Passwort-vergessen-Link */}
           <button

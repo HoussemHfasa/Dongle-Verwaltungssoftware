@@ -143,6 +143,27 @@ class Passwordchangeview(APIView):
             # Neues Passwort setzen
             user.set_password(new_password)
             user.save()
+            subject = 'Passwort erfolgreich geändert für Ihr GFal-Konto'
+
+            body = f"""Lieber {user.name},
+
+            Ihr Passwort wurde erfolgreich geändert. Wenn Sie Ihr Passwort nicht geändert haben, können Sie den Zugang über die Funktion "Passwort vergessen" auf der Anmeldeseite wiederherstellen oder unser Team kontaktieren.
+
+            Mit freundlichen Grüßen,
+            Das GFal-Team
+
+            ---
+
+            Dear {user.name},
+
+            Your password has been successfully changed. If you did not change your password, you can regain access by using the "Forgot Password" feature on the login page or by contacting our team.
+
+            Best regards,
+            The GFal Team
+            """
+           
+            email = EmailMessage(subject, body, to=[email])
+            email.send()
             return Response({"success": "Passwort erfolgreich geändert"}, status=status.HTTP_200_OK)
         except ObjectDoesNotExist:
             return Response({"error": "Benutzer nicht gefunden"}, status=status.HTTP_404_NOT_FOUND)

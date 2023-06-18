@@ -119,7 +119,7 @@ CREATE TABLE `django_admin_log` (
   CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
   CONSTRAINT `django_admin_log_user_id_c564eba6_fk_User_loggin_customuser_id` FOREIGN KEY (`user_id`) REFERENCES `user_loggin_customuser` (`id`),
   CONSTRAINT `django_admin_log_chk_1` CHECK ((`action_flag` >= 0))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -128,6 +128,7 @@ CREATE TABLE `django_admin_log` (
 
 LOCK TABLES `django_admin_log` WRITE;
 /*!40000 ALTER TABLE `django_admin_log` DISABLE KEYS */;
+INSERT INTO `django_admin_log` VALUES (1,'2023-06-18 11:03:25.256144','24','inessbouazizi2@gmail.com',2,'[{\"changed\": {\"fields\": [\"Is superuser\"]}}]',6,1),(2,'2023-06-18 11:53:11.256191','24','inessbouazizi2@gmail.com',3,'',6,1);
 /*!40000 ALTER TABLE `django_admin_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -205,7 +206,7 @@ CREATE TABLE `django_session` (
 
 LOCK TABLES `django_session` WRITE;
 /*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
-INSERT INTO `django_session` VALUES ('5o96lojgposm2mz9yla20vcn1myehkdy','.eJxVjDsOwjAQBe_iGln-EpuSPmew1rtrHECOFCcV4u4QKQW0b2beSyTY1pq2zkuaSFyEE6ffLQM-uO2A7tBus8S5rcuU5a7Ig3Y5zsTP6-H-HVTo9VuzK9Zlskioctbaae95UDYWrTGAHc7gEcmrDNGgjaQRuIAxwZI3IYj3B_mSOEs:1q7DyE:Q7OLgF49f12n3v8ceehsw2L7Ee8MmSJPSwbIdzy76Gg','2023-06-22 11:38:26.144033');
+INSERT INTO `django_session` VALUES ('psmg47728u7aqa9ezywhf7um6xx0xcng','.eJxVjM0OwiAQhN-FsyFLF0E8eu8zkF1-pGogKe3J-O62SQ96m8z3zbyFp3Upfu1p9lMUV6HE6bdjCs9UdxAfVO9NhlaXeWK5K_KgXY4tptftcP8OCvWyrSGdrUt4yTG7zA60MyoDozOknWWFZmAFOqNWQQczAFqCLXKCbCOh-HwB0lg3aA:1qAVVT:H61MV9JFwH4TJXmzxxKL7sMkYzazxj8LTwVtk0nojIg','2023-07-01 12:58:19.189713');
 /*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -239,7 +240,7 @@ CREATE TABLE `dongle` (
 
 LOCK TABLES `dongle` WRITE;
 /*!40000 ALTER TABLE `dongle` DISABLE KEYS */;
-INSERT INTO `dongle` VALUES (1,'5-1234567','Testdongle					',NULL,NULL,'intern','GFal','a',NULL,'2019-01-01','2020-02-27',''),(2,'6-8889998','Dongle Berlin					',NULL,NULL,'SW A','Firma Z','Hamburg',NULL,'2019-09-01','2019-09-27',''),(3,'3-1337424','Dongle Hamburg					',NULL,'2023-01-31','SW A','Firma LGmbH','Kiel',NULL,'2021-12-22','2021-01-08',''),(4,'2-4242424','Dongle Hanover',NULL,'2023-12-31','SW C','GAG','a',NULL,'2021-12-17','2021-04-27',''),(5,'4-7070707	','Dongle Kiel',NULL,'2023-12-31','SW U','Firma LGmbH','a',NULL,'2021-12-17','2021-04-27',''),(6,'1-1111111	','Dongle Bremen',NULL,'2022-08-31','SW K','F.F','a',NULL,'2021-08-01','2021-08-30',''),(7,'9-6571231	','Dongle Dresden',NULL,'2023-06-30','SW K','SWE','a',NULL,'2020-11-01','2020-11-01',''),(8,'6571232	','Dongle Dresden',NULL,'2023-06-30','SW K','Kunde User','a',NULL,'2020-11-01','2020-11-01','FIRM123');
+INSERT INTO `dongle` VALUES (1,'5-1234567','Testdongle					',NULL,NULL,'intern','GFal','a',NULL,'2019-01-01','2020-02-27',''),(2,'6-8889998','Dongle Berlin					',NULL,NULL,'SW A','Firma Z','Hamburg',NULL,'2019-09-01','2019-09-27',''),(8,'6571232	','Dongle Dresden',NULL,'2023-06-30','SW K','Kunde User','a',NULL,'2020-11-01','2020-11-01','FIRM123'),(9,'5165','Mic','2023-10-20','2023-10-21','SW A','Kunde User','Berlin','Gfal','2023-06-13','2023-09-20','FIRM123'),(10,'1-458794','Mic','2023-06-12','2023-06-17','SW A','Kunde User','Berlin','3asfour','2023-06-13','2023-06-13','FIRM123'),(11,'5645313','fgdfg','2023-06-22','2023-06-21','dfgdfg','Kunde User','dfgdfg','dfgfdg','2023-06-17','2023-06-17','FIRM123'),(12,'6-5848','MC','2023-05-29','2023-06-29','SW A','Kunde User','Berlin','MC','2023-06-18','2023-06-18','FIRM123'),(15,'452425','fghbfg','2023-06-01','2023-06-29','fdgdf','HoussemKunde122','fgb','fgbx','2023-06-18','2023-06-18','dsfdsf5113');
 /*!40000 ALTER TABLE `dongle` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -273,7 +274,7 @@ CREATE TABLE `lizenz` (
 
 LOCK TABLES `lizenz` WRITE;
 /*!40000 ALTER TABLE `lizenz` DISABLE KEYS */;
-INSERT INTO `lizenz` VALUES (1,'101758',41000,'Hauptmodul',1,'2019-09-27',NULL,NULL,'D. Elgnod','SW A','Firma Z','6-8889998'),(2,'101758',41103,'Modul 1',1,'2019-09-27',NULL,NULL,'D. Elgnod','SW A','Firma Z',NULL),(3,'101758',41160,'Modul 3',1,'2019-09-27',NULL,NULL,'D. Elgnod','SW A','Firma Z',NULL),(4,'101758',41300,'Algorithmus Add',1,'2019-09-27',NULL,NULL,'D. Elgnod','SW A','Firma Z',NULL),(5,'101758',41487,'Algorithmus Sub',1,'2019-09-27',NULL,NULL,'D. Elgnod','SW A','Firma Z',NULL),(6,'FIRM123',41489,'Algorithmus Sub',1,'2019-09-27',NULL,NULL,'D. Elgnod','SW A','Kunde User',NULL);
+INSERT INTO `lizenz` VALUES (1,'101758',41000,'Hauptmodul',1,'2019-09-27',NULL,NULL,'D. Elgnod','SW A','Firma Z','6-8889998'),(2,'101758',41103,'Modul 1',1,'2019-09-27',NULL,NULL,'D. Elgnod','SW A','Firma Z',NULL),(3,'101758',41160,'Modul 3',1,'2019-09-27',NULL,NULL,'D. Elgnod','SW A','Firma Z',NULL),(4,'101758',41300,'Algorithmus Add',1,'2019-09-27',NULL,NULL,'D. Elgnod','SW A','Firma Z',NULL),(5,'101758',41487,'Algorithmus Sub',1,'2019-09-27',NULL,NULL,'D. Elgnod','SW A','Firma Z',NULL),(6,'FIRM123',41489,'Algorithmus Sub',1,'2019-09-27',NULL,NULL,'D. Elgnod','SW A','Kunde User',NULL),(7,'FIRM123',4524,'fghfgh',2,'2023-06-01','2023-06-14',4,'hgfhfg','sdfsd','Kunde User',''),(8,'FIRM123',4532,'sdfsd',4,'2023-06-22','2023-06-29',7,'dsfsdf','fgshf','Kunde User','6-5848'),(9,'FIRM123',42,'fgngf',45,'2023-06-01','2023-06-29',4,'fngn','fghgfh','Kunde User','1-458794');
 /*!40000 ALTER TABLE `lizenz` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -324,7 +325,7 @@ CREATE TABLE `user_loggin_customuser` (
   UNIQUE KEY `email` (`email`),
   KEY `idx_user_loggin_customuser_firm_code` (`firm_code`),
   CONSTRAINT `chk_role_values` CHECK ((`role` in (_utf8mb4'Admin',_utf8mb4'Verwalter',_utf8mb4'Kunde')))
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -333,7 +334,7 @@ CREATE TABLE `user_loggin_customuser` (
 
 LOCK TABLES `user_loggin_customuser` WRITE;
 /*!40000 ALTER TABLE `user_loggin_customuser` DISABLE KEYS */;
-INSERT INTO `user_loggin_customuser` VALUES (1,NULL,0,'admin@example.com','Admin User','pbkdf2_sha256$600000$0cB88KwL7FNZ7OsOsy1Jlx$MSnvtFanW1w2QsiCg30MZH4rlfzQAtsCemWmwzAA04M=','Admin',NULL),(2,NULL,0,'newuser@example.com','New User','pbkdf2_sha256$600000$U25W5EKpbv5dTfHo4Vw7l1$xrUqIXfQ0cmSF8pn+wCAt+DzbwqasMv9z30fwIRVJgc=','Admin',NULL),(3,NULL,0,'kundeuser@example.com','Kunde User','pbkdf2_sha256$600000$fDcpbGPQ1M0dnYzKPcrJzd$ry8pHNrVSrrKwxxU8wCZo8RaeHAwJkQqeGIq2Dv3Izg=','Kunde','FIRM123'),(5,NULL,0,'firmaz@example.com','Firma Z','testpassword','Kunde','101758'),(8,NULL,0,'houssemhfasa2@gmail.com','Houssemkunde','pbkdf2_sha256$600000$dE4tLLNsyOt07RYd3SdcqC$VSRAdBzxC8xNA1I6NfGYKIW5rWPGdJ3EuWgBKesi64A=','Kunde','18'),(10,NULL,0,'haha@gmail.com','hahatestadmin','pbkdf2_sha256$600000$FFqvICPUvRkV8dJsa51ZyT$rpfy9wrwT4B2ERKMoco5IRSLkQaOyHxyevIRGJjwWUc=','Admin',''),(11,NULL,0,'hh@gmail.com','Houtest','pbkdf2_sha256$600000$mgMwkWY01YxkZdrLLdGTKJ$BkgNEvCQyu2zNU2tFvCh4wtD2u27VGhynwuoUrAg3hw=','Verwalter',''),(12,NULL,0,'hahatofeha@gmail.com','rama','pbkdf2_sha256$600000$ubZ1ovxDGwCmMuJyOdvff1$88y2FhbCMYcAqg398lKSnIJ6RQ2p7qOhd1tR1ps7XLw=','Kunde','65154'),(15,NULL,0,'houssemhfassa48@gmail.com','Houssemtest1','pbkdf2_sha256$600000$FOj1dYUEZYZ7LlSvSEOshv$AbQPt5s4C5/K4ROVqlTCXL7nBeHnJg6Hi9/fDSigAJg=','Admin',''),(20,NULL,0,'houssemhfasa@gmail.com','houssem147','pbkdf2_sha256$600000$RGiKrESbXXTo3OqPbLx5Lk$cQfywAukFYpQMmEHKkVBCSFBv6+XAsJsmuVn0rlh+ig=','Admin',''),(21,NULL,0,'houssemhfassa28@gmail.com','houssemrandom','pbkdf2_sha256$600000$Ju1EPuZYJrKdXharcyILEZ$1h83KYegTE+ugxZNqKqOiG3cllmYeS4oF8VQjmCWXfA=','Admin',''),(22,NULL,0,'houssemhfassa25@gmail.com','Houssemzolt','pbkdf2_sha256$600000$eEWm4xAbX4rNr7RNASwC66$+96XyysMu4ZDPaPE5c35YOBe7kH2kcH6xD/sP0zqlpU=','Verwalter',''),(23,NULL,0,'zoghlami.taher@esprit.tn','taher','pbkdf2_sha256$600000$YemNXWeNuY440vnBpSMgrN$XKQtFiQNhUoVDRdP9Jk68VgDTU+d5lNXoHFVUThjZ+E=','Admin','');
+INSERT INTO `user_loggin_customuser` VALUES (1,'2023-06-17 12:58:19.185166',1,'admin@example.com','Admin User','pbkdf2_sha256$600000$i4pYEftS29PpAHx8Za46td$SS2tXduzLFPWWWgVCralmZMscr76/oTLT9JYOYEWHm4=','Admin',NULL),(2,NULL,0,'newuser@example.com','New User','pbkdf2_sha256$600000$U25W5EKpbv5dTfHo4Vw7l1$xrUqIXfQ0cmSF8pn+wCAt+DzbwqasMv9z30fwIRVJgc=','Admin',NULL),(3,NULL,0,'kundeuser@example.com','Kunde User','pbkdf2_sha256$600000$fDcpbGPQ1M0dnYzKPcrJzd$ry8pHNrVSrrKwxxU8wCZo8RaeHAwJkQqeGIq2Dv3Izg=','Kunde','FIRM123'),(5,NULL,0,'firmaz@example.com','Firma Z','testpassword','Kunde','101758'),(8,NULL,0,'houssemhfasa2@gmail.com','Houssemkunde','pbkdf2_sha256$600000$dE4tLLNsyOt07RYd3SdcqC$VSRAdBzxC8xNA1I6NfGYKIW5rWPGdJ3EuWgBKesi64A=','Kunde','18'),(15,NULL,0,'houssemhfassa48@gmail.com','Houssemtest1','pbkdf2_sha256$600000$FOj1dYUEZYZ7LlSvSEOshv$AbQPt5s4C5/K4ROVqlTCXL7nBeHnJg6Hi9/fDSigAJg=','Verwalter',''),(20,NULL,1,'houssemhfasa@gmail.com','houssem147','pbkdf2_sha256$600000$RGiKrESbXXTo3OqPbLx5Lk$cQfywAukFYpQMmEHKkVBCSFBv6+XAsJsmuVn0rlh+ig=','Admin',''),(21,NULL,1,'houssemhfassa28@gmail.com','houssemrandom','pbkdf2_sha256$600000$Ju1EPuZYJrKdXharcyILEZ$1h83KYegTE+ugxZNqKqOiG3cllmYeS4oF8VQjmCWXfA=','Admin',''),(22,NULL,0,'houssemhfassa25@gmail.com','Verwalter Test','pbkdf2_sha256$600000$n7fd7JH7oaUXaiQZg2kiOw$AhE8tDZgkqfYFG7hO+c7B2P8PEBZUYr734YSOqvaEG4=','Verwalter',''),(30,NULL,0,'houssemhfassa36@gmail.com','HoussemKunde122','pbkdf2_sha256$600000$BUUHvKLq6cCa12umtcIlVm$C3GhaC+pTLBd+KWUou6pSilw90G+jenEfqIXBYj5uG8=','Kunde','dsfdsf5113');
 /*!40000 ALTER TABLE `user_loggin_customuser` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -402,4 +403,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-13  8:15:15
+-- Dump completed on 2023-06-18 19:42:23

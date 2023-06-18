@@ -158,20 +158,22 @@ Jetzt sollten sowohl das Frontend als auch das Backend laufen, und Sie können d
 
 Hier sind einige Konten, die Sie zum Testen der Anwendung verwenden können:
 
-Admin-Konto:
-
+Admin-Konto(Superuser):
 E-Mail: admin@example.com
-Passwort: testpassword1
+Passwort: testpassword
 
-Verwalter-Konto:
-
+Admin-Konto:
 E-Mail: newuser@example.com
 Passwort: testpassword
 
-Kunden-Konto:
+Verwalter-Konto:
+E-Mail: houssemhfassa25@gmail.com
+Passwort: testpassword
 
+Kunden-Konto:
 E-Mail: kundeuser@example.com
 Passwort: testpassword
+
 Verwenden Sie diese Anmeldedaten, um die verschiedenen Rollen und Funktionen innerhalb der Anwendung zu testen. Wenn Sie auf Probleme stoßen oder weitere Unterstützung benötigen, zögern Sie nicht, uns zu kontaktieren.
 
 ## Usage
