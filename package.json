@@ -1,7 +1,17 @@
 {
+  "name": "team01",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "Backend\\runserver.bat",
+    "client": "cd dongleverwaltungswebanwedung_frontend && npm start"
+  },
   "dependencies": {
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.13.2"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
   }
 }
