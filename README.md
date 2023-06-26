@@ -68,9 +68,9 @@ Depending on what you are making, it can be a good idea to include screenshots o
 
 ## Installation
 
-# Django-Projekt mit Anaconda
+Wenn Sie das Projekt zum ersten Mal verwenden, befolgen Sie die Anweisungen von Anfang an. Wenn Sie bereits alles installiert haben, springen Sie zum Abschnitt "Bereits installiert" weiter unten.
 
----
+# Django-Projekt mit Anaconda
 
 Dieses Django-Projekt wurde mit Anaconda erstellt und enthält eine `requirements.txt`-Datei, die alle erforderlichen Pakete und Bibliotheken für das Projekt auflistet.
 
@@ -155,6 +155,18 @@ DB_PORT=3306
 3. Führen Sie den Befehl `python manage.py runserver` aus, um den Django-Server zu starten. Der Server sollte nun unter `http://localhost:8000` erreichbar sein.
 
 Jetzt sollten sowohl das Frontend als auch das Backend laufen, und Sie können die Anwendung in Ihrem Browser verwenden. Wenn Sie auf Probleme stoßen oder weitere Unterstützung benötigen, zögern Sie nicht, uns zu kontaktieren.
+
+## Bereits installiert
+
+Wenn Sie bereits alles installiert haben, führen Sie die folgenden Schritte aus:
+
+1. Navigieren Sie zum Ordner des Projekts: ...\team01>.
+
+2. Installieren Sie die neuen Node-Module mit dem Befehl: "npm install".
+
+3. Fügen Sie die benötigten Bibliotheken für das Backend hinzu, indem Sie den Befehl "pip freeze > requirements.txt" ausführen.
+
+4. Starten Sie das Projekt mit dem Befehl "npm start".
 
 Hier sind einige Konten, die Sie zum Testen der Anwendung verwenden können:
 
