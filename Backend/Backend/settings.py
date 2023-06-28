@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'Adminseite',
     'Dongle_hinzufügen',
     'Lizenzhinzufügen',
+    'LizenzAnfordern',
 
 ]
 

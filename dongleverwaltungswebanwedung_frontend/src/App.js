@@ -11,6 +11,7 @@ import Kontoerstellen from "./Pages/Kontoerstellen";
 import Profileseite from "./Pages/Profileseite";
 import PasswortZuruecksetzung from "./Pages/Passwortzurücksetzung";
 import LizenzHinzufuegen from "./Pages/Lizenzhinzufügen";
+import LizenzAnfordern from "./Pages/LizenzAnfordern";
 
 function App() {
   return (
@@ -37,6 +38,10 @@ function App() {
               <Route
                 path="/Passwortzurücksetzung"
                 element={<PasswortZuruecksetzung />}
+              />
+              <Route
+                path="/LizenzAnfordern"
+                element={<LizenzAnfordern />}
               />
             </Routes>
           </Router>
