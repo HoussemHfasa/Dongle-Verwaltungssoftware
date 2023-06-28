@@ -7,9 +7,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from django.db.models import Max
 from .models import Ticket
-from .models import Dongle
 from .serializers import TicketSerializer
-from .models import UserLogginCustomuser
 from rest_framework.permissions import IsAuthenticated, BasePermission
 #houssem
 from datetime import date
