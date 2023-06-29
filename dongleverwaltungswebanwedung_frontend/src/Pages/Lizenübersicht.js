@@ -36,7 +36,7 @@ const Lizenzübersicht = () => {
           role === "Kunde" && (
             <button
               className={styles["Donglehinzufuegen"]}
-              onClick={() => navigate("/Profileseite")}
+              onClick={() => navigate("/LizenzAnfordern")}
             >
               <span className={styles["Donglehinzufuegentext"]}>
                 <span>Lizenz anfordern</span>
