@@ -12,7 +12,7 @@ class TicketSerializer(serializers.ModelSerializer):
     admin_verwalter_id = serializers.IntegerField()
     status = serializers.CharField()
     dongle_seriennumemr = serializers.CharField(required=False, allow_blank=True)
-    lizenzname = serializers.CharField(required=False)
+    lizenzname = serializers.CharField()
 
     class Meta:
         model = Ticket
