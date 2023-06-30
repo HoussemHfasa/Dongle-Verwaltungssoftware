@@ -6,19 +6,14 @@ from rest_framework import generics
 class TicketSerializer(serializers.ModelSerializer):
     id_ticket = serializers.IntegerField(required=False)
     titel = serializers.CharField()
-    beschreibung = serializers.CharField(allow_blank=True)
+    beschreibung = serializers.CharField()
     erstellungsdatum = serializers.DateField()
     schliessungsdatum = serializers.DateField()
-    admin_verwalter_id = serializers.IntegerField()
-    status = serializers.CharField()
-    dongle_seriennumemr = serializers.CharField(required=False, allow_blank=True)
+    admin_verwalter_id = serializers.IntegerField(required=False)
+    status = serializers.CharField(required=False)
+    dongle_seriennumemr = serializers.CharField(allow_blank=True)
     lizenzname = serializers.CharField()
 
     class Meta:
         model = Ticket
         fields = '__all__'
-
-# View
-class DongleCreateView(generics.CreateAPIView):
-    queryset = Ticket.objects.all()
-    serializer_class = TicketSerializer

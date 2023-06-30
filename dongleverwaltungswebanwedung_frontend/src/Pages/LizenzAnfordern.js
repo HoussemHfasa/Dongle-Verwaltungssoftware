@@ -4,6 +4,7 @@ import NavbarWrapper from "../Components/NavbarWrapper";
 import axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
 
+
 const Lizenzanfordern = () => {
   const [dongleId, setDongleId] = useState("");
   const [lizenzname, setLizenzname] = useState("");
@@ -21,35 +22,38 @@ const Lizenzanfordern = () => {
   // Funktion zum Speichern der eingegebenen Daten
   const handleSave = async () => {
     try {
-
       const response = await axios.post(
         "http://localhost:8000/api/ticket/create/",
         {
-          serien_nr: dongleId,
-          titel: tittel,
-          beschreibung: beschreibung,
-          lizenzname: lizenzname,
-          erstellungsdatum: new Date().toISOString().split("T")[0],
+          Dongle_seriennumemr: dongleId,
+          Titel: tittel,
+          Beschreibung: beschreibung,
+          LizenzName: lizenzname,
+          Erstellungsdatum: new Date().toISOString().split("T")[0],
+          Schliessungsdatum: new Date().toISOString().split("T")[0],
+          Admin_Verwalter_ID: null,
+          Status: "offen",
         }
       );
-
+  
       if (response.status === 201) {
-        alert("ihre Anfrage wird gechickt!");
+        alert("Ihre Anfrage wurde gesendet!");
         resetForm();
       } else {
-        alert("Fehler beim schicken der Anfrage");
+        alert("Fehler beim Senden der Anfrage.");
       }
     } catch (error) {
-      console.error("Fehler beim schicken der Anfrage", error);
-
+      console.error("Fehler beim Senden der Anfrage", error);
+  
       if (error.response && error.response.data) {
         const errorMessage = error.response.data;
-        alert("Fehler beim schicken der Anfrage: " + errorMessage);
+        alert("Fehler beim Senden der Anfrage: " + errorMessage);
       } else {
-        alert("Fehler beim schicken der Anfrage: " + error.message);
+        alert("Fehler beim Senden der Anfrage: " + error.message);
       }
     }
   };
+  
 
   return (
     <div className="LizenzAnfordern-container">
@@ -58,7 +62,7 @@ const Lizenzanfordern = () => {
 
       {/* Überschrift */}
       <div className="LizenzAnfordern-header">
-        <h1>Dongle anfordern</h1>
+        <h1>Lizenz anfordern</h1>
       </div>
 
       {/* Formular */}
@@ -76,7 +80,7 @@ const Lizenzanfordern = () => {
        
         {/* Lizenzname */}
         <div className="form-row">
-          <span className="form-label">Gültig bis</span>
+          <span className="form-label">Lizenzname</span>
           <input
             type="text"
             placeholder="Lizenzname"
@@ -86,7 +90,7 @@ const Lizenzanfordern = () => {
         </div>
         {/* tittel */}
         <div className="form-row">
-          <span className="form-label">FirmCode</span>
+          <span className="form-label">Tittel</span>
           <input
             type="text"
             placeholder="Tittel"
@@ -96,7 +100,7 @@ const Lizenzanfordern = () => {
         </div>
         {/* Beschreibung */}
         <div className="form-row">
-          <span className="form-label">Projekt</span>
+          <span className="form-label">Beschreibung</span>
           <input
             type="text"
             placeholder="Beschreibung"
