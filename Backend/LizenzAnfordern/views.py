@@ -35,7 +35,7 @@ class TicketCreateView(APIView):
         beschreibung = request.data.get('beschreibung')
         titel = request.data.get('titel')
         admin_verwalter_id = request.data.get('admin_verwalter_id')
-        dongle_seriennumemr = request.data.get('dongle_seriennumemr')
+        dongle_seriennummer = request.data.get('dongle_seriennummer')
 
         try:
             ticket_data = {
@@ -47,7 +47,7 @@ class TicketCreateView(APIView):
               'beschreibung': beschreibung,
               'status': 'offen',
               'admin_verwalter_id': admin_verwalter_id,
-              'dongle_seriennumemr': dongle_seriennumemr,
+              'dongle_seriennummer': dongle_seriennummer,
             }
             new_ticket = Ticket(**ticket_data)
             new_ticket.save()

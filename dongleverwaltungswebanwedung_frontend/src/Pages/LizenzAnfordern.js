@@ -25,14 +25,13 @@ const Lizenzanfordern = () => {
       const response = await axios.post(
         "http://localhost:8000/api/ticket/create/",
         {
-          Dongle_seriennumemr: dongleId,
-          Titel: tittel,
-          Beschreibung: beschreibung,
-          LizenzName: lizenzname,
-          Erstellungsdatum: new Date().toISOString().split("T")[0],
-          Schliessungsdatum: new Date().toISOString().split("T")[0],
-          Admin_Verwalter_ID: null,
-          Status: "offen",
+          dongle_seriennummer: dongleId,
+          titel: tittel,
+          beschreibung: beschreibung,
+          lizenzname: lizenzname,
+          erstellungsdatum: new Date().toISOString().split("T")[0],
+          schliessungsdatum: new Date().toISOString().split("T")[0],
+          status: "offen",
         }
       );
   
@@ -71,9 +70,9 @@ const Lizenzanfordern = () => {
         <div className="form-row">
           <span className="form-label">Dongle-ID(Seriennummer)</span>
           <input
-            type="text"
-            placeholder="Dongle-ID (Seriennummer)"
-            value={dongleId}
+              type="text"
+              placeholder="Dongle-ID (Seriennummer)"
+              value={dongleId}
             onChange={(e) => setDongleId(e.target.value)}
           />
         </div>
