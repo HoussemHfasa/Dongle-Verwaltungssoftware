@@ -15,6 +15,8 @@ from rest_framework.status import HTTP_400_BAD_REQUEST
 from rest_framework.views import APIView
 # JWT Token Response importieren
 from rest_framework_simplejwt.views import TokenObtainPairView
+from django.utils import timezone
+
 
 # Eigene Serializers und Models importieren
 from . import serializers
@@ -142,6 +144,8 @@ class Passwordchangeview(APIView):
 
             # Neues Passwort setzen
             user.set_password(new_password)
+            # Update the user's password and last_login
+            user.last_login = timezone.now()
             user.save()
             subject = 'Passwort erfolgreich geändert für Ihr GFal-Konto'
 
@@ -200,3 +204,20 @@ class GetUserPasswordView(APIView):
         return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
     except Exception as e:
         return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+    
+    
+class LoginView(APIView):
+    def post(self, request, *args, **kwargs):
+        email = request.data.get("email")
+        password = request.data.get("password")
+
+        # ... (authenticate the user)
+        user = User.objects.get(email=email)
+
+        # Check if this is the user's first login (last_login is None)
+        if user.last_login is None:
+            # Return a response indicating that the user needs to change their password
+            return Response({"message": "Please change your password on first login"},
+                            status=status.HTTP_403_FORBIDDEN)
+
+        # ... (proceed with the login)

@@ -13,6 +13,7 @@ class TicketSerializer(serializers.ModelSerializer):
     status = serializers.CharField(required=False)
     dongle_seriennummer = serializers.CharField(allow_blank=True)
     lizenzname = serializers.CharField()
+    grund_der_ablehnung=serializers.CharField()
 
     class Meta:
         model = Ticket

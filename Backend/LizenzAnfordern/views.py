@@ -34,8 +34,10 @@ class TicketCreateView(APIView):
         erstellungsdatum = request.data.get('erstellungsdatum')
         beschreibung = request.data.get('beschreibung')
         titel = request.data.get('titel')
-        admin_verwalter_id = request.data.get('admin_verwalter_id')
+        #admin_verwalter_id = request.data.get('admin_verwalter_id')
+        admin_verwalter_id =5
         dongle_seriennummer = request.data.get('dongle_seriennummer')
+        grund_der_ablehnung=""
 
         try:
             ticket_data = {
@@ -55,3 +57,44 @@ class TicketCreateView(APIView):
             return JsonResponse({"success": "Die Lizenz wurde erfolgreich erstellt."}, status=201)
         except Exception as e:
             return JsonResponse({"error": f"An error occurred while creating the license: {str(e)}"}, status=400)
+        
+
+
+
+
+
+
+
+
+        #houssem
+        from .models import Ticket, Lizenz  # Import the Lizenz model
+
+# ... other imports
+
+class TicketAnnehmenView(APIView):
+    def post(self, request, *args, **kwargs):
+        ticket_id = request.data.get("id_ticket")
+        ticket = Ticket.objects.get(id_ticket=ticket_id)
+
+        # Create a new Lizenz
+        new_lizenz = Lizenz(...)
+        new_lizenz.save()
+
+        # Update the ticket status to beendet
+        ticket.status = "beendet"
+        ticket.save()
+
+        return JsonResponse({"success": "Die Lizenz wurde angenommen und erstellt."}, status=200)
+
+class TicketAblehnenView(APIView):
+    def post(self, request, *args, **kwargs):
+        ticket_id = request.data.get("id_ticket")
+        grund_der_ablehnung = request.data.get("grund_der_ablehnung")
+        ticket = Ticket.objects.get(id_ticket=ticket_id)
+
+        # Update the ticket status and store the reason for rejection
+        ticket.status = "beendet"
+        ticket.grund_der_ablehnung = grund_der_ablehnung
+        ticket.save()
+
+        return JsonResponse({"success": "Die Lizenz wurde abgelehnt."}, status=200)

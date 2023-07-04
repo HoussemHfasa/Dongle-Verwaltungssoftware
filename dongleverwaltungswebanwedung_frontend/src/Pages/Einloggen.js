@@ -9,7 +9,15 @@ import axios from "axios";
 // Einloggen-Komponente
 const Einloggen = () => {
   // Verwenden von useAuth für Authentifizierungszwecke
-  const { setRole, setEmail, setPassword, setFirmcode, role } = useAuth();
+  const {
+    setRole,
+    setEmail,
+    setPassword,
+    setFirmcode,
+    role,
+    last_login,
+    setlast_login,
+  } = useAuth();
 
   // Verwenden von useState für lokale Zustandsverwaltung
   const [inputEmail, setInputEmail] = useState("");
@@ -60,10 +68,17 @@ const Einloggen = () => {
         setFirmcode(response.data.firm_code);
         setEmail(inputEmail);
         setPassword(inputPassword);
+        setlast_login(response.data.last_login);
         sessionStorage.setItem("role", response.data.role);
         sessionStorage.setItem("Firmcode", response.data.firm_code);
         sessionStorage.setItem("email", inputEmail);
         sessionStorage.setItem("password", inputPassword);
+        sessionStorage.setItem("last_login", response.data.last_login);
+        console.log(
+          "lastlogin in einloggen :",
+          response.data.last_login,
+          last_login
+        );
         console.log("Firmcode:", response.data.firm_code);
         console.log("Rolle, E-Mail und Passwort erfolgreich gesetzt");
         navigate("/Übersichtseite");

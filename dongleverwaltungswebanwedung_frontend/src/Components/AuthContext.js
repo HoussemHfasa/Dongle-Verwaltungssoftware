@@ -6,6 +6,9 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   // Authentifizierungsstatus verwalten
   const [email, setEmail] = useState(sessionStorage.getItem("email") || "");
+  const [last_login, setlast_login] = useState(
+    sessionStorage.getItem("last_login") || ""
+  );
   const [password, setPassword] = useState(
     sessionStorage.getItem("password") || ""
   );
@@ -25,6 +28,8 @@ export const AuthProvider = ({ children }) => {
     setRole,
     Firmcode,
     setFirmcode,
+    last_login,
+    setlast_login,
   };
   console.log("AuthProvider value:", value);
 

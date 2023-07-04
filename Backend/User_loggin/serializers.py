@@ -33,6 +33,7 @@ class UserLoginSerializer(CustomTokenObtainPairSerializer):
 
         data['role'] = self.user.role
         data['firm_code'] = self.user.firm_code  # Add firm_code here
+        data['last_login'] = self.user.last_login
         return data
 
 # Nutzer Serializer

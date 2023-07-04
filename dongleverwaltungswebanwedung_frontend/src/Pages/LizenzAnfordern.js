@@ -4,7 +4,6 @@ import NavbarWrapper from "../Components/NavbarWrapper";
 import axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
 
-
 const Lizenzanfordern = () => {
   const [dongleId, setDongleId] = useState("");
   const [lizenzname, setLizenzname] = useState("");
@@ -34,25 +33,24 @@ const Lizenzanfordern = () => {
           status: "offen",
         }
       );
-  
+
       if (response.status === 201) {
         alert("Ihre Anfrage wurde gesendet!");
         resetForm();
       } else {
-        alert("Fehler beim Senden der Anfrage.");
+        alert("Fehler beim Senden der Anfrage.1");
       }
     } catch (error) {
-      console.error("Fehler beim Senden der Anfrage", error);
-  
+      console.error("Fehler beim Senden der Anfrage2", error);
+
       if (error.response && error.response.data) {
         const errorMessage = error.response.data;
-        alert("Fehler beim Senden der Anfrage: " + errorMessage);
+        alert("Fehler beim Senden der Anfrage3: " + errorMessage);
       } else {
-        alert("Fehler beim Senden der Anfrage: " + error.message);
+        alert("Fehler beim Senden der Anfrage4: " + error.message);
       }
     }
   };
-  
 
   return (
     <div className="LizenzAnfordern-container">
@@ -70,13 +68,13 @@ const Lizenzanfordern = () => {
         <div className="form-row">
           <span className="form-label">Dongle-ID(Seriennummer)</span>
           <input
-              type="text"
-              placeholder="Dongle-ID (Seriennummer)"
-              value={dongleId}
+            type="text"
+            placeholder="Dongle-ID (Seriennummer)"
+            value={dongleId}
             onChange={(e) => setDongleId(e.target.value)}
           />
         </div>
-       
+
         {/* Lizenzname */}
         <div className="form-row">
           <span className="form-label">Lizenzname</span>
