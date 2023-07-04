@@ -38,16 +38,16 @@ const Lizenzanfordern = () => {
         alert("Ihre Anfrage wurde gesendet!");
         resetForm();
       } else {
-        alert("Fehler beim Senden der Anfrage.1");
+        alert("Fehler beim Senden der Anfrage.");
       }
     } catch (error) {
-      console.error("Fehler beim Senden der Anfrage2", error);
+      console.error("Fehler beim Senden der Anfrage", error);
 
       if (error.response && error.response.data) {
         const errorMessage = error.response.data;
-        alert("Fehler beim Senden der Anfrage3: " + errorMessage);
+        alert("Fehler beim Senden der Anfrage: " + errorMessage);
       } else {
-        alert("Fehler beim Senden der Anfrage4: " + error.message);
+        alert("Fehler beim Senden der Anfrage: " + error.message);
       }
     }
   };

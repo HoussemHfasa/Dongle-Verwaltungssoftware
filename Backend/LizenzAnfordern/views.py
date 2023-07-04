@@ -50,6 +50,8 @@ class TicketCreateView(APIView):
               'status': 'offen',
               'admin_verwalter_id': admin_verwalter_id,
               'dongle_seriennummer': dongle_seriennummer,
+              'grund_der_ablehnung':grund_der_ablehnung,
+
             }
             new_ticket = Ticket(**ticket_data)
             new_ticket.save()
@@ -77,8 +79,8 @@ class TicketAnnehmenView(APIView):
         ticket = Ticket.objects.get(id_ticket=ticket_id)
 
         # Create a new Lizenz
-        new_lizenz = Lizenz(...)
-        new_lizenz.save()
+        #new_lizenz = Lizenz(...)
+        #new_lizenz.save()
 
         # Update the ticket status to beendet
         ticket.status = "beendet"
