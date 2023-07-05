@@ -11,6 +11,7 @@ from .serializers import TicketSerializer
 from rest_framework.permissions import IsAuthenticated, BasePermission
 #houssem
 from datetime import date
+from rest_framework import generics #yassin
     
 
 class TicketCreateView(APIView):
@@ -88,4 +89,43 @@ class TicketAblehnenView(APIView):
         ticket.grund_der_ablehnung = grund_der_ablehnung
         ticket.save()
 
+<<<<<<< HEAD
         return JsonResponse({"success": "Die Lizenz wurde abgelehnt."}, status=200)
+
+
+#yassin
+
+class TicketDetailsView(generics.RetrieveUpdateAPIView):
+    queryset = Ticket.objects.all()
+    serializer_class = TicketSerializer
+
+    def get(self, request, *args, **kwargs):
+        tickets = Ticket.objects.all()
+        serializer = TicketSerializer(tickets, many=True)
+        return Response(serializer.data)
+
+    def put(self, request, *args, **kwargs):
+        ticket_id = request.data.get("id_ticket")
+        try:
+            ticket = Ticket.objects.get(id_ticket=ticket_id)
+            serializer = TicketSerializer(ticket, data=request.data, partial=True)
+            if serializer.is_valid(raise_exception=True):
+                serializer.save()
+                return JsonResponse({"success": "Ticket updated successfully."}, status=200)
+            else:
+                return JsonResponse({"error": "Invalid data."}, status=400)
+        except Ticket.DoesNotExist:
+            return JsonResponse({"error": "Ticket not found."}, status=404)
+        except Exception as e:
+            return JsonResponse({"error": f"An error occurred: {str(e)}"}, status=400)
+
+    def patch(self, request, *args, **kwargs):
+        ticket = self.get_object()
+        serializer = self.get_serializer(ticket, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)        
+=======
+        return JsonResponse({"success": "Die Lizenz wurde abgelehnt."}, status=200)
+>>>>>>> f360df26dc26800a8b78f789a39cbb8d03186af4

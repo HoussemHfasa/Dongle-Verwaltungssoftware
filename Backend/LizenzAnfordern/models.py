@@ -19,14 +19,26 @@ class Lizenz(models.Model):
         db_table = 'lizenz'
 
 class Ticket(models.Model):
+<<<<<<< HEAD
     id_ticket = models.IntegerField(db_column='ID_Ticket', primary_key=True)  # Field name made lowercase.
+=======
+    id_ticket = models.IntegerField(db_column='ID_Ticket', primary_key=True) # Field name made lowercase. (yassin)
+>>>>>>> main
     titel = models.CharField(db_column='Titel', max_length=45)  # Field name made lowercase.
     beschreibung = models.CharField(db_column='Beschreibung', max_length=45)  # Field name made lowercase.
     status = models.CharField(db_column='Status', max_length=45)  # Field name made lowercase.
     erstellungsdatum = models.DateField(db_column='Erstellungsdatum')  # Field name made lowercase.
     schliessungsdatum = models.DateField(db_column='Schliessungsdatum', blank=True, null=True)  # Field name made lowercase.
     admin_verwalter_id = models.IntegerField(db_column='Admin/Verwalter_ID', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+<<<<<<< HEAD
     dongle_seriennumemr = models.CharField(db_column='Dongle_seriennumemr', max_length=45, blank=True, null=True)  # Field name made lowercase.
+=======
+<<<<<<< HEAD
+    dongle_seriennummer = models.CharField(db_column='Dongle_seriennumemr', max_length=45, blank=True, null=True)  # Field name made lowercase.(yassin)
+=======
+    dongle_seriennummer = models.CharField(db_column='Dongle_seriennumemr', max_length=45, blank=True, null=True)  # Field name made lowercase.
+>>>>>>> f360df26dc26800a8b78f789a39cbb8d03186af4
+>>>>>>> main
     lizenzname = models.CharField(db_column='LizenzName', max_length=45, blank=True, null=True)  # Field name made lowercase.
     grund_der_ablehnung = models.CharField(db_column='Grund_der_Ablehnung', max_length=45, blank=True, null=True)  # Field name made lowercase.
     kunde = models.CharField(db_column='Kunde', max_length=45)  # Field name made lowercase.
