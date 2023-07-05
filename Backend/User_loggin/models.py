@@ -46,7 +46,8 @@ class CustomUserManager(BaseUserManager):
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     id = models.BigAutoField(primary_key=True)
     last_login = models.DateTimeField(blank=True, null=True)
-    is_superuser = models.IntegerField()
+    #is_superuser = models.IntegerField()
+    is_superuser = models.BooleanField(default=False)
     email = models.EmailField(unique=True)
     name = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
