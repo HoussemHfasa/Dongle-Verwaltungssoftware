@@ -1,7 +1,7 @@
+import axios from "axios";
 import React, { useState } from "react";
 import "./LizenzAnfordern.css";
 import NavbarWrapper from "../Components/NavbarWrapper";
-import axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
 
 const Lizenzanfordern = () => {
@@ -31,6 +31,8 @@ const Lizenzanfordern = () => {
           erstellungsdatum: new Date().toISOString().split("T")[0],
           schliessungsdatum: new Date().toISOString().split("T")[0],
           status: "offen",
+          grund_der_ablehnung: "",
+          admin_verwalter_id: 5,
         }
       );
 

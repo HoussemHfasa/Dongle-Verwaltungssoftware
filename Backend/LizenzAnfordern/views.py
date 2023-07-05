@@ -35,24 +35,20 @@ class TicketCreateView(APIView):
         erstellungsdatum = request.data.get('erstellungsdatum')
         beschreibung = request.data.get('beschreibung')
         titel = request.data.get('titel')
-        #admin_verwalter_id = request.data.get('admin_verwalter_id')
-        admin_verwalter_id =5
         dongle_seriennummer = request.data.get('dongle_seriennummer')
-        grund_der_ablehnung=""
 
         try:
             ticket_data = {
-              'id_ticket': id_ticket,
-              'titel': titel,
-              'lizenzname': lizenzname,
-              'erstellungsdatum': erstellungsdatum,
-              'schliessungsdatum': schliessungsdatum,
-              'beschreibung': beschreibung,
-              'status': 'offen',
-              'admin_verwalter_id': admin_verwalter_id,
-              'dongle_seriennummer': dongle_seriennummer,
-              'grund_der_ablehnung':grund_der_ablehnung,
-
+                'id_ticket': id_ticket,
+                'titel': titel,
+                'lizenzname': lizenzname,
+                'erstellungsdatum': erstellungsdatum,
+                'schliessungsdatum': schliessungsdatum,
+                'beschreibung': beschreibung,
+                'status': 'offen',
+                'admin_verwalter_id': 5,
+                'dongle_seriennummer': dongle_seriennummer,
+                'grund_der_ablehnung': "",
             }
             new_ticket = Ticket(**ticket_data)
             new_ticket.save()
@@ -60,17 +56,10 @@ class TicketCreateView(APIView):
             return JsonResponse({"success": "Die Lizenz wurde erfolgreich erstellt."}, status=201)
         except Exception as e:
             return JsonResponse({"error": f"An error occurred while creating the license: {str(e)}"}, status=400)
-        
 
 
-
-
-
-
-
-
-        #houssem
-        from .models import Ticket, Lizenz  # Import the Lizenz model
+#houssem
+from .models import Ticket, Lizenz  # Import the Lizenz model
 
 # ... other imports
 
@@ -100,6 +89,7 @@ class TicketAblehnenView(APIView):
         ticket.grund_der_ablehnung = grund_der_ablehnung
         ticket.save()
 
+<<<<<<< HEAD
         return JsonResponse({"success": "Die Lizenz wurde abgelehnt."}, status=200)
 
 
@@ -136,3 +126,6 @@ class TicketDetailsView(generics.RetrieveUpdateAPIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)        
+=======
+        return JsonResponse({"success": "Die Lizenz wurde abgelehnt."}, status=200)
+>>>>>>> f360df26dc26800a8b78f789a39cbb8d03186af4
