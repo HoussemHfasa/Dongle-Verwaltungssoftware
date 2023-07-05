@@ -7,9 +7,9 @@ from rest_framework import status
 from rest_framework.response import Response
 from django.db.models import Max
 from .models import Lizenz
-from .models import Dongle
+from Dongle_hinzufügen.models import Dongle
 from .serializers import LizenzSerializer
-from .models import UserLogginCustomuser
+from User_loggin.models import CustomUser
 from rest_framework.permissions import IsAuthenticated, BasePermission
 #houssem
 from datetime import date
@@ -57,7 +57,7 @@ class LizenzCreateView(APIView):
             dongle_serien_nr = ""
 
 
-        customer = UserLogginCustomuser.objects.filter(firm_code=firmcode).first()
+        customer = CustomUser.objects.filter(firm_code=firmcode).first()
         if customer:
             kunde = customer.name
             kunde_email = customer.email
@@ -105,6 +105,6 @@ class LizenzCreateView(APIView):
                 fail_silently=True,
             )
 
-            return JsonResponse({"success": "Die Lizenz wurde erfolgreich erstellt."}, status=201)
+            return JsonResponse({"success": "Die Lizenz wurde erfolgreich erstellt."}, status=status.HTTP_201_CREATED)
         except Exception as e:
             return JsonResponse({"error": f"An error occurred while creating the license: {str(e)}"}, status=400)

@@ -7,10 +7,11 @@ from rest_framework.response import Response
 from django.db.models import Max
 from .models import Dongle
 from .serializers import DongleSerializer
-from .models import UserLogginCustomuser
+#from .models import UserLogginCustomuser
 from rest_framework.permissions import IsAuthenticated, BasePermission
 #houssem
 from datetime import date
+from User_loggin.models import CustomUser
     
 
 class DongleCreateView(APIView):
@@ -46,7 +47,8 @@ class DongleCreateView(APIView):
         firmcode = request.data.get('firmcode')
 
         # Retrieve the customer name based on the email address
-        customer = UserLogginCustomuser.objects.filter(firm_code=firmcode).first()
+        #customer = UserLogginCustomuser.objects.filter(firm_code=firmcode).first()
+        customer = CustomUser.objects.filter(firm_code=firmcode).first()
         if customer:
             kunde = customer.name
             kunde_email = customer.email

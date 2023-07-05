@@ -3,7 +3,8 @@ from datetime import timedelta, date
 from django.core import mail
 from django.test import TestCase
 
-from license_management.models import Dongle, Lizenz
+from Dongle_hinzufügen.models import Dongle
+from Lizenzhinzufügen.models import Lizenz
 from license_management.views import check_license_expiry, send_expiry_notification
 
 

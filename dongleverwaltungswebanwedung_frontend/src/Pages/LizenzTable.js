@@ -63,6 +63,10 @@ const LizenzTable = () => {
       dataIndex: "projekt",
     },
     {
+      title: "Dongle Serien Nr",
+      dataIndex: "dongle_serien_nr",
+    },
+    {
       title: "Kunde",
       dataIndex: "kunde",
     },

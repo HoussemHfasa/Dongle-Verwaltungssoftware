@@ -2,13 +2,14 @@ from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Customuser
+from User_loggin.models import CustomUser
+
 from .serializers import CustomuserSerializer
 
 class CustomuserView(APIView):
  
  def get(self, request, *args, **kwargs):   #Alle Benutzer abrufen
-    result = Customuser.objects.all()
+    result = CustomUser.objects.all()
     serializer = CustomuserSerializer(result, many=True)
     return Response({'status': 'success', 'data': serializer.data}, status=200)   
 
@@ -20,7 +21,7 @@ class CustomuserView(APIView):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)  
 
  def put(self, request, pk, *args, **kwargs):   #Benutzer aktualisieren
-    instance = get_object_or_404(Customuser, pk=pk)
+    instance = get_object_or_404(CustomUser, pk=pk)
     serializer = CustomuserSerializer(instance, data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -28,7 +29,7 @@ class CustomuserView(APIView):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
  def delete(self, request, pk, *args, **kwargs):  #Benutzer löschen
-    instance = get_object_or_404(Customuser, pk=pk)
+    instance = get_object_or_404(CustomUser, pk=pk)
  
     # Überprüfen, ob beim Benutzer is_superuser auf 1 gesetzt ist
     if instance.is_superuser == 1:

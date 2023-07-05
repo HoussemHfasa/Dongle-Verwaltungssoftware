@@ -2,12 +2,12 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Lizenz
+from Lizenzhinzufügen.models import Lizenz
 from .serializers import LizenzSerializer
-
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import ListAPIView
 from rest_framework.authentication import BasicAuthentication
+from rest_framework.authentication import SessionAuthentication
 
 class LizenzView(APIView):
     authentication_classes = [BasicAuthentication]
