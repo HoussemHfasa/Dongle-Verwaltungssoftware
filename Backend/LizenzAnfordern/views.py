@@ -89,7 +89,6 @@ class TicketAblehnenView(APIView):
         ticket.grund_der_ablehnung = grund_der_ablehnung
         ticket.save()
 
-<<<<<<< HEAD
         return JsonResponse({"success": "Die Lizenz wurde abgelehnt."}, status=200)
 
 
@@ -126,6 +125,3 @@ class TicketDetailsView(generics.RetrieveUpdateAPIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)        
-=======
-        return JsonResponse({"success": "Die Lizenz wurde abgelehnt."}, status=200)
->>>>>>> f360df26dc26800a8b78f789a39cbb8d03186af4
