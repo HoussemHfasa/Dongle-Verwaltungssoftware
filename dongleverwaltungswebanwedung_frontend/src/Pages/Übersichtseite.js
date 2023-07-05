@@ -115,6 +115,30 @@ const Übersichtseite = () => {
         </div>
 
         {/* Dongle-Anforderungsbutton */}
+        {role === "Admin" ||
+        role ===
+          "Verwalter" /*Dongle-Hinzufügeknopf anzeigen wenn Benutzer Admin oder Verwalter ist*/ ? (
+          <button
+            className={styles["Donglehinzufuegen"]}
+            onClick={() => navigate("/Donglehinzufuegen")}
+          >
+            <span className={styles["Donglehinzufuegentext"]}>
+              <span>Dongle hinzufügen</span>
+            </span>
+          </button>
+        ) : (
+          role ===
+            "Kunde" /*Dongleanforderungsknopf anzeigen, wenn Benutzer Kunde ist */ && (
+            <button
+              className={styles["Donglehinzufuegen"]}
+              onClick={() => navigate("/Lizenübersicht")}
+            >
+              <span className={styles["Donglehinzufuegentext"]}>
+                <span>Dongle anfordern</span>
+              </span>
+            </button>
+          )
+        )}
         {/* ... Your Dongle-Anforderungsbutton code */}
 
         {showPasswordChangePopup && (
