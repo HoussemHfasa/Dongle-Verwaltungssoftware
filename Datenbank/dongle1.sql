@@ -295,7 +295,8 @@ CREATE TABLE `ticket` (
   `Admin/Verwalter_ID` int DEFAULT NULL,
   `Dongle_seriennumemr` varchar(45) DEFAULT NULL,
   `LizenzName` varchar(45) DEFAULT NULL,
-  `Grund_der_Ablehnung` varchar(45) DEFAULT NULL
+  `Grund_der_Ablehnung` varchar(45) DEFAULT NULL,
+  `Kunde` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -406,4 +407,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-04 16:35:01
+-- Dump completed on 2023-07-05 10:45:48
