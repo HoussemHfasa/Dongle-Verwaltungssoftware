@@ -1,74 +1,97 @@
-# Team01
+# Lizenzverwaltungssystem
 
-## Getting started
+Eine Webanwendung zur Verwaltung von Softwarelizenzen, die es Benutzern ermöglicht, Lizenzen und Dongles anzufordern, hinzuzufügen und zu verwalten, sowie Benachrichtigungen für ablaufende Lizenzen zu versenden.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## Inhaltsverzeichnis
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+- [Einführung](#einführung)
+- [Funktionen](#funktionen)
+- [Technischer Stack](#technischer-stack)
+- [Systemanforderungen](#systemanforderungen)
+- [Installation](#installation)
+- [Verwendung](#verwendung)
+- [Dokumentation](#dokumentation)
+- [Beitragen](#beitragen)
+- [Lizenz](#lizenz)
 
-## Add your files
+## Einführung
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+Das Lizenzverwaltungssystem ist eine Webanwendung, die entwickelt wurde, um die Verwaltung von Softwarelizenzen und Dongles zu vereinfachen und zu standardisieren. Es löst das Problem der unübersichtlichen und ineffizienten Verwaltung von Lizenzen in Form von Excel-Tabellen, indem es eine zentralisierte Plattform bietet und automatisierte Prozesse einführt.
 
-```
-cd existing_repo
-git remote add origin https://gitlab.rz.htw-berlin.de/softwareentwicklungsprojekt/sose2023/team01.git
-git branch -M main
-git push -uf origin main
-```
+Die Hauptmotivation hinter der Entwicklung dieses Systems ist die Optimierung von Arbeitsabläufen zur Registrierung und Verwaltung von Dongles und Lizenzen. Es ermöglicht eine automatische Benachrichtigung, wenn Dongles oder Lizenzen ablaufen, wodurch manuelles Überwachen und Erinnern überflüssig wird. Zusätzlich führt das System eine automatische Protokollierung zur Dokumentation ein, um die Transparenz und Nachvollziehbarkeit der Lizenzverwaltung zu verbessern.
 
-## Integrate with your tools
+## Funktionen
 
-- [ ] [Set up project integrations](https://gitlab.rz.htw-berlin.de/softwareentwicklungsprojekt/sose2023/team01/-/settings/integrations)
+Listen Sie die Hauptfunktionen und Funktionen Ihrer Anwendung auf.
 
-## Collaborate with your team
+## Technischer Stack
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+Geben Sie einen Überblick über die in Ihrem Projekt verwendeten Technologien:
 
-## Test and Deploy
+- Frontend: React
+- Backend: Django
+- Datenbank: MySQL
+- Pakete: Django Rest Framework, rest_framework_simplejwt, corsheaders, dotenv, Celery, Redis, SendinBlue SMTP
 
-Use the built-in continuous integration in GitLab.
+## Systemanforderungen
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+Um die Webanwendung zur Verwaltung von Softwarelizenzen und Dongles reibungslos auszuführen, sind die folgenden Systemanforderungen zu beachten:
 
----
+Betriebssystem;
 
-# Editing this README
+Windows 10, macOS 10.14 (Mojave) oder höher, Linux (Ubuntu 18.04 oder höher)
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+Software;
 
-## Suggestions for a good README
+Webbrowser: Google Chrome (Version 90 oder höher), Mozilla Firefox (Version 85 oder höher), Safari (Version 12 oder höher), Microsoft Edge (Version 85 oder höher)
+Datenbank: MySQL 5.7 oder höher, PostgreSQL 10 oder höher
+Backend: Python 3.7 oder höher, Django 3.2 oder höher
+Frontend: Node.js 12, 14 oder 16, npm 6 oder höher, React 17 oder höher
+Entwicklungsumgebung: Visual Studio Code 1.50 oder höher
+Python-Distribution: Anaconda 2020.11 oder höher
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+Hardwareanforderungen:
 
-## Name
-
-Choose a self-explaining name for your project.
-
-## Description
-
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+Prozessor: 1 GHz oder schneller, 64-Bit-Prozessor (Dual-Core oder besser empfohlen)
+Arbeitsspeicher (RAM): Mindestens 2 GB (4 GB oder mehr empfohlen)
+Festplattenspeicher: Mindestens 10 GB freier Speicherplatz für die Installation und Betrieb der Anwendung, sowie zusätzlicher Speicherplatz für Backups und zukünftige Updates
+Netzwerk: Breitband-Internetverbindung für den Zugriff auf die Webanwendung und die Kommunikation mit der Datenbank
 
 ## Installation
 
-Wenn Sie das Projekt zum ersten Mal verwenden, befolgen Sie die Anweisungen von Anfang an. Wenn Sie bereits alles installiert haben, springen Sie zum Abschnitt "Bereits installiert" weiter unten.
+## Installation
+
+## Bereits installiert
+
+Wenn Sie bereits alles installiert haben, führen Sie die folgenden Schritte aus:
+
+1. Navigieren Sie zum Ordner des Projekts: ...\team01>.
+
+2. Installieren Sie die neuen Node-Module mit dem Befehl: "npm install".
+
+3. Fügen Sie die benötigten Bibliotheken für das Backend hinzu, indem Sie den Befehl "pip freeze > requirements.txt" ausführen.
+
+4. Starten Sie das Projekt mit dem Befehl "npm start".
+
+Hier sind einige Konten, die Sie zum Testen der Anwendung verwenden können:
+
+Admin-Konto(Superuser):
+E-Mail: admin@example.com
+Passwort: testpassword
+
+Admin-Konto:
+E-Mail: newuser@example.com
+Passwort: testpassword
+
+Verwalter-Konto:
+E-Mail: houssemhfassa25@gmail.com
+Passwort: testpassword
+
+Kunden-Konto:
+E-Mail: kundeuser@example.com
+Passwort: testpassword
+
+Verwenden Sie diese Anmeldedaten, um die verschiedenen Rollen und Funktionen innerhalb der Anwendung zu testen. Wenn Sie auf Probleme stoßen oder weitere Unterstützung benötigen, zögern Sie nicht, uns zu kontaktieren.
 
 # Django-Projekt mit Anaconda
 
@@ -154,39 +177,61 @@ DB_PORT=3306
 
 3. Führen Sie den Befehl `python manage.py runserver` aus, um den Django-Server zu starten. Der Server sollte nun unter `http://localhost:8000` erreichbar sein.
 
-Jetzt sollten sowohl das Frontend als auch das Backend laufen, und Sie können die Anwendung in Ihrem Browser verwenden. Wenn Sie auf Probleme stoßen oder weitere Unterstützung benötigen, zögern Sie nicht, uns zu kontaktieren.
+Jetzt sollten sowohl das Frontend als auch das Backend laufen, und Sie können die Anwendung in Ihrem Browser verwenden.
 
-## Bereits installiert
+## Verwendung
 
-Wenn Sie bereits alles installiert haben, führen Sie die folgenden Schritte aus:
+Die Webanwendung zur Verwaltung von Softwarelizenzen und Dongles ermöglicht den Benutzern, ihre Dongles und Lizenzen einzusehen, Anfragen zu stellen und ihre Konten zu verwalten. Die Interaktion mit der Anwendung unterscheidet sich je nach Benutzerrolle: Kunde, Verwalter oder Administrator. Im Folgenden werden die Funktionen und Interaktionen für jede Rolle beschrieben.
 
-1. Navigieren Sie zum Ordner des Projekts: ...\team01>.
+Kunde:
 
-2. Installieren Sie die neuen Node-Module mit dem Befehl: "npm install".
+Dongles und Lizenzen ansehen: Kunden können ihre vorhandenen Dongles und Lizenzen in einer übersichtlichen Liste einsehen. In dieser Liste werden Informationen wie Produktname, Lizenztyp, Ablaufdatum und Dongle-Status angezeigt.
 
-3. Fügen Sie die benötigten Bibliotheken für das Backend hinzu, indem Sie den Befehl "pip freeze > requirements.txt" ausführen.
+Dongle oder Lizenz anfordern: Kunden können über ein einfaches Formular neue Dongles oder Lizenzen anfordern. Sie müssen die erforderlichen Informationen wie Produkt, Lizenztyp und gewünschte Menge angeben und die Anfrage absenden.
 
-4. Starten Sie das Projekt mit dem Befehl "npm start".
+Verwalter:
 
-Hier sind einige Konten, die Sie zum Testen der Anwendung verwenden können:
+Dongles und Lizenzen aller Kunden einsehen: Verwalter können die Dongles und Lizenzen aller Kunden in einer zentralen Übersicht einsehen. Sie können nach Kunden oder Produkten filtern, um bestimmte Informationen schneller zu finden.
 
-Admin-Konto(Superuser):
-E-Mail: admin@example.com
-Passwort: testpassword
+Kundenanfragen bearbeiten: Verwalter können die Anfragen von Kunden für neue Dongles oder Lizenzen einsehen und diese entweder annehmen oder ablehnen. Je nach Entscheidung werden die entsprechenden Dongles oder Lizenzen erstellt und den Kunden zugewiesen bzw. die Ablehnung kommuniziert.
 
-Admin-Konto:
-E-Mail: newuser@example.com
-Passwort: testpassword
+Administrator:
 
-Verwalter-Konto:
-E-Mail: houssemhfassa25@gmail.com
-Passwort: testpassword
+Alle Funktionen eines Verwalters: Administratoren haben Zugriff auf alle Funktionen, die auch Verwalter ausführen können. Dazu gehört das Einsehen der Dongles und Lizenzen aller Kunden sowie das Bearbeiten von Kundenanfragen.
 
-Kunden-Konto:
-E-Mail: kundeuser@example.com
-Passwort: testpassword
+Nutzerliste verwalten: Administratoren können die Liste der Nutzer (Kunden, Verwalter und Administratoren) einsehen, Nutzerkonten löschen und die Rolle von Nutzern zwischen Administrator und Verwalter ändern.
 
-Verwenden Sie diese Anmeldedaten, um die verschiedenen Rollen und Funktionen innerhalb der Anwendung zu testen. Wenn Sie auf Probleme stoßen oder weitere Unterstützung benötigen, zögern Sie nicht, uns zu kontaktieren.
+Neue Konten erstellen: Administratoren können neue Nutzerkonten erstellen und die entsprechenden Rollen (Kunde, Verwalter oder Administrator) zuweisen.
+
+Allgemeine Funktionen:
+
+Passwort ändern: Alle Benutzer können ihr Passwort ändern, indem sie die entsprechende Funktion in ihrem Profilbereich nutzen.
+
+Passwort zurücksetzen: Sollte ein Benutzer sein Passwort vergessen haben, kann er über die "Passwort vergessen?"-Funktion auf der Login-Seite ein neues Passwort anfordern.
+
+## Dokumentation
+
+Verlinken Sie zusätzliche Dokumentation oder Benutzerhandbücher.
+
+## Beitragen
+
+Erläutern Sie, wie andere zum Projekt beitragen, Probleme melden oder Verbesserungen vorschlagen können.
+
+## Lizenz
+
+Copyright (c) 2023 HTW Berlin Softwareentwicklung Gruppe 1 (Rama Abazied, Yassin Sahnoun, Houssem Hfasa)
+
+MIT-Lizenz
+
+Hiermit wird jeder Person, die eine Kopie dieser Software und der zugehörigen Dokumentationsdateien (die "Software") erhält, die Erlaubnis erteilt, kostenlos und ohne Einschränkungen mit der Software zu handeln. Dies umfasst die Rechte zur Nutzung, zum Kopieren, Ändern, Zusammenführen, Veröffentlichen, Verteilen, Unterlizenzieren und/oder Verkaufen von Kopien der Software.
+
+Die folgenden Bedingungen müssen erfüllt sein, um diese Erlaubnis zu erhalten:
+
+Der oben genannte Urheberrechtshinweis und dieser Genehmigungshinweis müssen in allen Kopien oder wesentlichen Teilen der Software enthalten sein.
+
+DIE SOFTWARE WIRD "WIE SIE IST" UND OHNE JEGLICHE AUSDRÜCKLICHE ODER STILLSCHWEIGENDE GEWÄHRLEISTUNG BEREITGESTELLT. DIES BEINHALTET, ABER IST NICHT BESCHRÄNKT AUF, GEWÄHRLEISTUNGEN DER MARKTGÄNGIGKEIT, EIGNUNG FÜR EINEN BESTIMMTEN ZWECK UND NICHTVERLETZUNG VON RECHTEN DRITTER. IN KEINEM FALL SIND DIE URHEBER ODER URHEBERRECHTSINHABER HAFTBAR FÜR ANSPRÜCHE, SCHÄDEN ODER ANDERE VERBINDLICHKEITEN, OB IN EINER VERTRAGS- ODER HAFTUNGSKLAGE, EINER UNERLAUBTEN HANDLUNG ODER ANDERWEITIG, DIE SICH AUS, AUS ODER IN VERBINDUNG MIT DER SOFTWARE ODER DER NUTZUNG ODER ANDEREN HANDLUNGEN MIT DER SOFTWARE ERGEBEN.
+
+Diese Software ist Open Source und wird unter der MIT-Lizenz vergeben.
 
 ## Usage
 
@@ -213,18 +258,6 @@ You can also document commands to lint the code or run tests. These steps help t
 Show your appreciation to those who have contributed to the project.
 
 ## License
-
-Copyright (c) 2023 HTW Berlin Softwareentwicklung Gruppe 1 (Rama Abazied, Yassin Sahnoun, Houssem Hfasa)
-
-Hiermit wird jeder Person, die eine Kopie dieser Software und der zugehörigen Dokumentationsdateien (die "Software") erhält, die Erlaubnis erteilt, kostenlos und ohne Einschränkungen mit der Software zu handeln. Dies umfasst die Rechte zur Nutzung, zum Kopieren, Ändern, Zusammenführen, Veröffentlichen, Verteilen, Unterlizenzieren und/oder Verkaufen von Kopien der Software.
-
-Die folgenden Bedingungen müssen erfüllt sein, um diese Erlaubnis zu erhalten:
-
-Der oben genannte Urheberrechtshinweis und dieser Genehmigungshinweis müssen in allen Kopien oder wesentlichen Teilen der Software enthalten sein.
-
-DIE SOFTWARE WIRD "WIE SIE IST" UND OHNE JEGLICHE AUSDRÜCKLICHE ODER STILLSCHWEIGENDE GEWÄHRLEISTUNG BEREITGESTELLT. DIES BEINHALTET, ABER IST NICHT BESCHRÄNKT AUF, GEWÄHRLEISTUNGEN DER MARKTGÄNGIGKEIT, EIGNUNG FÜR EINEN BESTIMMTEN ZWECK UND NICHTVERLETZUNG VON RECHTEN DRITTER. IN KEINEM FALL SIND DIE URHEBER ODER URHEBERRECHTSINHABER HAFTBAR FÜR ANSPRÜCHE, SCHÄDEN ODER ANDERE VERBINDLICHKEITEN, OB IN EINER VERTRAGS- ODER HAFTUNGSKLAGE, EINER UNERLAUBTEN HANDLUNG ODER ANDERWEITIG, DIE SICH AUS, AUS ODER IN VERBINDUNG MIT DER SOFTWARE ODER DER NUTZUNG ODER ANDEREN HANDLUNGEN MIT DER SOFTWARE ERGEBEN.
-
-Diese Software ist Open Source und wird unter der GPLv3-Lizenz vergeben.
 
 ## Project status
 
