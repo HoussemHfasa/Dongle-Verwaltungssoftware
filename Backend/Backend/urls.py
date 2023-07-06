@@ -20,5 +20,6 @@ urlpatterns = [
     path('api/', include('Dongle_hinzufügen.urls')),
     path('api/', include('Lizenzhinzufügen.urls')),
     path('api/', include('LizenzAnfordern.urls')),
+    path('api/', include('DongleAnfordern.urls')),
     ]
     

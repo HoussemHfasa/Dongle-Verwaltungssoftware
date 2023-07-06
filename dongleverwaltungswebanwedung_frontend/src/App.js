@@ -12,6 +12,7 @@ import Profileseite from "./Pages/Profileseite";
 import PasswortZuruecksetzung from "./Pages/Passwortzurücksetzung";
 import LizenzHinzufuegen from "./Pages/Lizenzhinzufügen";
 import LizenzAnfordern from "./Pages/LizenzAnfordern";
+import DongleAnfordern from "./Pages/DongleAnfordern";
 import Lizenzanfordernantwort from "./Pages/Lizenzanfordernantwort";
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
                 element={<PasswortZuruecksetzung />}
               />
               <Route path="/LizenzAnfordern" element={<LizenzAnfordern />} />
+              <Route path="/DongleAnfordern" element={<DongleAnfordern />} />
             </Routes>
           </Router>
         </main>
