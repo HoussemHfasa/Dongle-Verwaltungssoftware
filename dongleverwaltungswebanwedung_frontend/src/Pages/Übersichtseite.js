@@ -131,7 +131,7 @@ const Übersichtseite = () => {
             "Kunde" /*Dongleanforderungsknopf anzeigen, wenn Benutzer Kunde ist */ && (
             <button
               className={styles["Donglehinzufuegen"]}
-              onClick={() => navigate("/Lizenübersicht")}
+              onClick={() => navigate("/DongleAnfordern")}
             >
               <span className={styles["Donglehinzufuegentext"]}>
                 <span>Dongle anfordern</span>

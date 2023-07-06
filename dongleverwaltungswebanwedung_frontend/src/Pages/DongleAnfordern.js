@@ -12,7 +12,6 @@ const DongleAnfordern = () => {
   // Funktion zum Zurücksetzen des Formulars
   const resetForm = () => {
     setDongleId("");
-    setLizenzname("");
     setTittel("");
     setBeschreibung("");
   };

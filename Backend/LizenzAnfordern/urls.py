@@ -3,7 +3,7 @@ from .views import (
     TicketCreateView,
     TicketAnnehmenView,
     TicketAblehnenView,
-    TicketDetailsView,  # yassin
+    TicketDetailsView,  # freeyassin
 )
 
 urlpatterns = [

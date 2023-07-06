@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'Dongle_hinzufügen',
     'Lizenzhinzufügen',
     'LizenzAnfordern',
+    'DongleAnfordern',
 
 ]
 
