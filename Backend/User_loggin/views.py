@@ -46,7 +46,7 @@ class ObtainAccessToken(APIView):
         # Wenn der Benutzer authentifiziert ist, gib das Token zurück
         if user is not None:
             token = str(CustomTokenObtainPairSerializer.get_token(user).access_token)
-            return Response({"access_token": token})
+            return Response({"access_token": token},status=status.HTTP_200_OK)
         else:
             return Response({"error": "Ungültige E-Mail oder Passwort"}, status=status.HTTP_401_UNAUTHORIZED)
 
@@ -54,11 +54,14 @@ class ObtainAccessToken(APIView):
 class UserLoginAPIView(TokenObtainPairView):
     # Login Serializer verwenden
     serializer_class = serializers.UserLoginSerializer
+    http_method_names = ['post']
+
 
 # Klasse zum Abrufen des Admin-Zugriffstokens
 class AdminAccessTokenView(GenericAPIView):
     # Nur authentifizierte Benutzer können auf diese Ansicht zugreifen
     permission_classes = [IsAuthenticated]
+    http_method_names = ['get']
 
     # GET-Methode zum Abrufen des Admin-Zugriffstokens
     def get(self, request, *args, **kwargs):
@@ -72,6 +75,8 @@ class AdminAccessTokenView(GenericAPIView):
 
 # Klasse zum Abrufen des Admin-Zugriffstokens mit der POST-Methode
 class ObtainAdminAccessToken(APIView):
+    http_method_names = ['post']
+
     def post(self, request, *args, **kwargs):
         email = request.data.get("email")
         password = request.data.get("password")
@@ -81,7 +86,7 @@ class ObtainAdminAccessToken(APIView):
         if user is not None:
             if user.role == "Admin":
                 token = str(CustomTokenObtainPairSerializer.get_token(user).access_token)
-                return Response({"access_token": token})
+                return Response({"access_token": token},status=status.HTTP_200_OK)
             else:
                 return Response({"error": "User is not an admin"}, status=status.HTTP_403_FORBIDDEN)
         else:

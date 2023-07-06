@@ -32,7 +32,7 @@ const Übersichtseite = () => {
           OK
         </button>
       </div>
-      <div className={styles.overlay}></div>
+      {!showPasswordChangePopup && <div className={styles.overlay}></div>}
     </div>
   );
   useEffect(() => {
@@ -170,7 +170,7 @@ const Übersichtseite = () => {
                 <p className={styles.error_message}>{errorMessage}</p>
               )}
             </div>
-            <div className={styles.overlay}></div>
+            {!showPopup && <div className={styles.overlay}></div>}
           </div>
         )}
       </div>

@@ -65,7 +65,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     # Eigene Berechtigung
     class Meta:
         permissions = [("can_view_user", "Can view user")]
-        managed = False
+        managed = True
         db_table = 'user_loggin_customuser'   
     
 
@@ -80,3 +80,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     # Nutzerrepräsentation 
     def __str__(self):
         return self.email
+    
+
+
+
+
