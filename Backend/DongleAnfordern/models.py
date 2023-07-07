@@ -23,5 +23,4 @@ class Ticket(models.Model):
     standort = models.CharField(db_column='Standort', max_length=45)  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'ticket'

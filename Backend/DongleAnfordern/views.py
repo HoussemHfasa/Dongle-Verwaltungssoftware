@@ -10,6 +10,7 @@ from .models import Ticket
 from .serializers import TicketSerializer
 from rest_framework.permissions import IsAuthenticated, BasePermission
 #houssem
+import datetime
 from datetime import date
 from rest_framework import generics #yassin
 from User_loggin.models import CustomUser
@@ -21,7 +22,7 @@ class TicketCreateView(APIView):
         try:
             serializer.is_valid(raise_exception=True)
         except Exception as e:
-            return JsonResponse({"error": f"An error occurred while creating the license: {str(e)}"}, status=400)
+            return JsonResponse({"error": f"An error occurred while creating the license: {str(e)}"}, status=401)
 
         # Get the highest id_ticket value
         id_ticket = Ticket.objects.aggregate(Max('id_ticket'))['id_ticket__max']
@@ -62,7 +63,7 @@ class TicketCreateView(APIView):
                 'beschreibung': beschreibung,
                 'status': 'offen',
                 'erstellungsdatum': erstellungsdatum,
-                'schliessungsdatum': schliessungsdatum,
+                'schliessungsdatum': None,
                 'dongle_lizenz': 0,
                 'dongle_name': dongle_name,
                 'dongle_seriennummer': dongle_seriennummer,
@@ -70,7 +71,7 @@ class TicketCreateView(APIView):
                 'firmcode': firmcode,
                 'gueltig_von': gueltig_von,
                 'gueltig_bis': gueltig_bis,
-                'einheiten' :"",
+                'einheiten' :None,
                 'projekt': projekt,
                 'grund_der_ablehnung': "",
                 'admin_verwalter_email':"",
@@ -80,7 +81,7 @@ class TicketCreateView(APIView):
             }
             new_ticket = Ticket(**ticket_data)
             new_ticket.save()
-
+          
             return JsonResponse({"success": "Die Lizenz wurde erfolgreich erstellt."}, status=201)
         except Exception as e:
             return JsonResponse({"error": f"An error occurred while creating the license: {str(e)}"}, status=400)

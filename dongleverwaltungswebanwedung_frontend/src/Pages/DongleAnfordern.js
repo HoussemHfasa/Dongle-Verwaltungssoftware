@@ -33,42 +33,55 @@ const DongleAnfordern = () => {
   // Funktion zum Speichern der eingegebenen Daten
   const handleSave = async () => {
     try {
-
-      const formattedGueltigVon = new Date(gueltigVon).toISOString().split("T")[0];
-      const formattedGueltigBis = new Date(gueltigBis).toISOString().split("T")[0];
+      const formattedGueltigVon = new Date(gueltigVon)
+        .toISOString()
+        .split("T")[0];
+      const formattedGueltigBis = new Date(gueltigBis)
+        .toISOString()
+        .split("T")[0];
 
       const response = await axios.post(
         "http://localhost:8000/api/Dongleticket/create/",
-         {
-        dongle_seriennummer: dongleId,
-        dongle_name: dongleName,
-        gueltig_von: formattedGueltigVon,
-        gueltig_bis: formattedGueltigBis,
-        projekt: projekt,
-        standort: standort,
-        haendler: handler,
-        firmcode: firmCode,
-        titel: titel,
-        beschreibung: beschreibung,
-        erstellungsdatum: new Date().toISOString().split("T")[0],
-        schliessungsdatum: new Date().toISOString().split("T")[0],
-       
-      });
+        {
+          dongle_seriennummer: dongleId,
+          dongle_name: dongleName,
+          gueltig_von: formattedGueltigVon,
+          gueltig_bis: formattedGueltigBis,
+          projekt: projekt,
+          standort: standort,
+          haendler: handler,
+          firmcode: firmCode,
+          titel: titel,
+          beschreibung: beschreibung,
+          erstellungsdatum: new Date().toISOString().split("T")[0],
+          schliessungsdatum: new Date().toISOString().split("T")[0],
+        }
+      );
 
       if (response.status === 201) {
         alert("Ihre Anfrage wurde gesendet!");
         resetForm();
       } else {
-        alert("Fehler beim Senden der Anfrage.");
+        alert("Fehler beim Senden der Anfrage1.");
       }
     } catch (error) {
-      console.error("Fehler beim Senden der Anfrage", error);
+      console.error("Fehler beim Senden der Anfrage2", error);
 
-      if (error.response && error.response.data) {
+      if (error.response) {
+        const statusCode = error.response.status;
         const errorMessage = error.response.data;
-        alert("Fehler beim Senden der Anfrage: " + errorMessage);
+
+        console.error("Status Code:", statusCode);
+        console.error("Error Message:", errorMessage);
+
+        alert(
+          "Fehler beim Senden der Anfrage3: " +
+            statusCode +
+            " - " +
+            errorMessage
+        );
       } else {
-        alert("Fehler beim Senden der Anfrage: " + error.message);
+        alert("Fehler beim Senden der Anfrage4: " + error.message);
       }
     }
   };
