@@ -12,6 +12,7 @@ from rest_framework.permissions import IsAuthenticated, BasePermission
 #houssem
 from datetime import date
 from rest_framework import generics #yassin
+from User_loggin.models import CustomUser
     
 
 class TicketCreateView(APIView):
@@ -30,25 +31,52 @@ class TicketCreateView(APIView):
             id_ticket += 1
 
         # Retrieve the values from the React inputs
-        
+        gueltig_von = request.data.get('gueltig_von')
+        gueltig_bis = request.data.get('gueltig_bis')
+        projekt = request.data.get('projekt')
+        standort = request.data.get('standort')
+        haendler = request.data.get('haendler')
+        #datum_erstausgabe =date.today()
+        firmcode = request.data.get('firmcode')
+
+        # Retrieve the customer name based on the email address
+        #customer = UserLogginCustomuser.objects.filter(firm_code=firmcode).first()
+        customer = CustomUser.objects.filter(firm_code=firmcode).first()
+        if customer:
+            kunde = customer.name
+            kunde_email = customer.email
+        else:
+            kunde = ""
+            kunde_email = ""
         schliessungsdatum = request.data.get('schliessungsdatum')
         erstellungsdatum = request.data.get('erstellungsdatum')
         beschreibung = request.data.get('beschreibung')
         titel = request.data.get('titel')
         dongle_seriennummer = request.data.get('dongle_seriennummer')
+        dongle_name = request.data.get('dongle_name')
 
         try:
             ticket_data = {
                 'id_ticket': id_ticket,
                 'titel': titel,
-                'lizenzname': "",
-                'erstellungsdatum': erstellungsdatum,
-                'schliessungsdatum': schliessungsdatum,
                 'beschreibung': beschreibung,
                 'status': 'offen',
-                'admin_verwalter_id': 5,
+                'erstellungsdatum': erstellungsdatum,
+                'schliessungsdatum': schliessungsdatum,
+                'dongle_lizenz': 0,
+                'dongle_name': dongle_name,
                 'dongle_seriennummer': dongle_seriennummer,
+                'lizenzname': "",
+                'firmcode': firmcode,
+                'gueltig_von': gueltig_von,
+                'gueltig_bis': gueltig_bis,
+                'einheiten' :"",
+                'projekt': projekt,
                 'grund_der_ablehnung': "",
+                'admin_verwalter_email':"",
+                'haendler': haendler,
+                'standort': standort,
+
             }
             new_ticket = Ticket(**ticket_data)
             new_ticket.save()
