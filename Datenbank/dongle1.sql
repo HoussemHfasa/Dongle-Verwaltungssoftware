@@ -303,7 +303,7 @@ CREATE TABLE `ticket` (
   `Projekt` varchar(45) DEFAULT NULL,
   `Grund_der_Ablehnung` varchar(45) DEFAULT NULL,
   `Admin/Verwalter_Email` varchar(45) DEFAULT NULL,
-  `Händler` varchar(45) DEFAULT NULL,
+  `Haendler` varchar(45) DEFAULT NULL,
   `Standort` varchar(45) NOT NULL,
   PRIMARY KEY (`ID_Ticket`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
@@ -417,4 +417,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-07 14:17:35
+-- Dump completed on 2023-07-07 17:22:01
