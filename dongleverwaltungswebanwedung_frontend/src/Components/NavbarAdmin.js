@@ -81,7 +81,12 @@ const NavbarAdmin = (props) => {
         >
           Lizenzübersicht
         </button>
-        <button className={styles["anfrage"]}>Anfrage</button>
+        <button
+          className={styles["anfrage"]}
+          onClick={() => navigate("/Lizenzanfordernantwort")}
+        >
+          Anfrage
+        </button>
         <button className={styles["admin"]} onClick={() => navigate("/Admin")}>
           Admin
         </button>
