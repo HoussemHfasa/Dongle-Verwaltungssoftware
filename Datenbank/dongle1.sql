@@ -303,6 +303,8 @@ CREATE TABLE `ticket` (
   `Projekt` varchar(45) DEFAULT NULL,
   `Grund_der_Ablehnung` varchar(45) DEFAULT NULL,
   `Admin/Verwalter_Email` varchar(45) DEFAULT NULL,
+  `Händler` varchar(45) DEFAULT NULL,
+  `Standort` varchar(45) NOT NULL,
   PRIMARY KEY (`ID_Ticket`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -313,7 +315,7 @@ CREATE TABLE `ticket` (
 
 LOCK TABLES `ticket` WRITE;
 /*!40000 ALTER TABLE `ticket` DISABLE KEYS */;
-INSERT INTO `ticket` VALUES (1,'ebdf','dhbdfb','offen','2019-09-27','2019-09-27',NULL,NULL,NULL,NULL,'FIRM123',NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `ticket` VALUES (1,'ebdf','dhbdfb','offen','2019-09-27','2019-09-27',NULL,NULL,NULL,NULL,'FIRM123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'');
 /*!40000 ALTER TABLE `ticket` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -415,4 +417,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-07 13:26:52
+-- Dump completed on 2023-07-07 14:17:35
