@@ -1,22 +1,38 @@
-import React, { forwardRef } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useAuth } from "../Components/AuthContext";
 import styles from "./Navbar.module.css";
 
-const NotificationMenu = forwardRef((props, ref) => {
+const NotificationMenu = () => {
+  const { role, Firmcode } = useAuth();
+  const [notifications, setNotifications] = useState([]);
+
+  const fetchNotifications = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8000/tickets/${Firmcode}/`
+      );
+      setNotifications(response.data);
+    } catch (error) {
+      console.error("Error fetching notifications:", error);
+    }
+  };
+
+  if (role === "Kunde") {
+    useEffect(() => {
+      fetchNotifications();
+    }, []);
+  }
+
   return (
-    // Verwenden von forwardRef, um die ref-Instanz von außerhalb der Komponente zu verwalten
-    <div className={styles["notificationContainer"]} ref={ref}>
-      <div className={styles["notificationItem"]}>
-        <p>Benachrichtigung 1</p>
-      </div>
-      <div className={styles["notificationItem"]}>
-        <p>Benachrichtigung 2</p>
-      </div>
-      <div className={styles["notificationItem"]}>
-        <p>Benachrichtigung 3</p>
-      </div>
-      {/* Fügen Sie bei Bedarf weitere Benachrichtigungselemente hinzu */}
+    <div className={styles["notificationContainer"]}>
+      {notifications.map((notification, index) => (
+        <div key={index} className={styles["notificationItem"]}>
+          <p>{notification.title}</p>
+        </div>
+      ))}
     </div>
   );
-});
+};
 
 export default NotificationMenu;
