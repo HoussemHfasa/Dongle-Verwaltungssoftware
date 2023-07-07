@@ -1,64 +1,119 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Input, Table, Button } from "antd"; 
+import { Table, Button, Modal, Input } from "antd";
 import { useAuth } from "../Components/AuthContext";
 
 const TicketTable = () => {
+  const [dataSource, setDataSource] = useState([]);
+  const { email, password } = useAuth();
+  const [modalVisible, setModalVisible] = useState(false);
+  const [ablehnungText, setAblehnungText] = useState("");
+  const [selectedTicketId, setSelectedTicketId] = useState(null);
+
+  useEffect(() => {
+    localStorage.setItem("email", email);
+  }, [email]);
+  useEffect(() => {
+    localStorage.setItem("password", password);
+  }, [password]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      console.log("email test in tickettable", email, password);
+      const response = await axios.get("http://localhost:8000/api/ticket/details/", {
+        headers: {
+          Authorization: `Basic ${btoa(`${email}:${password}`)}`,
+        },
+      });
+      setDataSource(response.data);
+      console.log("Fetched data:", response.data);
+    };
+
+    fetchData();
+  }, [email, password]);
     
-    const [dataSource, setDataSource] = useState([]);
-    const { email, password } = useAuth();
-    useEffect(() => {
-      localStorage.setItem("email", email);
-    }, [email]);
-    useEffect(() => {
-      localStorage.setItem("password", password);
-    }, [password]);
+
+
+  const handleAccept = async (ticketId) => {
+    console.log("handleAccept called with ticketId:", ticketId);
+    try {
+      console.log("Handling accept for ticketId:", ticketId);
   
-    
-    useEffect(() => {
-      const fetchData = async () => {
-        console.log("email test in tickettable", email, password);
-        const response = await axios.get("http://localhost:8000/api/ticket/details/", {
-            headers: {
-                Authorization: `Basic ${btoa(`${email}:${password}`)}`,
-            },
-            });
-            setDataSource(response.data);
-            console.log("Fetched data:", response.data);
+      // Prepare the request body
+      const requestBody = {
+        id_ticket: ticketId,
+        status: "beendet",
+        admin_verwalter_id: email,
       };
   
-      fetchData();
-    }, [email, password]);
-
-
-    const handleAccept = async (ticketId) => {
-        try {
-          console.log("Handling accept for ticketId:", ticketId);
-          const response = await axios.put(
-            `http://localhost:8000/api/ticket/details/${ticketId}/`,
-            {
-              id_ticket: ticketId,
-              status: "beendet",
-              admin_verwalter_id: email,
-            },
-            {
-              headers: {
-                Authorization: `Basic ${btoa(`${email}:${password}`)}`,
-              },
-            }
-          );
-          console.log("Ticket update response:", response.data);
-          // Refresh the table data
-          const responseData = await axios.get("http://localhost:8000/api/ticket/list/", {
-            headers: {
-              Authorization: `Basic ${btoa(`${email}:${password}`)}`,
-            },
-          });
-          setDataSource(responseData.data);
-        } catch (error) {
-          console.error("Error updating ticket:", error);
+      // Log the request body
+      console.log("Request body:", requestBody);
+  
+      // Make the PUT request
+      const response = await axios.put(
+        `http://localhost:8000/api/ticket/details/${ticketId}/`,
+        requestBody,
+        {
+          headers: {
+            Authorization: `Basic ${btoa(`${email}:${password}`)}`,
+          },
         }
-      };
+      );
+      console.log("Ticket update response:", response.data);
+  
+      // Update local state
+      setDataSource(
+        dataSource.map((ticket) =>
+          ticket.id_ticket === ticketId
+            ? { ...ticket, status: "beendet", admin_verwalter_id: email }
+            : ticket
+        )
+      );
+  
+    } catch (error) {
+      console.error("Error updating ticket:", error);
+    }
+  };
+
+const handleAblehnenClick = (ticketId) => {
+  setSelectedTicketId(ticketId);
+  setModalVisible(true);
+};
+
+const handleModalSubmit = async () => {
+  try {
+    const requestBody = {
+      id_ticket: selectedTicketId,
+      grund_der_ablehnung: ablehnungText,
+      status: "beendet", // Add this line to update the status to "beendet"
+    };
+
+    const response = await axios.put(
+      `http://localhost:8000/api/ticket/details/${selectedTicketId}/`,
+      requestBody,
+      {
+        headers: {
+          Authorization: `Basic ${btoa(`${email}:${password}`)}`,
+        },
+      }
+    );
+    console.log("Ticket update response:", response.data);
+    setDataSource(
+      dataSource.map((ticket) =>
+        ticket.id_ticket === selectedTicketId
+          ? { ...ticket, grund_der_ablehnung: ablehnungText, status: "beendet" } // Update the status in the local state as well
+          : ticket
+      )
+    );
+  } catch (error) {
+    console.error("Error updating ticket:", error);
+  } finally {
+    setModalVisible(false);
+    setAblehnungText("");
+    setSelectedTicketId(null);
+  }
+
+};
       
     const columns = [
         {
@@ -107,36 +162,49 @@ const TicketTable = () => {
         },
 
         {
-            title: "Aktionen",
-            dataIndex: "aktionen",
-            render: (text, record) => {
-              if (record.status === "in bearbeitung") {
-                return (
-                  <>
-                    <Button
-                      type="primary"
-                      style={{ marginRight: "10px" }}
-                      onClick={() => handleAccept(record.id_ticket)}
-                    >
-                      Akzeptieren
-                    </Button>
-                    <Button type="danger">Ablehnen</Button>
-                  </>
-                );
-              }
-              return null;
-            },
-          }
+          title: "Aktionen",
+          dataIndex: "aktionen",
+          render: (text, record) => {
+            if (record.status === "in bearbeitung") {
+              return (
+                <>
+                  <Button
+                    type="primary"
+                    style={{ marginRight: "10px" }}
+                    onClick={() => handleAccept(record.id_ticket)}
+                  >
+                    Akzeptieren
+                  </Button>
+                  <Button
+                    style={{ backgroundColor: "#FF0000", borderColor: "#FF0000",  color: "#FFFFFF", marginRight: "10px" }}
+                    onClick={() => handleAblehnenClick(record.id_ticket)}
+                  >
+                    Ablehnen
+                  </Button>
+                </>
+              );
+            }
+            return null;
+          },
+        }
     ];
   
     
     return (
       <div>
-        <Table
-          columns={columns}
-          dataSource={dataSource}
-          pagination={{ pageSize: 7 }}
-        />
+        <Table columns={columns} dataSource={dataSource} pagination={{ pageSize: 7 }} />
+        <Modal
+          title="Gründe für die Ablehnung"
+          visible={modalVisible}
+          onCancel={() => setModalVisible(false)}
+          onOk={handleModalSubmit}
+        >
+          <Input
+            value={ablehnungText}
+            onChange={(e) => setAblehnungText(e.target.value)}
+            placeholder="Geben Sie die Gründe für die Ablehnung ein"
+          />
+        </Modal>
       </div>
     );
   };

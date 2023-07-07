@@ -9,7 +9,7 @@ class TicketSerializer(serializers.ModelSerializer):
     beschreibung = serializers.CharField()
     erstellungsdatum = serializers.DateField()
     schliessungsdatum = serializers.DateField()
-    admin_verwalter_id = serializers.IntegerField(required=False)
+    admin_verwalter_id = serializers.CharField(required=False)
     status = serializers.CharField(required=False)
     dongle_seriennummer = serializers.CharField(required=False, allow_blank=True)
     lizenzname = serializers.CharField()

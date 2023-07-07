@@ -25,7 +25,7 @@ class Ticket(models.Model):
     status = models.CharField(db_column='Status', max_length=45)  # Field name made lowercase.
     erstellungsdatum = models.DateField(db_column='Erstellungsdatum')  # Field name made lowercase.
     schliessungsdatum = models.DateField(db_column='Schliessungsdatum', blank=True, null=True)  # Field name made lowercase.
-    admin_verwalter_id = models.IntegerField(db_column='Admin/Verwalter_ID', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    admin_verwalter_id = models.CharField(db_column='Admin/Verwalter_ID', max_length=45)  # Field name made lowercase. Field renamed to remove unsuitable characters.
     dongle_seriennumemr = models.CharField(db_column='Dongle_seriennumemr', max_length=45, blank=True, null=True)  # Field name made lowercase.
     lizenzname = models.CharField(db_column='LizenzName', max_length=45, blank=True, null=True)  # Field name made lowercase.
     grund_der_ablehnung = models.CharField(db_column='Grund_der_Ablehnung', max_length=45, blank=True, null=True)  # Field name made lowercase.

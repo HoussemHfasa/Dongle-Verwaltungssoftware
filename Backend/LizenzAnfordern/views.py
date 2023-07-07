@@ -118,10 +118,4 @@ class TicketDetailsView(generics.RetrieveUpdateAPIView):
         except Exception as e:
             return JsonResponse({"error": f"An error occurred: {str(e)}"}, status=400)
 
-    def patch(self, request, *args, **kwargs):
-        ticket = self.get_object()
-        serializer = self.get_serializer(ticket, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)        
+    
