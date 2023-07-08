@@ -13,7 +13,8 @@ import PasswortZuruecksetzung from "./Pages/Passwortzurücksetzung";
 import LizenzHinzufuegen from "./Pages/Lizenzhinzufügen";
 import LizenzAnfordern from "./Pages/LizenzAnfordern";
 import DongleAnfordern from "./Pages/DongleAnfordern";
-import Lizenzanfordernantwort from "./Pages/Lizenzanfordernantwort";
+import Anfrageübersicht from "./Pages/Anfrageübersicht";
+import KundeAnfrageübersicht from "./Pages/KundeAnfrageübersicht";
 
 function App() {
   return (
@@ -30,9 +31,10 @@ function App() {
                 element={<Donglehinzufuegen />}
               />
               <Route path="/Lizenübersicht" element={<LizenUebersicht />} />
+              <Route path="/Anfrageübersicht" element={<Anfrageübersicht />} />
               <Route
-                path="/Lizenzanfordernantwort"
-                element={<Lizenzanfordernantwort />}
+                path="/KundeAnfrageübersicht"
+                element={<KundeAnfrageübersicht />}
               />
               <Route path="/Admin" element={<Adminseite />} />
               <Route path="/Kontoerstellen" element={<Kontoerstellen />} />

@@ -81,7 +81,12 @@ const NavbarKunde = (props) => {
         >
           Lizenzübersicht
         </button>
-        <button className={styles["anfrage"]}>Meine Anfrage</button>
+        <button
+          className={styles["anfrage"]}
+          onClick={() => navigate("/KundeAnfrageübersicht")}
+        >
+          Meine Anfrage
+        </button>
         <button
           className={styles["profileImageButton"]}
           onClick={toggleProfilePopup}

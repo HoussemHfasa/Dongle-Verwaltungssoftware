@@ -84,7 +84,7 @@ const TicketTable = ({ filter, customColumns }) => {
       const requestBody = {
         id_ticket: selectedTicketId,
         grund_der_ablehnung: ablehnungText,
-        status: "Abgelehnt", // Add this line to update the status to "beendet"
+        status: "abgelehnt",
       };
 
       const response = await axios.put(
@@ -103,7 +103,7 @@ const TicketTable = ({ filter, customColumns }) => {
             ? {
                 ...ticket,
                 grund_der_ablehnung: ablehnungText,
-                status: "beendet",
+                status: "abgelehnt",
               } // Update the status in the local state as well
             : ticket
         )
@@ -153,7 +153,7 @@ const TicketTable = ({ filter, customColumns }) => {
       <Table
         columns={columns}
         dataSource={dataSource}
-        pagination={{ pageSize: 5 }}
+        pagination={{ pageSize: 4 }}
       />
       <Modal
         title="Gründe für die Ablehnung"

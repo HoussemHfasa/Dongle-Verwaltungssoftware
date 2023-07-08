@@ -1,12 +1,8 @@
 import React from "react";
 import NavbarWrapper from "../Components/NavbarWrapper";
 import styles from "./Adminseite.module.css";
+import KundeTicketTable from "./KundeTicketTable";
 
-import TicketTable, {
-  handleAccept,
-  handleAblehnenClick,
-  actionsColumn,
-} from "./TicketTable";
 const Lizenzanfordernantwort = () => {
   const filterZero = (ticket) => ticket.dongle_lizenz === 0;
   const filterOne = (ticket) => ticket.dongle_lizenz === 1;
@@ -57,7 +53,7 @@ const Lizenzanfordernantwort = () => {
     },
     {
       title: "Dongleseriennummer",
-      dataIndex: "dongle_seriennumemr",
+      dataIndex: "dongle_seriennummer",
     },
     {
       title: "Projekt / Produkt",
@@ -70,6 +66,10 @@ const Lizenzanfordernantwort = () => {
     {
       title: "Händler",
       dataIndex: "haendler",
+    },
+    {
+      title: "Grund der Ablehnung",
+      dataIndex: "grund_der_ablehnung",
     },
   ];
 
@@ -127,12 +127,12 @@ const Lizenzanfordernantwort = () => {
       dataIndex: "einheiten",
     },
     {
-      title: "Lizenztyp",
-      dataIndex: "lizenztyp",
+      title: "Dongleseriennummer",
+      dataIndex: "dongle_seriennummer",
     },
     {
-      title: "Dongleseriennummer",
-      dataIndex: "dongle_seriennumemr",
+      title: "Grund der Ablehnung",
+      dataIndex: "grund_der_ablehnung",
     },
   ];
 
@@ -148,9 +148,9 @@ const Lizenzanfordernantwort = () => {
 
       <div className={`${styles["CustomuserTable"]} ${styles.tableContainer}`}>
         <h2>Anfrage für neue Dongles</h2>
-        <TicketTable filter={filterZero} customColumns={columnsZero} />
+        <KundeTicketTable filter={filterZero} customColumns={columnsZero} />
         <h2>Anfrage für neue Lizenzen</h2>
-        <TicketTable filter={filterOne} customColumns={columnsOne} />
+        <KundeTicketTable filter={filterOne} customColumns={columnsOne} />
       </div>
     </div>
   );

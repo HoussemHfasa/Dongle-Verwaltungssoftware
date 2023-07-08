@@ -20,22 +20,20 @@ from rest_framework.permissions import IsAuthenticated, BasePermission
 #houssem
 from datetime import date
 from rest_framework import generics #yassin
-from rest_framework.authentication import TokenAuthentication, SessionAuthentication
-from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 
 from rest_framework.permissions import IsAuthenticated
 
 
 class TicketAnnehmenView(APIView):
-    def post(self, request, *args, **kwargs):
-         
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+    def post(self, request, *args, **kwargs):      
         ticket_id = request.data.get("id_ticket")
         Mitarbeiter=request.data.get("Mitarbeiter_email")
-        print("Request data:", request.data," Ticket id",ticket_id)
         ticket = Ticket.objects.get(id_ticket=ticket_id)
 
-
-        if ticket_id == 1:
+        if ticket.dongle_lizenz == 1:
             # Create a new Lizenz
              lfd_nr_field = Lizenz.objects.aggregate(Max('lfd_nr_field'))['lfd_nr_field__max']
              if lfd_nr_field is None:
@@ -43,12 +41,11 @@ class TicketAnnehmenView(APIView):
              else:   
               lfd_nr_field += 1
 
-             if ticket.dongle_seriennumemr:
-                dongle = Dongle.objects.filter(serien_nr=ticket.dongle_seriennumemr).first()
+             if ticket.dongle_seriennummer:
+                dongle = Dongle.objects.filter(serien_nr=ticket.dongle_seriennummer).first()
              if not dongle:
                 return JsonResponse({"error": "'dongle_serien_nr' nicht vorhanden."}, status=400)
-             else:
-               dongle_serien_nr = ""
+             
                # Retrieve the customer name based on the email address
              customer = CustomUser.objects.filter(firm_code=ticket.firmcode).first()
              if customer:
@@ -59,23 +56,46 @@ class TicketAnnehmenView(APIView):
                 kunde_Firmcode = ""
              try:
                  new_lizenz_data = {
+                 'lfd_nr_field': lfd_nr_field,
                  'lizenzname': ticket.lizenzname,
                  'gueltig_von': ticket.gueltig_von,
                  'gueltig_bis': ticket.gueltig_bis,
+                 'kunde':kunde,
                 'projekt': ticket.projekt,
                 'einheiten': ticket.einheiten,
                 'productcode': ticket.productcode,
                 'firmcode': kunde_Firmcode,
                 'mitarbeiter': ticket.admin_verwalter_email,
                 'lizenzanzahl': ticket.lizenzanzahl,
-                'dongle_serien_nr': ticket.dongle_seriennumemr
+                'dongle_serien_nr': ticket.dongle_seriennummer
                 
                    }
                  lizenz = Lizenz(**new_lizenz_data)
                  lizenz.save()
+                 # Send an email notification
+                 subject = f"Neue Lizenz erstellt: {ticket.lizenzname}"
+                 message = f"Es wurde eine neue Lizenz erstellt:\n\n" \
+                      f"Lizenzname: {ticket.lizenzname}\n" \
+                      f"Gültig von: {ticket.gueltig_von}\n" \
+                      f"Gültig bis: {ticket.gueltig_bis}\n" \
+                      f"Projekt: {ticket.projekt}\n" \
+                      f"Einheiten: {ticket.einheiten}\n" \
+                      f"Productcode: {ticket.productcode}\n" \
+                      f"Firmcode: {kunde_Firmcode}\n" \
+                      f"Mitarbeiter: {Mitarbeiter}\n" \
+                      f"Lizenzanzahl: {ticket.lizenzanzahl}\n" \
+                      f"Dongle Seriennummer: {ticket.dongle_seriennummer}\n"
 
+                 send_mail(
+                subject=subject,
+                message=message,
+                from_email="sender@example.com",
+                recipient_list=[customer.email],
+                fail_silently=True,
+            )
                  ticket.status = "angenommen"
                  ticket.admin_verwalter_email=Mitarbeiter
+                 ticket.grund_der_ablehnung="keine"
                  ticket.save()
                  return Response({"success": "Lizenz wurde angenommen und erstellt."}, status=status.HTTP_201_CREATED)      
              except Exception as e:
@@ -114,9 +134,13 @@ class TicketAnnehmenView(APIView):
 
                 dongle = Dongle.objects.create(**new_dongle_data)
                 dongle.save()
-                print("eli normalement tsaiva id teeou", lfd_nr_field)
+                email_subject = f"New Dongle Created: {ticket.dongle_seriennummer}"
+                email_body = f"Liebe {kunde},\n\n der Administrator hat Ihnen einen Dongle zugewiesen mit der Seriennummer {ticket.dongle_seriennummer}.  \n\nEnglish Version:\n\nDear {kunde},\n\nThe administrator has assigned a dongle to you with the serial number: {ticket.dongle_seriennummer}."
+                email = EmailMessage(subject=email_subject, body=email_body, to=[customer.email])
+                email.send()
                 ticket.status = "angenommen"
                 ticket.admin_verwalter_email=Mitarbeiter;
+                ticket.grund_der_ablehnung="keine"
                 ticket.save()
                 return Response({"success": "Der Dongle wurde angenommen und erstellt."}, status=status.HTTP_201_CREATED)      
             except Exception as e:
@@ -124,13 +148,15 @@ class TicketAnnehmenView(APIView):
 
 
 class TicketAblehnenView(APIView):
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    permission_classes = [IsAuthenticated]
     def post(self, request, *args, **kwargs):
         ticket_id = request.data.get("id_ticket")
         grund_der_ablehnung = request.data.get("grund_der_ablehnung")
         ticket = Ticket.objects.get(id_ticket=ticket_id)
 
         # Update the ticket status and store the reason for rejection
-        ticket.status = "beendet"
+        ticket.status = "abgelehnt"
         ticket.grund_der_ablehnung = grund_der_ablehnung
         ticket.save()
 
@@ -140,6 +166,8 @@ class TicketAblehnenView(APIView):
 #yassin
 
 class TicketDetailsView(generics.RetrieveUpdateAPIView):
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    permission_classes = [IsAuthenticated]
     queryset = Ticket.objects.all()
     serializer_class = TicketSerializer
 
