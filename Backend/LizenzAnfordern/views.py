@@ -24,103 +24,14 @@ from rest_framework.authentication import TokenAuthentication, SessionAuthentica
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from rest_framework.permissions import IsAuthenticated
-#testing
-import random
-import string
-from datetime import datetime, timedelta
- 
-def random_string(length):
-    return ''.join(random.choices(string.ascii_letters, k=length))
 
-
-class TicketCreateViewL(APIView):
-    def post(self, request, *args, **kwargs):
-        serializer = TicketSerializer(data=request.data)
-        try:
-            serializer.is_valid(raise_exception=True)
-        except Exception as e:
-            return JsonResponse({"error": f"An error occurred while creating the license: {str(e)}"}, status=401)
-
-        # Get the highest id_ticket value
-        id_ticket = Ticket.objects.aggregate(Max('id_ticket'))['id_ticket__max']
-        if id_ticket is None:
-            id_ticket = 1
-        else:
-            id_ticket += 1
-
-        # Retrieve the values from the React inputs
-        gueltig_von = request.data.get('gueltig_von')
-        gueltig_bis = request.data.get('gueltig_bis')
-        einheiten = request.data.get('einheiten')
-        projekt = request.data.get('projekt')
-        productcode = request.data.get('productcode')
-        #datum_erstausgabe =date.today()
-        firmcode = request.data.get('firmcode')
-
-        # Retrieve the customer name based on the email address
-        #customer = UserLogginCustomuser.objects.filter(firm_code=firmcode).first()
-        customer = CustomUser.objects.filter(firm_code=firmcode).first()
-        if customer:
-            kunde = customer.name
-            kunde_email = customer.email
-        else:
-            kunde = ""
-            kunde_email = ""
-        schliessungsdatum = request.data.get('schliessungsdatum')
-        erstellungsdatum = request.data.get('erstellungsdatum')
-        beschreibung = request.data.get('beschreibung')
-        titel = request.data.get('titel')
-        dongle_seriennummer = request.data.get('dongle_seriennummer')
-        lizenzname = request.data.get('lizenzname')
-        lizenzanzahl= request.data.get('lizenzanzahl')
-
-        try:
-            ticket_data = {
-                'id_ticket': random.randint(1, 1000),
-                'titel': random_string(10),
-                'beschreibung': random_string(50),
-                'status': random.choice(['offen', 'geschlossen']),
-                'erstellungsdatum': datetime.now().date(),
-                'schliessungsdatum': (datetime.now() + timedelta(days=random.randint(1, 10))).date(),
-                'dongle_lizenz': random.randint(1, 10),
-                'dongle_name': random_string(5),
-                'dongle_seriennummer': random_string(10),
-                'lizenzname': random_string(10),
-                'firmcode': random_string(8),
-                'gueltig_von': datetime.now().date(),
-                'gueltig_bis': (datetime.now() + timedelta(days=random.randint(1, 365))).date(),
-                'einheiten': random.randint(1, 100),
-                'projekt': random_string(15),
-                'grund_der_ablehnung': random_string(20),
-                'admin_verwalter_email': f"{random_string(5)}@example.com",
-                'haendler': random_string(10),
-                'standort': random_string(10),
-                'productcode': random.randint(1, 1000),
-                'lizenzanzahl': random.randint(1, 100),
-            }
-            new_ticket = Ticket(**ticket_data)
-            new_ticket.save()
-
-            return JsonResponse({"success": "Die Lizenz wurde erfolgreich erstellt."}, status=201)
-        except Exception as e:
-            return JsonResponse({"error": f"An error occurred while creating the license: {str(e)}"}, status=400)
-
-
-
-
-#houssem
-
-# ... other imports
-
-def random_string(length):
-    return ''.join(random.choices(string.ascii_letters + string.digits, k=length))
 
 class TicketAnnehmenView(APIView):
     def post(self, request, *args, **kwargs):
          
         ticket_id = request.data.get("id_ticket")
         Mitarbeiter=request.data.get("Mitarbeiter_email")
-        print("Request data: 3asba", request.data," Ticket id",ticket_id)
+        print("Request data:", request.data," Ticket id",ticket_id)
         ticket = Ticket.objects.get(id_ticket=ticket_id)
 
 

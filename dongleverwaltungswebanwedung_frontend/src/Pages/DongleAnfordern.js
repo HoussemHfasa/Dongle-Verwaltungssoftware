@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./DongleAnfordern.css";
 import NavbarWrapper from "../Components/NavbarWrapper";
 import "react-datepicker/dist/react-datepicker.css";
+import { useAuth } from "../Components/AuthContext";
 
 const DongleAnfordern = () => {
   const [dongleId, setDongleId] = useState("");
@@ -15,6 +16,7 @@ const DongleAnfordern = () => {
   const [projekt, setProjekt] = useState("");
   const [titel, setTitel] = useState("");
   const [beschreibung, setBeschreibung] = useState("");
+  const { email, password } = useAuth();
 
   // Funktion zum Zurücksetzen des Formulars
   const resetForm = () => {
@@ -39,23 +41,28 @@ const DongleAnfordern = () => {
       const formattedGueltigBis = new Date(gueltigBis)
         .toISOString()
         .split("T")[0];
+      const requestBody = {
+        dongle_seriennummer: dongleId,
+        dongle_name: dongleName,
+        gueltig_von: formattedGueltigVon,
+        gueltig_bis: formattedGueltigBis,
+        projekt: projekt,
+        standort: standort,
+        haendler: handler,
+        firmcode: firmCode,
+        titel: titel,
+        beschreibung: beschreibung,
+        erstellungsdatum: new Date().toISOString().split("T")[0],
+        schliessungsdatum: new Date().toISOString().split("T")[0],
+      };
 
       const response = await axios.post(
         "http://localhost:8000/api/Dongleticket/create/",
+        requestBody,
         {
-          dongle_seriennummer: dongleId,
-          dongle_name: dongleName,
-          gueltig_von: formattedGueltigVon,
-          gueltig_bis: formattedGueltigBis,
-          projekt: projekt,
-          standort: standort,
-          haendler: handler,
-          firmcode: firmCode,
-          titel: titel,
-          beschreibung: beschreibung,
-          erstellungsdatum: new Date().toISOString().split("T")[0],
-          schliessungsdatum: new Date().toISOString().split("T")[0],
-          
+          headers: {
+            Authorization: `Basic ${btoa(`${email}:${password}`)}`,
+          },
         }
       );
 

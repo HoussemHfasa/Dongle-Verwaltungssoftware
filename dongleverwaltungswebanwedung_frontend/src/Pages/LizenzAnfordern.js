@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./LizenzAnfordern.css";
 import NavbarWrapper from "../Components/NavbarWrapper";
 import "react-datepicker/dist/react-datepicker.css";
+import { useAuth } from "../Components/AuthContext";
 
 const Lizenzanfordern = () => {
   const [dongleId, setDongleId] = useState("");
@@ -16,6 +17,8 @@ const Lizenzanfordern = () => {
   const [firmCode, setFirmCode] = useState("");
   const [projekt, setProjekt] = useState("");
   const [lizenzAnzahl, setLizenzAnzahl] = useState("");
+  const { email, password } = useAuth();
+  const [responseContent, setResponseContent] = useState("");
 
   // Funktion zum Zurücksetzen des Formulars
   const resetForm = () => {
@@ -31,6 +34,7 @@ const Lizenzanfordern = () => {
     setProjekt("");
     setLizenzAnzahl("");
   };
+  console.log("this is email and password:", email, password);
 
   // Funktion zum Speichern der eingegebenen Daten
   const handleSave = async () => {
@@ -41,39 +45,61 @@ const Lizenzanfordern = () => {
       const formattedGueltigBis = new Date(gueltig_bis)
         .toISOString()
         .split("T")[0];
+
+      const requestBody = {
+        dongle_seriennummer: dongleId,
+        titel: tittel,
+        beschreibung: beschreibung,
+        lizenzname: lizenzname,
+        erstellungsdatum: new Date().toISOString().split("T")[0],
+        schliessungsdatum: new Date().toISOString().split("T")[0],
+        gueltig_von: formattedGueltigVon,
+        gueltig_bis: formattedGueltigBis,
+        projekt: projekt,
+        einheiten: einheiten,
+        productcode: productCode,
+        firmcode: firmCode,
+        lizenzanzahl: lizenzAnzahl,
+        lizenzanzahl: parseInt(lizenzAnzahl, 10), // Parse lizenzAnzahl to a valid integer
+        /*dongle_name: "",
+        haendler: "",
+        standort: "",*/
+      };
       const response = await axios.post(
-        "http://localhost:8000/api/ticket/create/Lizenz/",
+        "http://localhost:8000/api/Lizenzticket/create/",
+        requestBody,
         {
-          dongle_seriennummer: dongleId,
-          titel: tittel,
-          beschreibung: beschreibung,
-          lizenzname: lizenzname,
-          erstellungsdatum: new Date().toISOString().split("T")[0],
-          schliessungsdatum: new Date().toISOString().split("T")[0],
-          gueltig_von: formattedGueltigVon,
-          gueltig_bis: formattedGueltigBis,
-          projekt: projekt,
-          einheiten: einheiten,
-          productcode: productCode,
-          firmcode: firmCode,
-          lizenzanzahl: lizenzAnzahl,
+          headers: {
+            Authorization: `Basic ${btoa(`${email}:${password}`)}`,
+          },
         }
       );
-
       if (response.status === 201) {
+        setResponseContent(JSON.stringify(response.data, null, 2));
         alert("Ihre Anfrage wurde gesendet!");
         resetForm();
       } else {
-        alert("Fehler beim Senden der Anfrage.");
+        alert("Fehler beim Senden der Anfrage1.");
       }
     } catch (error) {
-      console.error("Fehler beim Senden der Anfrage", error);
+      console.error("Fehler beim Senden der Anfrage2", error);
 
-      if (error.response && error.response.data) {
+      if (error.response) {
+        const statusCode = error.response.status;
         const errorMessage = error.response.data;
-        alert("Fehler beim Senden der Anfrage: " + errorMessage);
+        setResponseContent(JSON.stringify(error.response.data, null, 2));
+
+        console.error("Status Code:", statusCode);
+        console.error("Error Message:", errorMessage);
+
+        alert(
+          "Fehler beim Senden der Anfrage3: " +
+            statusCode +
+            " - " +
+            errorMessage
+        );
       } else {
-        alert("Fehler beim Senden der Anfrage: " + error.message);
+        alert("Fehler beim Senden der Anfrage4: " + error.message);
       }
     }
   };
@@ -211,6 +237,11 @@ const Lizenzanfordern = () => {
           <button className="save-button" onClick={() => handleSave()}>
             Speichern
           </button>
+        </div>
+        {/* Response content */}
+        <div className="response-content">
+          <h3>Response content:</h3>
+          <pre>{responseContent}</pre>
         </div>
       </div>
     </div>

@@ -1,6 +1,4 @@
-from Dongle_hinzufügen.views import DongleCreateView
-from Lizenzhinzufügen.views import LizenzCreateView
-from LizenzAnfordern.views import TicketCreateViewL
+
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework_simplejwt.views import (
