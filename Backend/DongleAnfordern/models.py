@@ -10,7 +10,7 @@ class Ticket(models.Model):
     schliessungsdatum = models.DateField(db_column='Schliessungsdatum', blank=True, null=True)  # Field name made lowercase.
     dongle_lizenz = models.IntegerField(db_column='Dongle/Lizenz', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
     dongle_name = models.CharField(db_column='Dongle_Name', max_length=45, blank=True, null=True)  # Field name made lowercase.
-    dongle_seriennummer = models.CharField(db_column='Dongle_seriennumemr', max_length=45, blank=True, null=True)  # Field name made lowercase.
+    dongle_seriennumemr = models.CharField(db_column='Dongle_seriennumemr', max_length=45, blank=True, null=True)  # Field name made lowercase.
     lizenzname = models.CharField(db_column='LizenzName', max_length=45, blank=True, null=True)  # Field name made lowercase.
     firmcode = models.CharField(db_column='Firmcode', max_length=45)  # Field name made lowercase.
     gueltig_von = models.DateField(db_column='Gueltig von', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
@@ -21,6 +21,9 @@ class Ticket(models.Model):
     admin_verwalter_email = models.CharField(db_column='Admin/Verwalter_Email', max_length=45, blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
     haendler = models.CharField(db_column='Haendler', max_length=45, blank=True, null=True)  # Field name made lowercase.
     standort = models.CharField(db_column='Standort', max_length=45)  # Field name made lowercase.
+    productcode = models.IntegerField(db_column='Productcode', blank=True, null=True)  # Field name made lowercase.
+    lizenzanzahl = models.IntegerField(db_column='Lizenzanzahl', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
+        managed = False
         db_table = 'ticket'

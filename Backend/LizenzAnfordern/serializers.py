@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Ticket
+from DongleAnfordern.models import Ticket
 from rest_framework import generics
 
 
@@ -7,13 +7,22 @@ class TicketSerializer(serializers.ModelSerializer):
     id_ticket = serializers.IntegerField(required=False)
     titel = serializers.CharField()
     beschreibung = serializers.CharField()
-    erstellungsdatum = serializers.DateField()
-    schliessungsdatum = serializers.DateField()
-    admin_verwalter_id = serializers.CharField(required=False)
     status = serializers.CharField(required=False)
-    dongle_seriennummer = serializers.CharField(required=False, allow_blank=True)
-    lizenzname = serializers.CharField()
-    grund_der_ablehnung=serializers.CharField(required=False)
+    erstellungsdatum = serializers.DateField()
+    schliessungsdatum = serializers.DateField(required=False, allow_null=True)
+    dongle_lizenz = serializers.IntegerField(required=False, allow_null=True)
+    dongle_name = serializers.CharField(required=False, allow_blank=True, allow_null=True)
+    dongle_seriennummer = serializers.CharField(required=False, allow_blank=True, allow_null=True)
+    lizenzname = serializers.CharField(required=False, allow_blank=True, allow_null=True)
+    firmcode = serializers.CharField()
+    gueltig_von = serializers.DateField(required=False, allow_null=True)
+    gueltig_bis = serializers.DateField(required=False, allow_null=True)
+    einheiten = serializers.IntegerField(required=False, allow_null=True)
+    projekt = serializers.CharField(required=False, allow_blank=True, allow_null=True)
+    grund_der_ablehnung = serializers.CharField(required=False, allow_blank=True, allow_null=True)
+    admin_verwalter_email = serializers.CharField(required=False, allow_blank=True, allow_null=True)
+    haendler = serializers.CharField(required=False, allow_blank=True, allow_null=True)
+    standort = serializers.CharField()
 
     class Meta:
         model = Ticket

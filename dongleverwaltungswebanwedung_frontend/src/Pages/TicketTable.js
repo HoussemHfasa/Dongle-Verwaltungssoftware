@@ -3,7 +3,7 @@ import axios from "axios";
 import { Table, Button, Modal, Input } from "antd";
 import { useAuth } from "../Components/AuthContext";
 
-const TicketTable = () => {
+const TicketTable = ({ filter, customColumns }) => {
   const [dataSource, setDataSource] = useState([]);
   const { email, password } = useAuth();
   const [modalVisible, setModalVisible] = useState(false);
@@ -20,38 +20,75 @@ const TicketTable = () => {
   useEffect(() => {
     const fetchData = async () => {
       console.log("email test in tickettable", email, password);
-      const response = await axios.get("http://localhost:8000/api/ticket/details/", {
-        headers: {
-          Authorization: `Basic ${btoa(`${email}:${password}`)}`,
-        },
-      });
-      setDataSource(response.data);
+      const response = await axios.get(
+        "http://localhost:8000/api/ticket/details/",
+        {
+          headers: {
+            Authorization: `Basic ${btoa(`${email}:${password}`)}`,
+          },
+        }
+      );
+      setDataSource(filter ? response.data.filter(filter) : response.data);
       console.log("Fetched data:", response.data);
     };
 
     fetchData();
-  }, [email, password]);
-    
-
+  }, [email, password, filter]);
 
   const handleAccept = async (ticketId) => {
     console.log("handleAccept called with ticketId:", ticketId);
     try {
       console.log("Handling accept for ticketId:", ticketId);
-  
+
       // Prepare the request body
       const requestBody = {
         id_ticket: ticketId,
-        status: "beendet",
-        admin_verwalter_id: email,
+        Mitarbeiter_email: email,
       };
-  
+
       // Log the request body
       console.log("Request body:", requestBody);
-  
-      // Make the PUT request
+
+      // Call the "/api/ticket/annehmen/" endpoint instead of "/api/ticket/details/{ticketId}/"
+      const response = await axios.post(
+        "http://localhost:8000/api/ticket/annehmen/",
+        requestBody,
+        {
+          headers: {
+            Authorization: `Basic ${btoa(`${email}:${password}`)}`,
+          },
+        }
+      );
+      console.log("Ticket accept response:", response.data);
+
+      // Update local state
+      setDataSource(
+        dataSource.map((ticket) =>
+          ticket.id_ticket === ticketId
+            ? { ...ticket, status: "angenommen", admin_verwalter_email: email }
+            : ticket
+        )
+      );
+    } catch (error) {
+      console.error("Error accepting ticket:", error);
+    }
+  };
+
+  const handleAblehnenClick = (ticketId) => {
+    setSelectedTicketId(ticketId);
+    setModalVisible(true);
+  };
+
+  const handleModalSubmit = async () => {
+    try {
+      const requestBody = {
+        id_ticket: selectedTicketId,
+        grund_der_ablehnung: ablehnungText,
+        status: "Abgelehnt", // Add this line to update the status to "beendet"
+      };
+
       const response = await axios.put(
-        `http://localhost:8000/api/ticket/details/${ticketId}/`,
+        `http://localhost:8000/api/ticket/details/${selectedTicketId}/`,
         requestBody,
         {
           headers: {
@@ -60,153 +97,78 @@ const TicketTable = () => {
         }
       );
       console.log("Ticket update response:", response.data);
-  
-      // Update local state
       setDataSource(
         dataSource.map((ticket) =>
-          ticket.id_ticket === ticketId
-            ? { ...ticket, status: "beendet", admin_verwalter_id: email }
+          ticket.id_ticket === selectedTicketId
+            ? {
+                ...ticket,
+                grund_der_ablehnung: ablehnungText,
+                status: "beendet",
+              } // Update the status in the local state as well
             : ticket
         )
       );
-  
     } catch (error) {
       console.error("Error updating ticket:", error);
+    } finally {
+      setModalVisible(false);
+      setAblehnungText("");
+      setSelectedTicketId(null);
     }
   };
-
-const handleAblehnenClick = (ticketId) => {
-  setSelectedTicketId(ticketId);
-  setModalVisible(true);
-};
-
-const handleModalSubmit = async () => {
-  try {
-    const requestBody = {
-      id_ticket: selectedTicketId,
-      grund_der_ablehnung: ablehnungText,
-      status: "beendet", // Add this line to update the status to "beendet"
-    };
-
-    const response = await axios.put(
-      `http://localhost:8000/api/ticket/details/${selectedTicketId}/`,
-      requestBody,
-      {
-        headers: {
-          Authorization: `Basic ${btoa(`${email}:${password}`)}`,
-        },
+  const actionsColumn = {
+    title: "Aktionen",
+    dataIndex: "aktionen",
+    render: (text, record) => {
+      if (record.status === "offen") {
+        return (
+          <>
+            <Button
+              type="primary"
+              style={{ marginRight: "10px" }}
+              onClick={() => handleAccept(record.id_ticket)}
+            >
+              Akzeptieren
+            </Button>
+            <Button
+              style={{
+                backgroundColor: "#FF0000",
+                borderColor: "#FF0000",
+                color: "#FFFFFF",
+                marginRight: "10px",
+              }}
+              onClick={() => handleAblehnenClick(record.id_ticket)}
+            >
+              Ablehnen
+            </Button>
+          </>
+        );
       }
-    );
-    console.log("Ticket update response:", response.data);
-    setDataSource(
-      dataSource.map((ticket) =>
-        ticket.id_ticket === selectedTicketId
-          ? { ...ticket, grund_der_ablehnung: ablehnungText, status: "beendet" } // Update the status in the local state as well
-          : ticket
-      )
-    );
-  } catch (error) {
-    console.error("Error updating ticket:", error);
-  } finally {
-    setModalVisible(false);
-    setAblehnungText("");
-    setSelectedTicketId(null);
-  }
-
-};
-      
-    const columns = [
-        {
-          title: "ID_Ticket",
-          dataIndex: "id_ticket",
-        },
-        {
-          title: "Titel",
-          dataIndex: "titel",
-        },
-        {
-          title: "Beschreibung",
-          dataIndex: "beschreibung",
-        },
-        {
-          title: "Status",
-          dataIndex: "status",
-        },
-        {
-          title: "Erstellungsdatum",
-          dataIndex: "erstellungsdatum",
-        },
-        {
-          title: "Schliessungsdatum",
-          dataIndex: "schliessungsdatum",
-        },
-        {
-          title: "Admin/Verwalter_ID",
-          dataIndex: "admin_verwalter_id",
-        },
-        {
-          title: "Dongle_seriennumer",
-          dataIndex: "dongle_seriennummer",
-        },
-        {
-          title: "LizenzName",
-          dataIndex: "lizenzname",
-        },
-        {
-          title: "Grund_der_Ablehnung",
-          dataIndex: "grund_der_ablehnung",
-        },
-        {
-          title: "Kunde",
-          dataIndex: "kunde",
-        },
-
-        {
-          title: "Aktionen",
-          dataIndex: "aktionen",
-          render: (text, record) => {
-            if (record.status === "in bearbeitung") {
-              return (
-                <>
-                  <Button
-                    type="primary"
-                    style={{ marginRight: "10px" }}
-                    onClick={() => handleAccept(record.id_ticket)}
-                  >
-                    Akzeptieren
-                  </Button>
-                  <Button
-                    style={{ backgroundColor: "#FF0000", borderColor: "#FF0000",  color: "#FFFFFF", marginRight: "10px" }}
-                    onClick={() => handleAblehnenClick(record.id_ticket)}
-                  >
-                    Ablehnen
-                  </Button>
-                </>
-              );
-            }
-            return null;
-          },
-        }
-    ];
-  
-    
-    return (
-      <div>
-        <Table columns={columns} dataSource={dataSource} pagination={{ pageSize: 7 }} />
-        <Modal
-          title="Gründe für die Ablehnung"
-          visible={modalVisible}
-          onCancel={() => setModalVisible(false)}
-          onOk={handleModalSubmit}
-        >
-          <Input
-            value={ablehnungText}
-            onChange={(e) => setAblehnungText(e.target.value)}
-            placeholder="Geben Sie die Gründe für die Ablehnung ein"
-          />
-        </Modal>
-      </div>
-    );
+      return null;
+    },
   };
-  
-  export default TicketTable;
+  const columns = [...customColumns, actionsColumn];
+  return (
+    <div>
+      <Table
+        columns={columns}
+        dataSource={dataSource}
+        pagination={{ pageSize: 5 }}
+      />
+      <Modal
+        title="Gründe für die Ablehnung"
+        visible={modalVisible}
+        onCancel={() => setModalVisible(false)}
+        onOk={handleModalSubmit}
+      >
+        <Input
+          value={ablehnungText}
+          onChange={(e) => setAblehnungText(e.target.value)}
+          placeholder="Geben Sie die Gründe für die Ablehnung ein"
+        />
+      </Modal>
+    </div>
+  );
+};
+
+export default TicketTable;

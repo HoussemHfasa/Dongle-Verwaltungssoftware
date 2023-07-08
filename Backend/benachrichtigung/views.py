@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from LizenzAnfordern.models import Ticket
+from DongleAnfordern.models import Ticket
 from django.http import JsonResponse
 
 
