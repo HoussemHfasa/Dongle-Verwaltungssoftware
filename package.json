@@ -7,6 +7,7 @@
     "client": "cd dongleverwaltungswebanwedung_frontend && npm start"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.1.4",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.13.2",

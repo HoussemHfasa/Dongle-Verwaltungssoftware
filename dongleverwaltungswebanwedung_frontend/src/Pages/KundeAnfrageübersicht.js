@@ -2,6 +2,7 @@ import React from "react";
 import NavbarWrapper from "../Components/NavbarWrapper";
 import styles from "./Adminseite.module.css";
 import KundeTicketTable from "./KundeTicketTable";
+import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 
 const Lizenzanfordernantwort = () => {
   const filterZero = (ticket) => ticket.dongle_lizenz === 0;
@@ -14,6 +15,15 @@ const Lizenzanfordernantwort = () => {
     {
       title: "Status",
       dataIndex: "status",
+      render: (status) => {
+        return status === "angenommen" ? (
+          <CheckCircleOutlined style={{ color: "green", fontSize: "24px" }} />
+        ) : status === "abgelehnt" ? (
+          <CloseCircleOutlined style={{ color: "red", fontSize: "24px" }} />
+        ) : (
+          status
+        );
+      },
     },
     {
       title: "Titel",
@@ -81,6 +91,15 @@ const Lizenzanfordernantwort = () => {
     {
       title: "Status",
       dataIndex: "status",
+      render: (status) => {
+        return status === "angenommen" ? (
+          <CheckCircleOutlined style={{ color: "green", fontSize: "24px" }} />
+        ) : status === "abgelehnt" ? (
+          <CloseCircleOutlined style={{ color: "red", fontSize: "24px" }} />
+        ) : (
+          status
+        );
+      },
     },
     {
       title: "Titel",

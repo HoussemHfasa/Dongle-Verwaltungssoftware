@@ -14,6 +14,15 @@ const Lizenzanfordernantwort = () => {
     {
       title: "Status",
       dataIndex: "status",
+      render: (status) => {
+        return status === "angenommen" ? (
+          <CheckCircleOutlined style={{ color: "green", fontSize: "24px" }} />
+        ) : status === "abgelehnt" ? (
+          <CloseCircleOutlined style={{ color: "red", fontSize: "24px" }} />
+        ) : (
+          status
+        );
+      },
     },
     {
       title: "Titel",
@@ -81,6 +90,15 @@ const Lizenzanfordernantwort = () => {
     {
       title: "Status",
       dataIndex: "status",
+      render: (status) => {
+        return status === "angenommen" ? (
+          <CheckCircleOutlined style={{ color: "green", fontSize: "24px" }} />
+        ) : status === "abgelehnt" ? (
+          <CloseCircleOutlined style={{ color: "red", fontSize: "24px" }} />
+        ) : (
+          status
+        );
+      },
     },
     {
       title: "Titel",
