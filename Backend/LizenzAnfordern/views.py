@@ -14,17 +14,26 @@ from Dongle_hinzufügen.serializers import DongleSerializer
 from User_loggin.models import CustomUser
 import datetime
 from django.db.models import Max
-from .serializers import TicketSerializer
+#from .serializers import TicketSerializer
+from DongleAnfordern.serializers import TicketSerializer
 from rest_framework.permissions import IsAuthenticated, BasePermission
 #houssem
 from datetime import date
 from rest_framework import generics #yassin
+from rest_framework.authentication import TokenAuthentication, SessionAuthentication
+from rest_framework_simplejwt.authentication import JWTAuthentication
+
+from rest_framework.permissions import IsAuthenticated
+#testing
 import random
-import string    
+import string
+from datetime import datetime, timedelta
+ 
+def random_string(length):
+    return ''.join(random.choices(string.ascii_letters, k=length))
 
 
-class TicketCreateView(APIView):
-    permission_classes = [IsAuthenticated]
+class TicketCreateViewL(APIView):
     def post(self, request, *args, **kwargs):
         serializer = TicketSerializer(data=request.data)
         try:
@@ -67,33 +76,31 @@ class TicketCreateView(APIView):
 
         try:
             ticket_data = {
-                'id_ticket': id_ticket,
-                'titel': titel,
-                'beschreibung': beschreibung,
-                'status': 'offen',
-                'erstellungsdatum': erstellungsdatum,
-                'schliessungsdatum': schliessungsdatum,
-                'dongle_lizenz': 1,
-                'dongle_name': "",
-                'dongle_seriennummer': dongle_seriennummer,
-                'lizenzname': lizenzname,
-                'firmcode': firmcode,
-                'gueltig_von': gueltig_von,
-                'gueltig_bis': gueltig_bis,
-                'einheiten' :einheiten,
-                'projekt': projekt,
-                'grund_der_ablehnung': "",
-                'admin_verwalter_email':"",
-                'haendler': "",
-                'standort': "",
-                'productcode' :productcode,
-                'lizenzanzahl':lizenzanzahl,
-
-
+                'id_ticket': random.randint(1, 1000),
+                'titel': random_string(10),
+                'beschreibung': random_string(50),
+                'status': random.choice(['offen', 'geschlossen']),
+                'erstellungsdatum': datetime.now().date(),
+                'schliessungsdatum': (datetime.now() + timedelta(days=random.randint(1, 10))).date(),
+                'dongle_lizenz': random.randint(1, 10),
+                'dongle_name': random_string(5),
+                'dongle_seriennummer': random_string(10),
+                'lizenzname': random_string(10),
+                'firmcode': random_string(8),
+                'gueltig_von': datetime.now().date(),
+                'gueltig_bis': (datetime.now() + timedelta(days=random.randint(1, 365))).date(),
+                'einheiten': random.randint(1, 100),
+                'projekt': random_string(15),
+                'grund_der_ablehnung': random_string(20),
+                'admin_verwalter_email': f"{random_string(5)}@example.com",
+                'haendler': random_string(10),
+                'standort': random_string(10),
+                'productcode': random.randint(1, 1000),
+                'lizenzanzahl': random.randint(1, 100),
             }
             new_ticket = Ticket(**ticket_data)
             new_ticket.save()
-          
+
             return JsonResponse({"success": "Die Lizenz wurde erfolgreich erstellt."}, status=201)
         except Exception as e:
             return JsonResponse({"error": f"An error occurred while creating the license: {str(e)}"}, status=400)

@@ -25,5 +25,4 @@ class Ticket(models.Model):
     lizenzanzahl = models.IntegerField(db_column='Lizenzanzahl', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'ticket'

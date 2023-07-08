@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Ticket
+from DongleAnfordern.models import Ticket
 from rest_framework import generics
 
 

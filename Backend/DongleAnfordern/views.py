@@ -16,7 +16,7 @@ from rest_framework import generics #yassin
 from User_loggin.models import CustomUser
     
 
-class TicketCreateView(APIView):
+class TicketCreateViewD(APIView):
     def post(self, request, *args, **kwargs):
         serializer = TicketSerializer(data=request.data)
         try:
@@ -80,8 +80,6 @@ class TicketCreateView(APIView):
                 'standort': standort,
                 'productcode' :None,
                 'lizenzanzahl':None,
-
-
             }
             new_ticket = Ticket(**ticket_data)
             new_ticket.save()

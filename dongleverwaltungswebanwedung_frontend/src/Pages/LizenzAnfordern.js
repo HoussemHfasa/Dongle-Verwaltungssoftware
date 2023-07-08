@@ -42,7 +42,7 @@ const Lizenzanfordern = () => {
         .toISOString()
         .split("T")[0];
       const response = await axios.post(
-        "http://localhost:8000/api/ticket/create/",
+        "http://localhost:8000/api/ticket/create/Lizenz/",
         {
           dongle_seriennummer: dongleId,
           titel: tittel,
@@ -57,7 +57,6 @@ const Lizenzanfordern = () => {
           productcode: productCode,
           firmcode: firmCode,
           lizenzanzahl: lizenzAnzahl,
-          
         }
       );
 
@@ -172,8 +171,8 @@ const Lizenzanfordern = () => {
             onChange={(e) => setGültigBis(e.target.value)}
           />
         </div>
-            {/* Projekt */}
-            <div className="form-row">
+        {/* Projekt */}
+        <div className="form-row">
           <span className="form-label">Projekt</span>
           <input
             type="text"
