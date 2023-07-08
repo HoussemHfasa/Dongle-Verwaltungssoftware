@@ -2,6 +2,7 @@ import React from "react";
 import NavbarWrapper from "../Components/NavbarWrapper";
 import styles from "./Adminseite.module.css";
 import TicketTable from "./TicketTable";
+import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 
 const Lizenzanfordernantwort = () => {
   const filterZero = (ticket) => ticket.dongle_lizenz === 0;
