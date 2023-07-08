@@ -11,7 +11,7 @@ class TicketSerializer(serializers.ModelSerializer):
     erstellungsdatum = serializers.DateField()
     schliessungsdatum = serializers.DateField()
     grund_der_ablehnung=serializers.CharField(required=False)
-    dongle_lizenz = serializers.CharField(required=False)
+    dongle_lizenz = serializers.IntegerField(required=False)
     dongle_name = serializers.CharField()
     dongle_seriennummer = serializers.CharField()
     lizenzname = serializers.CharField(required=False)
@@ -23,6 +23,8 @@ class TicketSerializer(serializers.ModelSerializer):
     admin_verwalter_email = serializers.CharField(required=False)
     haendler = serializers.CharField()
     standort = serializers.CharField()
+    productcode = serializers.IntegerField(required=False)
+    lizenzanzahl = serializers.IntegerField(required=False)
 
     class Meta:
         model = Ticket

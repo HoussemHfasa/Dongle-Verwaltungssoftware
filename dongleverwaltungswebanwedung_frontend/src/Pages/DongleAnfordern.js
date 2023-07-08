@@ -55,6 +55,7 @@ const DongleAnfordern = () => {
           beschreibung: beschreibung,
           erstellungsdatum: new Date().toISOString().split("T")[0],
           schliessungsdatum: new Date().toISOString().split("T")[0],
+          
         }
       );
 

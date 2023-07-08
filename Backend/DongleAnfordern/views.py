@@ -55,6 +55,7 @@ class TicketCreateView(APIView):
         titel = request.data.get('titel')
         dongle_seriennummer = request.data.get('dongle_seriennummer')
         dongle_name = request.data.get('dongle_name')
+        
 
         try:
             ticket_data = {
@@ -63,7 +64,7 @@ class TicketCreateView(APIView):
                 'beschreibung': beschreibung,
                 'status': 'offen',
                 'erstellungsdatum': erstellungsdatum,
-                'schliessungsdatum': None,
+                'schliessungsdatum': schliessungsdatum,
                 'dongle_lizenz': 0,
                 'dongle_name': dongle_name,
                 'dongle_seriennummer': dongle_seriennummer,
@@ -77,6 +78,9 @@ class TicketCreateView(APIView):
                 'admin_verwalter_email':"",
                 'haendler': haendler,
                 'standort': standort,
+                'productcode' :None,
+                'lizenzanzahl':None,
+
 
             }
             new_ticket = Ticket(**ticket_data)
