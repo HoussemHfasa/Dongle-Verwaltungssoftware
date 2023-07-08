@@ -13,7 +13,7 @@ class TicketSerializer(serializers.ModelSerializer):
     grund_der_ablehnung = serializers.CharField(required=False, allow_null=True)
     dongle_lizenz = serializers.IntegerField(required=False, allow_null=True)
     dongle_name = serializers.CharField(required=False, allow_null=True)
-    dongle_seriennummer = serializers.CharField(required=False, allow_null=True)
+    dongle_seriennummer = serializers.CharField(required=False, allow_null=True,allow_blank=True)
     lizenzname = serializers.CharField(required=False, allow_null=True)
     firmcode = serializers.CharField()
     gueltig_von = serializers.DateField(required=False, allow_null=True)

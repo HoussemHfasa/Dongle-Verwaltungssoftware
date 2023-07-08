@@ -60,7 +60,6 @@ const Lizenzanfordern = () => {
         productcode: productCode,
         firmcode: firmCode,
         lizenzanzahl: lizenzAnzahl,
-        lizenzanzahl: parseInt(lizenzAnzahl, 10), // Parse lizenzAnzahl to a valid integer
       };
       const response = await axios.post(
         "http://localhost:8000/api/Lizenzticket/create/",
@@ -72,6 +71,7 @@ const Lizenzanfordern = () => {
         }
       );
       if (response.status === 201) {
+        setResponseContent(JSON.stringify(response.data, null, 2));
         alert("Ihre Anfrage wurde gesendet!");
         resetForm();
       } else {
@@ -83,6 +83,7 @@ const Lizenzanfordern = () => {
       if (error.response) {
         const statusCode = error.response.status;
         const errorMessage = error.response.data;
+        setResponseContent(JSON.stringify(error.response.data, null, 2));
         console.error("Status Code:", statusCode);
         console.error("Error Message:", errorMessage);
 
@@ -232,7 +233,6 @@ const Lizenzanfordern = () => {
             Speichern
           </button>
         </div>
-        {/* Response content */}
       </div>
     </div>
   );
