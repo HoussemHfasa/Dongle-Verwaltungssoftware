@@ -9,6 +9,13 @@ const Lizenzanfordern = () => {
   const [lizenzname, setLizenzname] = useState("");
   const [tittel, setTittel] = useState("");
   const [beschreibung, setBeschreibung] = useState("");
+  const [einheiten, setEinheiten] = useState("");
+  const [productCode, setProductCode] = useState("");
+  const [gueltig_von, setGültigVon] = useState("");
+  const [gueltig_bis, setGültigBis] = useState("");
+  const [firmCode, setFirmCode] = useState("");
+  const [projekt, setProjekt] = useState("");
+  const [lizenzAnzahl, setLizenzAnzahl] = useState("");
 
   // Funktion zum Zurücksetzen des Formulars
   const resetForm = () => {
@@ -16,11 +23,24 @@ const Lizenzanfordern = () => {
     setLizenzname("");
     setTittel("");
     setBeschreibung("");
+    setEinheiten("");
+    setProductCode("");
+    setGültigVon("");
+    setGültigBis("");
+    setFirmCode("");
+    setProjekt("");
+    setLizenzAnzahl("");
   };
 
   // Funktion zum Speichern der eingegebenen Daten
   const handleSave = async () => {
     try {
+      const formattedGueltigVon = new Date(gueltig_von)
+        .toISOString()
+        .split("T")[0];
+      const formattedGueltigBis = new Date(gueltig_bis)
+        .toISOString()
+        .split("T")[0];
       const response = await axios.post(
         "http://localhost:8000/api/ticket/create/",
         {
@@ -30,9 +50,14 @@ const Lizenzanfordern = () => {
           lizenzname: lizenzname,
           erstellungsdatum: new Date().toISOString().split("T")[0],
           schliessungsdatum: new Date().toISOString().split("T")[0],
-          status: "offen",
-          grund_der_ablehnung: "",
-          admin_verwalter_id: 5,
+          gueltig_von: formattedGueltigVon,
+          gueltig_bis: formattedGueltigBis,
+          projekt: projekt,
+          einheiten: einheiten,
+          productcode: productCode,
+          firmcode: firmCode,
+          lizenzanzahl: lizenzAnzahl,
+          
         }
       );
 
@@ -105,6 +130,76 @@ const Lizenzanfordern = () => {
             placeholder="Beschreibung"
             value={beschreibung}
             onChange={(e) => setBeschreibung(e.target.value)}
+          />
+        </div>
+        {/* Einheiten */}
+        <div className="form-row">
+          <span className="form-label">Einheiten</span>
+          <input
+            type="text"
+            placeholder="Einheiten"
+            value={einheiten}
+            onChange={(e) => setEinheiten(e.target.value)}
+          />
+        </div>
+        {/* ProductCode */}
+        <div className="form-row">
+          <span className="form-label">ProductCode</span>
+          <input
+            type="text"
+            placeholder="ProductCode"
+            value={productCode}
+            onChange={(e) => setProductCode(e.target.value)}
+          />
+        </div>
+        {/* Gültig von */}
+        <div className="form-row">
+          <span className="form-label">Gültig von</span>
+          <input
+            type="date"
+            placeholder="yyyy-mm-dd"
+            value={gueltig_von}
+            onChange={(e) => setGültigVon(e.target.value)}
+          />
+        </div>
+        {/* Gültig bis */}
+        <div className="form-row">
+          <span className="form-label">Gültig bis</span>
+          <input
+            type="date"
+            placeholder="yyyy-mm-dd"
+            value={gueltig_bis}
+            onChange={(e) => setGültigBis(e.target.value)}
+          />
+        </div>
+            {/* Projekt */}
+            <div className="form-row">
+          <span className="form-label">Projekt</span>
+          <input
+            type="text"
+            placeholder="Projekt"
+            value={projekt}
+            onChange={(e) => setProjekt(e.target.value)}
+          />
+        </div>
+        {/* FirmCode */}
+        <div className="form-row">
+          <span className="form-label">FirmCode</span>
+          <input
+            type="text"
+            placeholder="FirmCode"
+            value={firmCode}
+            onChange={(e) => setFirmCode(e.target.value)}
+          />
+        </div>
+        {/* Lizenzanzahl */}
+        <div className="form-row">
+          <span className="form-label">Lizenzanzahl</span>
+          <input
+            type="text"
+            placeholder="Lizenzanzahl"
+            value={lizenzAnzahl}
+            onChange={(e) => setLizenzAnzahl(e.target.value)}
           />
         </div>
         {/* Button-Container */}

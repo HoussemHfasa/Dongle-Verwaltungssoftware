@@ -24,12 +24,13 @@ import string
 
 
 class TicketCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request, *args, **kwargs):
         serializer = TicketSerializer(data=request.data)
         try:
             serializer.is_valid(raise_exception=True)
         except Exception as e:
-            return JsonResponse({"error": f"An error occurred while creating the license: {str(e)}"}, status=400)
+            return JsonResponse({"error": f"An error occurred while creating the license: {str(e)}"}, status=401)
 
         # Get the highest id_ticket value
         id_ticket = Ticket.objects.aggregate(Max('id_ticket'))['id_ticket__max']
@@ -39,32 +40,65 @@ class TicketCreateView(APIView):
             id_ticket += 1
 
         # Retrieve the values from the React inputs
-        lizenzname = request.data.get('lizenzname')
+        gueltig_von = request.data.get('gueltig_von')
+        gueltig_bis = request.data.get('gueltig_bis')
+        einheiten = request.data.get('einheiten')
+        projekt = request.data.get('projekt')
+        productcode = request.data.get('productcode')
+        #datum_erstausgabe =date.today()
+        firmcode = request.data.get('firmcode')
+
+        # Retrieve the customer name based on the email address
+        #customer = UserLogginCustomuser.objects.filter(firm_code=firmcode).first()
+        customer = CustomUser.objects.filter(firm_code=firmcode).first()
+        if customer:
+            kunde = customer.name
+            kunde_email = customer.email
+        else:
+            kunde = ""
+            kunde_email = ""
         schliessungsdatum = request.data.get('schliessungsdatum')
         erstellungsdatum = request.data.get('erstellungsdatum')
         beschreibung = request.data.get('beschreibung')
         titel = request.data.get('titel')
         dongle_seriennummer = request.data.get('dongle_seriennummer')
+        lizenzname = request.data.get('lizenzname')
+        lizenzanzahl= request.data.get('lizenzanzahl')
 
         try:
             ticket_data = {
                 'id_ticket': id_ticket,
                 'titel': titel,
-                'lizenzname': lizenzname,
-                'erstellungsdatum': erstellungsdatum,
-                'schliessungsdatum': schliessungsdatum,
                 'beschreibung': beschreibung,
                 'status': 'offen',
-                'admin_verwalter_id': 5,
+                'erstellungsdatum': erstellungsdatum,
+                'schliessungsdatum': schliessungsdatum,
+                'dongle_lizenz': 1,
+                'dongle_name': "",
                 'dongle_seriennummer': dongle_seriennummer,
+                'lizenzname': lizenzname,
+                'firmcode': firmcode,
+                'gueltig_von': gueltig_von,
+                'gueltig_bis': gueltig_bis,
+                'einheiten' :einheiten,
+                'projekt': projekt,
                 'grund_der_ablehnung': "",
+                'admin_verwalter_email':"",
+                'haendler': "",
+                'standort': "",
+                'productcode' :productcode,
+                'lizenzanzahl':lizenzanzahl,
+
+
             }
             new_ticket = Ticket(**ticket_data)
             new_ticket.save()
-
+          
             return JsonResponse({"success": "Die Lizenz wurde erfolgreich erstellt."}, status=201)
         except Exception as e:
             return JsonResponse({"error": f"An error occurred while creating the license: {str(e)}"}, status=400)
+
+
 
 
 #houssem
