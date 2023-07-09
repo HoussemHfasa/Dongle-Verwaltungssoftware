@@ -14,13 +14,16 @@ import datetime
 from datetime import date
 from rest_framework import generics #yassin
 from User_loggin.models import CustomUser
+from Dongle_hinzufügen.models import Dongle
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 import random
 import string
 from datetime import datetime, timedelta
 
+# Klasse für das Erstellen eines D-Tickets (Dongle)
 class TicketCreateViewD(APIView):
+        # Authentifizierung und Berechtigungen
     authentication_classes = [SessionAuthentication, BasicAuthentication]
     permission_classes = [IsAuthenticated]
     def post(self, request, *args, **kwargs):
@@ -30,24 +33,18 @@ class TicketCreateViewD(APIView):
         except Exception as e:
             return JsonResponse({"error": f"An error occurred while creating the license: {str(e)}"}, status=401)
 
-        # Get the highest id_ticket value
         id_ticket = Ticket.objects.aggregate(Max('id_ticket'))['id_ticket__max']
         if id_ticket is None:
             id_ticket = 1
         else:
             id_ticket += 1
 
-        # Retrieve the values from the React inputs
         gueltig_von = request.data.get('gueltig_von')
         gueltig_bis = request.data.get('gueltig_bis')
         projekt = request.data.get('projekt')
         standort = request.data.get('standort')
         haendler = request.data.get('haendler')
-        #datum_erstausgabe =date.today()
         firmcode = request.data.get('firmcode')
-
-        # Retrieve the customer name based on the email address
-        #customer = UserLogginCustomuser.objects.filter(firm_code=firmcode).first()
         customer = CustomUser.objects.filter(firm_code=firmcode).first()
         if customer:
             kunde = customer.name
@@ -97,8 +94,9 @@ class TicketCreateViewD(APIView):
 def random_string(length):
     return ''.join(random.choices(string.ascii_letters, k=length))
 
-
+# Klasse für das Erstellen eines L-Tickets (Lizenz)
 class TicketCreateViewL(APIView):
+    # Authentifizierung und Berechtigungen
     authentication_classes = [SessionAuthentication, BasicAuthentication]
     permission_classes = [IsAuthenticated]
     def post(self, request, *args, **kwargs):
@@ -121,18 +119,7 @@ class TicketCreateViewL(APIView):
         einheiten = request.data.get('einheiten')
         projekt = request.data.get('projekt')
         productcode = request.data.get('productcode')
-        #datum_erstausgabe =date.today()
         firmcode = request.data.get('firmcode')
-
-        # Retrieve the customer name based on the email address
-        #customer = UserLogginCustomuser.objects.filter(firm_code=firmcode).first()
-        customer = CustomUser.objects.filter(firm_code=firmcode).first()
-        if customer:
-            kunde = customer.name
-            kunde_email = customer.email
-        else:
-            kunde = ""
-            kunde_email = ""
         schliessungsdatum = request.data.get('schliessungsdatum')
         erstellungsdatum = request.data.get('erstellungsdatum')
         beschreibung = request.data.get('beschreibung')
@@ -140,6 +127,10 @@ class TicketCreateViewL(APIView):
         dongle_seriennummer = request.data.get('dongle_seriennummer')
         lizenzname = request.data.get('lizenzname')
         lizenzanzahl= request.data.get('lizenzanzahl')
+
+        Dongle_=Dongle.objects.filter(serien_nr=dongle_seriennummer).first()
+        if not Dongle_:
+            return JsonResponse({"error": "Dongle Seriennummer nicht gefunden"}, status=404)
 
         try:
             ticket_data = {

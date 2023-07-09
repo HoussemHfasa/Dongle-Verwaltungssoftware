@@ -15,23 +15,22 @@ class DongleView(APIView):
 
     # GET-Methode für die API-Anfrage
     def get(self, request, *args, **kwargs):
-
         # Get role and firmcode from the authenticated user
         user_role = request.user.role
         user_firmcode = request.user.firm_code
         
-         # Apply filters based on user's role and firmcode
+        # Anwenden von Filtern basierend auf der Rolle und dem Firmencode des Benutzers
         if user_role == 'Admin':
-            # Admin can see all dongles
+            # Admin kann alle Dongles sehen
             result = Dongle.objects.all()
         elif user_role == 'Verwalter':
-            # Verwalter can see all dongles with the same firmcode
+            # Verwalter kann alle Dongles mit demselben Firmencode sehen
             result = Dongle.objects.all()
         elif user_role == 'Kunde':
-            # Kunde can see only their dongles with the same firmcode
+            # Kunde kann nur ihre eigenen Dongles mit demselben Firmencode sehen
             result = Dongle.objects.filter(firmcode=user_firmcode, kunde=request.user.name)
         else:
-            # Return an empty queryset if the role is not recognized
+            # Rückgabe einer leeren Abfrage, wenn die Rolle nicht erkannt wird
             result = Dongle.objects.none()
 
         

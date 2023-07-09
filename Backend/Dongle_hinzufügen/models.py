@@ -1,6 +1,7 @@
 from django.db import models
 
 
+# Dongle-Modell zur Speicherung von Dongle-Daten in der Datenbank
 class Dongle(models.Model):
     lfd_nr_field = models.IntegerField(db_column='Lfd. Nr.', primary_key=True)  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it ended with '_'.
     serien_nr = models.CharField(db_column='Serien-Nr', max_length=45)  # Field name made lowercase. Field renamed to remove unsuitable characters.

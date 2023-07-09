@@ -1,3 +1,3 @@
 from django.test import TestCase
 
-# dieses App braucht kein Test 
+# Diese App benötigt keinen Test

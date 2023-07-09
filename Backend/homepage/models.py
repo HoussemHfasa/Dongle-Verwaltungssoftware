@@ -1,5 +1,6 @@
 from django.db import models
 
+# Dongle-Modell-Klasse
 class Dongle(models.Model):
     
     lfd_nr_field = models.IntegerField(db_column='Lfd. Nr.', primary_key=True)  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it ended with '_'.

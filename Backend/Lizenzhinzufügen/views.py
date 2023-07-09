@@ -4,17 +4,14 @@ from django.core.mail import EmailMessage
 from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework import status
-from rest_framework.response import Response
 from django.db.models import Max
 from .models import Lizenz
 from Dongle_hinzufügen.models import Dongle
 from .serializers import LizenzSerializer
 from User_loggin.models import CustomUser
-from rest_framework.permissions import IsAuthenticated, BasePermission
-#houssem
-from datetime import date
-    
 
+
+# LizenzCreateView ist eine Klasse, die zum Erstellen einer neuen Lizenz über eine API verwendet wird.
 class LizenzCreateView(APIView):
 
     def post(self, request, *args, **kwargs):
@@ -27,15 +24,14 @@ class LizenzCreateView(APIView):
             print("Serializer error:", str(e))  # Debugging print statement
             return JsonResponse({"error": f"An error occurred while creating the license: {str(e)}"}, status=400)
 
-        # Get the highest lfd_nr_field value
+        # Hole den höchsten Wert von lfd_nr_field
         lfd_nr_field = Lizenz.objects.aggregate(Max('lfd_nr_field'))['lfd_nr_field__max']
         if lfd_nr_field is None:
             lfd_nr_field = 1
         else:
             lfd_nr_field += 1
 
-        # Retrieve the values from the React inputs
-        
+        # Werte aus den React-Eingaben abrufen
         lizenzname = request.data.get('lizenzname')
         gueltig_von = request.data.get('gueltig_von')
         gueltig_bis = request.data.get('gueltig_bis')
@@ -47,9 +43,7 @@ class LizenzCreateView(APIView):
         firmcode = request.data.get('firmcode')
         lizenzanzahl=request.data.get('lizenzanzahl')
         dongle_serien_nr = request.data.get('dongle_serien_nr')
-        # Retrieve the customer name based on the email address
         if dongle_serien_nr:
-            # Search for Dongle with the given dongle_serien_nr
             dongle = Dongle.objects.filter(serien_nr=dongle_serien_nr).first()
             if not dongle:
                 return JsonResponse({"error": "'dongle_serien_nr' nicht vorhanden."}, status=400)
@@ -83,7 +77,7 @@ class LizenzCreateView(APIView):
             lizenz = Lizenz(**lizenz_data)
             lizenz.save()
 
-            # Send an email notification
+            # E-Mail senden
             subject = f"Neue Lizenz erstellt: {lizenzname}"
             message = f"Es wurde eine neue Lizenz erstellt:\n\n" \
                       f"Lizenzname: {lizenzname}\n" \

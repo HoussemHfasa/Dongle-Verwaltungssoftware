@@ -1,5 +1,7 @@
 from django.db import models
 
+
+# Die Klasse Lizenz erstellt das Datenbankmodell für eine Lizenz mit verschiedenen Feldern.
 class Lizenz(models.Model):
     lfd_nr_field = models.IntegerField(db_column='Lfd. Nr.', primary_key=True)  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it ended with '_'.
     firmcode = models.CharField(db_column='FirmCode', max_length=45)  # Field name made lowercase.

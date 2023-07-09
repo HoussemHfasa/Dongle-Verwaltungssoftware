@@ -2,14 +2,14 @@ from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient
-from .models import Dongle#, UserLogginCustomuser
+from .models import Dongle
 from User_loggin.models import CustomUser
 from .serializers import DongleSerializer
 
+# Testfälle für das Dongle-Modell
 class DongleTests(TestCase):
     def setUp(self):
         self.client = APIClient()
-
         # Create a test user
         self.test_user = CustomUser.objects.create(
             email="test@example.com",

@@ -3,6 +3,7 @@ from .models import Dongle
 from rest_framework import generics
 
 
+# Serializer für das Dongle-Modell zur Umwandlung von Django-Objekten in JSON
 class DongleSerializer(serializers.ModelSerializer):
     lfd_nr_field = serializers.IntegerField(required=False)  # Anpassung: Das Feld ist optional
     serien_nr = serializers.CharField()

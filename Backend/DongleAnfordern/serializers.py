@@ -1,8 +1,7 @@
 from rest_framework import serializers
 from .models import Ticket
-from rest_framework import generics
 
-
+# TicketSerializer-Klasse definieren
 class TicketSerializer(serializers.ModelSerializer):
     id_ticket = serializers.IntegerField(required=False)
     titel = serializers.CharField()

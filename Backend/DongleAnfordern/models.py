@@ -1,6 +1,6 @@
 from django.db import models
 
-
+# Ticket-Modell definieren
 class Ticket(models.Model):
     id_ticket = models.IntegerField(db_column='ID_Ticket', primary_key=True)  # Field name made lowercase.
     titel = models.CharField(db_column='Titel', max_length=45)  # Field name made lowercase.

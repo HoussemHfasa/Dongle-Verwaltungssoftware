@@ -12,11 +12,11 @@ const DongleAnfordern = () => {
   const [standort, setStandort] = useState("");
   const [gueltigVon, setGueltigVon] = useState("");
   const [gueltigBis, setGueltigBis] = useState("");
-  const [firmCode, setFirmCode] = useState("");
+  const [firmCode] = useState("");
   const [projekt, setProjekt] = useState("");
   const [titel, setTitel] = useState("");
   const [beschreibung, setBeschreibung] = useState("");
-  const { email, password } = useAuth();
+  const { email, password, Firmcode } = useAuth();
 
   // Funktion zum Zurücksetzen des Formulars
   const resetForm = () => {
@@ -26,7 +26,6 @@ const DongleAnfordern = () => {
     setStandort("");
     setGueltigVon("");
     setGueltigBis("");
-    setFirmCode("");
     setProjekt("");
     setTitel("");
     setBeschreibung("");
@@ -39,11 +38,7 @@ const DongleAnfordern = () => {
         alert("Das Feld 'Dongle ID' ist erforderlich.");
         return;
       }
-      if (!firmCode) {
-        alert("Das Feld 'firmCode' ist erforderlich.");
-        return;
-      }
-     
+
       const formattedGueltigVon = new Date(gueltigVon)
         .toISOString()
         .split("T")[0];
@@ -58,7 +53,7 @@ const DongleAnfordern = () => {
         projekt: projekt,
         standort: standort,
         haendler: handler,
-        firmcode: firmCode,
+        firmcode: Firmcode,
         titel: titel,
         beschreibung: beschreibung,
         erstellungsdatum: new Date().toISOString().split("T")[0],
@@ -200,17 +195,6 @@ const DongleAnfordern = () => {
             placeholder="yyyy-mm-dd"
             value={gueltigBis}
             onChange={(e) => setGueltigBis(e.target.value)}
-          />
-        </div>
-
-        {/* FirmCode */}
-        <div className="form-row">
-          <span className="form-label">FirmCode</span>
-          <input
-            type="text"
-            placeholder="FirmCode"
-            value={firmCode}
-            onChange={(e) => setFirmCode(e.target.value)}
           />
         </div>
 

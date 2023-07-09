@@ -2,8 +2,9 @@ from rest_framework import serializers
 from .models import Lizenz
 from rest_framework import generics
 
-
+# Der LizenzSerializer konvertiert das Lizenz-Modell in ein JSON-Format und umgekehrt.
 class LizenzSerializer(serializers.ModelSerializer):
+    # Die folgenden Zeilen definieren die Felder und deren Eigenschaften im Serializer.
     lfd_nr_field = serializers.IntegerField(required=False)
     firmcode = serializers.CharField()
     productcode = serializers.IntegerField()
@@ -21,7 +22,7 @@ class LizenzSerializer(serializers.ModelSerializer):
         model = Lizenz
         fields = '__all__'
 
-# View
+# DongleCreateView ist eine Klasse, die zum Erstellen eines neuen Dongles über eine API verwendet wird.
 class DongleCreateView(generics.CreateAPIView):
     queryset = Lizenz.objects.all()
     serializer_class = LizenzSerializer

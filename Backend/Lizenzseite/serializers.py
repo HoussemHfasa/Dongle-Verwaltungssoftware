@@ -1,5 +1,4 @@
 from rest_framework import serializers
-#from .models import Lizenz
 from Lizenzhinzufügen.models import Lizenz
 from Dongle_hinzufügen.models import Dongle
 

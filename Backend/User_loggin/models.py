@@ -46,7 +46,6 @@ class CustomUserManager(BaseUserManager):
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     id = models.BigAutoField(primary_key=True)
     last_login = models.DateTimeField(blank=True, null=True)
-    #is_superuser = models.IntegerField()
     is_superuser = models.BooleanField(default=False)
     email = models.EmailField(unique=True)
     name = models.CharField(max_length=255)
@@ -61,6 +60,9 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     @property
     def is_staff(self):
         return self.is_superuser
+    @is_staff.setter
+    def is_staff(self, value):
+        self.is_superuser = 0
     
     # Eigene Berechtigung
     class Meta:

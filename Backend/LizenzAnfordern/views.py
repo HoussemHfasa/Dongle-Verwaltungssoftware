@@ -8,23 +8,16 @@ from rest_framework.response import Response
 from django.db.models import Max
 from DongleAnfordern.models import Ticket
 from Lizenzhinzufügen.models import Lizenz
-from Lizenzhinzufügen.serializers import LizenzSerializer
 from Dongle_hinzufügen.models import Dongle
-from Dongle_hinzufügen.serializers import DongleSerializer
 from User_loggin.models import CustomUser
 import datetime
 from django.db.models import Max
-#from .serializers import TicketSerializer
 from DongleAnfordern.serializers import TicketSerializer
-from rest_framework.permissions import IsAuthenticated, BasePermission
-#houssem
-from datetime import date
-from rest_framework import generics #yassin
+from rest_framework import generics 
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
-
 from rest_framework.permissions import IsAuthenticated
 
-
+# Die Klasse TicketAnnehmenView behandelt den Prozess der Annahme eines Tickets und das Erstellen einer neuen Lizenz oder eines neuen Dongles
 class TicketAnnehmenView(APIView):
     authentication_classes = [SessionAuthentication, BasicAuthentication]
     permission_classes = [IsAuthenticated]
@@ -146,7 +139,7 @@ class TicketAnnehmenView(APIView):
             except Exception as e:
                 return JsonResponse({"error": f"An error occurred while creating the dongle: {str(e)}"}, status=400)
 
-
+# Die Klasse TicketAblehnenView behandelt den Prozess der Ablehnung eines Tickets und das Aktualisieren des Ticket-Status und Ablehnungsgrunds
 class TicketAblehnenView(APIView):
     authentication_classes = [SessionAuthentication, BasicAuthentication]
     permission_classes = [IsAuthenticated]
@@ -163,8 +156,7 @@ class TicketAblehnenView(APIView):
         return JsonResponse({"success": "Die Lizenz wurde abgelehnt."}, status=200)
 
 
-#yassin
-
+# Die Klasse TicketDetailsView ruft die Details eines Tickets ab und aktualisiert sie
 class TicketDetailsView(generics.RetrieveUpdateAPIView):
     authentication_classes = [SessionAuthentication, BasicAuthentication]
     permission_classes = [IsAuthenticated]

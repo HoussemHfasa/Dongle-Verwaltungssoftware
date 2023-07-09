@@ -7,12 +7,10 @@ from rest_framework.response import Response
 from django.db.models import Max
 from .models import Dongle
 from .serializers import DongleSerializer
-#from .models import UserLogginCustomuser
-from rest_framework.permissions import IsAuthenticated, BasePermission
-#houssem
-from datetime import date
 from User_loggin.models import CustomUser
     
+
+# Generische Ansicht zum Anzeigen und Erstellen von Dongle-Objekten
 
 class DongleCreateView(APIView):
 
@@ -76,7 +74,7 @@ class DongleCreateView(APIView):
             dongle = Dongle.objects.create(**dongle_data)
             dongle.save()
 
-            # Send email to the customer
+            # Funktion zum Senden einer E-Mail, wenn ein neuer Dongle erstellt wird
             email_subject = f"New Dongle Created: {serien_nr}"
             email_body = f"Liebe {kunde},\n\n der Administrator hat Ihnen einen Dongle zugewiesen mit der Seriennummer {serien_nr}.  \n\nEnglish Version:\n\nDear {kunde},\n\nThe administrator has assigned a dongle to you with the serial number: {serien_nr}."
             email = EmailMessage(subject=email_subject, body=email_body, to=[kunde_email])

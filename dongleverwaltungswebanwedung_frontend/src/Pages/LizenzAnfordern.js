@@ -14,10 +14,10 @@ const Lizenzanfordern = () => {
   const [productCode, setProductCode] = useState("");
   const [gueltig_von, setGültigVon] = useState("");
   const [gueltig_bis, setGültigBis] = useState("");
-  const [firmCode, setFirmCode] = useState("");
+  const [firmCode] = useState("");
   const [projekt, setProjekt] = useState("");
   const [lizenzAnzahl, setLizenzAnzahl] = useState("");
-  const { email, password } = useAuth();
+  const { email, password, Firmcode } = useAuth();
   const [responseContent, setResponseContent] = useState("");
 
   // Funktion zum Zurücksetzen des Formulars
@@ -30,7 +30,6 @@ const Lizenzanfordern = () => {
     setProductCode("");
     setGültigVon("");
     setGültigBis("");
-    setFirmCode("");
     setProjekt("");
     setLizenzAnzahl("");
   };
@@ -39,10 +38,6 @@ const Lizenzanfordern = () => {
   // Funktion zum Speichern der eingegebenen Daten
   const handleSave = async () => {
     try {
-      if (!firmCode) {
-        alert("Das Feld 'firmCode' ist erforderlich.");
-        return;
-      }
       if (!productCode) {
         alert("Das Feld 'productCode' ist erforderlich.");
         return;
@@ -78,7 +73,7 @@ const Lizenzanfordern = () => {
         projekt: projekt,
         einheiten: einheiten,
         productcode: productCode,
-        firmcode: firmCode,
+        firmcode: Firmcode,
         lizenzanzahl: lizenzAnzahl,
       };
       const response = await axios.post(
@@ -103,16 +98,24 @@ const Lizenzanfordern = () => {
       if (error.response) {
         const statusCode = error.response.status;
         const errorMessage = error.response.data;
+
         setResponseContent(JSON.stringify(error.response.data, null, 2));
         console.error("Status Code:", statusCode);
         console.error("Error Message:", errorMessage);
 
-        alert(
-          "Fehler beim Senden der Anfrage3: " +
-            statusCode +
-            " - " +
-            errorMessage
-        );
+        if (
+          statusCode === 404 &&
+          errorMessage.error === "Dongle Seriennummer nicht gefunden"
+        ) {
+          alert("Dongle Seriennummer nicht gefunden!");
+        } else {
+          alert(
+            "Fehler beim Senden der Anfrage3: " +
+              statusCode +
+              " - " +
+              errorMessage.error
+          );
+        }
       } else {
         alert("Fehler beim Senden der Anfrage4: " + error.message);
       }
@@ -222,16 +225,7 @@ const Lizenzanfordern = () => {
             onChange={(e) => setProjekt(e.target.value)}
           />
         </div>
-        {/* FirmCode */}
-        <div className="form-row">
-          <span className="form-label">FirmCode</span>
-          <input
-            type="text"
-            placeholder="FirmCode"
-            value={firmCode}
-            onChange={(e) => setFirmCode(e.target.value)}
-          />
-        </div>
+
         {/* Lizenzanzahl */}
         <div className="form-row">
           <span className="form-label">Lizenzanzahl</span>
