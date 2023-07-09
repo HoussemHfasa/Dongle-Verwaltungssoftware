@@ -17,7 +17,6 @@ const Lizenzanfordern = () => {
   const [projekt, setProjekt] = useState("");
   const [lizenzAnzahl, setLizenzAnzahl] = useState("");
   const { email, password, Firmcode } = useAuth();
-  const [setResponseContent] = useState("");
 
   // Funktion zum Zurücksetzen des Formulars
   const resetForm = () => {
@@ -85,7 +84,6 @@ const Lizenzanfordern = () => {
         }
       );
       if (response.status === 201) {
-        setResponseContent(JSON.stringify(response.data, null, 2));
         alert("Ihre Anfrage wurde gesendet!");
         resetForm();
       } else {
@@ -98,7 +96,6 @@ const Lizenzanfordern = () => {
         const statusCode = error.response.status;
         const errorMessage = error.response.data;
 
-        setResponseContent(JSON.stringify(error.response.data, null, 2));
         console.error("Status Code:", statusCode);
         console.error("Error Message:", errorMessage);
 
