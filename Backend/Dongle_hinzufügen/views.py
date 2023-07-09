@@ -44,7 +44,7 @@ class DongleCreateView(APIView):
         datum_letzte_aenderung = request.data.get('datum_letzte_aenderung')
         datum_erstausgabe = request.data.get('datum_erstausgabe')
         #datum_erstausgabe =date.today()
-        firmcode = request.data.get('firmcode')
+        
 
         # Retrieve the customer name based on the email address
         #customer = UserLogginCustomuser.objects.filter(firm_code=firmcode).first()
@@ -52,6 +52,8 @@ class DongleCreateView(APIView):
         if customer:
             kunde = customer.name
             kunde_email = customer.email
+            firmcode = request.data.get('firmcode')
+
         else:
             kunde = ""
             kunde_email = ""

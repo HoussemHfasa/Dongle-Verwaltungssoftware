@@ -29,6 +29,14 @@ const Donglehinzufuegen = () => {
   // Funktion zum Speichern der eingegebenen Daten
   const handleSave = async () => {
     try {
+      if (!dongleId) {
+        alert("Das Feld 'Dongle ID' ist erforderlich.");
+        return;
+      }
+      if (!firmCode) {
+        alert("Das Feld 'firmCode' ist erforderlich.");
+        return;
+      }
       const formattedGültigVon = new Date(gültigVon)
         .toISOString()
         .split("T")[0];

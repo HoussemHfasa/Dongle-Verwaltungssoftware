@@ -52,8 +52,8 @@ class TicketAnnehmenView(APIView):
                 kunde = customer.name
                 kunde_Firmcode = customer.firm_code
              else:
-                kunde = ""
-                kunde_Firmcode = ""
+                return JsonResponse({"error": "Der FirmCode ist nicht vorhanden."}, status=400)
+
              try:
                  new_lizenz_data = {
                  'lfd_nr_field': lfd_nr_field,

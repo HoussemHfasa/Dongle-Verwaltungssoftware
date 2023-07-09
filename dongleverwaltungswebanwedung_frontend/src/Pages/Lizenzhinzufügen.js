@@ -33,6 +33,26 @@ const Lizenzhinzufuegen = () => {
   // Funktion zum Speichern der eingegebenen Daten
   const handleSave = async () => {
     try {
+      if (!firmCode) {
+        alert("Das Feld 'firmCode' ist erforderlich.");
+        return;
+      }
+      if (!productCode) {
+        alert("Das Feld 'productCode' ist erforderlich.");
+        return;
+      }
+      if (einheiten !== "" && isNaN(einheiten)) {
+        alert("Das Feld 'Einheiten' muss eine Zahl sein.");
+        return;
+      }
+      if (productCode !== "" && isNaN(productCode)) {
+        alert("Das Feld 'productCode' muss eine Zahl sein.");
+        return;
+      }
+      if (lizenzAnzahl !== "" && isNaN(lizenzAnzahl)) {
+        alert("Das Feld 'lizenzAnzahl' muss eine Zahl sein.");
+        return;
+      }
       const formattedGültigVon = new Date(gültigVon)
         .toISOString()
         .split("T")[0];
