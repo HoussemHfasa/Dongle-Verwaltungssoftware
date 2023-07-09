@@ -2,9 +2,11 @@ import React from "react";
 import NavbarWrapper from "../Components/NavbarWrapper";
 import styles from "./Adminseite.module.css";
 import KundeTicketTable from "./KundeTicketTable";
+import { useAuth } from "../Components/AuthContext";
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 
-const Lizenzanfordernantwort = () => {
+const KundeAnfrageübersicht = () => {
+  const { Firmcode } = useAuth();
   const filterZero = (ticket) => ticket.dongle_lizenz === 0;
   const filterOne = (ticket) => ticket.dongle_lizenz === 1;
   const columnsZero = [
@@ -157,22 +159,27 @@ const Lizenzanfordernantwort = () => {
 
   return (
     <div className={styles.container}>
-      {/* Rahmen für Navbar und Hintergrund */}
       <div className={styles.frame7}>
-        {/* Navbar */}
         <NavbarWrapper />
-        {/* Rechteckiger Hintergrund */}
         <div className={styles.rectanglebackground}></div>
       </div>
 
       <div className={`${styles["CustomuserTable"]} ${styles.tableContainer}`}>
         <h2>Anfrage für neue Dongles</h2>
-        <KundeTicketTable filter={filterZero} customColumns={columnsZero} />
+        <KundeTicketTable
+          filter={filterZero}
+          customColumns={columnsZero}
+          firmcode={Firmcode}
+        />
         <h2>Anfrage für neue Lizenzen</h2>
-        <KundeTicketTable filter={filterOne} customColumns={columnsOne} />
+        <KundeTicketTable
+          filter={filterOne}
+          customColumns={columnsOne}
+          firmcode={Firmcode}
+        />
       </div>
     </div>
   );
 };
 
-export default Lizenzanfordernantwort;
+export default KundeAnfrageübersicht;

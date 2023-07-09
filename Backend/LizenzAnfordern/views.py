@@ -14,13 +14,10 @@ import datetime
 from django.db.models import Max
 from DongleAnfordern.serializers import TicketSerializer
 from rest_framework import generics 
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication
-from rest_framework.permissions import IsAuthenticated
+
 
 # Die Klasse TicketAnnehmenView behandelt den Prozess der Annahme eines Tickets und das Erstellen einer neuen Lizenz oder eines neuen Dongles
 class TicketAnnehmenView(APIView):
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = [IsAuthenticated]
     def post(self, request, *args, **kwargs):      
         ticket_id = request.data.get("id_ticket")
         Mitarbeiter=request.data.get("Mitarbeiter_email")
@@ -33,12 +30,6 @@ class TicketAnnehmenView(APIView):
               lfd_nr_field = 1
              else:   
               lfd_nr_field += 1
-
-             if ticket.dongle_seriennummer:
-                dongle = Dongle.objects.filter(serien_nr=ticket.dongle_seriennummer).first()
-             if not dongle:
-                return JsonResponse({"error": "'dongle_serien_nr' nicht vorhanden."}, status=400)
-             
                # Retrieve the customer name based on the email address
              customer = CustomUser.objects.filter(firm_code=ticket.firmcode).first()
              if customer:
@@ -141,8 +132,6 @@ class TicketAnnehmenView(APIView):
 
 # Die Klasse TicketAblehnenView behandelt den Prozess der Ablehnung eines Tickets und das Aktualisieren des Ticket-Status und Ablehnungsgrunds
 class TicketAblehnenView(APIView):
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = [IsAuthenticated]
     def post(self, request, *args, **kwargs):
         ticket_id = request.data.get("id_ticket")
         grund_der_ablehnung = request.data.get("grund_der_ablehnung")
@@ -158,8 +147,6 @@ class TicketAblehnenView(APIView):
 
 # Die Klasse TicketDetailsView ruft die Details eines Tickets ab und aktualisiert sie
 class TicketDetailsView(generics.RetrieveUpdateAPIView):
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = [IsAuthenticated]
     queryset = Ticket.objects.all()
     serializer_class = TicketSerializer
 

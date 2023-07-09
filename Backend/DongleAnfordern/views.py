@@ -15,17 +15,12 @@ from datetime import date
 from rest_framework import generics #yassin
 from User_loggin.models import CustomUser
 from Dongle_hinzufügen.models import Dongle
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 import random
 import string
 from datetime import datetime, timedelta
 
 # Klasse für das Erstellen eines D-Tickets (Dongle)
 class TicketCreateViewD(APIView):
-        # Authentifizierung und Berechtigungen
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = [IsAuthenticated]
     def post(self, request, *args, **kwargs):
         serializer = TicketSerializer(data=request.data)
         try:
@@ -96,9 +91,6 @@ def random_string(length):
 
 # Klasse für das Erstellen eines L-Tickets (Lizenz)
 class TicketCreateViewL(APIView):
-    # Authentifizierung und Berechtigungen
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = [IsAuthenticated]
     def post(self, request, *args, **kwargs):
         serializer = TicketSerializer(data=request.data)
         try:
@@ -127,11 +119,10 @@ class TicketCreateViewL(APIView):
         dongle_seriennummer = request.data.get('dongle_seriennummer')
         lizenzname = request.data.get('lizenzname')
         lizenzanzahl= request.data.get('lizenzanzahl')
-
-        Dongle_=Dongle.objects.filter(serien_nr=dongle_seriennummer).first()
-        if not Dongle_:
-            return JsonResponse({"error": "Dongle Seriennummer nicht gefunden"}, status=404)
-
+        if dongle_seriennummer!="":
+         Dongle1 = Dongle.objects.filter(serien_nr=dongle_seriennummer).first()
+         if Dongle1 is None:
+          return JsonResponse({"error": "Dongle Seriennummer nicht gefunden"}, status=404)
         try:
             ticket_data = {
                 'id_ticket': id_ticket,

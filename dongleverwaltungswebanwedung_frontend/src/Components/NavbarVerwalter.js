@@ -98,17 +98,6 @@ const NavbarVerwalter = (props) => {
             className={styles["profileimage"]}
           />
         </button>
-        <button
-          className={styles["notificationImageButton"]}
-          onClick={toggleNotificationPopup}
-          ref={notificationButtonRef}
-        >
-          <img
-            alt="Notification_image"
-            src={Notification_image}
-            className={styles["notificationimage"]}
-          />
-        </button>
       </div>
     </div>
   );

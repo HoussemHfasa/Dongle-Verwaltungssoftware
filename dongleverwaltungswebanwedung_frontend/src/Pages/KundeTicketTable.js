@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Table, Button, Modal, Input } from "antd";
+import { Table } from "antd";
 import { useAuth } from "../Components/AuthContext";
 
-const KundeTicketTable = ({ filter, customColumns }) => {
+const KundeTicketTable = ({ filter, customColumns, firmcode }) => {
   const [dataSource, setDataSource] = useState([]);
   const { email, password } = useAuth();
-  const [modalVisible, setModalVisible] = useState(false);
-  const [selectedTicketId, setSelectedTicketId] = useState(null);
 
   useEffect(() => {
     localStorage.setItem("email", email);
@@ -18,7 +16,6 @@ const KundeTicketTable = ({ filter, customColumns }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log("email test in tickettable", email, password);
       const response = await axios.get(
         "http://localhost:8000/api/ticket/details/",
         {
@@ -27,12 +24,17 @@ const KundeTicketTable = ({ filter, customColumns }) => {
           },
         }
       );
-      setDataSource(filter ? response.data.filter(filter) : response.data);
+
+      const filteredData = response.data.filter(
+        (ticket) => ticket.firmcode === firmcode && (!filter || filter(ticket))
+      );
+
+      setDataSource(filteredData);
       console.log("Fetched data:", response.data);
     };
 
     fetchData();
-  }, [email, password, filter]);
+  }, [email, password, filter, firmcode]);
 
   return (
     <div>

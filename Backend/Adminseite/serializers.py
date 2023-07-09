@@ -7,7 +7,7 @@ from User_loggin.models import CustomUser
 class CustomuserSerializer(serializers.ModelSerializer):
     id = models.BigAutoField(primary_key=True)
     last_login = serializers.DateTimeField(required=False, allow_null=True)
-    is_superuser = serializers.IntegerField()
+    is_superuser = serializers.BooleanField()
     email = serializers.CharField(max_length=254, validators=[UniqueValidator(queryset=CustomUser.objects.all())])
     name = serializers.CharField(max_length=255)
     password = serializers.CharField(max_length=255)
