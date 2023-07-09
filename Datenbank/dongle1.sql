@@ -350,7 +350,7 @@ CREATE TABLE `user_loggin_customuser` (
 
 LOCK TABLES `user_loggin_customuser` WRITE;
 /*!40000 ALTER TABLE `user_loggin_customuser` DISABLE KEYS */;
-INSERT INTO `user_loggin_customuser` VALUES (1,'2023-06-17 12:58:19.185166',1,'admin@example.com','Admin User','pbkdf2_sha256$600000$i4pYEftS29PpAHx8Za46td$SS2tXduzLFPWWWgVCralmZMscr76/oTLT9JYOYEWHm4=','Admin',NULL),(2,'2023-07-05 21:47:23.034682',0,'newuser@example.com','New User','pbkdf2_sha256$600000$RL3bhLGOg2KRiijBSLTv6c$O2bnZQ4wG3KLe7+GDDydcZa5L7CtQ0lMWlQImp8cxio=','Admin',NULL),(3,'2023-07-09 21:21:11.627052',0,'kundeuser@example.com','Kunde User','pbkdf2_sha256$600000$FSyciHXLzDgMFOM0FOW3Mt$O6qjLN7WBDg/DpOyZxXrE7KYVIOF86Qk6Pr+DruSchA=','Kunde','FIRM123'),(36,'2023-07-09 21:14:37.809545',0,'hgajhbdad@gmail.com','Admin1','pbkdf2_sha256$600000$6OIgwtt1cmKyM5E18igFlI$VWjqEwmhDe/bfpZIPxWJR2KpxOp0lgZ1IaH+Ap+dm94=','Admin','');
+INSERT INTO `user_loggin_customuser` VALUES (1,'2023-06-17 12:58:19.185166',1,'admin@example.com','Admin User','pbkdf2_sha256$600000$i4pYEftS29PpAHx8Za46td$SS2tXduzLFPWWWgVCralmZMscr76/oTLT9JYOYEWHm4=','Admin',NULL),(2,'2023-07-05 21:47:23.034682',0,'newuser@example.com','New User','pbkdf2_sha256$600000$RL3bhLGOg2KRiijBSLTv6c$O2bnZQ4wG3KLe7+GDDydcZa5L7CtQ0lMWlQImp8cxio=','Verwalter',NULL),(3,'2023-07-09 21:21:11.627052',0,'kundeuser@example.com','Kunde User','pbkdf2_sha256$600000$FSyciHXLzDgMFOM0FOW3Mt$O6qjLN7WBDg/DpOyZxXrE7KYVIOF86Qk6Pr+DruSchA=','Kunde','FIRM123'),(36,'2023-07-09 21:14:37.809545',0,'hgajhbdad@gmail.com','Admin1','pbkdf2_sha256$600000$6OIgwtt1cmKyM5E18igFlI$VWjqEwmhDe/bfpZIPxWJR2KpxOp0lgZ1IaH+Ap+dm94=','Admin','');
 /*!40000 ALTER TABLE `user_loggin_customuser` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -419,4 +419,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-09 23:33:49
+-- Dump completed on 2023-07-09 23:39:04
