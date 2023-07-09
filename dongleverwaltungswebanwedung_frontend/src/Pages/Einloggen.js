@@ -106,7 +106,7 @@ const Einloggen = () => {
             type="text"
             placeholder="Schreiben Sie Ihr E-Mail"
             className={styles.textbox_Benutzername}
-            onChange={(e) => setInputEmail(e.target.value)}
+            onChange={(e) => setInputEmail(e.target.value.trim())}
           />
           <div className={styles["frame-Benutzername"]}>E-Mail</div>
           <div className={styles["frame-text-Benutzername"]}>

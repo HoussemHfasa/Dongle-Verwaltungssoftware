@@ -94,11 +94,11 @@ E-Mail: admin@example.com
 Passwort: testpassword
 
 Admin-Konto:
-E-Mail: newuser@example.com
+E-Mail: hgajhbdad@gmail.com
 Passwort: testpassword
 
 Verwalter-Konto:
-E-Mail: houssemhfassa25@gmail.com
+E-Mail: newuser@example.com
 Passwort: testpassword
 
 Kunden-Konto:
