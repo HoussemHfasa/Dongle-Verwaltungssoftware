@@ -59,19 +59,33 @@ Netzwerk: Breitband-Internetverbindung für den Zugriff auf die Webanwendung und
 
 ## Installation
 
-## Installation
-
 ## Bereits installiert
 
 Wenn Sie bereits alles installiert haben, führen Sie die folgenden Schritte aus:
 
-1. Navigieren Sie zum Ordner des Projekts: ...\team01>.
+1. Öffnen Sie eine Kommandozeile oder ein Terminal und navigieren Sie zum Ordner des Projekts: `...\team01>`.
 
-2. Installieren Sie die neuen Node-Module mit dem Befehl: "npm install".
+2. Installieren Sie die neuen Node-Module mit dem Befehl: `npm install`.
 
-3. Fügen Sie die benötigten Bibliotheken für das Backend hinzu, indem Sie den Befehl "pip freeze > requirements.txt" ausführen.
+3. Fügen Sie die benötigten Bibliotheken für das Backend hinzu, indem Sie den Befehl `pip install -r requirements.txt` ausführen.
 
-4. Starten Sie das Projekt mit dem Befehl "npm start".
+4. Starten Sie das Projekt mit dem Befehl `npm start`.
+
+## Alternative Schritte, wenn es nicht funktioniert
+
+1. Öffnen Sie eine Kommandozeile oder ein Terminal und navigieren Sie zu dem Verzeichnis, in dem das Django-Projekt gespeichert ist. Verwenden Sie dazu den Befehl `cd "../team01/Backend"`.
+
+2. Installieren Sie alle erforderlichen Pakete und Bibliotheken aus der `requirements.txt`-Datei mit dem Befehl: `pip install -r requirements.txt`.
+
+3. Starten Sie das Backend mit dem Befehl `python manage.py runserver`.
+
+4. Öffnen Sie eine neue Kommandozeile oder ein Terminal und navigieren Sie zu dem Verzeichnis, in dem das React-Frontend gespeichert ist. Verwenden Sie dazu den Befehl `cd "../team01/dongleverwaltungswebanwedung_frontend"`.
+
+5. Installieren Sie die neuen Node-Module mit dem Befehl: `npm install`.
+
+6. Starten Sie das Frontend mit dem Befehl `npm start`.
+
+## Testkonto
 
 Hier sind einige Konten, die Sie zum Testen der Anwendung verwenden können:
 
@@ -91,11 +105,19 @@ Kunden-Konto:
 E-Mail: kundeuser@example.com
 Passwort: testpassword
 
-Verwenden Sie diese Anmeldedaten, um die verschiedenen Rollen und Funktionen innerhalb der Anwendung zu testen. Wenn Sie auf Probleme stoßen oder weitere Unterstützung benötigen, zögern Sie nicht, uns zu kontaktieren.
+Verwenden Sie diese Anmeldedaten, um die verschiedenen Rollen und Funktionen innerhalb der Anwendung zu testen.
 
 # Django-Projekt mit Anaconda
 
 Dieses Django-Projekt wurde mit Anaconda erstellt und enthält eine `requirements.txt`-Datei, die alle erforderlichen Pakete und Bibliotheken für das Projekt auflistet.
+
+## Python-Installation
+
+Stellen Sie sicher, dass Python auf Ihrem Computer installiert ist. Wenn nicht, befolgen Sie diese Schritte, um Python herunterzuladen und zu installieren:
+
+1. Besuchen Sie die offizielle Python-Website ↗.
+2. Laden Sie die neueste Python-Version für Ihr Betriebssystem herunter.
+3. Öffnen Sie die Installationsdatei und folgen Sie den Anweisungen auf dem Bildschirm, um Python auf Ihrem System zu installieren. Stellen Sie sicher, dass Sie während der Installation die Option "Add Python to PATH" aktivieren.
 
 ## Installation von Anaconda
 
@@ -161,23 +183,9 @@ DB_PORT=3306
 
 6. Speichern Sie die Änderungen.
 
-## Schritt 5: Frontend-Pakete installieren und ausführen
+## Schritt 5: Führen Sie das Projekt aus
 
-1. Öffnen Sie ein Terminal oder eine Kommandozeile und navigieren Sie zum Frontend-Verzeichnis des Projekts mit dem Befehl `cd "../team01/Frontend"`.
-
-2. Führen Sie den Befehl `npm install` aus, um alle erforderlichen Pakete für das Frontend zu installieren.
-
-3. Führen Sie den Befehl `npm start` aus, um das Frontend zu starten. Die Anwendung sollte nun im Browser unter `http://localhost:3000` erreichbar sein.
-
-## Schritt 6: Django-Server ausführen
-
-1. Öffnen Sie ein neues Terminal oder eine Kommandozeile und navigieren Sie zum Backend-Verzeichnis des Projekts mit dem Befehl `cd "../team01/Backend"`.
-
-2. Stellen Sie sicher, dass Sie die Anaconda-Umgebung, die Sie zuvor erstellt haben, aktiviert haben. Wenn nicht, führen Sie den Befehl `conda activate myenv` aus.
-
-3. Führen Sie den Befehl `python manage.py runserver` aus, um den Django-Server zu starten. Der Server sollte nun unter `http://localhost:8000` erreichbar sein.
-
-Jetzt sollten sowohl das Frontend als auch das Backend laufen, und Sie können die Anwendung in Ihrem Browser verwenden.
+Wenn Sie bereits alles installiert haben und sich in diesem Schritt befinden, folgen Sie bitte den Schritten im Abschnitt "Bereits installiert", um das Projekt (sowohl das Frontend als auch das Backend) zu starten.
 
 ## Verwendung
 

@@ -128,7 +128,7 @@ function CustomuserTable() {
     {
       title: "Superuser",
       dataIndex: "is_superuser",
-      render: (value) => (value === 1 ? "Ja" : "Nein"),
+      render: (value) => (value === true ? "Ja" : "Nein"),
     },
     {
       title: "Name",
