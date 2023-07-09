@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Table, Button, Popconfirm, Form, Select } from "antd";
+import { Input,Table, Button, Popconfirm, Form, Select } from "antd";
 import { useAuth } from "../Components/AuthContext";
 import { Modal } from "antd";
 const { Option } = Select;
@@ -133,6 +133,28 @@ function CustomuserTable() {
     {
       title: "Name",
       dataIndex: "name",
+      filterDropdown: ({ setSelectedKeys, selectedKeys, confirm }) => {
+        return (
+          <Input
+            placeholder="Name suchen"
+            value={selectedKeys[0]}
+            onChange={(e) => {
+              setSelectedKeys(e.target.value ? [e.target.value] : []);
+            }}
+            onPressEnter={() => {
+              confirm();
+            }}
+            onBlur={() => {
+              confirm();
+            }}
+          ></Input>
+          
+        );
+      },
+       // Filterfunktion
+       onFilter: (value, record) => {
+        return record.name.toLowerCase().includes(value.toLowerCase());
+      },
     },
     {
       title: "Rolle",

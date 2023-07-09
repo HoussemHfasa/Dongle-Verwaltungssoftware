@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Table } from "antd";
+import { Input, Table } from "antd";
 import { useAuth } from "../Components/AuthContext";
 
 // LizenzTable-Komponente
@@ -37,6 +37,28 @@ const LizenzTable = () => {
     {
       title: "Lizenzname",
       dataIndex: "lizenzname",
+      filterDropdown: ({ setSelectedKeys, selectedKeys, confirm }) => {
+        return (
+          <Input
+            placeholder="Lizenzname suchen"
+            value={selectedKeys[0]}
+            onChange={(e) => {
+              setSelectedKeys(e.target.value ? [e.target.value] : []);
+            }}
+            onPressEnter={() => {
+              confirm();
+            }}
+            onBlur={() => {
+              confirm();
+            }}
+          ></Input>
+          
+        );
+      },
+       // Filterfunktion
+       onFilter: (value, record) => {
+        return record.lizenzname.toLowerCase().includes(value.toLowerCase());
+      },
     },
     {
       title: "Einheiten",
@@ -65,6 +87,28 @@ const LizenzTable = () => {
     {
       title: "Dongle Serien Nr",
       dataIndex: "dongle_serien_nr",
+      filterDropdown: ({ setSelectedKeys, selectedKeys, confirm }) => {
+        return (
+          <Input
+            placeholder="Dongle Serien Nr suchen"
+            value={selectedKeys[0]}
+            onChange={(e) => {
+              setSelectedKeys(e.target.value ? [e.target.value] : []);
+            }}
+            onPressEnter={() => {
+              confirm();
+            }}
+            onBlur={() => {
+              confirm();
+            }}
+          ></Input>
+          
+        );
+      },
+       // Filterfunktion
+       onFilter: (value, record) => {
+        return record.dongle_serien_nr;
+      },
     },
     {
       title: "Kunde",
