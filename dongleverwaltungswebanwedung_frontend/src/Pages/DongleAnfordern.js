@@ -12,7 +12,6 @@ const DongleAnfordern = () => {
   const [standort, setStandort] = useState("");
   const [gueltigVon, setGueltigVon] = useState("");
   const [gueltigBis, setGueltigBis] = useState("");
-  const [firmCode] = useState("");
   const [projekt, setProjekt] = useState("");
   const [titel, setTitel] = useState("");
   const [beschreibung, setBeschreibung] = useState("");

@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import user_image from "../Pictures/user.png";
-import Notification_image from "../Pictures/active.png";
 import gfaiLogo from "../Pictures/gfai_logo.png";
 import NotificationMenu from "./NotificationMenu";
 import ProfileMenu from "./ProfileMenu";
@@ -77,13 +76,13 @@ const NavbarKunde = (props) => {
         </button>
         <button
           className={styles["lizenz"]}
-          onClick={() => navigate("/Lizenübersicht")}
+          onClick={() => navigate("/Lizenzübersicht")}
         >
           Lizenzübersicht
         </button>
         <button
           className={styles["anfrage"]}
-          onClick={() => navigate("/KundeAnfrageübersicht")}
+          onClick={() => navigate("/KundeAnfrageuebersicht")}
         >
           Meine Anfrage
         </button>

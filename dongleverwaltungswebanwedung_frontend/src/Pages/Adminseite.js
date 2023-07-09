@@ -32,7 +32,7 @@ const Adminseite = () => {
         onClick={() => navigate("/Kontoerstellen")}
       >
         <span className={styles["Kontoerstellentext"]}>
-          <span>Kontoerstellen</span>
+          <span>Konto erstellen</span>
         </span>
       </button>
       {/* Benutzerdefinierte Tabelle */}

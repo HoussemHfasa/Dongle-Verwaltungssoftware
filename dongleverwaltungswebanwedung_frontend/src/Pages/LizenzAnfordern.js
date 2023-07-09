@@ -14,11 +14,10 @@ const Lizenzanfordern = () => {
   const [productCode, setProductCode] = useState("");
   const [gueltig_von, setGültigVon] = useState("");
   const [gueltig_bis, setGültigBis] = useState("");
-  const [firmCode] = useState("");
   const [projekt, setProjekt] = useState("");
   const [lizenzAnzahl, setLizenzAnzahl] = useState("");
   const { email, password, Firmcode } = useAuth();
-  const [responseContent, setResponseContent] = useState("");
+  const [setResponseContent] = useState("");
 
   // Funktion zum Zurücksetzen des Formulars
   const resetForm = () => {

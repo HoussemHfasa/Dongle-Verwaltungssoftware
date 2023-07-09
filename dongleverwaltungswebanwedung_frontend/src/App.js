@@ -2,7 +2,7 @@ import React from "react";
 import { AuthProvider } from "./Components/AuthContext";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Uebersichtseite from "./Pages/Übersichtseite";
-import LizenUebersicht from "./Pages/Lizenübersicht";
+import LizenzUebersicht from "./Pages/Lizenzübersicht";
 import Einloggen from "./Pages/Einloggen";
 import Adminseite from "./Pages/Adminseite";
 import "./App.css";
@@ -30,10 +30,10 @@ function App() {
                 path="/Donglehinzufuegen"
                 element={<Donglehinzufuegen />}
               />
-              <Route path="/Lizenübersicht" element={<LizenUebersicht />} />
-              <Route path="/Anfrageübersicht" element={<Anfrageübersicht />} />
+              <Route path="/Lizenzübersicht" element={<LizenzUebersicht />} />
+              <Route path="/Anfrageuebersicht" element={<Anfrageübersicht />} />
               <Route
-                path="/KundeAnfrageübersicht"
+                path="/KundeAnfrageuebersicht"
                 element={<KundeAnfrageübersicht />}
               />
               <Route path="/Admin" element={<Adminseite />} />
