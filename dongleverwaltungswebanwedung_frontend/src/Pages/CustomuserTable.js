@@ -147,17 +147,7 @@ function CustomuserTable() {
       title: "Aktionen",
       render: (text, record) => (
         <>
-          {record.role !== "Kunde" &&
-            !isEditing(record) &&
-            record.is_superuser !== 1 && (
-              <Button
-                type="primary"
-                onClick={() => edit(record)}
-                style={{ marginRight: 8 }}
-              >
-                Rolle ändern
-              </Button>
-            )}
+
           <Popconfirm
             title={`Sind Sie sicher, dass Sie den Kunden mit der ID ${record.id} löschen möchten?`}
             onConfirm={() => handleDelete(record)}
@@ -175,6 +165,19 @@ function CustomuserTable() {
               Löschen
             </Button>
           </Popconfirm>
+
+          {record.role !== "Kunde" &&
+            !isEditing(record) &&
+            record.is_superuser !== 1 && (
+              <Button
+                type="primary"
+                onClick={() => edit(record)}
+                style={{ marginRight: 8 }}
+              >
+                Rolle ändern
+              </Button>
+            )}
+          
         </>
       ),
     },
