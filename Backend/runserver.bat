@@ -1,4 +1,4 @@
 @echo off
 cd Backend
-call C:\Users\houss\OneDrive\Documents\team01\Scripts\activate
+call %USERPROFILE%\anaconda3\envs\myenv\Scripts\activate.bat
 python manage.py runserver
